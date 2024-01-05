@@ -19,7 +19,7 @@ DEPENDS += " \
 	libdrm \
 	libxkbcommon \
 	libinput \
-	wlroots-0.16 \
+	wlroots-0.17 \
 "
 
 RRECOMMENDS:${PN} ?= " \
@@ -33,8 +33,8 @@ RRECOMMENDS:${PN} ?= " \
 
 SRC_URI = "git://github.com/labwc/labwc.git;protocol=https;branch=master"
 
-SRCREV = "7af5f1d5ceea6db6529ad2beb9c3cad94f74f719"
-PV = "0.6.6"
+SRCREV = "eb41fb1e0b510e623ab9fb91f697209effe8915b"
+PV = "0.7.0"
 S = "${WORKDIR}/git"
 
 inherit meson pkgconfig features_check gettext
