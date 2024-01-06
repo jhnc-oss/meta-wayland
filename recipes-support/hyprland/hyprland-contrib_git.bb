@@ -11,12 +11,13 @@ SRCREV = "955cb4914cbbacb15a0c1037aacdad60de60161d"
 PV = "0.1"
 
 DEPENDS = "scdoc-native"
-RDEPENDS:${PN} = "bash sed rofi jq libnotify grim slurp wl-clipboard"
+RDEPENDS:${PN} = "bash sed jq libnotify grim slurp wl-clipboard ${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'rofi', '', d)}"
 
 EXTRA_OEMAKE += "DESTDIR=${D} PREFIX=${prefix} BINDIR=${D}${bindir} MANDIR=${D}${datadir}/man MAN1DIR=${D}${datadir}/man1"
 
+x11_scripts = "${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'scratchpad grimblast', '', d)}"
 do_install() {
-	for dir in grimblast hyprprop scratchpad hdrop shellevents try_swap_workspace; do
+	for dir in hyprprop hdrop shellevents try_swap_workspace ${x11_scripts}; do
 		cd $dir && oe_runmake && oe_runmake install && cd ${S}
 	done
 }
