@@ -1,0 +1,27 @@
+From d09dae4bd9494c03fb85c216fe33c883a7b7f64d Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Mon, 8 Jan 2024 14:00:07 +0100
+Subject: [PATCH] meson.build: dont fail if stb is not found
+
+we have neigher pkconfig nor cmake support
+manually add it to CXXFLAGS
+---
+ src/meson.build | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/meson.build b/src/meson.build
+index 5385dfb..f912cfc 100644
+--- a/src/meson.build
++++ b/src/meson.build
+@@ -19,7 +19,7 @@ cap_dep = dependency('libcap', required: false)
+ epoll_dep = dependency('epoll-shim', required: false)
+ glm_dep = dependency('glm')
+ sdl_dep = dependency('SDL2')
+-stb_dep = dependency('stb')
++stb_dep = dependency('stb', required: false)
+ 
+ wlroots_dep = dependency(
+   'wlroots',
+-- 
+2.43.0
+
