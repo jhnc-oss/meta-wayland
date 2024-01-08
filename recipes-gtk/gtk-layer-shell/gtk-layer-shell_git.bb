@@ -20,8 +20,8 @@ SRC_URI = " \
 "
 
 S = "${WORKDIR}/git"
-PV = "0.8.1"
-SRCREV = "0ed957ce262c1063a011b16b59cda5c5de4b3b47"
+PV = "0.8.2"
+SRCREV = "91e5ef02b557f93337bcc11ffe8c0a251aa9ab52"
 
 inherit meson pkgconfig features_check gobject-introspection vala
 
