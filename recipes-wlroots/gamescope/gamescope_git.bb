@@ -9,7 +9,6 @@ DEPENDS += " \
 	glm \
 	glslang-native \
 	hwdata \
-	pipewire \
 	libavif \
 	libcap \
 	libdisplay-info \
