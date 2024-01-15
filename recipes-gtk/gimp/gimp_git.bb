@@ -39,7 +39,7 @@ DEPENDS:append:libc-musl = " libexecinfo"
 RDEPENDS:${PN} = "mypaint-brushes-1.0 glib-networking"
 
 inherit meson gtk-icon-cache mime-xdg pkgconfig gettext gi-docgen features_check gobject-introspection vala
-GIR_MESON_OPTION = ''
+GIR_MESON_OPTION = 'can-crosscompile-gir'
 VALA_MESON_OPTION = "vala"
 VALA_MESON_ENABLE_FLAG = "enabled"
 VALA_MESON_DISABLE_FLAG = "disabled"
@@ -47,9 +47,7 @@ GIDOCGEN_MESON_OPTION = "gi-docgen"
 GIDOCGEN_MESON_ENABLE_FLAG = "enabled"
 GIDOCGEN_MESON_DISABLE_FLAG = "disabled"
 
-SRC_URI = " \
-    git://github.com/GNOME/gimp.git;protocol=https;branch=master \
-"
+SRC_URI = "git://github.com/GNOME/gimp.git;protocol=https;branch=master"
 
 S = "${WORKDIR}/git"
 SRCREV = "d3c5536ac85bb84e1beaba68aea12cf28062e08c"
@@ -109,6 +107,5 @@ FILES:${PN} += "${datadir}/metainfo"
 EXTRA_OEMESON += " \
     -Dshmem-type=posix \
     -Dlinux-input=enabled \
-    -Dcan-crosscompile-gir=true \
     --buildtype release \
 "
