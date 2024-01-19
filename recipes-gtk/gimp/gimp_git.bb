@@ -4,8 +4,6 @@ SECTION = "graphics"
 LICENSE = "GPL-3.0-only"
 LIC_FILES_CHKSUM = "file://COPYING;md5=c678957b0c8e964aa6c70fd77641a71e"
 
-REQUIRED_DISTRO_FEATURES = "gobject-introspection-data"
-
 DEPENDS = " \
     appstream-glib \
     atk \
@@ -38,7 +36,8 @@ DEPENDS = " \
 DEPENDS:append:libc-musl = " libexecinfo"
 RDEPENDS:${PN} = "mypaint-brushes-1.0 glib-networking"
 
-inherit meson gtk-icon-cache mime-xdg pkgconfig gettext gi-docgen features_check gobject-introspection vala
+inherit meson gtk-icon-cache mime-xdg pkgconfig gettext gi-docgen gobject-introspection vala
+
 GIR_MESON_OPTION = 'can-crosscompile-gir'
 VALA_MESON_OPTION = "vala"
 VALA_MESON_ENABLE_FLAG = "enabled"
