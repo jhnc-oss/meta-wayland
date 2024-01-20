@@ -6,6 +6,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=a0fe8e93fee55f3a3a8cc0681c48448a"
 REQUIRED_DISTRO_FEATURES = "x11 wayland"
 
 DEPENDS += " \
+	aom \
 	glm \
 	glslang-native \
 	hwdata \
@@ -21,8 +22,9 @@ DEPENDS += " \
 	libxkbcommon \
 	libxres \
 	libxmu \
+	libxrender \
+	libxtst \
 	vulkan-headers \
-	vulkan-loader \
 	wayland \
 	wayland-native \
 	wayland-protocols \
@@ -31,9 +33,10 @@ DEPENDS += " \
 
 CXXFLAGS:append = " -I${STAGING_INCDIR}/stb"
 
-PACKAGECONFIG ?= "${@bb.utils.filter('DISTRO_FEATURES', 'pipewire', d)}"
+PACKAGECONFIG ?= "${@bb.utils.filter('DISTRO_FEATURES', 'opengl pipewire', d)}"
 PACKAGECONFIG[openvr] = "-Denable_openvr_support=true,-Denable_openvr_support=false,openvr"
-PACKAGECONFIG[pipewire] = "-Dpipewire=enabled,-Dpipwire=disabled,pipewire"
+PACKAGECONFIG[pipewire] = "-Dpipewire=enabled,-Dpipewire=disabled,pipewire"
+PACKAGECONFIG[opengl] = ",,mesa-glut"
 
 SRC_URI = "   \
 	gitsm://github.com/ValveSoftware/gamescope.git;branch=master;protocol=https \
