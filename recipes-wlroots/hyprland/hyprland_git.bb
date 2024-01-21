@@ -36,11 +36,10 @@ RRECOMMENDS:${PN} ?= " \
 SRC_URI = " \
 	gitsm://github.com/hyprwm/Hyprland.git;protocol=https;branch=main \
 	file://meson-build.patch \
-	file://0001-internal-Add-GTK-portal-as-fallback-3469.patch \
 "
 
-SRCREV = "1b48642fd15c433c53876f1b933dcd46265caf8f"
-PV = "0.30.0"
+SRCREV = "9afdd61adeaf413afbe853dbc5fdf6853c8bde21"
+PV = "0.32.3"
 S = "${WORKDIR}/git"
 
 inherit meson pkgconfig features_check
