@@ -38,9 +38,9 @@ PACKAGECONFIG ?= " \
 	libinput \
 "
 
-SRC_URI = "git://gitlab.freedesktop.org/wlroots/wlroots.git;branch=master;protocol=https"
-SRCREV = "767eedd3cbe9900687bf3b82236320dcd7b77aae"
-PV = "0.17.0"
+SRC_URI = "git://gitlab.freedesktop.org/wlroots/wlroots.git;branch=0.17;protocol=https"
+SRCREV = "3f2aced8c6fd00b0b71da24c790850af2004052b"
+PV = "0.17.1"
 
 S = "${WORKDIR}/git"
 
