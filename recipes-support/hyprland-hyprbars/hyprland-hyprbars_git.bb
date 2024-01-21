@@ -13,7 +13,7 @@ DEPENDS = " \
 "
 
 S = "${WORKDIR}/git/hyprbars"
-SRCREV = "f9578d28d272fb61753417e175b0fcd5bedc1443"
+SRCREV = "b378b7baa66e0ba1f7cc5c00505cca252f53f420"
 
 inherit meson pkgconfig
 
