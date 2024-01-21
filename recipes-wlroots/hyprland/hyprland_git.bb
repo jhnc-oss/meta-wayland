@@ -38,7 +38,7 @@ SRC_URI = " \
 	file://meson-build.patch \
 "
 
-SRCREV = "03ebbe18ed8517ee22591eac82cd54322f42cb7d"
+SRCREV = "f40e382fc6208d4fe2e53581ea27510cb62417dd"
 PV = "0.34.0"
 S = "${WORKDIR}/git"
 
@@ -51,3 +51,5 @@ PACKAGECONFIG[xwayland] = "-Dxwayland=enabled,-Dxwayland=disabled,libxcb xcb-uti
 PACKAGECONFIG[legacy_renderer] = "-Dlegacy_renderer=enabled,-Dlegacy_renderer=disabled"
 
 FILES:${PN} += "${datadir}"
+
+CXXFLAGS += "-Wno-unused-result"
