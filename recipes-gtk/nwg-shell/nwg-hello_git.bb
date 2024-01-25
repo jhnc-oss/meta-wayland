@@ -1,6 +1,6 @@
 SUMMARY = "nwg-hello is a GTK3-based greeter for the greetd daemon, written in python."
 LICENSE = "MIT"
-LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=b0ad99c75f37a759e329c5da4c8a7fcb"
 
 SRC_URI = "git://github.com/nwg-piotr/nwg-hello.git;protocol=https;branch=main"
 
@@ -17,7 +17,7 @@ inherit setuptools3 useradd
 
 S = "${WORKDIR}/git"
 PV = "0.1.6"
-SRCREV = "13dcb00ebbf7f4d9d16374cfb5c7272212a762e3"
+SRCREV = "f89364d33b83ebd58a4b166ac328431e54327de4"
 
 USERADD_PACKAGES = "${PN}"
 USERADD_PARAM:${PN} = "--system  --no-create-home --shell /bin/bash greeter"
