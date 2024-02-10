@@ -1,4 +1,3 @@
-
 SUMMARY = "A Wayland WM"
 HOMEPAGE = "https://github.com/swaywm/sway"
 BUGTRACKER = "https://github.com/swaywm/sway/issues"
@@ -63,8 +62,4 @@ PACKAGECONFIG ?= " \
 
 EXTRA_OEMESON += "--buildtype release"
 
-FILES:${PN}:append = " \
-	${datadir} \
-"
-
-BBCLASSEXTEND = ""
+FILES:${PN} += "${datadir}"

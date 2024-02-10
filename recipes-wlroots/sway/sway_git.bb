@@ -63,8 +63,4 @@ PACKAGECONFIG ?= " \
 
 EXTRA_OEMESON += "--buildtype release"
 
-FILES:${PN}:append = " \
-	${datadir} \
-"
-
-BBCLASSEXTEND = ""
+FILES:${PN} += "${datadir}"

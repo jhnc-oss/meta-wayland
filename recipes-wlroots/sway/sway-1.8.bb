@@ -73,8 +73,4 @@ do_install:append() {
 	install -m 755 ${S}/contrib/inactive-windows-transparency.py ${D}${bindir}
 }
 
-FILES:${PN}:append = " \
-	${datadir} \
-"
-
-BBCLASSEXTEND = ""
+FILES:${PN} += "${datadir}"
