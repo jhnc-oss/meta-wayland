@@ -15,6 +15,7 @@ DEPENDS += " \
 	libdisplay-info \
 	libliftoff \
 	libsdl2 \
+	libdrm \
 	libx11\
 	libxcomposite \
 	libxcursor \
@@ -45,6 +46,7 @@ SRC_URI = "   \
 	gitsm://github.com/ValveSoftware/gamescope.git;branch=master;protocol=https \
 	file://0001-meson.build-dont-fail-if-stb-is-not-found.patch \
 	file://0001-meson.build-dont-leak-buildpath.patch \
+	file://0001-meson.build-dont-force-subprojects.patch\
 "
 SRCREV = "bca7990e61a1eb8198e54d86a4a9a44d41d9b07e"
 PV = "3.14.0"

@@ -1,0 +1,25 @@
+From 7a9090bff4fb65caf7973b359124a6572a8ea41d Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Mon, 12 Feb 2024 18:50:31 +0100
+Subject: [PATCH] meson.build: dont force subprojects
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+---
+ meson.build | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/meson.build b/meson.build
+index 7af6884..eab837a 100644
+--- a/meson.build
++++ b/meson.build
+@@ -6,7 +6,6 @@ project(
+   default_options: [
+     'cpp_std=c++20',
+     'warning_level=2',
+-    'force_fallback_for=wlroots,libliftoff,vkroots',
+   ],
+ )
+ 
+-- 
+2.43.0
+
