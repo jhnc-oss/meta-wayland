@@ -1,0 +1,28 @@
+From 2c97df6e0940c4b0a9ce30f7c422c579cf44c60c Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Mon, 12 Feb 2024 16:15:33 +0100
+Subject: [PATCH] meson.build: dont leak buildpath
+
+This fixes buildpath in gamescope binary
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+---
+ meson.build | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/meson.build b/meson.build
+index 7af6884..4fb8650 100644
+--- a/meson.build
++++ b/meson.build
+@@ -62,7 +62,7 @@ endif
+ add_project_arguments(
+   '-DHAVE_PIPEWIRE=@0@'.format(pipewire_dep.found().to_int()),
+   '-DHAVE_OPENVR=@0@'.format(openvr_dep.found().to_int()),
+-  '-DHWDATA_PNP_IDS="@0@"'.format(hwdata_dep.get_variable('pkgdatadir') / 'pnp.ids'),
++  '-DHWDATA_PNP_IDS="@0@"'.format(hwdata_dep.get_variable('datadir') / 'hwdata' / 'pnp.ids'),
+   language: 'cpp',
+ )
+ 
+-- 
+2.43.0
+
