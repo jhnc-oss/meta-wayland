@@ -32,12 +32,12 @@ DEPENDS += " \
 	wlroots-0.17 \
 "
 
-RDEPENDS:${PN} = "xwayland"
+RDEPENDS:${PN} = "xwayland hwdata"
 
 CXXFLAGS:append = " -I${STAGING_INCDIR}/stb"
 
-PACKAGECONFIG ?= "${@bb.utils.filter('DISTRO_FEATURES', 'opengl pipewire', d)}"
-PACKAGECONFIG[openvr] = "-Denable_openvr_support=true,-Denable_openvr_support=false,openvr"
+PACKAGECONFIG ?= "${@bb.utils.filter('DISTRO_FEATURES', 'opengl pipewire', d)} openvr"
+PACKAGECONFIG[openvr] = "-Denable_openvr_support=true,-Denable_openvr_support=false"
 PACKAGECONFIG[pipewire] = "-Dpipewire=enabled,-Dpipewire=disabled,pipewire"
 PACKAGECONFIG[opengl] = ",,mesa-glut"
 
