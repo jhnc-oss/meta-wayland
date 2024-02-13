@@ -44,7 +44,6 @@ PV = "0.18.0-dev"
 
 S = "${WORKDIR}/git"
 
-
 inherit meson pkgconfig features_check
 
 EXTRA_OEMESON += "--buildtype release"
