@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=1ebbd3e34237af26da5dc08a4e440464"
 SRC_URI = "git://github.com/hyprwm/hyprlang.git;protocol=https;branch=main"
 
 S = "${WORKDIR}/git"
-SRCREV = "335d0c65e1be3855bf835bf4e1c6f7566a0f52bf"
-PV = "0.3.0"
+SRCREV = "11d5ccda071c153dfdc18ef65338956a51cef96a"
+PV = "0.4.0"
 
 inherit cmake
