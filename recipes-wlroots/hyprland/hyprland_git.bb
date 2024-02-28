@@ -10,6 +10,7 @@ REQUIRED_DISTRO_FEATURES = "wayland opengl"
 
 DEPENDS += " \
 	cairo \
+	hyprlang \
 	jq-native \
 	libdrm \
 	libinput \
@@ -38,8 +39,8 @@ SRC_URI = " \
 	file://meson-build.patch \
 "
 
-SRCREV = "84ab8d11e8951a6551d1e1bf87796a8589da6d47"
-PV = "0.35.0"
+SRCREV = "1c460e98f870676b15871fe4e5bfeb1a32a3d6d8"
+PV = "0.36.0"
 S = "${WORKDIR}/git"
 
 inherit meson pkgconfig features_check
@@ -49,6 +50,10 @@ PACKAGECONFIG ?= "${@bb.utils.filter('DISTRO_FEATURES', 'systemd xwayland', d)}"
 PACKAGECONFIG[systemd] = "-Dsystemd=enabled,-Dsystemd=disabled"
 PACKAGECONFIG[xwayland] = "-Dxwayland=enabled,-Dxwayland=disabled,libxcb xcb-util-wm xcb-util-renderutil xwayland,xwayland"
 PACKAGECONFIG[legacy_renderer] = "-Dlegacy_renderer=enabled,-Dlegacy_renderer=disabled"
+
+do_configure:prepend() {
+	cd ${S} && scripts/generateVersion.sh
+}
 
 FILES:${PN} += "${datadir}"
 

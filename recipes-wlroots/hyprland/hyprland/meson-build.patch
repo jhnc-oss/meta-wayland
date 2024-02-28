@@ -1,13 +1,3 @@
-From 19e0c04a57bfb3677caf1ac8c22527b066666a95 Mon Sep 17 00:00:00 2001
-From: Markus Volk <f_l_k@t-online.de>
-Date: Sun, 23 Jul 2023 10:19:54 +0200
-Subject: [PATCH] hyprland: update
-
----
- meson.build     | 17 +----------------
- src/meson.build |  6 +++---
- 2 files changed, 4 insertions(+), 19 deletions(-)
-
 diff --git a/meson.build b/meson.build
 index 1d2c7f9f..c5ef4e67 100644
 --- a/meson.build
@@ -34,17 +24,27 @@ index 1d2c7f9f..c5ef4e67 100644
    add_project_arguments('-DNO_XWAYLAND', language: 'cpp')
  endif
  
+@@ -69,8 +56,6 @@ if get_option('buildtype') == 'debug'
+   add_project_arguments('-DHYPRLAND_DEBUG', language: 'cpp')
+ endif
+ 
+-version_h = run_command('sh', '-c', 'scripts/generateVersion.sh')
+-
+ globber = run_command('find', 'src', '-name', '*.h*', check: true)
+ headers = globber.stdout().strip().split('\n')
+ foreach file : headers
 diff --git a/src/meson.build b/src/meson.build
-index 0af864b9..38723b8c 100644
+index 45701f5f..3505cefe 100644
 --- a/src/meson.build
 +++ b/src/meson.build
-@@ -9,16 +9,16 @@ executable('Hyprland', src,
+@@ -9,17 +9,17 @@ executable('Hyprland', src,
      server_protos,
      dependency('wayland-server'),
      dependency('wayland-client'),
 -    wlroots.get_variable('wlroots'),
 +    dependency('wlroots'),
      dependency('cairo'),
+     dependency('hyprlang', version: '>= 0.3.2'),
      dependency('libdrm'),
      dependency('egl'),
      dependency('xkbcommon'),
