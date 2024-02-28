@@ -56,5 +56,3 @@ do_configure:prepend() {
 }
 
 FILES:${PN} += "${datadir}"
-
-CXXFLAGS += "-Wno-unused-result"
