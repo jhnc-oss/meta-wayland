@@ -7,21 +7,19 @@ REQUIRED_DISTRO_FEATURES = "wayland polkit pam pulseaudio"
 
 DEPENDS = " \
     callaudiod \
-    evince \
     evolution-data-server \
+    evince \
     feedbackd \
     fribidi \
     gcr \
-    git-native \
     glib-2.0 \
     gnome-desktop \
+    gtk+3 \
     gtk4 \
     libadwaita \
     libgudev \
     libhandy \
-    libpam \
     libsecret \
-    libxml2 \
     networkmanager \
     polkit \
     pulseaudio \
@@ -32,12 +30,12 @@ DEPENDS = " \
 "
 
 RDEPENDS:${PN} = " \
-    gnome-control-center \
-    gnome-session \
-    gnome-settings-daemon \
-    gnome-shell \
+    polkit-gnome \
     gsettings-desktop-schemas \
     phoc \
+    gnome-desktop \
+    wl-clipboard \
+    calls \
 "
 
 PACKAGECONFIG[tests] = "-Dtests=true,-Dtests=false"
@@ -54,7 +52,6 @@ inherit features_check gsettings meson pkgconfig gtk-icon-cache
 
 SRC_URI = " \
     gitsm://gitlab.gnome.org/World/Phosh/phosh.git;protocol=https;nobranch=1 \
-    file://phosh.pam \
 "
 
 S = "${WORKDIR}/git"
