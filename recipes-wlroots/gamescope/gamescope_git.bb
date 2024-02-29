@@ -10,11 +10,8 @@ DEPENDS += " \
 	glm \
 	glslang-native \
 	hwdata \
-	libavif \
-	libcap \
 	libdisplay-info \
 	libliftoff \
-	libsdl2 \
 	libdrm \
 	libx11\
 	libxcomposite \
@@ -36,11 +33,13 @@ RDEPENDS:${PN} = "xwayland hwdata"
 
 CXXFLAGS:append = " -I${STAGING_INCDIR}/stb"
 
-PACKAGECONFIG ?= "${@bb.utils.filter('DISTRO_FEATURES', 'opengl pipewire', d)} openvr"
+PACKAGECONFIG ?= "${@bb.utils.filter('DISTRO_FEATURES', 'opengl pipewire', d)} rt_cap avif_screenshots openvr"
 PACKAGECONFIG[openvr] = "-Denable_openvr_support=true,-Denable_openvr_support=false"
 PACKAGECONFIG[pipewire] = "-Dpipewire=enabled,-Dpipewire=disabled,pipewire"
 PACKAGECONFIG[opengl] = ",,mesa-glut"
-
+PACKAGECONFIG[avif_screenshots] = "-Davif_screenshots=enabled,-Davif_screenshots=disabled,libavif"
+PACKAGECONFIG[rt_cap] = "-Drt_cap=enabled,-Drt_cap=disabled,libcap"
+PACKAGECONFIG[sdl2_backend] = "-Dsdl2_backend=enabled,-Dsdl2_backend=disabled,libsdl2"
 
 SRC_URI = "   \
 	gitsm://github.com/ValveSoftware/gamescope.git;branch=master;protocol=https \
@@ -48,8 +47,8 @@ SRC_URI = "   \
 	file://0001-meson.build-dont-leak-buildpath.patch \
 	file://0001-meson.build-dont-force-subprojects.patch\
 "
-SRCREV = "bca7990e61a1eb8198e54d86a4a9a44d41d9b07e"
-PV = "3.14.0"
+SRCREV = "d0d23c4c3010c81add1bd90cbe478ce4a386e28d"
+PV = "3.14.2"
 
 S = "${WORKDIR}/git"
 

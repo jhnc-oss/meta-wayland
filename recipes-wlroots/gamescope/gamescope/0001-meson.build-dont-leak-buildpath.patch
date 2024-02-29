@@ -11,18 +11,18 @@ Signed-off-by: Markus Volk <f_l_k@t-online.de>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/meson.build b/meson.build
-index 7af6884..4fb8650 100644
+index 04bd472..345a2a7 100644
 --- a/meson.build
 +++ b/meson.build
-@@ -62,7 +62,7 @@ endif
- add_project_arguments(
-   '-DHAVE_PIPEWIRE=@0@'.format(pipewire_dep.found().to_int()),
-   '-DHAVE_OPENVR=@0@'.format(openvr_dep.found().to_int()),
+@@ -67,7 +67,7 @@ add_project_arguments(
+ 
+ if hwdata_dep.found()
+   add_project_arguments(
 -  '-DHWDATA_PNP_IDS="@0@"'.format(hwdata_dep.get_variable('pkgdatadir') / 'pnp.ids'),
 +  '-DHWDATA_PNP_IDS="@0@"'.format(hwdata_dep.get_variable('datadir') / 'hwdata' / 'pnp.ids'),
    language: 'cpp',
- )
- 
+   )
+ else
 -- 
 2.43.0
 
