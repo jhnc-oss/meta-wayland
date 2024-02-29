@@ -58,8 +58,8 @@ SRC_URI = " \
 "
 
 S = "${WORKDIR}/git"
-PV = "0.34.0"
-SRCREV = "6dc3677b923794338d111cc5cecc3c7a6b046f18"
+PV = "0.36.0"
+SRCREV = "62a4ba9d8a38750a49ae6187f3497c54a030be45"
 
 EXTRA_OEMESON += "--buildtype=release"
 
