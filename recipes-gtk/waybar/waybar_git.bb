@@ -16,7 +16,7 @@ SRC_URI = " \
 
 S = "${WORKDIR}/git"
 PV = "0.9.24"
-SRCREV = "6e12f8122347ae279ae0fa1923acd6b908fa769c"
+SRCREV = "26af1066e17758c3c732d545339fb375efdaa473"
 
 DEPENDS += " \
 	date \
@@ -27,6 +27,7 @@ DEPENDS += " \
 	libsigc++-3 \
 	libxkbcommon \
 	gtk+3 \
+	gtk-layer-shell \
 	gobject-introspection \
 	spdlog \
 	wayland \
@@ -40,8 +41,7 @@ PACKAGECONFIG[libcxx] = "-Dlibcxx=true,-Dlibcxx=false,libcxx clang-tidy"
 PACKAGECONFIG[dbusmenu-gtk] = "-Ddbusmenu-gtk=enabled,-Ddbusmenu-gtk=disabled,libdbusmenu-gtk"
 PACKAGECONFIG[evdev] = "-Dlibevdev=enabled,-Dlibevdev=disabled,libevdev"
 PACKAGECONFIG[experimental] = "-Dexperimental=true,-Dexperimental=false"
-PACKAGECONFIG[gtk-layer-shell] = "-Dgtk-layer-shell=enabled,-Dgtk-layer-shell=disabled,gtk-layer-shell"
-PACKAGECONFIG[jack] = "-Djack=enabled,-Djack=disabled,pipewire"
+PACKAGECONFIG[jack] = "-Djack=enabled,-Djack=disabled,jack"
 PACKAGECONFIG[libinput] = "-Dlibinput=enabled,-Dlibinput=disabled,libinput"
 PACKAGECONFIG[logind] = "-Dlogind=enabled,-Dlogind=disabled,systemd"
 PACKAGECONFIG[man_pages] = "-Dman-pages=enabled,-Dman-pages=disabled,scdoc-native"
@@ -49,6 +49,7 @@ PACKAGECONFIG[mpd] = "-Dmpd=enabled,-Dmpd=disabled,libmpdclient"
 PACKAGECONFIG[mpris] = "-Dmpris=enabled,-Dmpris=disabled,playerctl"
 PACKAGECONFIG[network] = "-Dlibnl=enabled,-Dlibnl=disabled,libnl"
 PACKAGECONFIG[pulseaudio] = "-Dpulseaudio=enabled,-Dpulseaudio=disabled,pulseaudio"
+PACKAGECONFIG[pipewire] = "-Dpipewire=enabled,-Dpipewire=disabled,pipewire"
 PACKAGECONFIG[rfkill] = "-Drfkill=enabled,-Drfkill=disabled"
 PACKAGECONFIG[systemd] = "-Dsystemd=enabled,-Dsystemd=disabled,systemd"
 PACKAGECONFIG[tests] = "-Dtests=enabled,-Dtests=disabled,catch2"
@@ -59,9 +60,8 @@ PACKAGECONFIG[wireplumber] = "-Dwireplumber=enabled,-Dwireplumber=disabled,wirep
 PACKAGECONFIG ?= " \
     ${@bb.utils.filter('DISTRO_FEATURES', 'pulseaudio', d)} \
     ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'systemd logind udev', '', d)} \
-    ${@bb.utils.contains('DISTRO_FEATURES', 'pipewire', 'wireplumber', '', d)} \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'pipewire', 'pipewire wireplumber', '', d)} \
     evdev \
-    gtk-layer-shell \
     libinput  \
     mpris \
     network \
