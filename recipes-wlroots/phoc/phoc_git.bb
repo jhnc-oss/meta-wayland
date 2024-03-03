@@ -2,9 +2,9 @@
 SUMMARY = "wlroots based Phone compositor as used on the Librem5."
 HOMEPAGE = "https://gitlab.gnome.org/World/Phosh/phoc"
 SECTION = "graphics"
-LICENSE = "GPL-3.0-only"
+LICENSE = "GPL-3.0-or-later"
 
-LIC_FILES_CHKSUM = "file://COPYING;md5=d32239bcb673463ab874e80d47fae504"
+LIC_FILES_CHKSUM = "file://LICENSES/GPL-3.0-or-later.txt;md5=d32239bcb673463ab874e80d47fae504"
 
 REQUIRED_DISTRO_FEATURES = "wayland"
 
@@ -22,8 +22,6 @@ DEPENDS += " \
 	wayland-protocols \
 	wlroots-0.17 \
 "
-
-RDEPENDS:${PN} = "mutter"
 
 SRC_URI = " \
 	git://gitlab.gnome.org/World/Phosh/phoc.git;protocol=https;nobranch=1 \
