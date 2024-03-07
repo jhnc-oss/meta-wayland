@@ -2,12 +2,12 @@ SUMMARY = "The hypr configuration language is an extremely efficient, yet easy t
 HOMEPAGE = "https:/github.com/hyprwm/hyprlang"
 LICENSE = "GPL-3.0-only"
 
-LIC_FILES_CHKSUM = "file://LICENSE;md5=1ebbd3e34237af26da5dc08a4e440464"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=b5b6bed06dd8ed68f00c26d0b4cede89"
 
 SRC_URI = "git://github.com/hyprwm/hyprlang.git;protocol=https;branch=main"
 
 S = "${WORKDIR}/git"
-SRCREV = "42c66f6b44eb9ac64af9b6ef26325c16909a7650"
-PV = "0.4.1"
+SRCREV = "9995f54eddb20de2123bc45c020ac124654c1111"
+PV = "0.4.2"
 
 inherit cmake
