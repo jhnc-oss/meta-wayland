@@ -5,10 +5,9 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=e6a600fd5e1d9cbde2d983680233ad02"
 
 
 DEPENDS = " \
-	gtk4 \
+	gtk+3 \
 	glib-2.0 \
 	libgee \
-	sassc-native \
 "
 
 REQUIRED_DISTRO_FEATURES = "gobject-introspection-data"
@@ -16,8 +15,8 @@ REQUIRED_DISTRO_FEATURES = "gobject-introspection-data"
 SRC_URI = "git://github.com/elementary/granite.git;protocol=https;nobranch=1"
 
 S = "${WORKDIR}/git"
-PV = "7.4.0"
-SRCREV = "949703f8649013695c6d32eb84a6b541ac0da4db"
+PV = "6.2.0"
+SRCREV = "4ab145c28bb3db6372fe519e8bd79c645edfcda3"
 
 inherit meson pkgconfig gobject-introspection vala features_check
 
