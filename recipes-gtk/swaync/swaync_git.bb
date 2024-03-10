@@ -6,12 +6,13 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=8f0e2cd40e05189ec81232da84bd6e1a"
 
 
 DEPENDS = " \
-            gtk+3 \
             gtk-layer-shell \
+            granite6 \
             json-glib \
             libhandy \
             libgee \
             pulseaudio \
+            sassc-native \
 "
 
 SRC_URI = " \
@@ -19,8 +20,8 @@ SRC_URI = " \
 "
 
 S = "${WORKDIR}/git"
-PV = "0.9.0"
-SRCREV = "deaf9a68b7425e0a0945a029bcbac767a7a72ae4"
+PV = "0.10.1"
+SRCREV = "4275fa3915c12ad2731ff78027188b4b7ceaad64"
 
 PACKAGECONFIG[bash] = "-Dbash-completions=true,-Dbash-completions=false"
 PACKAGECONFIG[fish] = "-Dfish-completions=true,-Dfish-completions=false"
