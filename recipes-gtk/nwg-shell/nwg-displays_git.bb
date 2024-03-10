@@ -17,8 +17,8 @@ RDEPENDS:${PN} = "\
 inherit setuptools3
 
 S = "${WORKDIR}/git"
-PV = "0.3.12"
-SRCREV = "289053738787273987bb949c118bc84401b1cbd9"
+PV = "0.3.14"
+SRCREV = "8604b9208440cf7ec61fb5c98ead299fdcb9570f"
 
 do_install:append() {
 	install -d ${D}${datadir}/pixmaps ${D}${datadir}/applications
