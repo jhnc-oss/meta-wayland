@@ -18,8 +18,8 @@ GO_IMPORT = "github.com/nwg-piotr/nwg-menu.git"
 
 SRC_URI = "git://${GO_IMPORT};nobranch=1;protocol=https"
 
-PV = "0.1.1"
-SRCREV = "b76362d971490cb8279b40d9c2d543c5e69232ef"
+PV = "0.1.3"
+SRCREV = "fd8b92ad1ad0c0c7a23fc7a0be942ca0cbe7f7e0"
 
 inherit go go-mod pkgconfig
 
