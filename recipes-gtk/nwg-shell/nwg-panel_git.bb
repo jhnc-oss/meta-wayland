@@ -1,6 +1,6 @@
 SUMMARY = "GTK3-based panel for wayland."
 LICENSE = "MIT"
-LIC_FILES_CHKSUM = "file://LICENSE;md5=dcdbccfd08fcfd7002d16ca7fa5ad5cb"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=da62111cfafe45015704951c9d602bb2"
 
 SRC_URI = " \
 	git://github.com/nwg-piotr/nwg-panel.git;protocol=https;branch=master \
@@ -20,6 +20,6 @@ RDEPENDS:${PN} = "\
 inherit setuptools3
 
 S = "${WORKDIR}/git"
-PV = "0.9.21"
-SRCREV = "64a09831d801a508ac1ee3035394966a1411cf24"
+PV = "0.9.25"
+SRCREV = "194e8d02f90eaa3127b207ea1febda5091820a49"
 
