@@ -11,7 +11,7 @@ REQUIRED_DISTRO_FEATURES = "opengl"
 DEPENDS = "wayland wayland-native wayland-protocols hyprlang libxkbcommon cairo pango libdrm  libpam virtual/libgl virtual/egl"
 
 S = "${WORKDIR}/git"
-SRCREV = "94ac7fef1abf0786655e1691fffa7d34147a2536"
+SRCREV = "21d9efe5c94f1a292d181af70b32059509eada68"
 PV = "0.1.0"
 
 inherit cmake pkgconfig features_check
