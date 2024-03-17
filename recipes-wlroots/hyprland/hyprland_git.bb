@@ -10,6 +10,7 @@ REQUIRED_DISTRO_FEATURES = "wayland opengl"
 
 DEPENDS += " \
 	cairo \
+	hyprcursor \
 	hyprlang \
 	jq-native \
 	libdrm \
@@ -39,8 +40,8 @@ SRC_URI = " \
 	file://meson-build.patch \
 "
 
-SRCREV = "1c460e98f870676b15871fe4e5bfeb1a32a3d6d8"
-PV = "0.36.0"
+SRCREV = "c5e28ebcfe00a510922779b2c568cfa52a317445"
+PV = "0.37.1"
 S = "${WORKDIR}/git"
 
 inherit meson pkgconfig features_check

@@ -1,5 +1,15 @@
+From 596cf2f2e1cbe68ce5673711d84cbfd576d40db1 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Sun, 23 Jul 2023 10:19:54 +0200
+Subject: [PATCH] hyprland: update
+
+---
+ meson.build     | 17 +----------------
+ src/meson.build |  6 +++---
+ 2 files changed, 4 insertions(+), 19 deletions(-)
+
 diff --git a/meson.build b/meson.build
-index 1d2c7f9f..c5ef4e67 100644
+index 81d6e403..04503a3c 100644
 --- a/meson.build
 +++ b/meson.build
 @@ -33,20 +33,7 @@ if cpp_compiler.check_header('execinfo.h')
@@ -34,18 +44,19 @@ index 1d2c7f9f..c5ef4e67 100644
  headers = globber.stdout().strip().split('\n')
  foreach file : headers
 diff --git a/src/meson.build b/src/meson.build
-index 45701f5f..3505cefe 100644
+index 59771fcf..a77349c4 100644
 --- a/src/meson.build
 +++ b/src/meson.build
-@@ -9,17 +9,17 @@ executable('Hyprland', src,
+@@ -9,7 +9,7 @@ executable('Hyprland', src,
      server_protos,
      dependency('wayland-server'),
      dependency('wayland-client'),
 -    wlroots.get_variable('wlroots'),
 +    dependency('wlroots'),
      dependency('cairo'),
+     dependency('hyprcursor'),
      dependency('hyprlang', version: '>= 0.3.2'),
-     dependency('libdrm'),
+@@ -17,10 +17,10 @@ executable('Hyprland', src,
      dependency('egl'),
      dependency('xkbcommon'),
      dependency('libinput'),
