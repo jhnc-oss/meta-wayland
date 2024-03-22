@@ -15,8 +15,8 @@ SRC_URI = " \
 "
 
 S = "${WORKDIR}/git"
-PV = "0.9.24"
-SRCREV = "26af1066e17758c3c732d545339fb375efdaa473"
+PV = "0.10.0"
+SRCREV = "32eac3ccb738691974121b77b4af0c47d1cbe524"
 
 DEPENDS += " \
 	date \
@@ -60,7 +60,7 @@ PACKAGECONFIG[wireplumber] = "-Dwireplumber=enabled,-Dwireplumber=disabled,wirep
 PACKAGECONFIG ?= " \
     ${@bb.utils.filter('DISTRO_FEATURES', 'pulseaudio', d)} \
     ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'systemd logind udev', '', d)} \
-    ${@bb.utils.contains('DISTRO_FEATURES', 'pipewire', 'pipewire wireplumber', '', d)} \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'pipewire', 'pipewire', '', d)} \
     evdev \
     libinput  \
     mpris \
