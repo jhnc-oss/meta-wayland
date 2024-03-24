@@ -16,6 +16,8 @@ SRCREV = "3807292acee096459a73732f663544916d9eb0e5"
 
 FILES:${PN} += "${libdir}/plugins/styles/adwaita.so"
 
+PACKAGE_DEBUG_SPLIT_STYLE = "debug-without-src"
+
 do_install:append() {
 	# add hack to unbreak crosscompile for qgnomeplatform
 	sed -i "s|include(\"\${CMAKE_CURRENT_LIST_DIR}\/AdwaitaQt6Targets.cmake\")||" ${D}${libdir}/cmake/AdwaitaQt6/AdwaitaQt6Config.cmake
