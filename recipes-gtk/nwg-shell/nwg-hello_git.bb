@@ -16,8 +16,8 @@ RRECOMMENDS:${PN} = "gnome-themes-extra"
 inherit setuptools3 useradd
 
 S = "${WORKDIR}/git"
-PV = "0.1.6"
-SRCREV = "f89364d33b83ebd58a4b166ac328431e54327de4"
+PV = "0.1.8"
+SRCREV = "0d207e17ba6e911a7d1536a9a0a8d5c627511709"
 
 USERADD_PACKAGES = "${PN}"
 USERADD_PARAM:${PN} = "--system  --no-create-home --shell /bin/bash greeter"
