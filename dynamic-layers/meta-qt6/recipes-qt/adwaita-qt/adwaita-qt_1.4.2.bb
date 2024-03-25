@@ -19,6 +19,7 @@ FILES:${PN} += "${libdir}/plugins/styles/adwaita.so"
 PACKAGE_DEBUG_SPLIT_STYLE = "debug-without-src"
 
 do_install:append() {
-	# add hack to unbreak crosscompile for qgnomeplatform
-	sed -i "s|include(\"\${CMAKE_CURRENT_LIST_DIR}\/AdwaitaQt6Targets.cmake\")||" ${D}${libdir}/cmake/AdwaitaQt6/AdwaitaQt6Config.cmake
+    # add hack to unbreak crosscompile for qgnomeplatform
+    sed -i "s|include(\"\${CMAKE_CURRENT_LIST_DIR}\/AdwaitaQt6Targets.cmake\")||" ${D}${libdir}/cmake/AdwaitaQt6/AdwaitaQt6Config.cmake
+    sed -i -e 's|${STAGING_DIR_HOST}||g' ${D}${libdir}/cmake/AdwaitaQt6/AdwaitaQt6Targets.cmake
 }
