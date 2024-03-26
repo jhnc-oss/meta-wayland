@@ -26,8 +26,8 @@ PACKAGECONFIG[man-pages] = "-Dman-pages=enabled,-Dman-pages=disabled,scdoc-nativ
 PACKAGECONFIG ??= ""
 
 S = "${WORKDIR}/git"
-PV = "0.14.2"
-SRCREV = "19318a308033ee5ea626ba61068af408392a6251"
+PV = "0.15.1"
+SRCREV = "c3db849397039ba0cf55acd05568d73db17fbf5b"
 
 EXTRA_OEMESON += "--buildtype release"
 
