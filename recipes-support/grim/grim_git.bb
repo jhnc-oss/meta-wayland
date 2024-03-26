@@ -21,8 +21,8 @@ DEPENDS += " \
 SRC_URI = "git://git.sr.ht/~emersion/grim;protocol=https;branch=master"
 
 S = "${WORKDIR}/git"
-PV = "1.4.0"
-SRCREV = "89e02e663fabc534b7e7039514f60a8c5d70070d"
+PV = "1.4.1"
+SRCREV = "7ba46364ab95141c79e0e18093aa66597256182c"
 
 inherit meson pkgconfig features_check
 
