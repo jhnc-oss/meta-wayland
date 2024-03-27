@@ -49,8 +49,8 @@ GIDOCGEN_MESON_DISABLE_FLAG = "disabled"
 SRC_URI = "git://github.com/GNOME/gimp.git;protocol=https;branch=master"
 
 S = "${WORKDIR}/git"
-SRCREV = "d3c5536ac85bb84e1beaba68aea12cf28062e08c"
-PV = "2.99.16"
+SRCREV = "f94c4cb5dbf9766b27ecb5016b7a39497cc74ddc"
+PV = "2.99.18"
 
 PACKAGECONFIG[aa] = "-Daa=enabled,-Daa=disabled,aalib"
 PACKAGECONFIG[alsa] = "-Dalsa=enabled,-Dalsa=disabled,alsa-lib"
@@ -108,3 +108,8 @@ EXTRA_OEMESON += " \
     -Dlinux-input=enabled \
     --buildtype release \
 "
+
+do_configure:append () {
+    sed -i -e "s|${RECIPE_SYSROOT_NATIVE}||" ${B}/config.h
+    sed -i -e "s|${RECIPE_SYSROOT_NATIVE}||" ${B}/config.h
+}
