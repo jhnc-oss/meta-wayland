@@ -12,8 +12,8 @@ SRC_URI = " \
     gitsm://github.com/libjxl/libjxl.git;protocol=https;nobranch=1 \
 "
 
-PV = "0.8.2"
-SRCREV = "954b460768c08a147abf47689ad69b0e7beff65e"
+PV = "0.10.2"
+SRCREV = "e1489592a770b989303b0edc5cc1dc447bbe0515"
 S = "${WORKDIR}/git"
 
 EXTRA_OECMAKE = " \
