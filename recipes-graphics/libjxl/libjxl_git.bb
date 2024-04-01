@@ -4,7 +4,7 @@ HOMEPAGE = "https://github.com/libjxl/libjxl/"
 LICENSE = "BSD-3-Clause"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=6a905a337cc228a1f68f0b5416f52a7f" 
 
-inherit cmake pkgconfig
+inherit cmake pkgconfig mime
 
 DEPENDS = "highway brotli"
 
@@ -18,7 +18,7 @@ S = "${WORKDIR}/git"
 
 EXTRA_OECMAKE = " \
 	-DCMAKE_BUILD_TYPE=Release \
-	-DJPEGXL_ENABLE_PLUGINS=OFF \
+	-DJPEGXL_ENABLE_PLUGINS=ON \
 	-DBUILD_TESTING=OFF \
 	-DJPEGXL_WARNINGS_AS_ERRORS=OFF \
 	-DJPEGXL_ENABLE_SIZELESS_VECTORS=ON \
@@ -33,6 +33,13 @@ EXTRA_OECMAKE = " \
 	-DJPEGXL_ENABLE_TCMALLOC=OFF \
 	-DJPEGXL_ENABLE_TOOLS=OFF \
 "
+
+PACKAGECONFIG ?= "mime gdk-pixbuf-loader"
+PACKAGECONFIG[gdk-pixbuf-loader] = "-DJPEGXL_ENABLE_PLUGIN_GDKPIXBUF=ON,-DJPEGXL_ENABLE_PLUGIN_GDKPIXBUF=OFF,gdk-pixbuf"
+PACKAGECONFIG[gimp] = "-DJPEGXL_ENABLE_PLUGIN_GIMP210=ON,-DJPEGXL_ENABLE_PLUGIN_GIMP210=OFF,gimp"
+PACKAGECONFIG[mime] = "-DJPEGXL_ENABLE_PLUGIN_MIME=ON,-DJPEGXL_ENABLE_PLUGIN_MIME=OFF"
+
+FILES:${PN} += "${libdir}/gdk-pixbuf-2.0 ${datadir}"
 
 CXXFLAGS:append:arm = " -mfp16-format=ieee"
  
