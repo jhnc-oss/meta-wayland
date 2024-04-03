@@ -4,7 +4,7 @@ HOMEPAGE = "https://hyprland.org/"
 SECTION = "graphics"
 LICENSE = "BSD-3-Clause"
 
-LIC_FILES_CHKSUM = "file://LICENSE;md5=a08367f3a4cd5301ba8b88eded36b8fd"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=e5285450935e9c47f839569c8cbd4e29"
 
 REQUIRED_DISTRO_FEATURES = "wayland opengl"
 
@@ -40,8 +40,8 @@ SRC_URI = " \
 	file://meson-build.patch \
 "
 
-SRCREV = "c5e28ebcfe00a510922779b2c568cfa52a317445"
-PV = "0.37.1"
+SRCREV = "3875679755014997776e091ff8903acfb311dd2f"
+PV = "0.38.0"
 S = "${WORKDIR}/git"
 
 inherit meson pkgconfig features_check
