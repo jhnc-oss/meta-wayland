@@ -9,7 +9,7 @@ SRC_URI = "git://github.com/hyprwm/hyprcursor.git;protocol=https;branch=main"
 DEPENDS = "cairo librsvg libzip hyprlang"
 
 S = "${WORKDIR}/git"
-SRCREV = "f870f0f980de7681c50a2b8b04e29257bdc6d8e8"
+SRCREV = "752cc4477918b3f0ad3987a63a78efad767cdb57"
 PV = "0.1.5"
 
 inherit cmake pkgconfig
