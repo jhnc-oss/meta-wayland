@@ -27,6 +27,7 @@ RRECOMMENDS:${PN} ?= " \
 	grim \
 	slurp \
 	wl-clipboard \
+	labwc-menu-generator \
 	labwc-tweaks \
 	swaybg \
 "
