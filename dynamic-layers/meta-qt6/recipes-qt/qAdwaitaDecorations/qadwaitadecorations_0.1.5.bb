@@ -17,6 +17,6 @@ EXTRA_OECMAKE += "-DUSE_QT6=ON"
 SRC_URI = "git://github.com/FedoraQt/QAdwaitaDecorations.git;protocol=https;nobranch=1"
 
 S = "${WORKDIR}/git"
-SRCREV = "8235d5e0259b65e80c755a2a0833a2b26a8eb9ac"
+SRCREV = "8f7357cf57b46216160cd3dc1f09f02a05fed172"
 
 FILES:${PN} += "${libdir}"
