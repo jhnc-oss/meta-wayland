@@ -7,7 +7,7 @@ SRC_URI = "git://github.com/hyprwm/hyprpicker.git;protocol=https;branch=main"
 
 PV = "0.2.0"
 S = "${WORKDIR}/git"
-SRCREV = "8a7799ae20f3e2e2e716271c21fc9213319ca2a4"
+SRCREV = "0eb49192a5cdd5e6e8e6c2c82c33857d78d6cd56"
 
 DEPENDS = " \
 	cairo \
@@ -28,22 +28,12 @@ RDEPENDS:${PN} = "wl-clipboard"
 
 REQUIRED_DISTRO_FEATURES = "wayland"
 
-EXTRA_OEMAKE = "\
-    WAYLAND_SCANNER=${STAGING_BINDIR_NATIVE}/wayland-scanner \
-    WAYLAND_PROTOCOLS=${STAGING_DATADIR}/wayland-protocols \
-"
-
-do_configure:prepend() {
-    sed -i -e '$ainstall(TARGETS hyprpicker)' ${S}/CMakeLists.txt
-}
-
-do_compile:prepend() {
-    cd ${S} && oe_runmake protocols
-}
+EXTRA_OEMAKE = "-DCMAKE_BUILD_TYPE:STRING=Release"
 
 do_install() {
-    install -d ${D}${bindir}
-    install -m0755 ${B}/hyprpicker ${D}${bindir}
+    install -d ${D}${bindir} ${D}${datadir}/man/man1
+    install -m755 ${B}/hyprpicker ${D}${bindir}
+    install -m644 ${S}/doc/hyprpicker.1 ${D}${datadir}/man/man1
 }
 
 inherit cmake pkgconfig features_check
