@@ -35,12 +35,11 @@ RRECOMMENDS:${PN} ?= " \
 "
 
 SRC_URI = " \
-	gitsm://github.com/hyprwm/Hyprland.git;protocol=https;branch=main \
+	gitsm://github.com/hyprwm/Hyprland.git;protocol=https;branch=v0.38.1-b \
 	file://meson-build.patch \
 "
 
-SRCREV = "3875679755014997776e091ff8903acfb311dd2f"
-PV = "0.38.0"
+SRCREV = "360ede79d124ffdeebbe8401f1ac4bc0dbec2c91"
 S = "${WORKDIR}/git"
 
 inherit meson pkgconfig features_check
@@ -56,4 +55,3 @@ do_configure:prepend() {
 }
 
 FILES:${PN} += "${datadir}"
-
