@@ -11,7 +11,12 @@ REQUIRED_DISTRO_FEATURES = "opengl"
 DEPENDS = "wayland wayland-native wayland-protocols hyprlang libxkbcommon cairo pango libdrm  libpam virtual/libgl virtual/egl"
 
 S = "${WORKDIR}/git"
-SRCREV = "0fe10282559f02ea945f0ce8f1277cd695179442"
-PV = "0.2.0"
+SRCREV = "bc87adf9ec997090f15d9b662d6ca2f86e25f264"
+PV = "0.3.0"
 
 inherit cmake pkgconfig features_check
+
+do_install() {
+	install -Dm755 ${B}/hyprlock ${D}${bindir}/hyprlock
+	install -Dm644 ${S}/pam/hyprlock ${D}${sysconfdir}/pam.d/hyprlock
+}
