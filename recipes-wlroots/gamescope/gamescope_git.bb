@@ -11,7 +11,9 @@ DEPENDS += " \
 	glslang-native \
 	hwdata \
 	libdisplay-info \
+	libinput \
 	libliftoff \
+	libsdl2 \
 	libdrm \
 	libx11\
 	libxcomposite \
@@ -21,34 +23,34 @@ DEPENDS += " \
 	libxmu \
 	libxrender \
 	libxtst \
+	seatd \
 	stb \
 	vulkan-headers \
 	wayland \
 	wayland-native \
 	wayland-protocols \
-	wlroots-0.17 \
+	xcb-util-wm \
+	xwayland \
 "
 
 RDEPENDS:${PN} = "xwayland hwdata"
 
 CXXFLAGS:append = " -I${STAGING_INCDIR}/stb"
 
-PACKAGECONFIG ?= "${@bb.utils.filter('DISTRO_FEATURES', 'opengl pipewire', d)} rt_cap avif_screenshots openvr"
+PACKAGECONFIG ?= "${@bb.utils.filter('DISTRO_FEATURES', 'opengl pipewire', d)} openvr"
 PACKAGECONFIG[openvr] = "-Denable_openvr_support=true,-Denable_openvr_support=false"
 PACKAGECONFIG[pipewire] = "-Dpipewire=enabled,-Dpipewire=disabled,pipewire"
 PACKAGECONFIG[opengl] = ",,mesa-glut"
-PACKAGECONFIG[avif_screenshots] = "-Davif_screenshots=enabled,-Davif_screenshots=disabled,libavif"
-PACKAGECONFIG[rt_cap] = "-Drt_cap=enabled,-Drt_cap=disabled,libcap"
-PACKAGECONFIG[sdl2_backend] = "-Dsdl2_backend=enabled,-Dsdl2_backend=disabled,libsdl2"
 
-SRC_URI = "   \
-	gitsm://github.com/ValveSoftware/gamescope.git;branch=master;protocol=https \
-	file://0001-meson.build-dont-fail-if-stb-is-not-found.patch \
+
+SRC_URI = " \
+	gitsm://github.com/ValveSoftware/gamescope.git;branch=jupiter-3.5;protocol=https \
 	file://0001-meson.build-dont-leak-buildpath.patch \
-	file://0001-meson.build-dont-force-subprojects.patch\
+	file://0001-meson.build-dont-fail-if-stb-is-not-found.patch \
 "
-SRCREV = "d0d23c4c3010c81add1bd90cbe478ce4a386e28d"
-PV = "3.14.2"
+
+SRCREV = "c59b09dbc0c100f604ae603c5f0026c42c62d49c"
+PV = "3.13.16.9"
 
 S = "${WORKDIR}/git"
 

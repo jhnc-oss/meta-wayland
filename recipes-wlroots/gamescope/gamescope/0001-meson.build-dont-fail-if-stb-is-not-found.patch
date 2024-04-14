@@ -10,18 +10,18 @@ manually add it to CXXFLAGS
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/src/meson.build b/src/meson.build
-index 7f7e793..c61077f 100644
+index d3dec0d..da0affe 100644
 --- a/src/meson.build
 +++ b/src/meson.build
-@@ -20,7 +20,7 @@ cap_dep = dependency('libcap', required: get_option('rt_cap'))
+@@ -18,7 +18,7 @@ cap_dep = dependency('libcap', required: false)
  epoll_dep = dependency('epoll-shim', required: false)
  glm_dep = dependency('glm')
- sdl_dep = dependency('SDL2', required: get_option('sdl2_backend'))
+ sdl_dep = dependency('SDL2')
 -stb_dep = dependency('stb')
 +stb_dep = dependency('stb', required: false)
- avif_dep = dependency('libavif', version: '>=1.0.0', required: get_option('avif_screenshots'))
  
  wlroots_dep = dependency(
+   'wlroots',
 -- 
 2.43.0
 
