@@ -12,17 +12,20 @@ DEPENDS += " \
 	hyprcursor \
 	hyprlang \
 	jq-native \
+	hwdata-native \
+	libdisplay-info \
+	libliftoff \
 	libdrm \
 	libinput \
 	libxkbcommon \
 	pango \
 	pixman \
+	seatd \
 	tomlplusplus \
 	udis86 \
 	virtual/egl \
 	wayland \
 	wayland-native \
-	wlroots \
 "
 
 RRECOMMENDS:${PN} ?= " \
@@ -34,13 +37,10 @@ RRECOMMENDS:${PN} ?= " \
 	hyprland-contrib \
 "
 
-SRC_URI = " \
-	gitsm://github.com/hyprwm/Hyprland.git;protocol=https;branch=main \
-	file://meson-build.patch \
-"
+SRC_URI = "gitsm://github.com/hyprwm/Hyprland.git;protocol=https;branch=main"
 
-SRCREV = "942172d2dc9194b95d637283ec3338c06c9c6597"
-PV = "0.38.0"
+SRCREV = "0634aaeac6cca12e4f72174c431c2db9da9c0072"
+PV = "0.39-dev"
 S = "${WORKDIR}/git"
 
 inherit meson pkgconfig features_check
