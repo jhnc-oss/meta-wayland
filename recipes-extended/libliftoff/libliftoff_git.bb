@@ -3,7 +3,10 @@ HOMEPAGE = "https://gitlab.freedesktop.org/emersion/libliftoff"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=706cd9899438a9385250ab6773c1fa53"
 
-SRC_URI = "git://gitlab.freedesktop.org/emersion/libliftoff.git;branch=v0.4;protocol=https"
+SRC_URI = " \
+	git://gitlab.freedesktop.org/emersion/libliftoff.git;branch=v0.4;protocol=https \
+	file://29a06add8ef184f85e37ff8abdc34fbaa2f4ee1e.patch \
+"
 
 DEPENDS = "libdrm"
 
