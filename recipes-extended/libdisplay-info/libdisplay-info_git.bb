@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=e4426409957080ee0352128354cea2de"
 
 SRC_URI = "git://gitlab.freedesktop.org/emersion/libdisplay-info.git;branch=main;protocol=https"
 
-DEPENDS = "hwdata-native"
+DEPENDS = "hwdata-native edid-decode-native"
 
 S = "${WORKDIR}/git"
 PV = "0.1.1"
