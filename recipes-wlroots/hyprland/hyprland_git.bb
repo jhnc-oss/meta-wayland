@@ -22,7 +22,6 @@ DEPENDS += " \
 	pixman \
 	seatd \
 	tomlplusplus \
-	udis86 \
 	virtual/egl \
 	wayland \
 	wayland-native \

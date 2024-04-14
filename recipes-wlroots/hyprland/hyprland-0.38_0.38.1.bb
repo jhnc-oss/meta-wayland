@@ -12,17 +12,19 @@ DEPENDS += " \
 	hyprcursor \
 	hyprlang \
 	jq-native \
+	hwdata-native \
+	libdisplay-info \
+	libliftoff \
 	libdrm \
 	libinput \
 	libxkbcommon \
 	pango \
 	pixman \
+	seatd \
 	tomlplusplus \
-	udis86 \
 	virtual/egl \
 	wayland \
 	wayland-native \
-	wlroots \
 "
 
 RRECOMMENDS:${PN} ?= " \
@@ -34,10 +36,7 @@ RRECOMMENDS:${PN} ?= " \
 	hyprland-contrib \
 "
 
-SRC_URI = " \
-	gitsm://github.com/hyprwm/Hyprland.git;protocol=https;branch=v0.38.1-b \
-	file://meson-build.patch \
-"
+SRC_URI = "gitsm://github.com/hyprwm/Hyprland.git;protocol=https;branch=v0.38.1-b"
 
 SRCREV = "360ede79d124ffdeebbe8401f1ac4bc0dbec2c91"
 S = "${WORKDIR}/git"
