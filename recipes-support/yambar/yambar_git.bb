@@ -26,11 +26,11 @@ RRECOMMENDS:${PN} += "font-awesome-otf"
 inherit meson pkgconfig
 
 S = "${WORKDIR}/git"
-PV = "1.10.0"
-SRCREV = "9a111a52f5312fe2bd7d9dbd5326d52895a165ee"
+PV = "1.11.0"
+SRCREV = "a2d30b96fbb026621ec11692272f0117f35a00fd"
 
 PACKAGECONFIG[wayland] = "-Dbackend-wayland=enabled,-Dbackend-wayland=disabled,wayland wayland-native wayland-protocols"
-PACKAGECONFIG[x11] = "-Dbackend-x11=enabled -Dplugin-x11-xkb=enabled,-Dbackend-x11=disabled -Dplugin-x11-xkb=disabled,xcb-util xcb-util-cursor xcb-util-wm libxcb"
+PACKAGECONFIG[x11] = "-Dbackend-x11=enabled -Dplugin-xkb=enabled,-Dbackend-x11=disabled -Dplugin-xkb=disabled,xcb-util xcb-util-cursor xcb-util-wm libxcb"
 PACKAGECONFIG[mpd] = "-Dplugin-mpd=enabled,-Dplugin-mpd=disabled,libmpdclient"
 PACKAGECONFIG[shared-plugins] = "-Dcore-plugins-as-shared-libraries=true,-Dcore-plugins-as-shared-libraries=false"
 PACKAGECONFIG[alsa] = "-Dplugin-alsa=enabled,-Dplugin-alsa=disabled,alsa-lib"
