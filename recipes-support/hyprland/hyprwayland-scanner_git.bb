@@ -9,8 +9,8 @@ SRC_URI = "git://github.com/hyprwm/hyprwayland-scanner.git;protocol=https;branch
 DEPENDS = "pugixml"
 
 S = "${WORKDIR}/git"
-SRCREV = "a0263ab9fc31f88f4bfcb5ab8a20cd6fc7d3f446"
-PV = "0.2.0"
+SRCREV = "1c9ed159e15f7403f170f075b839c4b2206d3cad"
+PV = "0.3.0"
 
 inherit cmake pkgconfig
 
