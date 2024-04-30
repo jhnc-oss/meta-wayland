@@ -4,6 +4,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=e6a600fd5e1d9cbde2d983680233ad02"
 
 SRC_URI = "git://github.com/altdesktop/playerctl.git;protocol=https;branch=master"
 
+DEPENDS = "glib-2.0"
 RDEPENDS:${PN} = "glib-2.0"
 
 inherit meson pkgconfig gobject-introspection
