@@ -46,12 +46,12 @@ PACKAGECONFIG[sdl2_backend] = "-Dsdl2_backend=enabled,-Dsdl2_backend=disabled,li
 PACKAGECONFIG[drm_backend] = "-Ddrm_backend=enabled,-Ddrm_backend=disabled,libdrm"
 
 SRC_URI = "   \
-	gitsm://github.com/ValveSoftware/gamescope.git;branch=master;protocol=https \
+	gitsm://github.com/ValveSoftware/gamescope.git;branch=jupiter-3.6;protocol=https \
 	file://0001-meson.build-dont-fail-if-stb-is-not-found.patch \
 	file://0001-meson.build-dont-leak-buildpath.patch \
 "
-SRCREV = "377365c8e77740055960724b8ff074c0b71782ae"
-PV = "3.14.3"
+SRCREV = "f6cd671cb4ee139f470fc55b580cc6ff3a50384b"
+PV = "3.14.6"
 
 S = "${WORKDIR}/git"
 
