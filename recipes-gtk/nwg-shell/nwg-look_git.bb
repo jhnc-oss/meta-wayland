@@ -15,6 +15,8 @@ inherit go go-mod pkgconfig gtk-icon-cache
 
 GO_INSTALL = "${GO_IMPORT}"
 
+GO_LINKSHARED = ""
+
 do_install:append() {
 	install -d ${D}${datadir}/nwg-look/langs ${D}${datadir}/applications ${D}${datadir}/pixmaps
 	install -m 0644 ${S}/src/${GO_IMPORT}/stuff/main.glade ${D}${datadir}/nwg-look
@@ -27,4 +29,3 @@ FILES:${PN} += "${datadir}"
 
 do_compile[network] = "1"
 
-PRIVATE_LIBS:${PN}:append = " libstd.so"
