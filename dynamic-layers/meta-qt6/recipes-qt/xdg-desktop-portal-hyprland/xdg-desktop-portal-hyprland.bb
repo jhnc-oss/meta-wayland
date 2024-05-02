@@ -15,7 +15,7 @@ DEPENDS = " \
     hyprlang \
     libdrm \
     pipewire \
-    sdbus-c++ \
+    sdbus-c++-1 \
     virtual/libgbm \
 "
 
