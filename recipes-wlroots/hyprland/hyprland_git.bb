@@ -22,6 +22,7 @@ DEPENDS += " \
 	pixman \
 	seatd \
 	tomlplusplus \
+	util-linux-libuuid \
 	virtual/egl \
 	wayland \
 	wayland-native \
@@ -39,8 +40,8 @@ RRECOMMENDS:${PN} ?= " \
 
 SRC_URI = "gitsm://github.com/hyprwm/Hyprland.git;protocol=https;branch=main"
 
-SRCREV = "d86eec332fb3843d24b1f79ecc36f792b5d04773"
-PV = "0.40-dev"
+SRCREV = "cba1ade848feac44b2eda677503900639581c3f4"
+PV = "0.40"
 S = "${WORKDIR}/git"
 
 inherit meson pkgconfig features_check
