@@ -19,7 +19,6 @@ SRCREV = "86f75d0856193c1ba1505f6afbc1b73d34c7093a"
 inherit go go-mod pkgconfig
 
 GO_INSTALL = "${GO_IMPORT}"
+GO_LINKSHARED = ""
 
 do_compile[network] = "1"
-
-PRIVATE_LIBS:${PN}:append = " libstd.so"
