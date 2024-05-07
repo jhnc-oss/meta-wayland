@@ -12,12 +12,13 @@ GO_IMPORT = "github.com/nwg-piotr/nwg-dock-hyprland.git"
 
 SRC_URI = "git://${GO_IMPORT};nobranch=1;protocol=https"
 
-PV = "0.1.7"
-SRCREV = "47f41c936b1549cee4a6345cdaa345e880b31a48"
+PV = "0.1.8"
+SRCREV = "08f399f4baf580274249e42d46e2d788dc28d6a8"
 
 inherit go go-mod pkgconfig
 
 GO_INSTALL = "${GO_IMPORT}"
+GO_LINKSHARED = ""
 
 do_install:append() {
 	# remove precompiled x86 binaries
@@ -29,5 +30,3 @@ do_install:append() {
 }
 
 do_compile[network] = "1"
-
-PRIVATE_LIBS:${PN}:append = " libstd.so"
