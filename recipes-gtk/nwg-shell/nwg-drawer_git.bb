@@ -19,6 +19,7 @@ SRCREV = "0cd48d1631eecb3043ee2c1fed9dfa25ca855375"
 inherit go go-mod pkgconfig
 
 GO_INSTALL = "${GO_IMPORT}"
+GO_LINKSHARED = ""
 
 do_install:append() {
 	# remove precompiled x86 binary
@@ -27,5 +28,3 @@ do_install:append() {
 }
 
 do_compile[network] = "1"
-
-PRIVATE_LIBS:${PN}:append = " libstd.so"
