@@ -28,14 +28,14 @@ RRECOMMENDS:${PN} ?= " \
 	slurp \
 	wl-clipboard \
 	labwc-menu-generator \
-	labwc-tweaks \
+	labwc-tweaks-gtk \
 	swaybg \
 "
 
 SRC_URI = "git://github.com/labwc/labwc.git;protocol=https;branch=master"
 
-SRCREV = "59014e507175971e84af2b846b6b3a2c232cce7f"
-PV = "0.7.1"
+SRCREV = "b41af54a1bd7d9270d19de4c9a2b77d882cf3ede"
+PV = "0.7.2"
 S = "${WORKDIR}/git"
 
 inherit meson pkgconfig features_check gettext
