@@ -21,7 +21,7 @@ DEPENDS = " \
 	wayland \
 	wayland-native \
 	wayland-protocols \
-	wlroots \
+	virtual/libgles3 \
 "
 
 RDEPENDS:${PN} = "wl-clipboard"
