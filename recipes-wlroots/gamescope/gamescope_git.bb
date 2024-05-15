@@ -36,10 +36,11 @@ RDEPENDS:${PN} = "xwayland hwdata"
 
 CXXFLAGS:append = " -I${STAGING_INCDIR}/stb"
 
-PACKAGECONFIG ?= "${@bb.utils.filter('DISTRO_FEATURES', 'opengl pipewire', d)} rt_cap avif_screenshots openvr sdl2_backend drm_backend"
+PACKAGECONFIG ?= "${@bb.utils.filter('DISTRO_FEATURES', 'pipewire', d)} rt_cap avif_screenshots openvr input_emulation drm_backend sdl2_backend"
+PACKAGECONFIG[benchmark] = "-Dbenchmark=enabled,-Dbenchmark=disabled"
+PACKAGECONFIG[input_emulation] = "-Dinput_emulation=enabled,-Dinput_emulation=disabled,libei"
 PACKAGECONFIG[openvr] = "-Denable_openvr_support=true,-Denable_openvr_support=false"
 PACKAGECONFIG[pipewire] = "-Dpipewire=enabled,-Dpipewire=disabled,pipewire"
-PACKAGECONFIG[opengl] = ",,mesa-glut"
 PACKAGECONFIG[avif_screenshots] = "-Davif_screenshots=enabled,-Davif_screenshots=disabled,libavif"
 PACKAGECONFIG[rt_cap] = "-Drt_cap=enabled,-Drt_cap=disabled,libcap"
 PACKAGECONFIG[sdl2_backend] = "-Dsdl2_backend=enabled,-Dsdl2_backend=disabled,libsdl2"
@@ -50,8 +51,8 @@ SRC_URI = "   \
 	file://0001-meson.build-dont-fail-if-stb-is-not-found.patch \
 	file://0001-meson.build-dont-leak-buildpath.patch \
 "
-SRCREV = "87ce3f443dc745527054735e1d4f78b0e1c608b1"
-PV = "3.14.11"
+SRCREV = "97a2e038105e43fc7b4c78585eefc639ad95319f"
+PV = "3.14.15"
 
 S = "${WORKDIR}/git"
 
