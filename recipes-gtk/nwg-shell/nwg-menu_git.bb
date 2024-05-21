@@ -10,7 +10,6 @@ DEPENDS = " \
 "
 
 RRECOMMENDS:${PN} = " \
-	thunar \
 	foot \
 "
 
