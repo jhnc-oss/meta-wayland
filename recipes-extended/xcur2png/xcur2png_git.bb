@@ -5,11 +5,16 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=d32239bcb673463ab874e80d47fae504"
 
 DEPENDS = "libxcursor libpng"
 
+SRC_URI = " \
+	git://github.com/eworm-de/xcur2png.git;protocol=https;branch=master \
+	file://0001-fix-wrong-math.patch \
+"
+
 S = "${WORKDIR}/git"
 SRCREV = "f582d648f37a9ed2de0c8650947487af8a54d3ad"
 PV = "0.7.1"
 
-SRC_URI = "git://github.com/eworm-de/xcur2png.git;protocol=https;branch=master"
-
 inherit autotools pkgconfig
+
+CFLAGS += "-Wno-implicit-int"
 
