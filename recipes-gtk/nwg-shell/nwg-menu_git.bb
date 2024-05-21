@@ -16,10 +16,11 @@ RRECOMMENDS:${PN} = " \
 
 GO_IMPORT = "github.com/nwg-piotr/nwg-menu.git"
 
-SRC_URI = "git://${GO_IMPORT};nobranch=1;protocol=https"
+SRC_URI = "git://${GO_IMPORT};destsuffix=src/${GO_IMPORT};nobranch=1;protocol=https"
 
 PV = "0.1.3"
 SRCREV = "fd8b92ad1ad0c0c7a23fc7a0be942ca0cbe7f7e0"
+S = "${UNPACKDIR}"
 
 inherit go go-mod pkgconfig
 

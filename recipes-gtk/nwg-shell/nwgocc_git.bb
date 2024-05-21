@@ -13,10 +13,11 @@ RRECOMMENDS:${PN} = " \
 
 GO_IMPORT = "github.com/nwg-piotr/nwgocc.git"
 
-SRC_URI = "git://${GO_IMPORT};nobranch=1;protocol=https"
+SRC_URI = "git://${GO_IMPORT};destsuffix=src/${GO_IMPORT};nobranch=1;protocol=https"
 
 PV = "0.0.1"
 SRCREV = "782a37014de40f63115825c0b5bd343dee2ba668"
+S = "${UNPACKDIR}"
 
 inherit go go-mod pkgconfig gtk-icon-cache
 
