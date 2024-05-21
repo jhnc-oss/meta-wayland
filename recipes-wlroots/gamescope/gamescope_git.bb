@@ -24,6 +24,7 @@ DEPENDS += " \
 	libxtst \
 	seatd \
 	stb \
+	vulkan-loader \
 	vulkan-headers \
 	wayland \
 	wayland-native \
@@ -51,8 +52,8 @@ SRC_URI = "   \
 	file://0001-meson.build-dont-fail-if-stb-is-not-found.patch \
 	file://0001-meson.build-dont-leak-buildpath.patch \
 "
-SRCREV = "97a2e038105e43fc7b4c78585eefc639ad95319f"
-PV = "3.14.15"
+SRCREV = "e998f26a6fe4439461dfeaa6dd57c5be0bb46953"
+PV = "3.14.16"
 
 S = "${WORKDIR}/git"
 
@@ -62,3 +63,5 @@ EXTRA_OEMESON += "--buildtype release"
 
 FILES:${PN} += "${datadir} ${libdir}"
 FILES:${PN}-dev = "${includedir} ${libdir}/pkgconfig"
+
+CFLAGS += "-Wno-calloc-transposed-args"
