@@ -10,10 +10,11 @@ RDEPENDS:${PN} = "go-runtime"
 
 GO_IMPORT = "github.com/nwg-piotr/nwg-dock-hyprland.git"
 
-SRC_URI = "git://${GO_IMPORT};nobranch=1;protocol=https"
+SRC_URI = "git://${GO_IMPORT};destsuffix=src/${GO_IMPORT};nobranch=1;protocol=https"
 
-PV = "0.1.8"
-SRCREV = "08f399f4baf580274249e42d46e2d788dc28d6a8"
+PV = "0.1.9"
+SRCREV = "d4cd7439ebfb29238674b94deb120695dd1425f1"
+S = "${UNPACKDIR}"
 
 inherit go go-mod pkgconfig
 
