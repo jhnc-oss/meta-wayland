@@ -23,6 +23,7 @@ UNPACKDIR = "${S}"
 inherit go go-mod pkgconfig gtk-icon-cache
 
 GO_INSTALL = "${GO_IMPORT}"
+GO_LINKSHARED = ""
 
 do_install:append() {
 	install -d \

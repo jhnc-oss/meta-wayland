@@ -13,6 +13,7 @@ UNPACKDIR = "${S}"
 inherit go go-mod
 
 GO_INSTALL = "${GO_IMPORT}"
+GO_LINKSHARED = ""
 
 do_compile[network] = "1"
 
