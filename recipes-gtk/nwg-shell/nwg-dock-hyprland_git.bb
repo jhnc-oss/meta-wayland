@@ -14,7 +14,8 @@ SRC_URI = "git://${GO_IMPORT};destsuffix=src/${GO_IMPORT};nobranch=1;protocol=ht
 
 PV = "0.1.9"
 SRCREV = "d4cd7439ebfb29238674b94deb120695dd1425f1"
-S = "${UNPACKDIR}"
+S = "${WORKDIR}/sources"
+UNPACKDIR = "${S}"
 
 inherit go go-mod pkgconfig
 

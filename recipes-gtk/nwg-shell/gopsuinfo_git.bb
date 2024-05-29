@@ -4,9 +4,11 @@ LIC_FILES_CHKSUM = "file://src/${GO_IMPORT}/LICENSE;md5=22ed6cb3c33862e689e075b4
 
 GO_IMPORT = "github.com/nwg-piotr/gopsuinfo.git"
 
-SRC_URI = "git://${GO_IMPORT};branch=main;protocol=https"
+SRC_URI = "git://${GO_IMPORT};destsuffix=src/${GO_IMPORT};branch=main;protocol=https"
 PV = "0.1.5"
 SRCREV = "60e4f83b6c4d84955e0a07f7bdc63d8089b4ba1e"
+S = "${WORKDIR}/sources"
+UNPACKDIR = "${S}"
 
 inherit go go-mod
 

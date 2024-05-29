@@ -12,10 +12,11 @@ RDEPENDS:${PN} = "ddcutil"
 
 GO_IMPORT = "github.com/nwg-piotr/ddcpopup.git"
 
-SRC_URI = "git://${GO_IMPORT};nobranch=1;protocol=https"
-
+SRC_URI = "git://${GO_IMPORT};destsuffix=src/${GO_IMPORT};nobranch=1;protocol=https"
 PV = "0.1"
 SRCREV = "8fab5132e49e08a1eeaa7a0dd3350d06f4399200"
+S = "${WORKDIR}/sources"
+UNPACKDIR = "${S}"
 
 inherit go go-mod pkgconfig
 
