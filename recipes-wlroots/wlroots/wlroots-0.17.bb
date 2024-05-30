@@ -39,6 +39,7 @@ PACKAGECONFIG ?= " \
 "
 
 SRC_URI = "git://gitlab.freedesktop.org/wlroots/wlroots.git;branch=0.17;protocol=https"
+SRC_URI += "file://backend-drm-add-support-for-libliftoff-v0.5.0.patch"
 SRCREV = "bc73e507abd1e8319353a8601f1f8ebfe17307ee"
 PV = "0.17.3"
 
