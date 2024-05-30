@@ -47,6 +47,8 @@ inherit meson pkgconfig features_check
 
 EXTRA_OEMESON += "--buildtype release"
 
+CFLAGS += "-Wno-calloc-transposed-args"
+
 do_install:append() {
 	install -d ${D}${bindir}
 	install -m 0755 ${B}/tinywl/tinywl ${D}${bindir}/tinywl-0.16
