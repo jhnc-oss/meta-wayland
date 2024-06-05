@@ -26,6 +26,7 @@ DEPENDS += " \
 	virtual/egl \
 	wayland \
 	wayland-native \
+	xcb-util-errors \
 	hyprwayland-scanner-native \
 "
 
@@ -40,7 +41,7 @@ RRECOMMENDS:${PN} ?= " \
 
 SRC_URI = "gitsm://github.com/hyprwm/Hyprland.git;protocol=https;branch=main"
 
-SRCREV = "cba1ade848feac44b2eda677503900639581c3f4"
+SRCREV = "098ac916a6314a2b731532e0c85f357e3cf90d2f"
 PV = "0.40"
 S = "${WORKDIR}/git"
 
