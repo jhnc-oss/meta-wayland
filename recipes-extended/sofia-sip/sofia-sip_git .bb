@@ -17,3 +17,5 @@ inherit autotools pkgconfig
 
 EXTRA_OECONF += "--with-glib"
 
+CFLAGS += "-Wno-incompatible-pointer-types"
+
