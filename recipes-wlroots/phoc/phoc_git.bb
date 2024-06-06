@@ -24,13 +24,11 @@ DEPENDS += " \
 "
 
 SRC_URI = " \
-	git://gitlab.gnome.org/World/Phosh/phoc.git;protocol=https;nobranch=1 \
-	file://0001-meson.build-dont-build-subprojects.patch \
-"
+	git://gitlab.gnome.org/World/Phosh/phoc.git;protocol=https;nobranch=1"
 
 S = "${WORKDIR}/git"
-PV = "0.36.0"
-SRCREV = "70bbce162e4736a43a4e7bf5fad308e476a4b340"
+PV = "0.39.0"
+SRCREV = "3d01448739b7e5605238301e473a063c7955ab21"
 
 inherit features_check gsettings meson pkgconfig
 
