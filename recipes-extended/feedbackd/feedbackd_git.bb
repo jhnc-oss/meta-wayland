@@ -6,6 +6,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=d32239bcb673463ab874e80d47fae504"
 REQUIRED_DISTRO_FEATURES = "gobject-introspection-data"
 
 DEPENDS = " \
+    gmobile \
     gsound \
     libgudev \
     glib-2.0 \
@@ -19,8 +20,8 @@ inherit meson pkgconfig features_check gobject-introspection vala
 SRC_URI = "gitsm://source.puri.sm/Librem5/feedbackd.git;protocol=https;nobranch=1"
 
 S = "${WORKDIR}/git"
-PV = "0.2.1"
-SRCREV = "1104cef50acb0b18a0d545e6a09773e3feb42e5b"
+PV = "0.3.0"
+SRCREV = "bf6928e47d6fc940986c06428e87a2eb95249ae0"
 
 EXTRA_OEMESON += "-Dtests=false"
 
