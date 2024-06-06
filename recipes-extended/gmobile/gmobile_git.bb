@@ -1,6 +1,6 @@
 SUMMARY = "gmobile carries some helpers for GNOME on mobile devices"
-LICENSE = "LGPL-2.1-or-later"
-LIC_FILES_CHKSUM = "file://src/gm-cutout.c;beginline=1;endline=5;md5=fdd1e77039fe571c0c9aa6280a7e7903"
+LICENSE = "GPL-3.0-only & LGPL-2.1-only"
+LIC_FILES_CHKSUM = "file://COPYING;md5=d32239bcb673463ab874e80d47fae504"
 
 inherit meson pkgconfig gobject-introspection
 
