@@ -9,7 +9,7 @@ RDEPENDS:${PN} = "python3-pygobject python3-importlib-metadata python3-platformd
 inherit setuptools3
 
 S = "${WORKDIR}/git"
-PV = "2.1.1"
-SRCREV = "fda591d59c6ed5a50444c32cd5403260afd2d94b"
+PV = "2.1.2"
+SRCREV = "e7e853e70f60686bd1656ecafd154026233a7560"
 
 FILES:${PN} += "${datadir}"
