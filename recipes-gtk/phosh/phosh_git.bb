@@ -11,18 +11,18 @@ DEPENDS = " \
     evince \
     feedbackd \
     fribidi \
-    gcr \
     glib-2.0 \
+    gmobile \
     gnome-desktop \
     gtk+3 \
-    gtk4 \
-    libadwaita \
+    gcr3 \
     libgudev \
     libhandy \
     libsecret \
     networkmanager \
     polkit \
     pulseaudio \
+    libsoup-3.0 \
     upower \
     wayland \
     wayland-native \
@@ -52,17 +52,14 @@ inherit features_check gsettings meson pkgconfig gtk-icon-cache
 
 SRC_URI = " \
     gitsm://gitlab.gnome.org/World/Phosh/phosh.git;protocol=https;nobranch=1 \
+    file://0001-meson.build-dont-read-includedir-from-pkg-config.patch \
 "
 
 S = "${WORKDIR}/git"
-PV = "0.36.0"
-SRCREV = "62a4ba9d8a38750a49ae6187f3497c54a030be45"
+PV = "0.39.0"
+SRCREV = "e1e263efc239870e81c2e4d013bf0615f260141f"
 
 EXTRA_OEMESON += "--buildtype=release"
-
-do_install:append() {
-    install -Dm 644 ${WORKDIR}/phosh.pam ${D}${sysconfdir}/pam.d/phosh
-}
 
 FILES:${PN} += "${datadir} ${libdir}"
 

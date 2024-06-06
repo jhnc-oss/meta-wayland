@@ -1,0 +1,36 @@
+From bfd49ad17c115899bdec41f5819fef21f622e620 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Thu, 6 Jun 2024 21:21:19 +0200
+Subject: [PATCH] meson.build: dont read includedir from pkg-config
+
+This sets includedir to /usr/include which is inappropriate for cross-compiling.
+---
+ src/meson.build | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/src/meson.build b/src/meson.build
+index f9107b26..8bddeace 100644
+--- a/src/meson.build
++++ b/src/meson.build
+@@ -343,12 +343,12 @@ libphosh_sources = files(
+ ]
+ 
+ # See https://gitlab.gnome.org/GNOME/libsoup/-/merge_requests/394
+-if libsoup_dep.version().version_compare('< 3.5.1')
+-  libsoup_dep = declare_dependency (
+-    include_directories: libsoup_dep.get_variable(pkgconfig: 'includedir') / 'libsoup-3.0',
+-    dependencies: cc.find_library('soup-3.0', required: true),
+-  )
+-endif
++#if libsoup_dep.version().version_compare('< 3.5.1')
++#  libsoup_dep = declare_dependency (
++#    include_directories: libsoup_dep.get_variable(pkgconfig: 'includedir') / 'libsoup-3.0',
++#    dependencies: cc.find_library('soup-3.0', required: true),
++#  )
++#endif
+ 
+ phosh_deps = [
+   libsoup_dep,
+-- 
+2.45.1
+
