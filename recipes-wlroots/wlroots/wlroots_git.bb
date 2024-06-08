@@ -15,7 +15,6 @@ DEPENDS += " \
 	hwdata-native \
 	libdisplay-info \
 	libdrm \
-	libliftoff \
 	libxkbcommon \
 	pixman \
 	seatd \
@@ -27,6 +26,7 @@ DEPENDS += " \
 PACKAGECONFIG[opengl] = ",,virtual/egl virtual/libgles2"
 PACKAGECONFIG[gbm] = ",,virtual/libgbm"
 PACKAGECONFIG[libinput] = ",,libinput"
+PACKAGECONFIG[libliftoff] = "-Dlibliftoff=enabled,-Dlibliftoff=disabled,libliftoff"
 PACKAGECONFIG[systemd] = ",,systemd"
 PACKAGECONFIG[sysvinit] = ",,eudev elogind"
 PACKAGECONFIG[vulkan] = ",,vulkan-loader vulkan-headers glslang-native"
@@ -36,11 +36,11 @@ PACKAGECONFIG[xwayland] = "-Dxwayland=enabled,-Dxwayland=disabled,xwayland xcb-u
 PACKAGECONFIG ?= " \
 	${@bb.utils.filter('DISTRO_FEATURES', 'systemd vulkan x11 xwayland opengl', d)} \
 	libinput \
+	libliftoff \
 "
 
 SRC_URI = "git://gitlab.freedesktop.org/wlroots/wlroots.git;branch=master;protocol=https"
-SRC_URI += "file://backend-drm-add-support-for-libliftoff-v0.5.0.patch"
-SRCREV = "56ebfde540da9631548773baba87beb716660322"
+SRCREV = "385c9ade5f7a8ce9e5c13f762d56e6bd1c8d1b0a"
 PV = "0.18.0-dev"
 
 S = "${WORKDIR}/git"
@@ -53,3 +53,6 @@ do_install:append() {
 	install -d ${D}${bindir}
 	install -m 0755 ${B}/tinywl/tinywl ${D}${bindir}
 }
+
+FILES:${PN} += "${libdir}/libwlroots-*.so"
+FILES:${PN}-dev = "${includedir} ${libdir}/pkgconfig"
