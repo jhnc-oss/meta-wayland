@@ -39,7 +39,7 @@ RRECOMMENDS:${PN} ?= " \
 
 SRC_URI = "git://github.com/swaywm/sway.git;protocol=https;branch=master"
 
-SRCREV = "dcdb72757a5ec591c692df5e96c57c51758dbd8f"
+SRCREV = "40ca4150b27a5b94938b6c3d744f74bb26d347f7"
 PV = "1.10-dev"
 S = "${WORKDIR}/git"
 
@@ -53,10 +53,9 @@ PACKAGECONFIG[swaybar] = "-Dswaybar=true,-Dswaybar=false"
 PACKAGECONFIG[swaynag] = "-Dswaynag=true,-Dswaynag=false"
 PACKAGECONFIG[systemd] = "-Dsd-bus-provider=libsystemd,,systemd"
 PACKAGECONFIG[tray] = "-Dtray=enabled,-Dtray=disabled"
-PACKAGECONFIG[xwayland] = "-Dxwayland=enabled,-Dxwayland=disabled,libxcb xcb-util-wm"
 
 PACKAGECONFIG ?= " \
-	${@bb.utils.filter('DISTRO_FEATURES', 'systemd xwayland', d)} \
+	${@bb.utils.filter('DISTRO_FEATURES', 'systemd', d)} \
 	default-wallpaper \
 	gdk-pixbuf \
 "
