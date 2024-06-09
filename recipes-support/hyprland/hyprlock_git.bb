@@ -8,10 +8,10 @@ SRC_URI = "git://github.com/hyprwm/hyprlock.git;protocol=https;branch=main"
 
 REQUIRED_DISTRO_FEATURES = "opengl"
 
-DEPENDS = "wayland wayland-native wayland-protocols hyprlang libxkbcommon cairo pango libdrm  libpam virtual/libgl virtual/egl"
+DEPENDS = "wayland wayland-native wayland-protocols hyprlang hyprutils libxkbcommon cairo pango jpeg libwebp libdrm  libpam virtual/libgl virtual/egl"
 
 S = "${WORKDIR}/git"
-SRCREV = "bc87adf9ec997090f15d9b662d6ca2f86e25f264"
+SRCREV = "c5b8ad03d03ddbd2b0ff8615c2f6dba31374b6a8"
 PV = "0.3.0"
 
 inherit cmake pkgconfig features_check
