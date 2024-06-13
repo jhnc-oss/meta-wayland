@@ -26,9 +26,27 @@ do_install:append() {
 	# remove precompiled x86 binaries
 	rm -rf ${D}${libdir}/go/src/${GO_IMPORT}/bin
 	rm -rf ${D}${libdir}/go/pkg/mod/github.com/dlasky/gotk3-layershell*/example
-	install -d ${D}${datadir}/nwg-dock-hyprland
+	install -d ${D}${datadir}/nwg-dock-hyprland ${D}${systemd_user_unitdir}
 	install -m 0644 ${S}/src/${GO_IMPORT}/config/style.css ${D}${datadir}/nwg-dock-hyprland
 	cp -rf ${S}/src/${GO_IMPORT}/images ${D}${datadir}/nwg-dock-hyprland
+	cat >${D}${systemd_user_unitdir}/nwg-dock-hyprland.service <<EOF
+[Unit]
+Description=nwg-dock-hyprland
+
+[Service]
+LockPersonality=yes
+MemoryDenyWriteExecute=yes
+NoNewPrivileges=yes
+RestrictNamespaces=yes
+Type=simple
+ExecStart= /usr/bin/nwg-dock-hyprland -mb 6 -d -hd 2000
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target
+EOF
 }
 
 do_compile[network] = "1"
+
+FILES:${PN} += "${systemd_user_unitdir}"
