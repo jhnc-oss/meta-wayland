@@ -11,6 +11,7 @@ DEPENDS += " \
 	cairo \
 	hyprcursor \
 	hyprlang \
+	hyprutils \
 	jq-native \
 	hwdata-native \
 	libdisplay-info \
