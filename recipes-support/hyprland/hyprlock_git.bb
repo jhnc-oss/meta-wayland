@@ -8,7 +8,22 @@ SRC_URI = "git://github.com/hyprwm/hyprlock.git;protocol=https;branch=main"
 
 REQUIRED_DISTRO_FEATURES = "opengl"
 
-DEPENDS = "wayland wayland-native wayland-protocols hyprlang hyprutils libxkbcommon cairo pango jpeg libwebp libdrm  libpam virtual/libgl virtual/egl"
+DEPENDS = " \
+	cairo \
+	hyprlang \
+	hyprutils \
+	jpeg \
+	libdrm  \
+	libpam \
+	libwebp \
+	libxkbcommon \
+	pango \
+	virtual/egl \
+	virtual/libgl \
+	wayland \
+	wayland-native \
+	wayland-protocols \
+"
 
 S = "${WORKDIR}/git"
 SRCREV = "c5b8ad03d03ddbd2b0ff8615c2f6dba31374b6a8"
