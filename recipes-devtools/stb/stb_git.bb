@@ -4,7 +4,7 @@ LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=fb994481c55623ef338885280e676f3b"
 
 SRC_URI = "git://github.com/nothings/stb.git;protocol=https;branch=master"
-SRCREV = "f4a71b13373436a2866c5d68f8f80ac6f0bc1ffe"
+SRCREV = "013ac3beddff3dbffafd5177e7972067cd2b5083"
 S = "${WORKDIR}/git"
 
 do_install() {
