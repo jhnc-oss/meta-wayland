@@ -13,6 +13,7 @@ DEPENDS += " \
 	libei \
 	libdecor \
 	libdisplay-info \
+	libdrm \
 	libinput \
 	libx11\
 	libxcomposite \
@@ -22,6 +23,10 @@ DEPENDS += " \
 	libxmu \
 	libxrender \
 	libxtst \
+	libxxf86vm \
+	libxfixes \
+	libxext \
+	libxdamage \
 	seatd \
 	stb \
 	vulkan-loader \
@@ -37,7 +42,7 @@ RDEPENDS:${PN} = "xwayland hwdata"
 
 CXXFLAGS:append = " -I${STAGING_INCDIR}/stb"
 
-PACKAGECONFIG ?= "${@bb.utils.filter('DISTRO_FEATURES', 'pipewire', d)} rt_cap avif_screenshots openvr input_emulation drm_backend sdl2_backend"
+PACKAGECONFIG ?= "${@bb.utils.filter('DISTRO_FEATURES', 'pipewire', d)} rt_cap avif_screenshots openvr input_emulation drm_backend"
 PACKAGECONFIG[benchmark] = "-Dbenchmark=enabled,-Dbenchmark=disabled"
 PACKAGECONFIG[input_emulation] = "-Dinput_emulation=enabled,-Dinput_emulation=disabled,libei"
 PACKAGECONFIG[openvr] = "-Denable_openvr_support=true,-Denable_openvr_support=false"
@@ -45,15 +50,15 @@ PACKAGECONFIG[pipewire] = "-Dpipewire=enabled,-Dpipewire=disabled,pipewire"
 PACKAGECONFIG[avif_screenshots] = "-Davif_screenshots=enabled,-Davif_screenshots=disabled,libavif"
 PACKAGECONFIG[rt_cap] = "-Drt_cap=enabled,-Drt_cap=disabled,libcap"
 PACKAGECONFIG[sdl2_backend] = "-Dsdl2_backend=enabled,-Dsdl2_backend=disabled,libsdl2"
-PACKAGECONFIG[drm_backend] = "-Ddrm_backend=enabled,-Ddrm_backend=disabled,libdrm"
+PACKAGECONFIG[drm_backend] = "-Ddrm_backend=enabled,-Ddrm_backend=disabled"
 
 SRC_URI = "   \
-	gitsm://github.com/ValveSoftware/gamescope.git;branch=jupiter-3.6;protocol=https \
+	gitsm://github.com/ValveSoftware/gamescope.git;branch=master;protocol=https \
 	file://0001-meson.build-dont-fail-if-stb-is-not-found.patch \
 	file://0001-meson.build-dont-leak-buildpath.patch \
 "
-SRCREV = "420eb91387a484fd7b1ea71449091f0480d9e538"
-PV = "3.14.18"
+SRCREV = "3b69847e15c84c0a4f93e82c2eb16b623f9765b9"
+PV = "3.14.22"
 
 S = "${WORKDIR}/git"
 
