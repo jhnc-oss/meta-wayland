@@ -8,6 +8,12 @@ DEPENDS = " \
     pixman \
     libdrm \
     hyprland \
+    libinput \
+    udev \
+    pango \
+    cairo \
+    wayland-native \
+    libxkbcommon \
 "
 
 S = "${WORKDIR}/git/hyprexpo"
