@@ -8,6 +8,9 @@ DEPENDS = " \
 	hyprutils \
 	hyprwayland-scanner-native \
 	libdrm \
+	libdisplay-info \
+	libinput \
+	seatd \
 	pixman \
 	virtual/libgbm \
 	wayland \
@@ -18,7 +21,7 @@ DEPENDS = " \
 SRC_URI = "git://github.com/hyprwm/aquamarine.git;protocol=https;branch=main"
 
 S = "${WORKDIR}/git"
-SRCREV = "d435736fa73fedffa5aba2bfa01c6c33efb8b884"
+SRCREV = "2e0052a21dc02c3cc2e131dabc2eff1990901b52"
 PV = "0.1.0"
 
 inherit cmake pkgconfig
