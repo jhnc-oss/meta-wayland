@@ -3,7 +3,10 @@ HOMEPAGE = "https://github.com/hyprwm/xdg-desktop-portal-hyprland"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=e0f1d50df739a9fb8eae12a8f37ce352"
 
-SRC_URI:append = " file://0001-meson.build-Dont-build-hyprland-share-picker-with-me.patch"
+SRC_URI:append = " \
+	file://0001-meson.build-Dont-build-hyprland-share-picker-with-me.patch \
+	file://0001-ScreencopyShared.hpp-drop-define-SPA_VERSION_POD_BUI.patch \
+"
 
 require xdg-desktop-portal-hyprland.inc
 
