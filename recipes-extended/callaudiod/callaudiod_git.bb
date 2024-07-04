@@ -11,8 +11,8 @@ inherit meson pkgconfig
 SRC_URI = "git://gitlab.com/mobian1/callaudiod.git;protocol=https;branch=master"
 
 S = "${WORKDIR}/git"
-PV = "0.1.9"
-SRCREV = "50d1ac3792aac03abe0a3a88ceac77201a43bb3b"
+PV = "0.1.10"
+SRCREV = "56831297817afb6b30062b7cee3e40225ac39cac"
 
 FILES:${PN} += "${datadir}"
 
