@@ -8,8 +8,8 @@ DEPENDS = "glib-2.0 json-glib"
 
 SRC_URI = "git://gitlab.gnome.org/World/Phosh/gmobile.git;protocol=https;branch=main"
 S = "${WORKDIR}/git"
-SRCREV = "3f3a8c70f6106e00388075c77982876857b321d8"
-PV = "0.2.0"
+SRCREV = "ca8db41bb39a3117461614ae4558a3e3019a19be"
+PV = "0.2.1"
 
 do_install:append() {
 	install -m 0644 ${B}/gm-config.h ${D}${includedir}
