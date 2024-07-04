@@ -33,22 +33,20 @@ RDEPENDS:${PN} = " \
     polkit-gnome \
     gsettings-desktop-schemas \
     phoc \
+    squeekboard \
     gnome-desktop \
+    gnome-session \
     wl-clipboard \
     calls \
 "
 
 PACKAGECONFIG[tests] = "-Dtests=true,-Dtests=false"
+PACKAGECONFIG[phoc_tests] = "-Dphoc_tests=enabled,-Dphoc_tests=disabled"
 PACKAGECONFIG[tools] = "-Dtools=true,-Dtools=false"
-# install systemd service files ?
-PACKAGECONFIG[systemd] = "-Dsystemd=true,-Dsystemd=false"
 
-PACKAGECONFIG ?= " \
-	${@bb.utils.filter('DISTRO_FEATURES', 'systemd', d)} \
-	tools \
-"
+PACKAGECONFIG ?= ""
 
-inherit features_check gsettings meson pkgconfig gtk-icon-cache
+inherit features_check gsettings meson pkgconfig gtk-icon-cache gobject-introspection gi-docgen
 
 SRC_URI = " \
     gitsm://gitlab.gnome.org/World/Phosh/phosh.git;protocol=https;nobranch=1 \
@@ -56,8 +54,8 @@ SRC_URI = " \
 "
 
 S = "${WORKDIR}/git"
-PV = "0.39.0"
-SRCREV = "e1e263efc239870e81c2e4d013bf0615f260141f"
+PV = "0.40.0"
+SRCREV = "afef417667369f4943c8acfa24b4477e4197359e"
 
 EXTRA_OEMESON += "--buildtype=release"
 
