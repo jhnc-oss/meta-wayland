@@ -26,8 +26,8 @@ DEPENDS = " \
 "
 
 S = "${WORKDIR}/git"
-SRCREV = "c5b8ad03d03ddbd2b0ff8615c2f6dba31374b6a8"
-PV = "0.3.0"
+SRCREV = "6e0921140efb8895eb98efa99438fff23df2a726"
+PV = "0.4.0"
 
 inherit cmake pkgconfig features_check
 
