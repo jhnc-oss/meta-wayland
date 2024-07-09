@@ -50,7 +50,7 @@ PACKAGECONFIG ?= " \
 
 SRC_URI = "gitsm://github.com/WayfireWM/wayfire.git;protocol=https;nobranch=1"
 
-SRCREV = "01726528ace8ed71216f23c3b0fb3344cda5a461"
+SRCREV = "44e1fa9c62e1f8c9f35cedbf3e86c6a0247e0b79"
 PV = "0.8.1"
 S = "${WORKDIR}/git"
 
