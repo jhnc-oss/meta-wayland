@@ -9,7 +9,7 @@ DEPENDS = "pixman"
 SRC_URI = "git://github.com/hyprwm/hyprutils.git;protocol=https;branch=main"
 
 S = "${WORKDIR}/git"
-SRCREV = "1f6bbec5954f623ff8d68e567bddcce97cd2f085"
+SRCREV = "6174a2a25f4e216c0f1d0c4278adc23c476b1d09"
 PV = "0.1.5"
 
 inherit cmake pkgconfig
