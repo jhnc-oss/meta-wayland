@@ -9,7 +9,7 @@ DEPENDS = "hyprutils"
 SRC_URI = "git://github.com/hyprwm/hyprlang.git;protocol=https;branch=main"
 
 S = "${WORKDIR}/git"
-SRCREV = "ec6938c66253429192274d612912649a0cfe4d28"
+SRCREV = "5df0174fd09de4ac5475233d65ffc703e89b82eb"
 PV = "0.5.2"
 
 inherit cmake pkgconfig
