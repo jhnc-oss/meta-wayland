@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=6a6a8e020838b23406c81b19c1d46df6"
 
 SRC_URI = "git://github.com/AyatanaIndicators/libdbusmenu.git;protocol=https;branch=master"
 
-DEPENDS = "glib-2.0 json-glib dbus  intltool-native"
+DEPENDS = "glib-2.0 json-glib dbus intltool-native libxslt-native"
 
 S = "${WORKDIR}/git"
 PV = "16.0.4"
