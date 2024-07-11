@@ -3,7 +3,7 @@ HOMEPAGE = "https://github.com/AyatanaIndicators/libdbusmenu"
 LICENSE = "LGPL-3.0-only"
 LIC_FILES_CHKSUM = "file://COPYING;md5=6a6a8e020838b23406c81b19c1d46df6"
 
-DEPENDS = "glib-2.0 json-glib dbus gtk+ gtk+3 libdbusmenu-glib intltool-native"
+DEPENDS = "glib-2.0 json-glib dbus gtk+ gtk+3 libdbusmenu-glib intltool-native libxslt-native"
 RDEPENDS:${PN} = "libdbusmenu-glib"
 
 SRC_URI = "git://github.com/AyatanaIndicators/libdbusmenu.git;protocol=https;branch=master"
