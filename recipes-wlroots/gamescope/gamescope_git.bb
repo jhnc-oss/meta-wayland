@@ -57,8 +57,8 @@ SRC_URI = "   \
 	file://0001-meson.build-dont-fail-if-stb-is-not-found.patch \
 	file://0001-meson.build-dont-leak-buildpath.patch \
 "
-SRCREV = "3b69847e15c84c0a4f93e82c2eb16b623f9765b9"
-PV = "3.14.22"
+SRCREV = "cf2497fd7ec83f3d0dd5cb31b69540a2d129edad"
+PV = "3.14.24"
 
 S = "${WORKDIR}/git"
 
@@ -68,5 +68,3 @@ EXTRA_OEMESON += "--buildtype release"
 
 FILES:${PN} += "${datadir} ${libdir}"
 FILES:${PN}-dev = "${includedir} ${libdir}/pkgconfig"
-
-CFLAGS += "-Wno-calloc-transposed-args"
