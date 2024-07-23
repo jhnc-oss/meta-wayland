@@ -13,7 +13,6 @@ DEPENDS = " \
 	cairo \
 	fribidi \
 	jpeg \
-	libxdmcp \
 	libxkbcommon \
 	pango \
 	pcre \
