@@ -3,6 +3,7 @@ From: Cole Mickens <cole.mickens@gmail.com>
 Date: Sun, 26 Jan 2020 01:27:08 -0800
 Subject: [PATCH] CMakeLists.txt: output date.pc for pkg-config
 
+Upstream-Status: Pending []
 ---
  CMakeLists.txt | 15 +++++++++++++++
  date.pc.in     | 10 ++++++++++

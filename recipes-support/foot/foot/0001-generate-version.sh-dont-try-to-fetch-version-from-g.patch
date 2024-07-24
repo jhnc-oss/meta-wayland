@@ -3,6 +3,7 @@ From: Markus Volk <f_l_k@t-online.de>
 Date: Tue, 19 Apr 2022 13:41:21 +0200
 Subject: [PATCH] generate-version.sh: dont try to fetch version from git
 
+Upstream-Status: Inappropriate [oe-specific]
 ---
  generate-version.sh | 21 ++-------------------
  1 file changed, 2 insertions(+), 19 deletions(-)

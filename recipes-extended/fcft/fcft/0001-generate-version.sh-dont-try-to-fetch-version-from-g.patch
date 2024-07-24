@@ -8,6 +8,8 @@ workaround for:
 | FAILED: version.h
 | /home/flk/build/poky/build-intel/tmp/hosttools/env LC_ALL=C ../git/generate-version.sh 3.0.1 ../git/ version.h
 | fatal: unsafe repository ('/home/flk/build/poky/build-intel/tmp/work/corei7-64-poky-linux/fcft/3.0.1-r0/git' is owned by someone else)
+
+Upstream-Status: Inappropriate [oe-specific]
 ---
  generate-version.sh | 19 +------------------
  1 file changed, 1 insertion(+), 18 deletions(-)
