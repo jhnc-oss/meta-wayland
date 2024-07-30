@@ -47,7 +47,7 @@ RRECOMMENDS:${PN} ?= " \
 
 SRC_URI = "gitsm://github.com/hyprwm/Hyprland.git;protocol=https;branch=main"
 
-SRCREV = "a9d87bd6669568741704de08b6f0328a92e29396"
+SRCREV = "e67322034037fef22079c8e480be38c1d04b5a4a"
 PV = "0.42-dev"
 S = "${WORKDIR}/git"
 
