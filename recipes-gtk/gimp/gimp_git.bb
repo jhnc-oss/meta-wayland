@@ -36,7 +36,7 @@ DEPENDS = " \
 DEPENDS:append:libc-musl = " libexecinfo"
 RDEPENDS:${PN} = "mypaint-brushes-1.0 glib-networking"
 
-inherit meson gtk-icon-cache mime-xdg pkgconfig gettext gi-docgen gobject-introspection vala
+inherit meson gtk-icon-cache mime-xdg pkgconfig gettext gobject-introspection vala
 
 GIR_MESON_OPTION = 'can-crosscompile-gir'
 VALA_MESON_OPTION = "vala"
