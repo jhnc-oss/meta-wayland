@@ -20,11 +20,11 @@ DEPENDS += " \
 	libpng \
 	libxkbcommon \
 	libxml2 \
-	mesa \
 	nlohmann-json \
 	pango \
 	pixman \
 	seatd \
+	virtual/libgl \
 	wayland \
 	wayland-native \
 	wayland-protocols \
