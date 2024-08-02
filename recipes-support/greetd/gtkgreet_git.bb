@@ -15,8 +15,8 @@ inherit meson pkgconfig
 SRC_URI = "git://git.sr.ht/~kennylevinsen/gtkgreet;protocol=https;branch=master"
 
 S = "${WORKDIR}/git"
-PV = "0.7"
-SRCREV = "a90223c6b9c1d33a0f5d9b48d24d336300b5fe6b"
+PV = "0.8"
+SRCREV = "7202ba6ec2334d64e1449e5f8310a63bd818d448"
 
 EXTRA_OEMESON += " \
     --buildtype release \
