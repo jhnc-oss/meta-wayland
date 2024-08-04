@@ -6,11 +6,11 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 
 SRC_URI = "git://github.com/rockowitz/ddcutil.git;protocol=https;branch=master"
 
-DEPENDS = "i2c-tools glib-2.0 kmod"
+DEPENDS = "i2c-tools glib-2.0 kmod jansson"
 
 S = "${WORKDIR}/git"
-PV = "1.3.0"
-SRCREV = "207f6c75b01924bf5aa7faa4a6688eb2c14dfebf"
+PV = "2.1.4"
+SRCREV = "ca610f91d5483e19bfdae88bb0094973cc81fc95"
 
 inherit autotools pkgconfig gobject-introspection
 
@@ -30,5 +30,5 @@ do_install:append () {
 	cp -rf ${D}${datadir}/ddcutil/data/* ${D}${sysconfdir}/udev/rules.d
 }
 
-FILES:${PN} += "${sysconfdir}"
+FILES:${PN} += "${sysconfdir} ${libdir}/modules-load.d/ddcutil.conf"
 
