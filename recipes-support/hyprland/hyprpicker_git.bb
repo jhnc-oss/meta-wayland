@@ -7,11 +7,12 @@ SRC_URI = "git://github.com/hyprwm/hyprpicker.git;protocol=https;branch=main"
 
 PV = "0.3.0"
 S = "${WORKDIR}/git"
-SRCREV = "8791f717ef495c8c5a36b21cbccc7cf218fbc380"
+SRCREV = "cbd963e1032552a7b195301de616c521c7d9f848"
 
 DEPENDS = " \
 	cairo \
 	fribidi \
+	hyprutils \
 	jpeg \
 	libxkbcommon \
 	pango \
