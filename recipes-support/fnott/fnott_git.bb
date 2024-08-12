@@ -9,7 +9,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=3a7351a597a91e763901f7c76f21e798"
 REQUIRED_DISTRO_FEATURES = "wayland"
 
 SRC_URI = " \
-	git://codeberg.org/dnkl/fnott.git;protocol=https;branch=releases/1.5 \
+	git://codeberg.org/dnkl/fnott.git;protocol=https;branch=releases/1.7 \
 "
 
 DEPENDS = " \
@@ -24,21 +24,15 @@ DEPENDS = " \
 	wayland-protocols \
 "
 
-RDEPENDS:${PN} = " \
-	fontconfig \
-	freetype \
-	wlroots \
-"
-
 inherit meson pkgconfig features_check
 
 S = "${WORKDIR}/git"
-PV = "1.5.0"
-SRCREV = "e950a0b102bab47b09a40b13bd50a5f565ca7792"
+PV = "1.7.0"
+SRCREV = "2821dd2fcece876d401db2efe04cae17efd67f30"
 
 EXTRA_OEMESON += "--buildtype release"
 
 PACKAGES += "${PN}-zsh-completion"
+FILES:${PN} += "${datadir}/dbus-1 ${systemd_user_unitdir}"
 FILES:${PN}-zsh-completion = "${datadir}/zsh"
 
-BBCLASSEXTEND = ""
