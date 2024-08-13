@@ -39,8 +39,8 @@ PACKAGECONFIG ?= " \
 "
 
 S = "${WORKDIR}/git"
-PV = "1.8.0"
-SRCREV = "b25d38f53b4f17830111f6ea82c5985e3f3d796a"
+PV = "1.9.0"
+SRCREV = "43ac7b8094b3b7fae723f78fb7dc6bf34ea8814b"
 
 EXTRA_OEMESON += "--buildtype release"
 
