@@ -24,8 +24,8 @@ SRC_URI = " \
 "
 
 S = "${WORKDIR}/git"
-PV = "1.18.0"
-SRCREV = "b5e692ef8ba1627605b351349505f049b4f76b7c"
+PV = "1.18.1"
+SRCREV = "ce9c9f6be6bc0226741b5e114167a53e135ae885"
 
 PACKAGECONFIG[grapheme-clustering] = "-Dgrapheme-clustering=enabled,-Dgrapheme-clustering=disabled,utf8proc"
 PACKAGECONFIG[docs] = "-Ddocs=enabled,-Ddocs=disabled,scdoc-native"
