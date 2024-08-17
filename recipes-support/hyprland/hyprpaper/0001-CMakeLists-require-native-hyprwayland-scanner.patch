@@ -1,0 +1,40 @@
+From 6c00eb848ce432183c79f34f2e487f6c00a1746a Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Sat, 17 Aug 2024 08:26:30 +0200
+Subject: [PATCH] CMakeLists: require native hyprwayland-scanner
+
+This would fix a cross-compile issue where hyprwayland-scanner is pulled in for
+target but needs to run on host.
+
+Patch-Status: Submitted [https://github.com/hyprwm/hyprpaper/pull/191]
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+---
+ CMakeLists.txt | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index c3b0f1e..4e48137 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -45,6 +45,7 @@ add_compile_options(-Wall -Wextra -Wno-unused-parameter -Wno-unused-value
+ 
+ find_package(Threads REQUIRED)
+ find_package(PkgConfig REQUIRED)
++find_package(hyprwayland-scanner 0.4.0 REQUIRED)
+ 
+ pkg_check_modules(
+   deps
+@@ -58,8 +59,7 @@ pkg_check_modules(
+   libjpeg
+   libwebp
+   hyprlang>=0.2.0
+-  hyprutils>=0.2.0
+-  hyprwayland-scanner>=0.4.0)
++  hyprutils>=0.2.0)
+ 
+ file(GLOB_RECURSE SRCFILES "src/*.cpp")
+ 
+-- 
+2.45.2
+
