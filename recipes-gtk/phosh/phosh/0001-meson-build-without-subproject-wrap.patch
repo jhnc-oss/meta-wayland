@@ -1,0 +1,72 @@
+From da96ea97125c7486eb3604844ef453d2b8b2442c Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Tue, 20 Aug 2024 12:41:01 +0200
+Subject: [PATCH] meson: build without subproject wrap
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+---
+ meson.build | 38 +++++++++++++++++++-------------------
+ 1 file changed, 19 insertions(+), 19 deletions(-)
+
+diff --git a/meson.build b/meson.build
+index 9dabba8c..32a568ec 100644
+--- a/meson.build
++++ b/meson.build
+@@ -147,35 +147,35 @@ gsettings_desktop_schemas_dep = dependency('gsettings-desktop-schemas', version:
+ gtk_dep = dependency('gtk+-3.0', version: '>=3.22')
+ gtk_wayland_dep = dependency('gtk+-wayland-3.0', version: '>=3.22')
+ gudev_dep = dependency('gudev-1.0')
+-libcall_ui = subproject('libcall-ui',
+-  default_options: [
+-    'examples=false',
+-    'gtk_doc=false',
+-    'tests=false',
+-    'install-i18n=@0@'.format(get_option('callui-i18n')),
+-  ])
++#libcall_ui = subproject('libcall-ui',
++#  default_options: [
++#    'examples=false',
++#    'gtk_doc=false',
++#    'tests=false',
++#    'install-i18n=@0@'.format(get_option('callui-i18n')),
++#  ])
+ libfeedback_dep = dependency('libfeedback-0.0',
+   version: '>= 0.4.0',
+   fallback: ['libfeedback', 'libfeedback_dep'],
+   default_options: ['introspection=disabled', 'daemon=false', 'gtk_doc=false']
+   )
+-libgvc = subproject('gvc',
+-  default_options: [
+-    'package_name=' + meson.project_name(),
+-    'package_version=' + meson.project_version(),
+-    'pkgdatadir=' + pkgdatadir,
+-    'pkglibdir=' + pkglibdir,
+-    'static=true',
+-    'introspection=false',
+-    'alsa=false'
+-  ])
+-libgvc_dep = libgvc.get_variable('libgvc_dep')
++#libgvc = subproject('gvc',
++#  default_options: [
++#    'package_name=' + meson.project_name(),
++#    'package_version=' + meson.project_version(),
++#    'pkgdatadir=' + pkgdatadir,
++#    'pkglibdir=' + pkglibdir,
++#    'static=true',
++#    'introspection=false',
++#    'alsa=false'
++#  ])
++libgvc_dep = dependency('gvc')
+ libhandy_dep = dependency('libhandy-1',
+   version: '>=1.1.90',
+   fallback: ['libhandy', 'libhandy_dep'],
+   default_options: ['introspection=disabled']
+   )
+-libcall_ui_dep = libcall_ui.get_variable('libcall_ui_dep')
++libcall_ui_dep = dependency('call-ui')
+ libnm_dep = dependency('libnm', version: '>= 1.14')
+ libpolkit_agent_dep = dependency('polkit-agent-1', version: '>= 0.105')
+ libsoup_dep = dependency('libsoup-3.0', version: '>= 3.0')
+-- 
+2.45.2
+
