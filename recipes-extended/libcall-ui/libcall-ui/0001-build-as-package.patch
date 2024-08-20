@@ -1,0 +1,32 @@
+From 02fee99a4be76b1db07f27cad68986061168e7e1 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Tue, 20 Aug 2024 11:57:39 +0200
+Subject: [PATCH] build as package
+
+---
+ meson.build | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/meson.build b/meson.build
+index d33614b..d3e068d 100644
+--- a/meson.build
++++ b/meson.build
+@@ -19,6 +19,8 @@ systemduserdir = join_paths(systemddir, 'user')
+ 
+ root_inc = include_directories('.')
+ 
++pkgconfig = import ('pkgconfig')
++
+ cc = meson.get_compiler('c')
+ 
+ global_c_args = []
+@@ -113,4 +115,6 @@ summary = [
+   '-----------',
+ ]
+ 
++pkgconfig.generate(call_ui_lib)
++
+ message('\n'.join(summary))
+-- 
+2.45.2
+
