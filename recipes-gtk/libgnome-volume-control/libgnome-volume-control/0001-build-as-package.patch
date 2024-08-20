@@ -1,0 +1,39 @@
+From db03d3455c9db082c373318c08f2377c03a62e99 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Tue, 20 Aug 2024 12:22:55 +0200
+Subject: [PATCH] meson.build: allow shared build
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+---
+ meson.build | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/meson.build b/meson.build
+index a1a2af5..97f43c1 100644
+--- a/meson.build
++++ b/meson.build
+@@ -3,12 +3,14 @@ project('gvc', 'c',
+   default_options: ['static=true']
+ )
+ 
+-assert(meson.is_subproject(), 'This project is only intended to be used as a subproject!')
++#assert(meson.is_subproject(), 'This project is only intended to be used as a subproject!')
+ 
+ gnome = import('gnome')
+ 
+ pkglibdir = get_option('pkglibdir')
+ pkgdatadir = get_option('pkgdatadir')
++pkgconfig = import ('pkgconfig')
++
+ 
+ cdata = configuration_data()
+ cdata.set_quoted('GETTEXT_PACKAGE', get_option('package_name'))
+@@ -135,3 +137,5 @@ configure_file(
+   output: 'config.h',
+   configuration: cdata
+ )
++
++pkgconfig.generate(libgvc)
+-- 
+2.45.2
+
