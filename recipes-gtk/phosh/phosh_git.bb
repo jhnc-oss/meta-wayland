@@ -51,7 +51,7 @@ PACKAGECONFIG ?= ""
 inherit features_check gsettings meson pkgconfig gtk-icon-cache gobject-introspection gi-docgen
 
 SRC_URI = " \
-    gitsm://gitlab.gnome.org/World/Phosh/phosh.git;protocol=https;nobranch=1 \
+    git://gitlab.gnome.org/World/Phosh/phosh.git;protocol=https;nobranch=1 \
     file://0001-meson.build-dont-read-includedir-from-pkg-config.patch \
     file://0001-meson-build-without-subproject-wrap.patch \
 "
