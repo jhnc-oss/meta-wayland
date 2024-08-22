@@ -21,9 +21,9 @@ DEPENDS += " \
 
 inherit meson pkgconfig features_check
 
-PACKAGECONFIG ?= "sassc ${@bb.utils.filter('DISTRO_FEATURES', 'bluetooth', d)}"
+PACKAGECONFIG ?= "sass ${@bb.utils.filter('DISTRO_FEATURES', 'bluetooth', d)}"
 PACKAGECONFIG[bluetooth] = "-DWithBlueZ=true,-DWithBlueZ=false,bluez5"
-PACKAGECONFIG[dbusmenu] = "-DWithSNI=true,-DWithSNI=false,libdbusmenu"
-PACKAGECONFIG[sassc] = "-DWithLibSass=true,-DWithLibSass=false,sassc"
+PACKAGECONFIG[dbusmenu] = "-DWithSNI=true,-DWithSNI=false,libdbusmenu-gtk"
+PACKAGECONFIG[sass] = "-DWithLibSass=true,-DWithLibSass=false,libsass"
 
 FILES:${PN} += "${datadir}"
