@@ -13,7 +13,7 @@ GO_IMPORT = "github.com/nwg-piotr/nwg-dock-hyprland.git"
 SRC_URI = "git://${GO_IMPORT};destsuffix=src/${GO_IMPORT};nobranch=1;protocol=https"
 
 PV = "0.2.1"
-SRCREV = "9bbf58422472ea26a721c66aef7df46209345a15"
+SRCREV = "95225b4bd747c02b1ed7be49f52893a9fd0bcad3"
 S = "${WORKDIR}/sources"
 UNPACKDIR = "${S}"
 
