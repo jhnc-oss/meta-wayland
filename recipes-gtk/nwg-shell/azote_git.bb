@@ -15,7 +15,6 @@ RDEPENDS:${PN} = " \
 	python3-pillow \
 	python3-pkg-resources \
 	python3-send2trash \
-	imagemagick \
 	grim \
 	slurp \
 	swaybg \
@@ -25,23 +24,15 @@ RDEPENDS:${PN} = " \
 inherit setuptools3
 
 S = "${WORKDIR}/git"
-PV = "1.12.9"
-SRCREV = "20849501ee5fecc701d4bdfdbce6d6a320737a7d"
-
-do_configure:prepend() {
-	[ -d ${S}/dist ] && mv ${S}/dist ${S}/distrib
-}
+PV = "1.13.0"
+SRCREV = "05be4c908a468e6392ecb8695a5211b68f310df1"
 
 do_install:append() {
-	install -d ${D}${bindir} ${D}${datadir}/azote ${D}${datadir}/pixmaps ${D}${datadir}/applications
-	install -m 755 ${S}/distrib/azote ${D}${bindir}
-	install -m 644 ${S}/distrib/azote.desktop ${D}${datadir}/applications
-	install -m 644 ${S}/distrib/azote.svg ${D}${datadir}/pixmaps
-	install -m 644 ${S}/distrib/indicator_active.png ${D}${datadir}/azote
-	install -m 644 ${S}/distrib/indicator_attention.png ${D}${datadir}/azote
+	install -d ${D}${datadir}/azote ${D}${datadir}/pixmaps ${D}${datadir}/applications
+	install -m 644 ${S}/dist/azote.desktop ${D}${datadir}/applications
+	install -m 644 ${S}/dist/azote.svg ${D}${datadir}/pixmaps
+	install -m 644 ${S}/dist/indicator_active.png ${D}${datadir}/azote
+	install -m 644 ${S}/dist/indicator_attention.png ${D}${datadir}/azote
 }
 
-FILES:${PN}:append = " \
-	${datadir} \
-	${bindir} \
-"
+FILES:${PN} += "${datadir}"
