@@ -11,6 +11,8 @@ DEPENDS = " \
 	wayland-native \
 	wayland-protocols \
 	ffmpeg \
+	pulseaudio \
+	pipewire \
 "
 
 REQUIRED_DISTRO_FEATURES = "wayland"
@@ -18,10 +20,10 @@ REQUIRED_DISTRO_FEATURES = "wayland"
 SRC_URI = " \
 	git://github.com/ammen99/wf-recorder.git;protocol=https;branch=master \
 "
-SRCREV = "b09c86ff15ab0edeaf98e2e56547bd5fa4948a3f"
+SRCREV = "9978c3570436eb5358e4578421d83a7f3ffd2683"
 
 S = "${WORKDIR}/git"
-PV = "0.3.0"
+PV = "0.4.1"
 
 inherit meson pkgconfig features_check
 
