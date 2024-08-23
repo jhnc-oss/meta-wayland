@@ -20,8 +20,8 @@ PACKAGECONFIG[man-pages] = ",,scdoc-native"
 
 
 S = "${WORKDIR}/git"
-PV = "0.3.0"
-SRCREV = "b6cfe1761df05352c0ca7c3706476d5272d9521f"
+PV = "0.4.0"
+SRCREV = "634c8ebc53a31d4e5ed394f7950760deb5322102"
 
 inherit meson pkgconfig features_check
 
