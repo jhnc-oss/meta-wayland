@@ -46,12 +46,13 @@ PACKAGECONFIG ?= " \
 	${@bb.utils.filter('DISTRO_FEATURES', 'vulkan x11', d)} \
 	gles32 \
 	use_system_wlroots \
+	use_system_wfconfig \
 "
 
 SRC_URI = "gitsm://github.com/WayfireWM/wayfire.git;protocol=https;nobranch=1"
 
-SRCREV = "44e1fa9c62e1f8c9f35cedbf3e86c6a0247e0b79"
-PV = "0.8.1"
+SRCREV = "15065ca1a2e3a596db3dbcba64823c5dee90f191"
+PV = "0.9.0"
 S = "${WORKDIR}/git"
 
 inherit meson pkgconfig features_check

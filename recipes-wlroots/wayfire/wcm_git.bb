@@ -17,9 +17,9 @@ DEPENDS = " \
 REQUIRED_DISTRO_FEATURES = "wayland"
 
 SRC_URI = "gitsm://github.com/WayfireWM/wcm.git;protocol=https;nobranch=1"
-SRCREV = "fb9dd5746c077f60a34ff1f70d7ef3f70e5a59b5"
+SRCREV = "74a16f5ca6aaff9f17e8a38976968b3007c74e87"
 S = "${WORKDIR}/git"
-PV = "0.8.0"
+PV = "0.9.0"
 
 inherit meson pkgconfig features_check
 
