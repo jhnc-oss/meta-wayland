@@ -57,8 +57,8 @@ SRC_URI = "   \
 	file://0001-meson.build-dont-fail-if-stb-is-not-found.patch \
 	file://0001-meson.build-dont-leak-buildpath.patch \
 "
-SRCREV = "250a14345faaa6e6b8331cf6979e3c54fe097023"
-PV = "3.15.0"
+SRCREV = "f554d886093ad3fdc361b4642fe6cca4cdaa99b1"
+PV = "3.15.1"
 
 S = "${WORKDIR}/git"
 
