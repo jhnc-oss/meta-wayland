@@ -7,7 +7,7 @@ SRC_URI = "git://github.com/hyprwm/hyprpicker.git;protocol=https;branch=main"
 
 PV = "0.3.0"
 S = "${WORKDIR}/git"
-SRCREV = "cbd963e1032552a7b195301de616c521c7d9f848"
+SRCREV = "38fe668e58014c75cf28f7cb5fc136aa710e7039"
 
 DEPENDS = " \
 	cairo \
@@ -28,11 +28,5 @@ RDEPENDS:${PN} = "wl-clipboard"
 REQUIRED_DISTRO_FEATURES = "wayland"
 
 EXTRA_OEMAKE = "-DCMAKE_BUILD_TYPE:STRING=Release"
-
-do_install() {
-    install -d ${D}${bindir} ${D}${datadir}/man/man1
-    install -m755 ${B}/hyprpicker ${D}${bindir}
-    install -m644 ${S}/doc/hyprpicker.1 ${D}${datadir}/man/man1
-}
 
 inherit cmake pkgconfig features_check
