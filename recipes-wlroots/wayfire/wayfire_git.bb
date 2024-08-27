@@ -34,16 +34,17 @@ RRECOMMENDS:${PN} += " \
 	wcm \
 	wf-recorder \
 	wf-shell \
+	pywayfire \
 "
 
 PACKAGECONFIG[gles32] = "-Denable_gles32=true,-Denable_gles32=false"
 PACKAGECONFIG[use_system_wfconfig] = "-Duse_system_wfconfig=enabled,-Duse_system_wfconfig=disabled,wf-config"
 PACKAGECONFIG[use_system_wlroots] = "-Duse_system_wlroots=enabled,-Duse_system_wlroots=disabled,wlroots-0.17"
-PACKAGECONFIG[x11] = "-Dxwayland=enabled,-Dxwayland=disabled,xwayland xcb-util-renderutil xcb-util-wm"
+PACKAGECONFIG[xwayland] = "-Dxwayland=enabled,-Dxwayland=disabled,xwayland xcb-util-renderutil xcb-util-wm"
 PACKAGECONFIG[vulkan] = ",,vulkan-loader vulkan-headers glslang-native"
 
 PACKAGECONFIG ?= " \
-	${@bb.utils.filter('DISTRO_FEATURES', 'vulkan x11', d)} \
+	${@bb.utils.filter('DISTRO_FEATURES', 'vulkan x11 xwayland', d)} \
 	gles32 \
 	use_system_wlroots \
 	use_system_wfconfig \
