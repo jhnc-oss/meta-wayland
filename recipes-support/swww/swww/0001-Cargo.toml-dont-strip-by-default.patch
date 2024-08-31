@@ -1,0 +1,28 @@
+From 9d25d0e1cfa6c9b0a6a4f732942500ccd4a34d50 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Sat, 31 Aug 2024 17:16:35 +0200
+Subject: [PATCH] Cargo: dont strip by default
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+
+Patch-Status: Inappropriate [oe-specific]
+---
+ Cargo.toml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Cargo.toml b/Cargo.toml
+index d16be66..55ca185 100644
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -39,7 +39,7 @@ debug = 0
+ lto = true
+ opt-level = 3
+ codegen-units = 1
+-strip = true
++strip = false
+ 
+ [profile.bench]
+ lto = "thin"
+-- 
+2.45.2
+

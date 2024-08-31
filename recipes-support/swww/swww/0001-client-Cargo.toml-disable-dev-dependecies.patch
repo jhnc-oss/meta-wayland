@@ -1,0 +1,29 @@
+From 49ba38198b2ca1928263eeafc24472fa548cba6b Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Sat, 31 Aug 2024 16:32:52 +0200
+Subject: [PATCH] client/Cargo.toml: disable dev dependecies
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+
+Patch-Status: Inappropriate [oe-specific]
+---
+ client/Cargo.toml | 3 ---
+ 1 file changed, 3 deletions(-)
+
+diff --git a/client/Cargo.toml b/client/Cargo.toml
+index b715e90..aacfc91 100644
+--- a/client/Cargo.toml
++++ b/client/Cargo.toml
+@@ -33,9 +33,6 @@ clap = { version = "4.5", features = ["derive", "wrap_help", "env"] }
+ fastrand = { version = "2.1", default-features = false, features = ["std"] }
+ common = { workspace = true }
+ 
+-[dev-dependencies]
+-assert_cmd = "2.0"
+-
+ [build-dependencies]
+ clap = { version = "4.5", features = ["derive", "env"] }
+ clap_complete = "4.5"
+-- 
+2.45.2
+
