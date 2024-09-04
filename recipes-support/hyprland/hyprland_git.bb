@@ -13,10 +13,7 @@ DEPENDS += " \
 	hyprcursor \
 	hyprlang \
 	hyprutils \
-	hwdata \
 	jq-native \
-	libdisplay-info \
-	libliftoff \
 	libdrm \
 	libinput \
 	libxcursor \
@@ -24,11 +21,9 @@ DEPENDS += " \
 	libxkbcommon \
 	pango \
 	pixman \
-	seatd \
 	tomlplusplus \
 	util-linux-libuuid \
 	virtual/egl \
-	wayland \
 	wayland-native \
 	xcb-util-wm \
 	xcb-util-renderutil \
@@ -47,7 +42,7 @@ RRECOMMENDS:${PN} ?= " \
 
 SRC_URI = "gitsm://github.com/hyprwm/Hyprland.git;protocol=https;branch=main"
 
-SRCREV = "eb42adc4c090918ad6be9fcb24066da8cdfd9bd0"
+SRCREV = "9b54342baa27d8de0460e1103ec4c3cc65592ed8"
 PV = "0.43-dev"
 S = "${WORKDIR}/git"
 
