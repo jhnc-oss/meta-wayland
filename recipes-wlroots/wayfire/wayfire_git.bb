@@ -44,7 +44,7 @@ PACKAGECONFIG[xwayland] = "-Dxwayland=enabled,-Dxwayland=disabled,xwayland xcb-u
 PACKAGECONFIG[vulkan] = ",,vulkan-loader vulkan-headers glslang-native"
 
 PACKAGECONFIG ?= " \
-	${@bb.utils.filter('DISTRO_FEATURES', 'vulkan x11 xwayland', d)} \
+	${@bb.utils.filter('DISTRO_FEATURES', 'vulkan xwayland', d)} \
 	gles32 \
 	use_system_wlroots \
 	use_system_wfconfig \
