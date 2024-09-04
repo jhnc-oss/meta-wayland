@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=a0836e8f0d25d383d1195ea44fdd185d"
 SRC_URI = "git://github.com/hyprwm/contrib.git;protocol=https;branch=main"
 
 S = "${WORKDIR}/git"
-SRCREV = "65d42dcbfde2229a75ccdb195c318dfe241f9ade"
+SRCREV = "ae618eafa81b596db034c5df1d75d4eddf785824"
 PV = "0.1"
 
 DEPENDS = "scdoc-native"
