@@ -1,11 +1,11 @@
 SUMMARY = "A plugin for Hyprland that implements a workspace overview feature similar to that of KDE Plasma, GNOME and macOS"
-HOMEPAGE = "https://hyprland.org/"
+HOMEPAGE = "https://github.com/KZDKM/Hyprspace"
 LICENSE = "GPL-2.0-only"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 
-SRC_URI = "git://github.com/clague/Hyprspace.git;protocol=https;branch=main"
+SRC_URI = "git://github.com/KZDKM/Hyprspace.git;protocol=https;branch=main"
 
-SRCREV = "6ac35435eebb466e1630f573e2c97344c2848353"
+SRCREV = "8f14fa2e10d24742d713f04c278bc7651037b74b"
 S = "${WORKDIR}/git"
 
 DEPENDS += " \
