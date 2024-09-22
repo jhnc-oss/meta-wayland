@@ -11,14 +11,15 @@ require xdg-desktop-portal-hyprland.inc
 
 # Note: meta-qt6 is needed
 DEPENDS = " \
-    wayland \
-    wayland-native \
-    wayland-protocols \
     hyprlang \
+    hyprutils \
+    hyprwayland-scanner-native \
     libdrm \
     pipewire \
     sdbus-c++-1 \
     virtual/libgbm \
+    wayland \
+    wayland-protocols \
 "
 
 RDEPENDS:${PN} = "hyprland-share-picker grim slurp hyprpicker hyprlang"
