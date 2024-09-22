@@ -39,9 +39,9 @@ PACKAGECONFIG ?= " \
 	libliftoff \
 "
 
-SRC_URI = "git://gitlab.freedesktop.org/wlroots/wlroots.git;branch=master;protocol=https"
-SRCREV = "4666996b2a34b53899aedafcd3586fb1c7a16af6"
-PV = "0.18.0"
+SRC_URI = "git://gitlab.freedesktop.org/wlroots/wlroots.git;branch=0.18;protocol=https"
+SRCREV = "5bc39071d173301eb8b2cd652c711075526dfbd9"
+PV = "0.18.1"
 
 S = "${WORKDIR}/git"
 
