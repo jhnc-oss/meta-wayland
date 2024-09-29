@@ -13,8 +13,8 @@ GO_IMPORT = "github.com/nwg-piotr/nwg-drawer.git"
 
 SRC_URI = "git://${GO_IMPORT};destsuffix=src/${GO_IMPORT};nobranch=1;protocol=https"
 
-PV = "0.4.7"
-SRCREV = "0cd48d1631eecb3043ee2c1fed9dfa25ca855375"
+PV = "0.5.0"
+SRCREV = "44e4c95900f6a8334393a42a405d26715822a220"
 S = "${WORKDIR}/sources"
 UNPACKDIR = "${S}"
 
