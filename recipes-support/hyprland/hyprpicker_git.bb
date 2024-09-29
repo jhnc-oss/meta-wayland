@@ -7,19 +7,20 @@ SRC_URI = "git://github.com/hyprwm/hyprpicker.git;protocol=https;branch=main"
 
 PV = "0.3.0"
 S = "${WORKDIR}/git"
-SRCREV = "38fe668e58014c75cf28f7cb5fc136aa710e7039"
+SRCREV = "c9238d39f64dd2618975c9d654301a4720659aed"
 
 DEPENDS = " \
 	cairo \
 	fribidi \
 	hyprutils \
+	hyprwayland-scanner \
+	hyprwayland-scanner-native \
 	jpeg \
 	libxkbcommon \
 	pango \
 	pcre \
 	util-linux \
 	wayland \
-	wayland-native \
 	wayland-protocols \
 "
 
