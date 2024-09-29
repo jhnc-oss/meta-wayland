@@ -18,7 +18,7 @@ GO_IMPORT = "github.com/nwg-piotr/nwg-menu.git"
 SRC_URI = "git://${GO_IMPORT};destsuffix=src/${GO_IMPORT};nobranch=1;protocol=https"
 
 PV = "0.1.3"
-SRCREV = "fd8b92ad1ad0c0c7a23fc7a0be942ca0cbe7f7e0"
+SRCREV = "8b1837263063b81c88221cdabb4a4a1449e96aab"
 S = "${WORKDIR}/sources"
 UNPACKDIR = "${S}"
 
