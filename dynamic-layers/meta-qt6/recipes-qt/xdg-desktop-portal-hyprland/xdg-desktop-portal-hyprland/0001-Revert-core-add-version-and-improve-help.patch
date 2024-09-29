@@ -1,0 +1,59 @@
+From 72cdf9a1eb442929d4e169168c54dc4af1bf15b7 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Sun, 29 Sep 2024 16:33:52 +0200
+Subject: [PATCH] Revert "core: add --version and improve --help"
+
+This reverts commit 15932f0f9e4185faad4e90fa53a09a59d2a72fdf.
+---
+ CMakeLists.txt |  2 --
+ src/main.cpp   | 14 +++++---------
+ 2 files changed, 5 insertions(+), 11 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 66773db..8f194f7 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -21,8 +21,6 @@ else()
+   message(STATUS "Configuring XDPH in Release with CMake")
+ endif()
+ 
+-add_compile_definitions(XDPH_VERSION="${VER}")
+-
+ include_directories(. "protocols/")
+ 
+ # configure
+diff --git a/src/main.cpp b/src/main.cpp
+index cdeb83d..d7a4482 100644
+--- a/src/main.cpp
++++ b/src/main.cpp
+@@ -4,12 +4,11 @@
+ #include "core/PortalManager.hpp"
+ 
+ void printHelp() {
+-    std::cout << R"#(┃ xdg-desktop-portal-hyprland
+-┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+-┃ -v (--verbose)    → enable trace logging
+-┃ -q (--quiet)      → disable logging
+-┃ -h (--help)       → print this menu
+-┃ -V (--version)    → print xdph's version
++    std::cout << R"#(| xdg-desktop-portal-hyprland
++| --------------------------------------
++| -v (--verbose) > enable trace logging
++| -q (--quiet) > disable logging
++| -h (--help) > print this menu
+ )#";
+ }
+ 
+@@ -28,9 +27,6 @@ int main(int argc, char** argv, char** envp) {
+         else if (arg == "--help" || arg == "-h") {
+             printHelp();
+             return 0;
+-        } else if (arg == "--version" || arg == "-V") {
+-            std::cout << "xdg-desktop-portal-hyprland v" << XDPH_VERSION << "\n";
+-            return 0;
+         } else {
+             printHelp();
+             return 1;
+-- 
+2.46.0
+
