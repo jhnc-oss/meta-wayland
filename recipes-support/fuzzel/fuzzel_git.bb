@@ -9,7 +9,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=3a7351a597a91e763901f7c76f21e798"
 REQUIRED_DISTRO_FEATURES = "wayland"
 
 SRC_URI = " \
-	git://codeberg.org/dnkl/fuzzel.git;protocol=https;branch=releases/1.10 \
+	git://codeberg.org/dnkl/fuzzel.git;protocol=https;branch=releases/1.11 \
 "
 
 DEPENDS = " \
@@ -24,17 +24,15 @@ DEPENDS = " \
 "
 
 S = "${WORKDIR}/git"
-PV = "1.10.2"
-SRCREV = "a4964aac0d6ee657649cb15807520bd040c26252"
+PV = "1.11.1"
+SRCREV = "942a33ea1c831f38d2a01d555bd00a8ba1e6ada1"
 
 inherit meson pkgconfig features_check
 
-PACKAGECONFIG[cairo] = "-Denable-cairo=enabled,-Denable-cairo=disabled,cairo"
 PACKAGECONFIG[png] = "-Dpng-backend=libpng,-Dpng-backend=none,libpng"
-PACKAGECONFIG[librsvg] = "-Dsvg-backend=librsvg,-Dsvg-backend=nanosvg,librsvg"
+PACKAGECONFIG[librsvg] = "-Dsvg-backend=librsvg -Denable-cairo=enabled,-Dsvg-backend=nanosvg -Denable-cairo=disabled,cairo librsvg"
 
 PACKAGECONFIG ?= " \
-	cairo \
 	png \
 	librsvg \
 "
@@ -42,5 +40,3 @@ PACKAGECONFIG ?= " \
 EXTRA_OEMESON += "--buildtype release"
 
 FILES:${PN} += "${datadir}"
-
-BBCLASSEXTEND = ""
