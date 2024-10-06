@@ -42,8 +42,8 @@ RRECOMMENDS:${PN} ?= " \
 
 SRC_URI = "gitsm://github.com/hyprwm/Hyprland.git;protocol=https;branch=main"
 
-SRCREV = "5c6c300abfea2539ffad9bcbf857325eec5ab765"
-PV = "0.43"
+SRCREV = "0c7a7e2d569eeed9d6025f3eef4ea0690d90845d"
+PV = "0.44"
 S = "${WORKDIR}/git"
 
 inherit meson pkgconfig features_check
