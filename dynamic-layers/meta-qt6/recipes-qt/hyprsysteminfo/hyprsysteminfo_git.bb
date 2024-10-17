@@ -5,10 +5,10 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=778ddc598b3f2a2da3657dda514da983"
 
 SRC_URI = "git://github.com/hyprwm/hyprsysteminfo.git;protocol=https;branch=main"
 
-SRCREV = "2104e356be0067232f8e4d697e91085b5dc87f00"
+SRCREV = "8b271e2ba39a5a9299e4e7bb60245a71704f5a89"
 S = "${WORKDIR}/git"
 PV = "0.1.1"
 
-DEPENDS = "qtbase qtquick3d qttools-native hyprutils"
+DEPENDS = "qtbase qtquick3d qttools-native hyprutils qtwayland qtwayland-native"
 
 inherit qt6-cmake
