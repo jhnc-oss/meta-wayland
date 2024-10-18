@@ -9,7 +9,7 @@ SRCREV = "12ece5c5aead6fd1b442c6e4d979b6274c2f97a2"
 S = "${WORKDIR}/git"
 PV = "0.1.1"
 
-DEPENDS = "qtbase qtquick3d qttools-native polkit polkit-qt hyprutils"
+DEPENDS = "qtbase qtquick3d qttools-native qtwayland qtwayland-native polkit polkit-qt hyprutils"
 
 inherit qt6-cmake pkgconfig
 
