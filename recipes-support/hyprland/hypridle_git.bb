@@ -9,8 +9,8 @@ SRC_URI = "git://github.com/hyprwm/hypridle.git;protocol=https;branch=main"
 DEPENDS = "wayland wayland-native wayland-protocols hyprlang sdbus-c++-1"
 
 S = "${WORKDIR}/git"
-SRCREV = "cc23f97836adbba1abc8edd48169fb1f1f698c32"
-PV = "0.1.2"
+SRCREV = "918fd78dec258923094ecddc4e317c5b29ec2486"
+PV = "0.1.3"
 
 inherit cmake pkgconfig
 
