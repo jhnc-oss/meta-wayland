@@ -1,0 +1,100 @@
+From b88502ea9bcec83f4ab45edfc02bf96533d04cdd Mon Sep 17 00:00:00 2001
+From: myamusashi <jinxprogilang666@gmail.com>
+Date: Tue, 22 Oct 2024 18:13:23 +0700
+Subject: [PATCH] Changed CMonitor to PHLMONITOR
+
+Upstream-Status: Submitted [https://github.com/KZDKM/Hyprspace/pull/99]
+---
+ src/Globals.hpp  | 4 ++--
+ src/Overview.cpp | 2 +-
+ src/Overview.hpp | 2 +-
+ src/Render.cpp   | 4 ++--
+ src/main.cpp     | 4 ++--
+ 5 files changed, 8 insertions(+), 8 deletions(-)
+
+diff --git a/src/Globals.hpp b/src/Globals.hpp
+index ef5f144..2fc8052 100644
+--- a/src/Globals.hpp
++++ b/src/Globals.hpp
+@@ -9,9 +9,9 @@ inline HANDLE pHandle = NULL;
+ typedef SDispatchResult (*tMouseKeybind)(std::string);
+ extern void* pMouseKeybind;
+ 
+-typedef void (*tRenderWindow)(void*, PHLWINDOW, CMonitor*, timespec*, bool, eRenderPassMode, bool, bool);
++typedef void (*tRenderWindow)(void*, PHLWINDOW, PHLMONITOR, timespec*, bool, eRenderPassMode, bool, bool);
+ extern void* pRenderWindow;
+-typedef void (*tRenderLayer)(void*, Hyprutils::Memory::CWeakPointer<CLayerSurface>, CMonitor*, timespec*, bool);
++typedef void (*tRenderLayer)(void*, Hyprutils::Memory::CWeakPointer<CLayerSurface>, PHLMONITOR, timespec*, bool);
+ extern void* pRenderLayer;
+ 
+ namespace Config {
+diff --git a/src/Overview.cpp b/src/Overview.cpp
+index fb3d064..04f9a0d 100644
+--- a/src/Overview.cpp
++++ b/src/Overview.cpp
+@@ -22,7 +22,7 @@ CHyprspaceWidget::CHyprspaceWidget(uint64_t inOwnerID) {
+ // TODO: implement deconstructor and delete widget on monitor unplug
+ CHyprspaceWidget::~CHyprspaceWidget() {}
+ 
+-CMonitor* CHyprspaceWidget::getOwner() {
++PHLMONITOR CHyprspaceWidget::getOwner() {
+     return g_pCompositor->getMonitorFromID(ownerID);
+ }
+ 
+diff --git a/src/Overview.hpp b/src/Overview.hpp
+index 8040528..0d92063 100644
+--- a/src/Overview.hpp
++++ b/src/Overview.hpp
+@@ -43,7 +43,7 @@ class CHyprspaceWidget {
+     CHyprspaceWidget(uint64_t);
+     ~CHyprspaceWidget();
+ 
+-    CMonitor* getOwner();
++    PHLMONITOR getOwner();
+     bool isActive();
+ 
+     void show();
+diff --git a/src/Render.cpp b/src/Render.cpp
+index 4103b0d..4a52e77 100644
+--- a/src/Render.cpp
++++ b/src/Render.cpp
+@@ -1,7 +1,7 @@
+ #include "Overview.hpp"
+ #include "Globals.hpp"
+ 
+-void renderWindowStub(PHLWINDOW pWindow, CMonitor* pMonitor, PHLWORKSPACE pWorkspaceOverride, CBox rectOverride, timespec* time) {
++void renderWindowStub(PHLWINDOW pWindow, PHLMONITOR pMonitor, PHLWORKSPACE pWorkspaceOverride, CBox rectOverride, timespec* time) {
+     if (!pWindow || !pMonitor || !pWorkspaceOverride || !time) return;
+ 
+     const auto oWorkspace = pWindow->m_pWorkspace;
+@@ -50,7 +50,7 @@ void renderWindowStub(PHLWINDOW pWindow, CMonitor* pMonitor, PHLWORKSPACE pWorks
+     g_pHyprOpenGL->m_RenderData.renderModif.modifs.pop_back();
+ }
+ 
+-void renderLayerStub(Hyprutils::Memory::CWeakPointer<CLayerSurface> pLayer, CMonitor* pMonitor, CBox rectOverride, timespec* time) {
++void renderLayerStub(Hyprutils::Memory::CWeakPointer<CLayerSurface> pLayer, PHLMONITOR pMonitor, CBox rectOverride, timespec* time) {
+     if (!pLayer || !pMonitor || !time) return;
+ 
+     if (!pLayer->mapped || pLayer->readyToDelete || !pLayer->layerSurface) return;
+diff --git a/src/main.cpp b/src/main.cpp
+index ec948d8..4df67c7 100644
+--- a/src/main.cpp
++++ b/src/main.cpp
+@@ -74,7 +74,7 @@ APICALL EXPORT std::string PLUGIN_API_VERSION() {
+     return HYPRLAND_API_VERSION;
+ }
+ 
+-std::shared_ptr<CHyprspaceWidget> getWidgetForMonitor(CMonitor* pMonitor) {
++std::shared_ptr<CHyprspaceWidget> getWidgetForMonitor(PHLMONITORREF pMonitor) {
+     for (auto& widget : g_overviewWidgets) {
+         if (!widget) continue;
+         if (!widget->getOwner()) continue;
+@@ -405,7 +405,7 @@ void reloadConfig() {
+ void registerMonitors() {
+     // create a widget for each monitor
+     for (auto& m : g_pCompositor->m_vMonitors) {
+-        if (getWidgetForMonitor(m.get()) != nullptr) continue;
++        if (getWidgetForMonitor(m) != nullptr) continue;
+         CHyprspaceWidget* widget = new CHyprspaceWidget(m->ID);
+         g_overviewWidgets.emplace_back(widget);
+     }
