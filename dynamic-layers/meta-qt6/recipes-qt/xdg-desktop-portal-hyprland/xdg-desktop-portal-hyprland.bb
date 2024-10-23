@@ -17,7 +17,7 @@ DEPENDS = " \
     hyprwayland-scanner-native \
     libdrm \
     pipewire \
-    sdbus-c++-1 \
+    sdbus-c++ \
     virtual/libgbm \
     wayland \
     wayland-protocols \
