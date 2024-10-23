@@ -18,6 +18,7 @@ DEPENDS = " \
 	libwebp \
 	libxkbcommon \
 	pango \
+	sdbus-c++ \
 	virtual/egl \
 	virtual/libgl \
 	wayland \
