@@ -10,6 +10,7 @@ REQUIRED_DISTRO_FEATURES = "wayland"
 
 DEPENDS += " \
 	libxml2 \
+	libsfdo \
 	glib-2.0 \
 	cairo \
 	pango \
@@ -34,8 +35,8 @@ RRECOMMENDS:${PN} ?= " \
 
 SRC_URI = "git://github.com/labwc/labwc.git;protocol=https;branch=master"
 
-SRCREV = "98c876d79644eb89aded1db6fba57e95b5a3210f"
-PV = "0.8.0"
+SRCREV = "6bd36e85122101b30a852723b33d72210d45f8a5"
+PV = "0.8.1"
 S = "${WORKDIR}/git"
 
 inherit meson pkgconfig features_check gettext
