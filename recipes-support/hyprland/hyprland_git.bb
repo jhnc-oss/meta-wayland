@@ -42,7 +42,7 @@ RRECOMMENDS:${PN} ?= " \
 
 SRC_URI = "gitsm://github.com/hyprwm/Hyprland.git;protocol=https;nobranch=1"
 
-SRCREV = "5e96d738e698f22969ca502d042d5751711c6d8a"
+SRCREV = "a3d3b4fd64a51a8c1663b450bd2a408f1f0fa9b3"
 PV = "0.44.1"
 S = "${WORKDIR}/git"
 
@@ -58,5 +58,5 @@ do_configure:prepend() {
 	cd ${S} && scripts/generateVersion.sh
 }
 
-FILES:${PN} += "${datadir}"
+FILES:${PN} += "${datadir} ${systemd_user_unitdir}"
 
