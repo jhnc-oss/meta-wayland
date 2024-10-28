@@ -5,6 +5,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 
 SRC_URI += "git://github.com/nnyyxxxx/hyprwall.git;protocol=https;nobranch=1;branch=main"
 SRC_URI += "file://0001-Cargo.toml-set-panic-to-unwind-dont-strip.patch"
+SRC_URI += "file://0001-main.rs-adjust-application_id.patch"
 SRCREV = "65773367eac77d1e122a607ca64008841f70ddc7"
 S = "${WORKDIR}/git"
 PV = "0.1.6"
