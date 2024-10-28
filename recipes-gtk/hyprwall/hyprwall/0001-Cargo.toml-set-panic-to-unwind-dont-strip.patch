@@ -1,0 +1,26 @@
+From 5f5f3d1c036dd685090e4fad369000174f9c6f41 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Sun, 27 Oct 2024 15:45:28 +0100
+Subject: [PATCH] Cargo.toml: set panic to unwind; dont strip
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+---
+ Cargo.toml | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Cargo.toml b/Cargo.toml
+index 772193e..4c8d36c 100644
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -33,6 +33,6 @@ tokio = { version = "1.28", features = ["full"] }
+ [profile.release]
+ lto = "fat"
+ codegen-units = 1
+-panic = "abort"
+-strip = true
++panic = "unwind"
++strip = false
+ opt-level = 3
+-- 
+2.47.0
+
