@@ -5,10 +5,10 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 
 SRC_URI = " \
 	git://github.com/KZDKM/Hyprspace.git;protocol=https;branch=main \
-	file://b88502ea9bcec83f4ab45edfc02bf96533d04cdd.patch \
+	file://fb951708cd4393d455b6a528ee6fc759b9b0751a.patch \
 "
 
-SRCREV = "8f14fa2e10d24742d713f04c278bc7651037b74b"
+SRCREV = "999af6e9f290458b6c4f93d6161988d472402c94"
 S = "${WORKDIR}/git"
 
 DEPENDS += " \
