@@ -7,7 +7,7 @@ SRC_URI = " \
 	git://github.com/KZDKM/Hyprspace.git;protocol=https;branch=main \
 "
 
-SRCREV = "b5d44b79474aee32b86dcbca8150637555701e6f"
+SRCREV = "260f386075c7f6818033b05466a368d8821cde2d"
 S = "${WORKDIR}/git"
 
 DEPENDS += " \
