@@ -32,17 +32,18 @@ do_install:append() {
 	cat >${D}${systemd_user_unitdir}/nwg-dock-hyprland.service <<EOF
 [Unit]
 Description=Nwg Dock Hyprland - gtk3 based dock for Hyprland, written in go
-BindsTo=graphical-session.target
-Before=graphical-session.target
-Wants=xdg-desktop-autostart.target
-Wants=graphical-session-pre.target
-After=graphical-session-pre.target
+PartOf=graphical-session.target
+After=graphical-session.target
+ConditionEnvironment=WAYLAND_DISPLAY
 
 [Service]
-Type=simple
-ExecStartPre=systemctl --user import-environment DISPLAY WAYLAND_DISPLAY XAUTHORITY HYPRLAND_INSTANCE_SIGNATURE XDG_CURRENT_DESKTOP
 ExecStart=nwg-dock-hyprland -d -hd 2000
+Slice=session.slice
+TimeoutStopSec=5sec
 Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target
 EOF
 }
 

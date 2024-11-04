@@ -1,14 +1,15 @@
 [Unit]
 Description=Highly customizable Wayland bar
 Documentation=https://github.com/Alexays/Waybar/wiki/
-BindsTo=graphical-session.target
-Before=graphical-session.target
-Wants=xdg-desktop-autostart.target
-Wants=graphical-session-pre.target
-After=graphical-session-pre.target
+PartOf=graphical-session.target
+After=graphical-session.target
+ConditionEnvironment=WAYLAND_DISPLAY
 
 [Service]
-Type=simple
-ExecStartPre=systemctl --user import-environment DISPLAY WAYLAND_DISPLAY XAUTHORITY HYPRLAND_INSTANCE_SIGNATURE XDG_CURRENT_DESKTOP
 ExecStart=waybar
+Slice=session.slice
+TimeoutStopSec=5sec
 Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target
