@@ -1,0 +1,38 @@
+From 3f89fbb25bee0064d74f882ea9fc73ad39234d34 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Thu, 14 Nov 2024 22:15:49 +0100
+Subject: [PATCH] uwsm/meson.build: dont fail for missing python-modules
+
+Otherwise python-dbus-native and pyxdg-native would be required for build
+but are only runtime dpendencies
+---
+ uwsm/meson.build | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/uwsm/meson.build b/uwsm/meson.build
+index d2ecf6b..c5ab845 100644
+--- a/uwsm/meson.build
++++ b/uwsm/meson.build
+@@ -14,13 +14,13 @@ has_system_xdg = \
+     check: false,
+   ).returncode() == 0
+ 
+-if not has_system_dbus
+-  error('python dbus module not found')
+-endif
++#if not has_system_dbus
++#  error('python dbus module not found')
++#endif
+ 
+-if not has_system_xdg
+-  error('python xdg module not found')
+-endif
++#if not has_system_xdg
++#  error('python xdg module not found')
++#endif
+ 
+ conf = configuration_data()
+ conf.set('PROJECT_NAME', PROJECT_NAME)
+-- 
+2.47.0
+
