@@ -16,11 +16,11 @@ PV = "0.20.4"
 
 S = "${WORKDIR}/git"
 
-PACKAGECONFIG ?= "man-pages uuctl"
+PACKAGECONFIG ?= "man-pages"
 PACKAGECONFIG[man-pages] = "-Dman-pages=enabled,-Dman-pages=disabled,scdoc-native"
-PACKAGECONFIG[uuctl] = "-Duuctl=enabled,-Duuctl=disabled,,libnewt"
+PACKAGECONFIG[uuctl] = "-Duuctl=enabled,-Duuctl=disabled,,fuzzel"
 
 FILES:${PN} += "${datadir}/licenses"
 
-RDEPENDS:${PN} = "python3-dbus pyxdg python3-core"
-RRECOMMENDS:${PN} = "dbus-broker"
+RDEPENDS:${PN} += "python3-dbus pyxdg python3-core whiptail"
+RRECOMMENDS:${PN} += "dbus-broker"
