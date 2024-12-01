@@ -8,12 +8,13 @@ inherit python_setuptools_build_meta
 
 S = "${WORKDIR}/git"
 PV = "2.4"
-SRCREV = "073626ca91c63cdc68b8a1d17cc77e21ac1e4c0d"
+SRCREV = "4e1c73b56e6fc306d3cd601d1c28635419a23f17"
 
 FILES:${PN} += "${datadir}"
 
 RDEPENDS:${PN} = " \
 	python3-imageio \
+	python3-imageio-ffmpeg \
 	python3-importlib-metadata \
 	python3-pathlib2 \
 	python3-pillow \
