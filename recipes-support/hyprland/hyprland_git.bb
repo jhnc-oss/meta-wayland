@@ -11,6 +11,7 @@ DEPENDS += " \
 	aquamarine \
 	cairo \
 	hyprcursor \
+	hyprgraphics \
 	hyprlang \
 	hyprutils \
 	jq-native \
@@ -42,7 +43,7 @@ RRECOMMENDS:${PN} ?= " \
 
 SRC_URI = "gitsm://github.com/hyprwm/Hyprland.git;protocol=https;nobranch=1"
 
-SRCREV = "940f7aa990dbc99815bab8d355999d8277534b17"
+SRCREV = "3c617ce33c64cb43049489598b6391911eed7070"
 PV = "0.45.2"
 S = "${WORKDIR}/git"
 
