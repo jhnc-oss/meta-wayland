@@ -3,13 +3,14 @@ HOMEPAGE = "https://github.com/AyatanaIndicators/libdbusmenu"
 LICENSE = "LGPL-3.0-only"
 LIC_FILES_CHKSUM = "file://COPYING;md5=6a6a8e020838b23406c81b19c1d46df6"
 
+SRC_URI = "git://github.com/JetBrains/libdbusmenu.git;protocol=https;branch=master"
+
 DEPENDS = "glib-2.0 json-glib dbus gtk+ gtk+3 libdbusmenu-glib intltool-native libxslt-native"
 RDEPENDS:${PN} = "libdbusmenu-glib"
 
-SRC_URI = "git://github.com/AyatanaIndicators/libdbusmenu.git;protocol=https;branch=master"
 S = "${WORKDIR}/git"
 PV = "16.0.4"
-SRCREV = "4d03141aea4e2ad0f04ab73cf1d4f4bcc4a19f6c"
+SRCREV = "38d7a2ada4b2a08c535491d43a39825868f2b065"
 
 EXTRA_OECONF += "--disable-dumper --disable-gtk-doc"
 
