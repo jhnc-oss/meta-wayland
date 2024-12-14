@@ -16,7 +16,7 @@ DEPENDS += " \
 
 SRC_URI = "git://github.com/labwc/labwc-tweaks-gtk.git;protocol=https;branch=master"
 
-SRCREV = "405a3adcb2851436145a023d437d08a652583a1a"
+SRCREV = "2613cd87e148b74d57dcda590b6de534fd86f4ac"
 S = "${WORKDIR}/git"
 
 inherit meson pkgconfig features_check
