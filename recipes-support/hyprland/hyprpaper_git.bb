@@ -5,8 +5,8 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=936078e4e67b0e1e1bd1e862d4ffbc25"
 
 SRC_URI = "git://github.com/hyprwm/hyprpaper.git;protocol=https;branch=main"
 
-PV = "0.7.1"
-SRCREV = "91e17e12ff7e862214197cc75cd7d9821eb7d0f7"
+PV = "0.7.2"
+SRCREV = "5b763f16181d4f1f4be7dd7fb0c5ecfd0f758cb7"
 S = "${WORKDIR}/git"
 
 DEPENDS += " \
@@ -14,8 +14,10 @@ DEPENDS += " \
 	file \
 	fribidi \
 	hyprlang \
+	hyprgraphics \
 	hyprwayland-scanner-native \
 	jpeg \
+	libjxl \
 	libglvnd \
 	libwebp \
 	pango \
@@ -29,3 +31,5 @@ RDEPENDS:${PN} = "hyprlang"
 REQUIRED_DISTRO_FEATURES = "wayland"
 
 inherit cmake pkgconfig features_check
+
+FILES:${PN} += "${systemd_user_unitdir}"
