@@ -5,8 +5,8 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=936078e4e67b0e1e1bd1e862d4ffbc25"
 
 SRC_URI = "git://github.com/hyprwm/hyprpaper.git;protocol=https;branch=main"
 
-PV = "0.7.2"
-SRCREV = "5b763f16181d4f1f4be7dd7fb0c5ecfd0f758cb7"
+PV = "0.7.3"
+SRCREV = "eb9db3b815b09e8dcc5ae92b1bd03f9c8e63eeea"
 S = "${WORKDIR}/git"
 
 DEPENDS += " \
