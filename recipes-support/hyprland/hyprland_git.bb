@@ -22,6 +22,7 @@ DEPENDS += " \
 	libxkbcommon \
 	pango \
 	pixman \
+	re2 \
 	tomlplusplus \
 	util-linux-libuuid \
 	virtual/egl \
@@ -43,8 +44,8 @@ RRECOMMENDS:${PN} ?= " \
 
 SRC_URI = "gitsm://github.com/hyprwm/Hyprland.git;protocol=https;nobranch=1"
 
-SRCREV = "9f7a96b997d90c4c188f3837e02859a25a05611e"
-PV = "0.45.2"
+SRCREV = "788ae588979c2a1ff8a660f16e3c502ef5796755"
+PV = "0.46.0"
 S = "${WORKDIR}/git"
 
 inherit meson pkgconfig features_check
