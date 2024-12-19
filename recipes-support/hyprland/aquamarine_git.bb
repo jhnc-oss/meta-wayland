@@ -22,7 +22,7 @@ DEPENDS = " \
 SRC_URI = "git://github.com/hyprwm/aquamarine.git;protocol=https;branch=main"
 
 S = "${WORKDIR}/git"
-SRCREV = "9441860f40ea6da65424539c4f6fcc26a1603420"
+SRCREV = "a23e9a9bdfa745efe578442f180e1079602ad6b9"
 PV = "0.5.1"
 
 inherit cmake pkgconfig
