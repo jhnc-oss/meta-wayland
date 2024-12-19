@@ -10,6 +10,7 @@ REQUIRED_DISTRO_FEATURES = "opengl"
 
 DEPENDS = " \
 	cairo \
+	hyprgraphics \
 	hyprlang \
 	hyprutils \
 	jpeg \
@@ -27,8 +28,8 @@ DEPENDS = " \
 "
 
 S = "${WORKDIR}/git"
-SRCREV = "c3c28feb4c6469269d049185e9427bf4a33c8c40"
-PV = "0.5.0"
+SRCREV = "d12b4a7fbaf570fbe9322c09a777c124fbf15306"
+PV = "0.6.0"
 
 inherit cmake pkgconfig features_check
 
