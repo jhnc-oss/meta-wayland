@@ -14,7 +14,6 @@ DEPENDS = " \
     libsecret \
     libsoup-3.0 \
     openssl \
-    python3-sphinx-native \
 "
 
 GIR_MESON_OPTION = ""
@@ -24,15 +23,15 @@ inherit meson gtk-icon-cache mime-xdg pkgconfig features_check gobject-introspec
 SRC_URI = "git://github.com/SrainApp/srain.git;protocol=https;branch=master"
 
 S = "${WORKDIR}/git"
-PV = "1.7.0"
-SRCREV = "008f05b4c66de37440e44325f6ab6affa2397cba"
+PV = "1.8.0"
+SRCREV = "3f876538a0182c1ba5adb2a6f7d96d4fed44856d"
 
 PACKAGECONFIG ??= ""
 PACKAGECONFIG[app_indicator] = "-Dapp_indicator=true,-Dapp_indicator=false,libayatana-appindicator"
 
 EXTRA_OEMESON += " \
     --buildtype release \
-    -Ddoc_builders=man \
+    -Ddoc_builders='' \
 "
 
 FILES:${PN} += "${datadir}/metainfo"
