@@ -24,7 +24,7 @@ DEPENDS = " \
     networkmanager \
     polkit \
     pulseaudio \
-    libsoup-3.0 \
+    libsoup \
     upower \
     wayland \
     wayland-native \
@@ -52,13 +52,12 @@ inherit features_check gsettings meson pkgconfig gtk-icon-cache gobject-introspe
 
 SRC_URI = " \
     git://gitlab.gnome.org/World/Phosh/phosh.git;protocol=https;nobranch=1 \
-    file://0001-meson.build-dont-read-includedir-from-pkg-config.patch \
     file://0001-meson-build-without-subproject-wrap.patch \
 "
 
 S = "${WORKDIR}/git"
-PV = "0.41.1"
-SRCREV = "01a217b334e7839839c212e6ec82b263f43e35b3"
+PV = "0.44-rc1"
+SRCREV = "5f4f68ac55c85e26ea0490ef8928e58ec8f485e7"
 
 EXTRA_OEMESON += "--buildtype=release"
 
