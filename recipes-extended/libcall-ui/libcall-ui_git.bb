@@ -13,8 +13,8 @@ SRC_URI = " \
 "
 
 S = "${WORKDIR}/git"
-PV = "0.1.3"
-SRCREV = "60870e871e480e111e6a2fa50de67d1dd358d65a"
+PV = "0.1.4"
+SRCREV = "5bb3fc2d662285681a54ce4b5bc2ed29a47c8c74"
 
 GIR_MESON_OPTION = ''
 
