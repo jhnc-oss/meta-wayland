@@ -1,0 +1,28 @@
+From 9101c92cf13f74c7a89e2e9e71e18caf43a14674 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Fri, 27 Dec 2024 17:38:28 +0100
+Subject: [PATCH] meson.build: use pkgconfig for glaze
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+
+Upstream-Status: Inappropriate [oe-specific]
+---
+ hyprpm/src/meson.build | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/hyprpm/src/meson.build b/hyprpm/src/meson.build
+index fd914f9d..36c2eb03 100644
+--- a/hyprpm/src/meson.build
++++ b/hyprpm/src/meson.build
+@@ -8,7 +8,7 @@ executable(
+     dependency('hyprutils', version: '>= 0.1.1'),
+     dependency('threads'),
+     dependency('tomlplusplus'),
+-    dependency('glaze', method: 'cmake'),
++    dependency('glaze'),
+   ],
+   install: true,
+ )
+-- 
+2.47.1
+

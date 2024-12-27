@@ -10,6 +10,7 @@ REQUIRED_DISTRO_FEATURES = "wayland opengl"
 DEPENDS += " \
 	aquamarine \
 	cairo \
+	glaze \
 	hyprcursor \
 	hyprgraphics \
 	hyprlang \
@@ -43,8 +44,8 @@ RRECOMMENDS:${PN} ?= " \
 "
 
 SRC_URI = "gitsm://github.com/hyprwm/Hyprland.git;protocol=https;nobranch=1"
-
-SRCREV = "0bd541f2fd902dbfa04c3ea2ccf679395e316887"
+SRC_URI += "file://0001-meson.build-use-pkgconfig-for-glaze.patch"
+SRCREV = "775111b6032185c9ef164d7ba1417a875c1d0287"
 PV = "0.46.2"
 S = "${WORKDIR}/git"
 
