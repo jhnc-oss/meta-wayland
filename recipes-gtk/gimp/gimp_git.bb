@@ -35,7 +35,6 @@ DEPENDS = " \
 "
 
 DEPENDS:append:libc-musl = " libexecinfo"
-RDEPENDS:${PN} = "mypaint-brushes-1.0 glib-networking python3-pygobject"
 
 inherit meson gtk-icon-cache mime-xdg pkgconfig gettext gobject-introspection vala
 
@@ -52,6 +51,8 @@ SRC_URI += "file://0001-gimp-cross-compile-fix-for-bz2.patch"
 S = "${WORKDIR}/git"
 SRCREV = "d52117a7f753353b5f900d8195a2443c603d6c94"
 PV = "3.0.0-RC-2"
+
+export LD_LIBRARY_PATH = "${STAGING_LIBDIR}"
 
 PACKAGECONFIG[aa] = "-Daa=enabled,-Daa=disabled,aalib"
 PACKAGECONFIG[alsa] = "-Dalsa=enabled,-Dalsa=disabled,alsa-lib"
@@ -130,3 +131,5 @@ do_install:prepend() {
     sed -i -e "s|${B}||" ${B}/app/widgets/gimplanguagestore-data.h
     sed -i -e "s|${B}||" ${B}/plug-ins/file-bmp/huffman.h
 }
+
+RDEPENDS:${PN} = "mypaint-brushes-1.0 glib-networking python3-pygobject"
