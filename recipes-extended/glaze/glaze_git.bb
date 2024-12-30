@@ -8,8 +8,8 @@ SRCREV = "dfdb2ea5e878e8eff9f863b50728d860f663764f"
 PV = "4.2.3"
 S = "${WORKDIR}/git"
 
-DEPENDS += "gcc-sanitizers"
-
+DEPENDS += "gcc-sanitizers libeigen"
+RDEPENDS:${PN} = "libeigen"
 inherit cmake
 
 EXTRA_OECMAKE = "-DBUILD_TESTING=OFF"
