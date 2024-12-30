@@ -13,6 +13,7 @@ DEPENDS = " \
 	hyprgraphics \
 	hyprlang \
 	hyprutils \
+	hyprwayland-scanner-native \
 	jpeg \
 	libdrm  \
 	libpam \
@@ -28,7 +29,7 @@ DEPENDS = " \
 "
 
 S = "${WORKDIR}/git"
-SRCREV = "d12b4a7fbaf570fbe9322c09a777c124fbf15306"
+SRCREV = "3d63d9b129d5def270bc8a2471347e6f97274e2b"
 PV = "0.6.0"
 
 inherit cmake pkgconfig features_check
