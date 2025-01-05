@@ -11,20 +11,25 @@ DEPENDS = " \
     bzip2 \
     bison-native \
     cairo \
-    dbus-glib \
     fontconfig \
     freetype \
     gdk-pixbuf-native \
     gegl \
     gexiv2 \
+    glib-2.0 \
+    glib-2.0-native \
     gtk+3 \
     harfbuzz \
+    iso-codes \
+    jpeg \
     json-glib \
     lcms \
     libarchive \
     libexif \
     libmypaint \
     libpng \
+    librsvg \
+    librsvg-native \
     libxmu \
     libxslt-native \
     mypaint-brushes-1.0 \
@@ -32,6 +37,9 @@ DEPENDS = " \
     poppler \
     poppler-data \
     python3-pygobject-native \
+    tiff \
+    xz \
+    zlib \
 "
 
 DEPENDS:append:libc-musl = " libexecinfo"
@@ -61,43 +69,33 @@ PACKAGECONFIG[cairo-pdf] = "-Dcairo-pdf=enabled,-Dcairo-pdf=disabled"
 PACKAGECONFIG[check-update] = "-Dcheck-update=yes,-Dcheck-update=no"
 PACKAGECONFIG[ghostscript] = "-Dghostscript=enabled,-Dghostscript=disabled,ghostscript,ghostscript"
 PACKAGECONFIG[gudev] = "-Dgudev=enabled,-Dgudev=disabled,libgudev"
-PACKAGECONFIG[iso-codes] = ",,iso-codes"
 PACKAGECONFIG[javascript] = "-Djavascript=enabled,-Djavascript=disabled,,gjs"
 PACKAGECONFIG[jpeg2000] = "-Djpeg2000=enabled,-Djpeg2000=disabled,jasper"
-PACKAGECONFIG[jpeg] = ",,jpeg"
-PACKAGECONFIG[jpeg-xl] = ",,libjxl"
-PACKAGECONFIG[libunwind] = ",,libunwind"
-PACKAGECONFIG[libbacktrace] = ",,libbacktrace"
+PACKAGECONFIG[jpeg-xl] = "-Djpeg-xl=enabled,-Djpeg-xl=disabled,libjxl"
+PACKAGECONFIG[libunwind] = "-Dlibunwind=true,-Dlibunwind=false,libunwind"
+PACKAGECONFIG[libbacktrace] = "-Dlibbacktrace=true,-Dlibbacktrace=false,libbacktrace"
 PACKAGECONFIG[lua] = "-Dlua=true,-Dlua=false,,luajit lua-lgi"
-PACKAGECONFIG[lzma] = ",,xz"
 PACKAGECONFIG[mng] = "-Dmng=enabled,-Dmng=disabled,libmng"
-PACKAGECONFIG[rsvg] = ",,librsvg-native librsvg"
-PACKAGECONFIG[tiff] = ",,tiff"
+PACKAGECONFIG[openmp] = "-Dopenmp=enabled,-Dopenmp=disabled,gcc-runtime"
 PACKAGECONFIG[vector-icons] = "-Dvector-icons=true,-Dvector-icons=false,librsvg shared-mime-info"
 PACKAGECONFIG[webp] = "-Dwebp=enabled,-Dwebp=disabled,libwebp"
 PACKAGECONFIG[xcursor] = "-Dxcursor=enabled,-Dxcursor=disabled,libxcursor"
 PACKAGECONFIG[x11] = "-Dxpm=enabled,-Dxpm=disabled,libxpm libxext libxfixes"
-PACKAGECONFIG[zlib] = ",,zlib"
 
 PACKAGECONFIG ?= " \
-    ${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'x11 xcursor', '', d)} \
     aa \
     alsa \
     cairo-pdf \
     ghostscript \
     gudev \
     javascript \
-    jpeg \
     jpeg2000 \
     jpeg-xl \
     lua \
-    lzma \
     mng \
-    rsvg \
-    tiff \
     vector-icons \
     webp \
-    zlib \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'x11 xcursor', '', d)} \
 "
 
 PACKAGECONFIG:remove:riscv32 = "lua"
