@@ -69,6 +69,7 @@ PACKAGECONFIG[cairo-pdf] = "-Dcairo-pdf=enabled,-Dcairo-pdf=disabled"
 PACKAGECONFIG[check-update] = "-Dcheck-update=yes,-Dcheck-update=no"
 PACKAGECONFIG[ghostscript] = "-Dghostscript=enabled,-Dghostscript=disabled,ghostscript,ghostscript"
 PACKAGECONFIG[gudev] = "-Dgudev=enabled,-Dgudev=disabled,libgudev"
+PACKAGECONFIG[heif] = "-Dheif=enabled,-Dheif=disabled,libheif"
 PACKAGECONFIG[javascript] = "-Djavascript=enabled,-Djavascript=disabled,,gjs"
 PACKAGECONFIG[jpeg2000] = "-Djpeg2000=enabled,-Djpeg2000=disabled,jasper"
 PACKAGECONFIG[jpeg-xl] = "-Djpeg-xl=enabled,-Djpeg-xl=disabled,libjxl"
@@ -88,6 +89,7 @@ PACKAGECONFIG ?= " \
     cairo-pdf \
     ghostscript \
     gudev \
+    heif \
     javascript \
     jpeg2000 \
     jpeg-xl \
