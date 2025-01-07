@@ -5,9 +5,9 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=778ddc598b3f2a2da3657dda514da983"
 
 SRC_URI = "git://github.com/hyprwm/hyprsysteminfo.git;protocol=https;branch=main"
 
-SRCREV = "8b271e2ba39a5a9299e4e7bb60245a71704f5a89"
+SRCREV = "3498fad4c4b9c161fd78896ef583f492c93c7859"
 S = "${WORKDIR}/git"
-PV = "0.1.1"
+PV = "0.1.2"
 
 DEPENDS = "qtbase qtquick3d qttools-native hyprutils qtwayland qtwayland-native"
 
