@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=778ddc598b3f2a2da3657dda514da983"
 
 SRC_URI = "git://github.com/hyprwm/hyprpolkitagent.git;protocol=https;branch=main"
 
-SRCREV = "615efd49303cb164bbf4ad065792e02d8f652a36"
+SRCREV = "08cab3a4d9277687562702ae2db56305f9165081"
 S = "${WORKDIR}/git"
 PV = "0.1.1"
 
