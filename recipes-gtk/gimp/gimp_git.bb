@@ -56,11 +56,10 @@ GIDOCGEN_MESON_DISABLE_FLAG = "disabled"
 
 SRC_URI = "gitsm://github.com/GNOME/gimp.git;protocol=https;branch=master"
 SRC_URI += "file://0001-gimp-cross-compile-fix-for-bz2.patch"
+SRC_URI += "file://0002-meson.build-reproducibility-fix.patch"
 S = "${WORKDIR}/git"
 SRCREV = "d52117a7f753353b5f900d8195a2443c603d6c94"
 PV = "3.0.0-RC-2"
-
-export LD_LIBRARY_PATH = "${STAGING_LIBDIR}"
 
 PACKAGECONFIG[aa] = "-Daa=enabled,-Daa=disabled,aalib"
 PACKAGECONFIG[alsa] = "-Dalsa=enabled,-Dalsa=disabled,alsa-lib"
@@ -123,8 +122,7 @@ EOF
 }
 
 do_configure:append () {
-    sed -i -e "s|${RECIPE_SYSROOT_NATIVE}||" ${B}/config.h
-    sed -i -e "s|${RECIPE_SYSROOT_NATIVE}||" ${B}/config.h
+    sed -i -e "s|build_by_default: true|build_by_default: false|" ${S}/gimp-data/images/meson.build
 }
 
 do_install:prepend() {

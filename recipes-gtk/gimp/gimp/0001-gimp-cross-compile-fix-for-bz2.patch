@@ -3,11 +3,11 @@ From: Markus Volk <f_l_k@t-online.de>
 Date: Wed, 25 Dec 2024 07:27:04 +0100
 Subject: [PATCH] gimp: cross-compile fix for bz2
 
-Upstream-Status: Inappropriate [can probably be removed once bzip2 is built with meson or cmake]
-
 autotools bzip2 build does not create pkgconfig files so looking for the dependency fails.
 
 Signed-off-by: Markus Volk <f_l_k@t-online.de>
+
+Upstream-Status: Inappropriate [can probably be removed once bzip2 is built with meson or cmake]
 ---
  meson.build | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
