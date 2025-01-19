@@ -4,9 +4,9 @@ LICENSE = "BSD-3-Clause"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=936078e4e67b0e1e1bd1e862d4ffbc25"
 
 SRC_URI = "git://github.com/hyprwm/hyprpicker.git;protocol=https;branch=main"
-PV = "0.4.1"
+PV = "0.4.2"
 S = "${WORKDIR}/git"
-SRCREV = "444c40e5e3dc4058a6a762ba5e73ada6d6469055"
+SRCREV = "0b044884d9298bb5fac164101eb880b499d8a5df"
 
 DEPENDS = " \
 	cairo \
