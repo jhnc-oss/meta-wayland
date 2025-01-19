@@ -1,3 +1,3 @@
 SRC_URI = "gitsm://github.com/hyprwm/xdg-desktop-portal-hyprland.git;protocol=https;nobranch=1"
-SRCREV = "fa50ab342b29f0981eab8c1ba57648d8c9d8c85c"
+SRCREV = "7613351375de66ca0d56689e333d460e2db05454"
 PV = "1.3.9"
