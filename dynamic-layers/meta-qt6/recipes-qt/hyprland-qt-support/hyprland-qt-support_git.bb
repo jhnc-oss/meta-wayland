@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=778ddc598b3f2a2da3657dda514da983"
 
 SRC_URI = "git://github.com/hyprwm/hyprland-qt-support.git;protocol=https;branch=main"
 
-SRCREV = "b4e829d8bfd1a2e766f01fc361392572c20a14b7"
+SRCREV = "767e884cda77bea293982c2116333308930d7800"
 S = "${WORKDIR}/git"
 PV = "0.1.0"
 
