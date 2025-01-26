@@ -25,3 +25,8 @@ SRC_URI[sha256sum] = "fbddda9230cf6ee2a4f5706b4b11e2190ae45f5eda1f0409dc4f99b35e
 
 inherit autotools
 
+EXTRA_OECONF += "--with-ncurses=${STAGING_DIR_HOST}"
+
+do_install:append() {
+	rm -f ${D}${bindir}/aalib-config
+}
