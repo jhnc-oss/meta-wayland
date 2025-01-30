@@ -8,7 +8,7 @@ inherit python_setuptools_build_meta
 
 S = "${WORKDIR}/git"
 PV = "2.4"
-SRCREV = "723e1c296a9d06fdcec5837d61ca4326c63d63c7"
+SRCREV = "5bea92619c6cc2bec1b818c7b2c9343bdfc977a0"
 
 FILES:${PN} += "${datadir}"
 
