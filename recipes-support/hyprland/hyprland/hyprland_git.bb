@@ -45,8 +45,8 @@ RRECOMMENDS:${PN} ?= " \
 
 SRC_URI = "gitsm://github.com/hyprwm/Hyprland.git;protocol=https;nobranch=1"
 SRC_URI += "file://0001-meson.build-use-pkgconfig-for-glaze.patch"
-SRCREV = "04ac46c54357278fc68f0a95d26347ea0db99496"
-PV = "0.47.0"
+SRCREV = "64fefa3749868e6170b6275963c6528456a7d9f2"
+PV = "0.47.2"
 S = "${WORKDIR}/git"
 
 inherit meson pkgconfig features_check
