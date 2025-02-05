@@ -9,7 +9,6 @@ PV = "4.2.3"
 S = "${WORKDIR}/git"
 
 DEPENDS += "gcc-sanitizers libeigen"
-RDEPENDS:${PN} = "libeigen"
 inherit cmake
 
 EXTRA_OECMAKE = "-DBUILD_TESTING=OFF"
