@@ -7,8 +7,8 @@ SRC_URI = "git://github.com/anufrievroman/waypaper.git;protocol=https;branch=mai
 inherit python_setuptools_build_meta
 
 S = "${WORKDIR}/git"
-PV = "2.4"
-SRCREV = "5bea92619c6cc2bec1b818c7b2c9343bdfc977a0"
+PV = "2.5"
+SRCREV = "3ce8658745917588711d6f1df4f183c34628b76b"
 
 FILES:${PN} += "${datadir}"
 
@@ -23,3 +23,5 @@ RDEPENDS:${PN} = " \
 	python3-screeninfo \
 	socat \
 "
+
+RRECOMMENDS:${PN} = "mpvpaper swww"
