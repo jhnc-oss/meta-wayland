@@ -15,7 +15,7 @@ SRC_URI = "git://github.com/J-Lentz/iwgtk.git;protocol=https;branch=master"
 
 S = "${WORKDIR}/git"
 PV = "0.9"
-SRCREV = "008a2a26b6e7d266d190ab85d6c25cf4b8a7bd06"
+SRCREV = "9542ea7cb209c6692c83be95e8ab2826f5560289"
 
 FILES:${PN} += "${systemd_user_unitdir}/iwgtk.service"
 
