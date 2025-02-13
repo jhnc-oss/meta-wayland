@@ -27,8 +27,8 @@ DEPENDS = " \
 inherit meson pkgconfig features_check
 
 S = "${WORKDIR}/git"
-PV = "1.7.0"
-SRCREV = "2821dd2fcece876d401db2efe04cae17efd67f30"
+PV = "1.7.1"
+SRCREV = "27a6fcac306836340e08592eeb6b6d0a912926f7"
 
 EXTRA_OEMESON += "--buildtype release"
 
