@@ -9,8 +9,8 @@ DEPENDS = "sqlite3 glib-2.0 gdk-pixbuf python3-pygobject-native"
 inherit gnomebase pkgconfig gobject-introspection
 GIR_MESON_OPTION = ""
 
-SRC_URI = "https://download.gnome.org/sources/gom/${PV}/gom-${PV}.tar.xz;name=archive"
-SRC_URI[archive.sha256sum] = "68d08006aaa3b58169ce7cf1839498f45686fba8115f09acecb89d77e1018a9d"
+SRC_URI = "https://download.gnome.org/sources/gom/0.5/gom-${PV}.tar.xz;name=archive"
+SRC_URI[archive.sha256sum] = "069d0909fbdc6b4d27edf7a879366194e3ab508b03548bf5b89ff63546d20177"
 
 FILES:${PN} += "${datadir} ${libdir}"
 
