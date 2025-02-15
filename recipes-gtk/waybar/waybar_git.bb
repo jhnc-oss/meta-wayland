@@ -11,7 +11,6 @@ REQUIRED_DISTRO_FEATURES = "wayland gobject-introspection-data"
 
 SRC_URI = " \
 	git://github.com/Alexays/Waybar.git;protocol=https;branch=master \
-	file://waybar.service \
 "
 
 S = "${WORKDIR}/git"
@@ -70,7 +69,7 @@ PACKAGECONFIG ?= " \
 "
 
 do_install:append() {
-	install -m 0644 ${UNPACKDIR}/waybar.service ${D}${systemd_user_unitdir}
+	sed -i "s|Requisite=graphical-session.target||" ${D}${systemd_user_unitdir}/waybar.service
 }
 
 FILES:${PN} += "${systemd_user_unitdir}"
