@@ -70,6 +70,7 @@ PACKAGECONFIG ?= " \
 "
 
 do_install:append() {
+	install -d ${D}${systemd_user_unitdir}
 	install -m 0644 ${WORKDIR}/waybar.service ${D}${systemd_user_unitdir}
 }
 
