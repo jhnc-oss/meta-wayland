@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=936078e4e67b0e1e1bd1e862d4ffbc25"
 SRC_URI = "git://github.com/hyprwm/hyprpicker.git;protocol=https;branch=main"
 PV = "0.4.2"
 S = "${WORKDIR}/git"
-SRCREV = "0b044884d9298bb5fac164101eb880b499d8a5df"
+SRCREV = "b85b06577d8dcaa9ea4cd519b2b26dc575b06296"
 
 DEPENDS = " \
 	cairo \
