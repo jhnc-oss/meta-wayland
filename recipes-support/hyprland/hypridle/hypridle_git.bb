@@ -6,10 +6,17 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=778ddc598b3f2a2da3657dda514da983"
 
 SRC_URI = "git://github.com/hyprwm/hypridle.git;protocol=https;branch=main"
 
-DEPENDS = "wayland wayland-native wayland-protocols hyprlang sdbus-c++"
+DEPENDS = " \
+	wayland \
+	wayland-native \
+	wayland-protocols \
+	hyprwayland-scanner-native \
+	hyprlang sdbus-c++ \
+	hyprland-protocols \
+"
 
 S = "${WORKDIR}/git"
-SRCREV = "26780ac51f6e7273e3934885036b7a7ed1a5af01"
+SRCREV = "3e30a63b5db64a208e9394328a81048044571368"
 PV = "0.1.5"
 
 inherit cmake pkgconfig
