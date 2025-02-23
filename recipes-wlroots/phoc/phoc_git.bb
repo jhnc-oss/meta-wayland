@@ -20,15 +20,15 @@ DEPENDS += " \
 	wayland \
 	wayland-native \
 	wayland-protocols \
-	wlroots-0.17 \
+	wlroots-0.18 \
 "
 
 SRC_URI = " \
 	git://gitlab.gnome.org/World/Phosh/phoc.git;protocol=https;nobranch=1"
 
 S = "${WORKDIR}/git"
-PV = "0.44-rc1"
-SRCREV = "7d0b6ddf439007ae4d41f982596a0b923c6469fe"
+PV = "0.45.0"
+SRCREV = "1046f9b6c84efcec21d3df0b9767bc61a2c1f1b3"
 
 inherit features_check gsettings meson pkgconfig
 
