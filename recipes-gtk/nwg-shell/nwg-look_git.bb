@@ -1,6 +1,6 @@
 SUMMARY = "Nwg-look is a GTK3 settings editor, designed to work properly in wlroots-based Wayland environment."
 LICENSE = "MIT"
-LIC_FILES_CHKSUM = "file://src/${GO_IMPORT}/LICENSE;md5=453b3e96b1052c0e1d1460b0134b9287"
+LIC_FILES_CHKSUM = "file://src/${GO_IMPORT}/LICENSE;md5=1fca41e83d55632fc67a83ba612de118"
 
 DEPENDS = "xcur2png gtk+3"
 RDEPENDS:${PN} = "xcur2png go-runtime"
@@ -8,8 +8,8 @@ RDEPENDS:${PN} = "xcur2png go-runtime"
 GO_IMPORT = "github.com/nwg-piotr/nwg-look"
 
 SRC_URI = "git://${GO_IMPORT};destsuffix=src/${GO_IMPORT};branch=main;protocol=https"
-SRCREV = "88f2639445084bf265ad71dba1c7af507c471762"
-PV = "0.2.7"
+SRCREV = "986439c5367eea41d24952e55684efc8899d8809"
+PV = "1.0.2"
 S = "${WORKDIR}/sources"
 UNPACKDIR = "${S}"
 
