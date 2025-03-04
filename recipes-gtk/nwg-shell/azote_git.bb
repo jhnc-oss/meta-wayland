@@ -24,8 +24,8 @@ RDEPENDS:${PN} = " \
 inherit setuptools3
 
 S = "${WORKDIR}/git"
-PV = "1.13.1"
-SRCREV = "6086ea5fd7b126afc590be721ae3fb8bff0efcba"
+PV = "1.14.1"
+SRCREV = "cab8deb764472c9d727b5a44bfca0ce6e4612c8b"
 
 do_install:append() {
 	install -d ${D}${datadir}/azote ${D}${datadir}/pixmaps ${D}${datadir}/applications
