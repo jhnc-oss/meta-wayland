@@ -1,5 +1,5 @@
 SRC_URI = "git://github.com/hyprwm/hyprland-plugins.git;protocol=https;branch=main"
-SRCREV = "1c4b446cea46088c6c79e5c66ea5ae28b48c2701"
+SRCREV = "7429a0ea78353dab6a7a9a3e8101db98a306957d"
 
 # Hack to allow patching the plugins
 do_configure:prepend() {
