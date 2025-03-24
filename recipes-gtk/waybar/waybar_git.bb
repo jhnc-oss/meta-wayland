@@ -5,7 +5,7 @@ BUGTRACKER = "https://github.com/Alexays/Waybar/issues"
 SECTION = "graphics"
 LICENSE = "MIT"
 
-LIC_FILES_CHKSUM = "file://LICENSE;md5=98f7e9dc79966298d76caf1b0a6d35c1"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=3cdb43104ea94958cd76fefa0ddf6c89"
 
 REQUIRED_DISTRO_FEATURES = "wayland gobject-introspection-data"
 
@@ -14,8 +14,8 @@ SRC_URI = " \
 "
 
 S = "${WORKDIR}/git"
-PV = "0.11.0"
-SRCREV = "20ca48c3b863a8b11dc149161a3e6e33ce97eea5"
+PV = "0.12.0"
+SRCREV = "8490a1d9b9a5c8770dd63e9faca0a5e01acedcae"
 
 DEPENDS += " \
 	date \
