@@ -13,9 +13,12 @@ S = "${WORKDIR}/git"
 PV = "2.8.0"
 SRCREV = "1cb28a66ca79a0845e99433fd1056257456cef8b"
 
-EXTRA_OEMAKE = "prefix=${prefix}"
+EXTRA_OEMAKE = "prefix=${prefix} DESTDIR=${D}"
 
-inherit autotools-brokensep pkgconfig
+do_compile() {
+	oe_runmake
+}
 
-BBCLASSEXTEND = ""
-
+do_install() {
+	oe_runmake install
+}
