@@ -10,7 +10,7 @@ REQUIRED_DISTRO_FEATURES = "wayland pam"
 DEPENDS = " \
 	glib-2.0-native \
 	gtk+3 \
-	gtk-layer-shell \
+	gtk-session-lock \
 	libpam \
 	scdoc-native \
 	wayland \
@@ -21,9 +21,8 @@ DEPENDS = " \
 SRC_URI = "git://github.com/jovanlanik/gtklock.git;protocol=https;branch=master"
 
 S = "${WORKDIR}/git"
-PV = "2.1.0"
-SRCREV = "3b2ae2b087aea30e464eed92e2cd011984a9b051"
+PV = "4.0.0"
+SRCREV = "66321fb2bf0d5869d779e7ac6b4d8d9c272ea707"
 
-inherit autotools-brokensep pkgconfig features_check
+inherit meson pkgconfig features_check
 
-EXTRA_OEMAKE += "PREFIX=${prefix}"
