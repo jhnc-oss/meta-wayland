@@ -1,3 +1,4 @@
+Upstream-Status: Inactive-Upstream [last project activity in 2001]
 diff -up aalib-1.4.0/src/aacurses.c.opaque-ncurses-fix aalib-1.4.0/src/aacurses.c
 --- aalib-1.4.0/src/aacurses.c.opaque-ncurses-fix	2024-02-10 06:32:32.008267145 -0500
 +++ aalib-1.4.0/src/aacurses.c	2024-02-10 06:33:38.648245270 -0500
