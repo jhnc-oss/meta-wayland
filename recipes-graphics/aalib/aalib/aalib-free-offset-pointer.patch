@@ -1,3 +1,4 @@
+Upstream-Status: Inactive-Upstream [last project activity in 2001]
 --- a/src/aarender.c
 +++ b/src/aarender.c
 @@ -63,10 +63,10 @@ void aa_renderpalette(aa_context * c, __

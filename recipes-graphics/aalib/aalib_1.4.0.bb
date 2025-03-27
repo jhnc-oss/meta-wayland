@@ -10,7 +10,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=55ca817ccb7d5b5b66355690e9abc605"
 S = "${WORKDIR}/aalib-1.4.0"
 
 SRC_URI = " \
-	${SOURCEFORGE_MIRROR}/projects/aa-project/files/aa-lib/1.4rc5/aalib-1.4rc5.tar.gz \
+	${SOURCEFORGE_MIRROR}/aa-project/aalib-1.4rc5.tar.gz \
 	file://aalib-aalinuxkbd-return.patch \
 	file://aalib-free-offset-pointer.patch \
 	file://aalib-key-down-OOB.patch \

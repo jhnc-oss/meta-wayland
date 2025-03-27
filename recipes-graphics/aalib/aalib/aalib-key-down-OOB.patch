@@ -1,3 +1,4 @@
+Upstream-Status: Inactive-Upstream [last project activity in 2001]
 diff -Naur a/src/aalinuxkbd.c b/src/aalinuxkbd.c
 --- a/src/aalinuxkbd.c	2016-12-19 12:40:26.660039735 +0100
 +++ b/src/aalinuxkbd.c	2016-12-19 12:42:21.692045971 +0100

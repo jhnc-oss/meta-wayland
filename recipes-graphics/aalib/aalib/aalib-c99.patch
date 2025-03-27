@@ -2,6 +2,7 @@ Add additional system header #include directives for more
 function prototypes.  This avoids implicit function declarations
 and build failures with future compilers.
 
+Upstream-Status: Inactive-Upstream [last project activity in 2001]
 diff --git a/src/aafire.c b/src/aafire.c
 index 4f36149aa84fba57..a59b5c5fa58e085b 100644
 --- a/src/aafire.c
