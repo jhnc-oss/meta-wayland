@@ -5,6 +5,8 @@ Subject: [PATCH] uwsm/meson.build: dont fail for missing python-modules
 
 Otherwise python-dbus-native and pyxdg-native would be required for build
 but are only runtime dpendencies
+
+Upstream-Status: Pending
 ---
  uwsm/meson.build | 12 ++++++------
  1 file changed, 6 insertions(+), 6 deletions(-)
