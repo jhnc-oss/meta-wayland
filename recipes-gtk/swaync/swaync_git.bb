@@ -23,22 +23,20 @@ S = "${WORKDIR}/git"
 PV = "0.10.1"
 SRCREV = "4275fa3915c12ad2731ff78027188b4b7ceaad64"
 
-PACKAGECONFIG[bash] = "-Dbash-completions=true,-Dbash-completions=false"
-PACKAGECONFIG[fish] = "-Dfish-completions=true,-Dfish-completions=false"
-PACKAGECONFIG[man-pages] = "-Dman-pages=true,-Dman-pages=false,scdoc-native"
-PACKAGECONFIG[scripting] = "-Dscripting=true,-Dscripting=false"
-PACKAGECONFIG[systemd] = "-Dsystemd-service=true,-Dsystemd-service=false"
-PACKAGECONFIG[zsh] = "-Dzsh-completions=true,-Dzsh-completions=false"
-
-PACKAGECONFIG ?= " \
-	bash \
-"
-
-inherit meson pkgconfig vala
+inherit meson pkgconfig vala manpages
 
 VALA_MESON_OPTION = ""
 
 EXTRA_OEMESON += "--buildtype release"
+
+PACKAGECONFIG[bash] = "-Dbash-completions=true,-Dbash-completions=false"
+PACKAGECONFIG[fish] = "-Dfish-completions=true,-Dfish-completions=false"
+PACKAGECONFIG[manpages] = "-Dman-pages=true,-Dman-pages=false,scdoc-native"
+PACKAGECONFIG[scripting] = "-Dscripting=true,-Dscripting=false"
+PACKAGECONFIG[systemd] = "-Dsystemd-service=true,-Dsystemd-service=false"
+PACKAGECONFIG[zsh] = "-Dzsh-completions=true,-Dzsh-completions=false"
+
+PACKAGECONFIG ?= "bash"
 
 FILES:${PN} += "${datadir}"
 

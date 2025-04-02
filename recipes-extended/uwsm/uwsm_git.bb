@@ -3,7 +3,7 @@ HOMEPAGE = "https://github.com/Vladimir-csp/uwsm"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=0bcdc63de832340797303f320ae6af32"
 
-inherit meson pkgconfig
+inherit meson pkgconfig manpages
 
 EXTRA_OEMESON = "-Dpython-bin=${bindir}/python3"
 
@@ -16,8 +16,8 @@ PV = "0.20.5"
 
 S = "${WORKDIR}/git"
 
-PACKAGECONFIG ?= "man-pages"
-PACKAGECONFIG[man-pages] = "-Dman-pages=enabled,-Dman-pages=disabled,scdoc-native"
+PACKAGECONFIG ?= ""
+PACKAGECONFIG[manpages] = "-Dman-pages=enabled,-Dman-pages=disabled,scdoc-native"
 PACKAGECONFIG[uuctl] = "-Duuctl=enabled,-Duuctl=disabled,,fuzzel"
 
 FILES:${PN} += "${datadir}/licenses"

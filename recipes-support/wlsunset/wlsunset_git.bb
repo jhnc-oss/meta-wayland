@@ -14,16 +14,17 @@ DEPENDS += " \
 	wayland-protocols \
 "
 
+inherit meson pkgconfig features_check manpages
+
 SRC_URI = "git://git.sr.ht/~kennylevinsen/wlsunset;protocol=https;nobranch=1"
 
-PACKAGECONFIG[man-pages] = ",,scdoc-native"
+PACKAGECONFIG[manpages] = ",,scdoc-native"
+
 
 
 S = "${WORKDIR}/git"
 PV = "0.4.0"
 SRCREV = "634c8ebc53a31d4e5ed394f7950760deb5322102"
-
-inherit meson pkgconfig features_check
 
 EXTRA_OEMESON += "--buildtype release"
 

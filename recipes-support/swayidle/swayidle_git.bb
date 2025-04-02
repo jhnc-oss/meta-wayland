@@ -22,11 +22,11 @@ S = "${WORKDIR}/git"
 PV = "1.8.0"
 SRCREV = "f554943bec003c2f70306123bd8db18465fcc3e4"
 
-inherit meson pkgconfig features_check
+inherit meson pkgconfig features_check manpages
 
 PACKAGECONFIG[systemd] = "-Dlogind-provider=systemd,,systemd"
 PACKAGECONFIG[sysvinit] = "-Dlogind-provider=elogind,,elogind"
-PACKAGECONFIG[man-pages] = ",,scdoc-native"
+PACKAGECONFIG[manpages] = ",,scdoc-native"
 
 PACKAGECONFIG ?= " \
 	${@bb.utils.filter('DISTRO_FEATURES', 'systemd', d)} \

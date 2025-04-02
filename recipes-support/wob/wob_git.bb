@@ -18,10 +18,10 @@ DEPENDS = " \
 	wayland-protocols \
 "
 
-inherit meson pkgconfig features_check
+inherit meson pkgconfig features_check manpages
 
 PACKAGECONFIG[seccomp] = "-Dseccomp=enabled,-Dseccomp=disabled,libseccomp"
-PACKAGECONFIG[man-pages] = "-Dman-pages=enabled,-Dman-pages=disabled,scdoc-native"
+PACKAGECONFIG[manpages] = "-Dman-pages=enabled,-Dman-pages=disabled,scdoc-native"
 
 PACKAGECONFIG ??= ""
 

@@ -11,7 +11,7 @@ DEPENDS = " \
 
 RRECOMMENDS:${PN} = "grim slurp"
 
-inherit meson gtk-icon-cache mime-xdg pkgconfig
+inherit meson gtk-icon-cache mime-xdg pkgconfig manpages
 
 SRC_URI = " \
     git://github.com/jtheoof/swappy.git;protocol=https;branch=master \
@@ -21,7 +21,4 @@ S = "${WORKDIR}/git"
 PV = "1.5.1"
 SRCREV = "a996b2cec65aadd04ded780f141b02c5bdfbeb32"
 
-PACKAGECONFIG[man-pages] = "-Dman-pages=enabled,-Dman-pages=disabled,scdoc-native"
-
-PACKAGECONFIG ?= "man-pages"
-
+PACKAGECONFIG[manpages] = "-Dman-pages=enabled,-Dman-pages=disabled,scdoc-native"

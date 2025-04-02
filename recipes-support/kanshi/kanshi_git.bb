@@ -13,10 +13,10 @@ SRC_URI = " \
 
 DEPENDS = "wayland wayland-native libscfg"
 
-inherit meson pkgconfig features_check
+inherit meson pkgconfig features_check manpages
 
 PACKAGECONFIG[ipc] = "-Dipc=enabled,-Dipc=disabled,libvarlink"
-PACKAGECONFIG[man-pages] = "-Dman-pages=enabled,-Dman-pages=disabled,scdoc-native"
+PACKAGECONFIG[manpages] = "-Dman-pages=enabled,-Dman-pages=disabled,scdoc-native"
 
 PACKAGECONFIG ?= " \
 	ipc \

@@ -39,11 +39,11 @@ SRCREV = "1fe4797a9d29b5094c9e38c336752d7f57ed593f"
 PV = "0.8.3"
 S = "${WORKDIR}/git"
 
-inherit meson pkgconfig features_check gettext
+inherit meson pkgconfig features_check gettext manpages
 
 PACKAGECONFIG ?= "${@bb.utils.filter('DISTRO_FEATURES', 'xwayland', d)}"
 
-PACKAGECONFIG[man-pages] = "-Dman-pages=enabled,-Dman-pages=disabled,scdoc-native"
+PACKAGECONFIG[manpages] = "-Dman-pages=enabled,-Dman-pages=disabled,scdoc-native"
 PACKAGECONFIG[xwayland] = "-Dxwayland=enabled,-Dxwayland=disabled,libxcb xcb-util-wm xcb-util-renderutil xwayland,xwayland"
 
 FILES:${PN} += "${datadir}"

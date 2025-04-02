@@ -34,7 +34,7 @@ DEPENDS += " \
 	wayland-protocols \
 "
 
-inherit meson pkgconfig features_check
+inherit meson pkgconfig features_check manpages
 
 PACKAGECONFIG[libcxx] = "-Dlibcxx=true,-Dlibcxx=false,libcxx clang-tidy"
 PACKAGECONFIG[dbusmenu-gtk] = "-Ddbusmenu-gtk=enabled,-Ddbusmenu-gtk=disabled,libdbusmenu-gtk"
@@ -43,7 +43,7 @@ PACKAGECONFIG[experimental] = "-Dexperimental=true,-Dexperimental=false"
 PACKAGECONFIG[jack] = "-Djack=enabled,-Djack=disabled,jack"
 PACKAGECONFIG[libinput] = "-Dlibinput=enabled,-Dlibinput=disabled,libinput"
 PACKAGECONFIG[logind] = "-Dlogind=enabled,-Dlogind=disabled,systemd"
-PACKAGECONFIG[man_pages] = "-Dman-pages=enabled,-Dman-pages=disabled,scdoc-native"
+PACKAGECONFIG[manpages] = "-Dman-pages=enabled,-Dman-pages=disabled,scdoc-native"
 PACKAGECONFIG[mpd] = "-Dmpd=enabled,-Dmpd=disabled,libmpdclient"
 PACKAGECONFIG[mpris] = "-Dmpris=enabled,-Dmpris=disabled,playerctl"
 PACKAGECONFIG[network] = "-Dlibnl=enabled,-Dlibnl=disabled,libnl"

@@ -16,6 +16,8 @@ DEPENDS = " \
             wayland-protocols \
 "
 
+inherit meson pkgconfig features_check manpages
+
 SRC_URI = " \
 	git://github.com/swaywm/swaylock.git;protocol=https;branch=master \
 "
@@ -26,7 +28,7 @@ SRCREV = "bd2dfec9ae0111b1858d5fab44f0f4fac4117d07"
 
 PACKAGECONFIG[pam] = ",,libpam"
 PACKAGECONFIG[gdk-pixbuf] = ",,gdk-pixbuf"
-PACKAGECONFIG[man-pages] = ",,scdoc-native"
+PACKAGECONFIG[manpages] = ",,scdoc-native"
 
 PACKAGECONFIG ?= " \
 	gdk-pixbuf \
@@ -35,8 +37,6 @@ PACKAGECONFIG ?= " \
 
 # Reproducibility issue. Fix me!
 CFLAGS:append = " -Wno-error=date-time"
-
-inherit meson pkgconfig features_check
 
 EXTRA_OEMESON += "--buildtype release"
 

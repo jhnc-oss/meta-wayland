@@ -24,18 +24,17 @@ RDEPENDS:${PN} = "dbus"
 
 RRECOMMENDS:${PN} = "jq"
 
-inherit meson pkgconfig features_check
+inherit meson pkgconfig features_check manpages
 
 PACKAGECONFIG[systemd] = ",,systemd"
 PACKAGECONFIG[sysvinit] = ",,elogind"
-PACKAGECONFIG[man-pages] = ",,scdoc-native"
+PACKAGECONFIG[manpages] = ",,scdoc-native"
 PACKAGECONFIG[icons] = ",,gdk-pixbuf"
 
 PACKAGECONFIG ?= " \
 	${@bb.utils.filter('DISTRO_FEATURES', 'systemd', d)} \
 	${@bb.utils.filter('DISTRO_FEATURES', 'sysvinit', d)} \
 	icons \
-	man-pages \	
 "
 
 S = "${WORKDIR}/git"
