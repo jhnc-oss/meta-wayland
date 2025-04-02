@@ -4,6 +4,8 @@ Date: Tue, 20 Aug 2024 12:22:55 +0200
 Subject: [PATCH] meson.build: allow shared build
 
 Signed-off-by: Markus Volk <f_l_k@t-online.de>
+
+Upstream-Status: Pending
 ---
  meson.build | 6 +++++-
  1 file changed, 5 insertions(+), 1 deletion(-)

@@ -5,6 +5,8 @@ Subject: [PATCH] meson.build: dont fail if stb is not found
 
 we have neigher pkconfig nor cmake support
 manually add it to CXXFLAGS
+
+Upstream-Status: Pending
 ---
  src/meson.build | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)

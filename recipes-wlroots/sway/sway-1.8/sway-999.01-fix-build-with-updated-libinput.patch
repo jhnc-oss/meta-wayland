@@ -10,6 +10,8 @@ Fixes the following error:
     ../sway/ipc-json.c:928:17: error: enumeration value 'LIBINPUT_CONFIG_ACCEL_PROFILE_CUSTOM' not handled in switch [-Werror=switch]
       928 |                 switch (libinput_device_config_accel_get_profile(device)) {
           |                 ^~~~~~
+
+Upstream-Status: Pending
 ---
  meson.build     | 5 +++++
  sway/ipc-json.c | 5 +++++

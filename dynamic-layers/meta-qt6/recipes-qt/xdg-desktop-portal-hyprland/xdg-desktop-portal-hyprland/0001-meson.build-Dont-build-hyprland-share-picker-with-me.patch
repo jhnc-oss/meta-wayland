@@ -4,6 +4,8 @@ Date: Wed, 20 Sep 2023 16:56:17 +0200
 Subject: [PATCH] meson.build: Dont build hyprland-share-picker with meson
 
 Signed-off-by: Markus Volk <f_l_k@t-online.de>
+
+Upstream-Status: Pending
 ---
  meson.build | 1 -
  1 file changed, 1 deletion(-)

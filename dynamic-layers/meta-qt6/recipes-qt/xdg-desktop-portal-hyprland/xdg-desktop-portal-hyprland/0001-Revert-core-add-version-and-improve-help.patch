@@ -4,6 +4,8 @@ Date: Sun, 29 Sep 2024 16:33:52 +0200
 Subject: [PATCH] Revert "core: add --version and improve --help"
 
 This reverts commit 15932f0f9e4185faad4e90fa53a09a59d2a72fdf.
+
+Upstream-Status: Pending
 ---
  CMakeLists.txt |  2 --
  src/main.cpp   | 14 +++++---------

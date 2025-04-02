@@ -3,6 +3,7 @@ From: Markus Volk <f_l_k@t-online.de>
 Date: Tue, 20 Aug 2024 11:57:39 +0200
 Subject: [PATCH] build as package
 
+Upstream-Status: Pending
 ---
  meson.build | 4 ++++
  1 file changed, 4 insertions(+)

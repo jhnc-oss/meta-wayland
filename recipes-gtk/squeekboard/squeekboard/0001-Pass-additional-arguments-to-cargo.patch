@@ -7,6 +7,8 @@ Adds an option to pass additional arguments to cargo. This is necessary
 for cross compiling
 
 Signed-off-by: Joshua Watt <JPEWhacker@gmail.com>
+
+Upstream-Status: Pending
 ---
  cargo_build.py    | 6 ++++++
  meson.build       | 6 +++---
