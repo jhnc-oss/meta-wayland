@@ -1,13 +1,13 @@
 SUMMARY = "FFMPEG wrapper for Python"
 LICENSE = "BSD-2-Clause"
-LIC_FILES_CHKSUM = "file://LICENSE;md5=6c357400c52c80176e076a6d9eaed6d2"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=4c1d517105fede816785b75e91a3a1e5"
 
-SRC_URI = "git://github.com/imageio/imageio-ffmpeg.git;protocol=https;branch=master"
+SRC_URI = "git://github.com/imageio/imageio-ffmpeg.git;protocol=https;branch=main"
 
 inherit python_setuptools_build_meta
 
 S = "${WORKDIR}/git"
-PV = "0.5.1"
-SRCREV = "b53cbc534f19df1496b516974f32bc3d4c25d3cc"
+PV = "0.6.0"
+SRCREV = "ae47d8028c237ca5507ceef1b843ee427b442887"
 
 RDEPENDS:${PN} += "ffmpeg python3-imageio"
