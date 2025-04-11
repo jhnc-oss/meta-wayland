@@ -27,6 +27,7 @@ DEPENDS += " \
 	libxfixes \
 	libxext \
 	libxdamage \
+	luajit \
 	seatd \
 	stb \
 	vulkan-loader \
@@ -53,12 +54,12 @@ PACKAGECONFIG[sdl2_backend] = "-Dsdl2_backend=enabled,-Dsdl2_backend=disabled,li
 PACKAGECONFIG[drm_backend] = "-Ddrm_backend=enabled,-Ddrm_backend=disabled"
 
 SRC_URI = "   \
-	gitsm://github.com/ValveSoftware/gamescope.git;branch=jupiter-3.6;protocol=https \
+	gitsm://github.com/ValveSoftware/gamescope.git;branch=master;protocol=https \
 	file://0001-meson.build-dont-fail-if-stb-is-not-found.patch \
 	file://0001-meson.build-dont-leak-buildpath.patch \
 "
-SRCREV = "a4278b065d10f11007a0af8ed9cea2fbebd2bb3a"
-PV = "3.15.15"
+SRCREV = "f1f105b3a95b4fec5c92e8a10e6927cbb76fe804"
+PV = "3.16.3"
 
 S = "${WORKDIR}/git"
 
