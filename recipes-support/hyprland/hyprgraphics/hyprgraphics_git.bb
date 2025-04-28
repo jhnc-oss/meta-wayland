@@ -10,6 +10,6 @@ SRC_URI = "git://github.com/hyprwm/hyprgraphics.git;protocol=https;branch=main"
 SRC_URI += "file://0001-hyprgraphics-fix-libspng-name.patch"
 
 S = "${WORKDIR}/git"
-SRCREV = "12cd7034e441a5ebfdef1a090c0788413b4a635b"
-PV = "0.1.1"
+SRCREV = "9d7f2687c84c729afbc3b13f7937655570f2978d"
+PV = "0.1.3"
 inherit cmake pkgconfig
