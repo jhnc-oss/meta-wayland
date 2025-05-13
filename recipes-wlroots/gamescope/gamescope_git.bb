@@ -54,7 +54,7 @@ PACKAGECONFIG[sdl2_backend] = "-Dsdl2_backend=enabled,-Dsdl2_backend=disabled,vi
 PACKAGECONFIG[drm_backend] = "-Ddrm_backend=enabled,-Ddrm_backend=disabled"
 
 SRC_URI = "   \
-	gitsm://github.com/ValveSoftware/gamescope.git;branch=master;protocol=https \
+	gitsm://github.com/ValveSoftware/gamescope.git;branch=master;lfs=0;protocol=https \
 	file://0001-meson.build-dont-fail-if-stb-is-not-found.patch \
 	file://0001-meson.build-dont-leak-buildpath.patch \
 "
