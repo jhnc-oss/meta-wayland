@@ -37,7 +37,7 @@ After=graphical-session.target
 ConditionEnvironment=WAYLAND_DISPLAY
 
 [Service]
-ExecStart=nwg-dock-hyprland -d -hd 2000
+ExecStart=nwg-dock-hyprland -d -hd 2000 -c nwggrid
 Slice=session.slice
 TimeoutStopSec=5sec
 Restart=on-failure
