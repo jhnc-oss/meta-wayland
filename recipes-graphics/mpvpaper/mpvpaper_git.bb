@@ -13,8 +13,8 @@ DEPENDS = " \
 "
 
 S = "${WORKDIR}/git"
-SRCREV = "0069bc236e47f35605c5326a81c3a163fb0c988e"
-PV = "1.7"
+SRCREV = "7342c53343bed06b22456eb45182e40e0f80ea83"
+PV = "1.8"
 
 inherit meson pkgconfig
 
