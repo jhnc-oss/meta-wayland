@@ -10,7 +10,7 @@ S = "${WORKDIR}/git"
 SRCREV = "b7825b218e677c65f6849be061b93bd5654991bf"
 PV = "1.9"
 
-RDEPENDS:${PN} = "python3"
+RDEPENDS:${PN} = "python3-as-python"
 
 do_install() {
 	install -d ${D}${bindir}
