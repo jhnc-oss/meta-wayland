@@ -23,6 +23,7 @@ DEPENDS = " \
 	sdbus-c++ \
 	virtual/egl \
 	virtual/libgl \
+	virtual/libgbm \
 	wayland \
 	wayland-native \
 	wayland-protocols \
