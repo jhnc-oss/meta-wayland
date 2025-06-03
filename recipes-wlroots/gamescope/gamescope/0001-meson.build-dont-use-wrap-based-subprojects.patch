@@ -1,0 +1,32 @@
+From bd4e5efd7f69faae366b794c0210734418fdf0ca Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Wed, 4 Jun 2025 00:08:08 +0200
+Subject: [PATCH] meson.build: dont use wrap based subprojects
+
+Upstream-Status: Inappropriate [oe-specific]
+---
+ meson.build | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/meson.build b/meson.build
+index 9050f008..da400551 100644
+--- a/meson.build
++++ b/meson.build
+@@ -50,10 +50,10 @@ dep_x11 = dependency('x11')
+ dep_wayland = dependency('wayland-client')
+ vulkan_dep = dependency('vulkan')
+ 
+-glm_proj = subproject('glm')
+-glm_dep = glm_proj.get_variable('glm_dep')
+-stb_proj = subproject('stb')
+-stb_dep = stb_proj.get_variable('stb_dep')
++#glm_proj = subproject('glm')
++glm_dep = dependency('glm')
++#stb_proj = subproject('stb')
++stb_dep = dependency('stb', required: false)
+ 
+ if get_option('enable_openvr_support')
+   openvr_dep = dependency('openvr', version: '>= 2.7', required : false)
+-- 
+2.49.0
+

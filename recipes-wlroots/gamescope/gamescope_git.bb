@@ -55,11 +55,11 @@ PACKAGECONFIG[drm_backend] = "-Ddrm_backend=enabled,-Ddrm_backend=disabled"
 
 SRC_URI = "   \
 	gitsm://github.com/ValveSoftware/gamescope.git;branch=master;lfs=0;protocol=https \
-	file://0001-meson.build-dont-fail-if-stb-is-not-found.patch \
+	file://0001-meson.build-dont-use-wrap-based-subprojects.patch \
 	file://0001-meson.build-dont-leak-buildpath.patch \
 "
-SRCREV = "f1f105b3a95b4fec5c92e8a10e6927cbb76fe804"
-PV = "3.16.3"
+SRCREV = "df15bcd81ec65e109c740019cacff06ac6fb07db"
+PV = "3.16.11"
 
 S = "${WORKDIR}/git"
 
