@@ -1,0 +1,37 @@
+From 014ae5e2f9775213e231d4a02530e2d38a2ef5fc Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Fri, 13 Jun 2025 19:22:18 +0200
+Subject: [PATCH] CMakeLists.txt: fix linking with opengl
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+
+Upstream-Status: Pending
+---
+ CMakeLists.txt | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index be79bb4..416c792 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -19,7 +19,7 @@ set(INCLUDE ${CMAKE_INSTALL_FULL_INCLUDEDIR})
+ set(LIBDIR ${CMAKE_INSTALL_FULL_LIBDIR})
+ 
+ find_package(PkgConfig REQUIRED)
+-find_package(OpenGL REQUIRED COMPONENTS "GLES3")
++find_package(OpenGL REQUIRED COMPONENTS EGL GLES3)
+ find_package(hyprwayland-scanner 0.4.0 REQUIRED)
+ pkg_check_modules(
+   deps
+@@ -66,7 +66,7 @@ target_include_directories(
+   PRIVATE "./src" "./src/include" "./protocols" "${CMAKE_BINARY_DIR}")
+ set_target_properties(aquamarine PROPERTIES VERSION ${AQUAMARINE_VERSION}
+                                             SOVERSION 7)
+-target_link_libraries(aquamarine OpenGL::EGL OpenGL::OpenGL PkgConfig::deps)
++target_link_libraries(aquamarine OpenGL::EGL OpenGL::GLES3 PkgConfig::deps)
+ 
+ check_include_file("sys/timerfd.h" HAS_TIMERFD)
+ pkg_check_modules(epoll IMPORTED_TARGET epoll-shim)
+-- 
+2.49.0
+
