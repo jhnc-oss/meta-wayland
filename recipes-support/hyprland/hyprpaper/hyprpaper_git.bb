@@ -4,9 +4,10 @@ LICENSE = "BSD-3-Clause"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=936078e4e67b0e1e1bd1e862d4ffbc25"
 
 SRC_URI = "git://github.com/hyprwm/hyprpaper.git;protocol=https;branch=main"
+SRC_URI += "file://0001-CMakeLists.txt-use-find_program-for-OpenGL.patch"
 
 PV = "0.7.5"
-SRCREV = "753ffa7fe9b6211609c263e38e09ae663a762b56"
+SRCREV = "81dc1fe4f05305319bb586a0eb6f6004a1476832"
 S = "${WORKDIR}/git"
 
 DEPENDS += " \
@@ -16,7 +17,8 @@ DEPENDS += " \
 	hyprutils \
 	hyprgraphics \
 	hyprwayland-scanner-native \
-	libglvnd \
+	virtual/egl \
+	virtual/libgles2 \
 	pango \
 	wayland \
 	wayland-native \
@@ -30,3 +32,4 @@ REQUIRED_DISTRO_FEATURES = "wayland"
 inherit cmake pkgconfig features_check
 
 FILES:${PN} += "${systemd_user_unitdir}"
+
