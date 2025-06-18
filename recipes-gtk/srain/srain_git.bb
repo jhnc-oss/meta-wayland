@@ -23,8 +23,8 @@ inherit meson gtk-icon-cache mime-xdg pkgconfig features_check gobject-introspec
 SRC_URI = "git://github.com/SrainApp/srain.git;protocol=https;branch=master"
 
 S = "${WORKDIR}/git"
-PV = "1.8.0"
-SRCREV = "3f876538a0182c1ba5adb2a6f7d96d4fed44856d"
+PV = "1.8.1"
+SRCREV = "693c81b11052b6e287b5a734352dd813ef2b71aa"
 
 PACKAGECONFIG ??= ""
 PACKAGECONFIG[app_indicator] = "-Dapp_indicator=true,-Dapp_indicator=false,libayatana-appindicator"
