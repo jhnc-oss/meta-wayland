@@ -8,8 +8,8 @@ RDEPENDS:${PN} = "xcur2png go-runtime"
 GO_IMPORT = "github.com/nwg-piotr/nwg-look"
 
 SRC_URI = "git://${GO_IMPORT};destsuffix=src/${GO_IMPORT};branch=main;protocol=https"
-SRCREV = "0ae22e787b2b162daea8020564761b5bc0889edb"
-PV = "1.0.5"
+SRCREV = "1282e6422491ea912ac22c5f532277eb011cc5bb"
+PV = "1.0.6"
 S = "${WORKDIR}/sources"
 UNPACKDIR = "${S}"
 
