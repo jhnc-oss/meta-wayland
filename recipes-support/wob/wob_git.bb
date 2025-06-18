@@ -26,15 +26,14 @@ PACKAGECONFIG[manpages] = "-Dman-pages=enabled,-Dman-pages=disabled,scdoc-native
 PACKAGECONFIG ??= ""
 
 S = "${WORKDIR}/git"
-PV = "0.15.1"
-SRCREV = "f8053b7686f191e971e8a48384442d60a724ba66"
+PV = "0.16"
+SRCREV = "f7668d9715256a9d0dd05bc9eba7799d5ab2ce2d"
 
 EXTRA_OEMESON += "--buildtype release"
 
 do_install:append() {
     if ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'true', 'false', d)}; then
         install -d ${D}${systemd_user_unitdir}/sockets.target.wants ${D}${systemd_user_unitdir}/graphical-session.target.wants
-        install -m 0644 ${S}/contrib/systemd/* ${D}${systemd_user_unitdir}
         ln -fs ${systemd_user_unitdir}/wob.socket ${D}${systemd_user_unitdir}/sockets.target.wants
         ln -fs ${systemd_user_unitdir}/wob.service ${D}${systemd_user_unitdir}/graphical-session.target.wants
     fi
