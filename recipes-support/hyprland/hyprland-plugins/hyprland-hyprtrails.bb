@@ -6,7 +6,5 @@ require hyprland-plugins.inc
 
 S = "${WORKDIR}/git/hyprtrails"
 
-inherit meson pkgconfig
-
 FILES:${PN} += "${libdir}/libhyprtrails.so"
 

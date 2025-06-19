@@ -6,7 +6,5 @@ require hyprland-plugins.inc
 
 S = "${WORKDIR}/git/hyprbars"
 
-inherit meson pkgconfig
-
 FILES:${PN} += "${libdir}/libhyprbars.so"
 

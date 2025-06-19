@@ -6,7 +6,5 @@ require hyprland-plugins.inc
 
 S = "${WORKDIR}/git/hyprscrolling"
 
-inherit meson pkgconfig
-
 FILES:${PN} += "${libdir}/libhyprscrolling.so"
 

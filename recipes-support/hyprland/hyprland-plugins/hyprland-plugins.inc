@@ -13,6 +13,8 @@ DEPENDS = " \
     libxkbcommon \
 "
 
+inherit cmake pkgconfig
+
 # Hack to allow patching the plugins
 do_configure:prepend() {
 	rm -rf ${S}/patches

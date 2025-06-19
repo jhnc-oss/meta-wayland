@@ -6,7 +6,5 @@ require hyprland-plugins.inc
 
 S = "${WORKDIR}/git/hyprwinwrap"
 
-inherit meson pkgconfig
-
 FILES:${PN} += "${libdir}/libhyprwinwrap.so"
 

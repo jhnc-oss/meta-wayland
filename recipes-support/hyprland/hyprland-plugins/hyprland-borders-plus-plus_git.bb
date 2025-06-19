@@ -6,7 +6,5 @@ require hyprland-plugins.inc
 
 S = "${WORKDIR}/git/borders-plus-plus"
 
-inherit meson pkgconfig
-
 FILES:${PN} += "${libdir}/libborders-plus-plus.so"
 

@@ -6,7 +6,5 @@ require hyprland-plugins.inc
 
 S = "${WORKDIR}/git/csgo-vulkan-fix"
 
-inherit meson pkgconfig
-
 FILES:${PN} += "${libdir}/libcsgo-vulkan-fix.so"
 

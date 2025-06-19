@@ -6,7 +6,5 @@ require hyprland-plugins.inc
 
 S = "${WORKDIR}/git/hyprexpo"
 
-inherit meson pkgconfig
-
 FILES:${PN} += "${libdir}/libhyprexpo.so"
 
