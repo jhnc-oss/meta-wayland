@@ -20,7 +20,6 @@ DEPENDS += " \
 "
 
 
-S = "${WORKDIR}/git"
 PV = "255.5"
 SRCREV = "a5d0503e56596e4495407e6bbdd89ec2cf1fbe98"
 

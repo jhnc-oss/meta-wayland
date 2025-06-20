@@ -26,7 +26,6 @@ DEPENDS += " \
 SRC_URI = " \
 	git://gitlab.gnome.org/World/Phosh/phoc.git;protocol=https;nobranch=1"
 
-S = "${WORKDIR}/git"
 PV = "0.45.0"
 SRCREV = "1046f9b6c84efcec21d3df0b9767bc61a2c1f1b3"
 

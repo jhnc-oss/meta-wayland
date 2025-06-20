@@ -37,7 +37,6 @@ PACKAGECONFIG ?= " \
 	icons \
 "
 
-S = "${WORKDIR}/git"
 PV = "1.10.0"
 SRCREV = "b131bc143f6b0f24d650f16bb88a11c7cb011c20"
 

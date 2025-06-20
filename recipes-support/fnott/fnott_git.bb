@@ -26,7 +26,6 @@ DEPENDS = " \
 
 inherit meson pkgconfig features_check
 
-S = "${WORKDIR}/git"
 PV = "1.7.1"
 SRCREV = "27a6fcac306836340e08592eeb6b6d0a912926f7"
 

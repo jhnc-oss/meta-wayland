@@ -14,7 +14,6 @@ SRC_URI = " \
 SRCREV = "7bb627b78c69c890417146150733f9728b227c67"
 PV = "0.20.5"
 
-S = "${WORKDIR}/git"
 
 PACKAGECONFIG ?= ""
 PACKAGECONFIG[manpages] = "-Dman-pages=enabled,-Dman-pages=disabled,scdoc-native"

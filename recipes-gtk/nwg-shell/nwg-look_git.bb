@@ -7,11 +7,9 @@ RDEPENDS:${PN} = "xcur2png go-runtime"
 
 GO_IMPORT = "github.com/nwg-piotr/nwg-look"
 
-SRC_URI = "git://${GO_IMPORT};destsuffix=src/${GO_IMPORT};branch=main;protocol=https"
+SRC_URI = "git://${GO_IMPORT};destsuffix=${BP}/src/${GO_IMPORT};branch=main;protocol=https"
 SRCREV = "1282e6422491ea912ac22c5f532277eb011cc5bb"
 PV = "1.0.6"
-S = "${WORKDIR}/sources"
-UNPACKDIR = "${S}"
 
 inherit go go-mod pkgconfig gtk-icon-cache
 

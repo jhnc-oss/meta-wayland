@@ -10,7 +10,6 @@ SRC_URI = " \
 	git://github.com/FortAwesome/Font-Awesome.git;protocol=https;branch=6.x \
 "
 
-S = "${WORKDIR}/git"
 PV = "6.6.0"
 SRCREV = "37eff7fa00de26db41183a3ad8ed0e9119fbc44b"
 

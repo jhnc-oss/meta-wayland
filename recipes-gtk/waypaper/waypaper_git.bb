@@ -6,7 +6,6 @@ SRC_URI = "git://github.com/anufrievroman/waypaper.git;protocol=https;branch=mai
 
 inherit python_setuptools_build_meta
 
-S = "${WORKDIR}/git"
 PV = "2.5"
 SRCREV = "3ce8658745917588711d6f1df4f183c34628b76b"
 

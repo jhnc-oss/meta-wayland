@@ -16,7 +16,6 @@ SRC_URI = " \
 	file://0001-build-as-package.patch \
 "
 
-S = "${WORKDIR}/git"
 SRCREV = "5f9768a2eac29c1ed56f1fbb449a77a3523683b6"
 
 do_install:append() {

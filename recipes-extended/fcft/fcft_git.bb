@@ -19,7 +19,6 @@ SRC_URI = " \
 	file://0001-generate-version.sh-dont-try-to-fetch-version-from-g.patch \
 "
 
-S = "${WORKDIR}/git"
 PV = "3.3.1"
 SRCREV = "ccd1afaad891d77c040bad04120e9f602438fc33"
 

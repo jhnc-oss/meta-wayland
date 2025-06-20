@@ -23,4 +23,3 @@ inherit meson pkgconfig features_check
 REQUIRED_DISTRO_FEATURES = "wayland"
 
 SRC_URI = "git://github.com/cage-kiosk/cage;branch=master;protocol=https"
-S = "${UNPACKDIR}/git"

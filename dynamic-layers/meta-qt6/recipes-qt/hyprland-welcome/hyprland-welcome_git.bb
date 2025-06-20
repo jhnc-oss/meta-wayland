@@ -7,7 +7,6 @@ SRC_URI = "git://github.com/hyprwm/hyprland-welcome.git;protocol=https;branch=ma
 
 PV = "0.0.1"
 SRCREV = "51561c00288775ad7afc20f47783bb068093ca5a"
-S = "${WORKDIR}/git"
 
 DEPENDS = "qtbase"
 RDEPENDS:${PN} = "qtwayland"

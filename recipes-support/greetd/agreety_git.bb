@@ -5,7 +5,6 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=1ebbd3e34237af26da5dc08a4e440464"
 
 SRC_URI += "git://git.sr.ht/~kennylevinsen/greetd;protocol=https;nobranch=1"
 SRCREV = "d70030962341a3ae7a88ecf2f7af748a5a6296d1"
-S = "${WORKDIR}/git"
 PV = "0.8.0"
 
 inherit cargo

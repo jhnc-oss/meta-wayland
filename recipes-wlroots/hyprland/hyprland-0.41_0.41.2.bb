@@ -44,7 +44,6 @@ SRC_URI = "gitsm://github.com/hyprwm/Hyprland.git;protocol=https;branch=main"
 
 SRCREV = "918d8340afd652b011b937d29d5eea0be08467f5"
 PV = "0.41.2"
-S = "${WORKDIR}/git"
 
 inherit meson pkgconfig features_check
 

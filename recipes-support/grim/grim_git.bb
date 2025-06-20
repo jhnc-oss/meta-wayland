@@ -20,7 +20,6 @@ DEPENDS += " \
 
 SRC_URI = "git://git.sr.ht/~emersion/grim;protocol=https;branch=master"
 
-S = "${WORKDIR}/git"
 PV = "1.4.1"
 SRCREV = "7ba46364ab95141c79e0e18093aa66597256182c"
 

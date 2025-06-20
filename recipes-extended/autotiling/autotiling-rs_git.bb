@@ -63,7 +63,6 @@ SRC_URI[version_check-0.9.4.sha256sum] = "49874b5167b65d7193b8aba1567f5c7d93d001
 
 inherit rust cargo
 
-S = "${WORKDIR}/git"
 PV = "0.1.3"
 SRCREV = "1f7a08c6a87b06f13744962f757e6bdcc6e3fc89"
 

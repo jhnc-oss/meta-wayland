@@ -8,7 +8,6 @@ SRC_URI = " \
 "
 
 SRCREV = "82bdb6720ef6163f0b10b49ba49702f0bde815d8"
-S = "${WORKDIR}/git"
 
 DEPENDS += " \
 	libdrm \

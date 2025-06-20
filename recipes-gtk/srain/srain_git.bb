@@ -22,7 +22,6 @@ inherit meson gtk-icon-cache mime-xdg pkgconfig features_check gobject-introspec
 
 SRC_URI = "git://github.com/SrainApp/srain.git;protocol=https;branch=master"
 
-S = "${WORKDIR}/git"
 PV = "1.8.1"
 SRCREV = "693c81b11052b6e287b5a734352dd813ef2b71aa"
 

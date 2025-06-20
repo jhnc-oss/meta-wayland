@@ -18,7 +18,6 @@ SRC_URI = " \
 	git://github.com/swaywm/swayidle.git;protocol=https;branch=master \
 "
 
-S = "${WORKDIR}/git"
 PV = "1.8.0"
 SRCREV = "f554943bec003c2f70306123bd8db18465fcc3e4"
 

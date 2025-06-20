@@ -22,7 +22,6 @@ PACKAGECONFIG ?= " \
 	ipc \
 "
 
-S = "${WORKDIR}/git"
 PV = "1.7.0"
 SRCREV = "83dc2fd4ff28ba77b5729ab89fc1b8ea3b3e2882"
 

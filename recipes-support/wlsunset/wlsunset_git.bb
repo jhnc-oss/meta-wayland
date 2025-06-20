@@ -22,7 +22,6 @@ PACKAGECONFIG[manpages] = ",,scdoc-native"
 
 
 
-S = "${WORKDIR}/git"
 PV = "0.4.0"
 SRCREV = "634c8ebc53a31d4e5ed394f7950760deb5322102"
 

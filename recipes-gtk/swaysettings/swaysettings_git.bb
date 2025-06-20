@@ -20,7 +20,6 @@ DEPENDS = " \
 
 SRC_URI = "git://github.com/ErikReider/SwaySettings.git;protocol=https;nobranch=1"
 
-S = "${WORKDIR}/git"
 PV = "0.4.0"
 SRCREV = "8fb6210ad123654f3988cb8f3f59ab629bb0a747"
 

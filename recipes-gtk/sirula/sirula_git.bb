@@ -214,5 +214,4 @@ DEPENDS = " \
 inherit cargo pkgconfig
 
 SRCREV = "70b5ce1936c819f4e5c8674e90145e5e7badcfa8"
-S = "${WORKDIR}/git"
 PV = "1.0.1"

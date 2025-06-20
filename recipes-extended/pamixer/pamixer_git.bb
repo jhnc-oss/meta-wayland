@@ -9,7 +9,6 @@ SRC_URI = " \
 
 DEPENDS = "pulseaudio cxxopts"
 
-S = "${WORKDIR}/git"
 PV = "1.6"
 SRCREV = "af5e13eafdb00ba342625d7d2131bec4729d2bc3"
 

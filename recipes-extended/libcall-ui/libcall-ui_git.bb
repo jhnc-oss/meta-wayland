@@ -12,7 +12,6 @@ SRC_URI = " \
 	file://0001-build-as-package.patch \
 "
 
-S = "${WORKDIR}/git"
 PV = "0.1.4"
 SRCREV = "5bb3fc2d662285681a54ce4b5bc2ed29a47c8c74"
 

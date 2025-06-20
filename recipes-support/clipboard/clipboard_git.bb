@@ -13,7 +13,6 @@ DEPENDS += " \
 
 SRC_URI = "git://github.com/Slackadays/Clipboard.git;protocol=https;branch=main"
 
-S = "${WORKDIR}/git"
 PV = "0.10.1"
 SRCREV = "cf596b0b2403d1d184d509a2c7ddd0f3c11040b9"
 

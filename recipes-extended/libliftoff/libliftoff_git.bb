@@ -7,7 +7,6 @@ SRC_URI = "git://gitlab.freedesktop.org/emersion/libliftoff.git;branch=master;pr
 
 DEPENDS = "libdrm"
 
-S = "${WORKDIR}/git"
 PV = "0.5.0"
 SRCREV = "8b08dc1c14fd019cc90ddabe34ad16596b0691f4"
 

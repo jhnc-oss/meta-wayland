@@ -13,6 +13,5 @@ RDEPENDS:${PN} = " \
 
 inherit python_setuptools_build_meta
 
-S = "${WORKDIR}/git"
 PV = "2.3.0"
 SRCREV = "791916d87d06b25ded09fefde33288d5c069c96d"

@@ -11,12 +11,10 @@ RDEPENDS:${PN} = "go-runtime"
 
 GO_IMPORT = "github.com/nwg-piotr/nwg-drawer.git"
 
-SRC_URI = "git://${GO_IMPORT};destsuffix=src/${GO_IMPORT};nobranch=1;protocol=https"
+SRC_URI = "git://${GO_IMPORT};destsuffix=${BP}/src/${GO_IMPORT};nobranch=1;protocol=https"
 
 PV = "0.7.0"
 SRCREV = "a1c6c9e9782c6ce503bab453aeb91f67110d0741"
-S = "${WORKDIR}/sources"
-UNPACKDIR = "${S}"
 
 inherit go go-mod pkgconfig
 

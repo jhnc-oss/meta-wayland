@@ -42,7 +42,6 @@ SRC_URI = "git://gitlab.freedesktop.org/wlroots/wlroots.git;branch=0.17;protocol
 SRCREV = "a2d2c38a3127745629293066beeed0a649dff8de"
 PV = "0.17.4"
 
-S = "${WORKDIR}/git"
 
 
 inherit meson pkgconfig features_check

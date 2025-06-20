@@ -24,7 +24,6 @@ DEPENDS = " \
 SRC_URI = "git://github.com/hyprwm/aquamarine.git;protocol=https;branch=main"
 SRC_URI += "file://0001-CMakeLists.txt-fix-linking-with-opengl.patch"
 
-S = "${WORKDIR}/git"
 SRCREV = "94981cf75a9f11da0b6dd6a1abbd7c50a36ab2d3"
 PV = "0.8.0"
 

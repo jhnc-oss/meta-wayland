@@ -15,7 +15,6 @@ RRECOMMENDS:${PN} = "gnome-themes-extra"
 
 inherit setuptools3 useradd
 
-S = "${WORKDIR}/git"
 PV = "0.2.0"
 SRCREV = "aa6a9e4a9024dba8ebaa98af53df82b3c19d379a"
 

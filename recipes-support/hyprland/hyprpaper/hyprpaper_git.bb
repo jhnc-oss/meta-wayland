@@ -8,7 +8,6 @@ SRC_URI += "file://0001-CMakeLists.txt-use-find_program-for-OpenGL.patch"
 
 PV = "0.7.5"
 SRCREV = "81dc1fe4f05305319bb586a0eb6f6004a1476832"
-S = "${WORKDIR}/git"
 
 DEPENDS += " \
 	cairo \

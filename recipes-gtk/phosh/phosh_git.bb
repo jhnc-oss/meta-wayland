@@ -55,7 +55,6 @@ SRC_URI = " \
     file://0001-meson-build-without-subproject-wrap.patch \
 "
 
-S = "${WORKDIR}/git"
 PV = "0.45.0"
 SRCREV = "2ac03f70f8d42b729def38e282f5b600286655fb"
 

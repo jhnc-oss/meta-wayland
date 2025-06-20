@@ -8,6 +8,5 @@ RDEPENDS:${PN} += "python3-more-itertools python3-click python3-chevron"
 
 inherit python_hatchling
 
-S = "${WORKDIR}/git"
 PV = "3.2.1"
 SRCREV = "85c636823b7d54d1dba0cf612699f1f6289c1a00"

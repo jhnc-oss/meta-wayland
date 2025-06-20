@@ -6,7 +6,6 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=ea4d29875d83fbbf50485c846dbbbed8"
 SRC_URI = "git://github.com/stephenberry/glaze.git;protocol=https;nobranch=1"
 SRCREV = "dfdb2ea5e878e8eff9f863b50728d860f663764f"
 PV = "4.2.3"
-S = "${WORKDIR}/git"
 
 DEPENDS += "gcc-sanitizers libeigen"
 inherit cmake

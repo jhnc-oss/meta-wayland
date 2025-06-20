@@ -30,7 +30,6 @@ SRC_URI += "\
 
 PV = "1.43.1"
 SRCREV = "15569da021824b6da5c337ba9875c5002158f43e"
-S = "${WORKDIR}/git"
 
 inherit cargo meson rust pkgconfig cargo-update-recipe-crates
 

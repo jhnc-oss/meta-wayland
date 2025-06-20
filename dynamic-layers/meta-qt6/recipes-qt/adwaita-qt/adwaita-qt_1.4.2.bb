@@ -11,7 +11,6 @@ EXTRA_OECMAKE += "-DUSE_QT6=ON"
 
 SRC_URI = "git://github.com/FedoraQt/adwaita-qt.git;protocol=https;nobranch=1"
 
-S = "${WORKDIR}/git"
 SRCREV = "3807292acee096459a73732f663544916d9eb0e5"
 
 FILES:${PN} += "${libdir}/plugins/styles/adwaita.so"

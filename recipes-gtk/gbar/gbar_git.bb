@@ -7,7 +7,6 @@ REQUIRED_DISTRO_FEATURES = "wayland"
 
 SRC_URI = "git://github.com/scorpion-26/gBar.git;protocol=https;branch=master"
 
-S = "${WORKDIR}/git"
 SRCREV = "b1e2c2ed26a62058c502db3a03ac615f2567942e"
 
 DEPENDS += " \

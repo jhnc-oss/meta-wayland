@@ -413,7 +413,6 @@ DEPENDS = "glib-2.0 gtk4 cairo graphene gdk-pixbuf"
 inherit cargo pkgconfig
 
 SRCREV = "1b3b53278d9df5b9d48d7a9f467e199856b8c313"
-S = "${WORKDIR}/git"
 PV = "0.1.1"
 
 RDEPENDS:${PN} = "cage greetd"

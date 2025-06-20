@@ -18,7 +18,6 @@ SRC_URI = "git://github.com/WayfireWM/wf-config.git;protocol=https;branch=master
 SRCREV = "b2e683fef467d25bd337db4d1fe946111229a375"
 PV = "0.9.0"
 
-S = "${WORKDIR}/git"
 
 inherit meson pkgconfig features_check
 

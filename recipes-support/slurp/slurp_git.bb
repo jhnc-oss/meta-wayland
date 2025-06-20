@@ -20,7 +20,6 @@ DEPENDS += " \
 
 SRC_URI = "git://github.com/emersion/slurp.git;protocol=https;branch=master"
 
-S = "${WORKDIR}/git"
 PV = "1.5.0"
 SRCREV = "fc921b603ee02afff42aba9eb073e82fab900048"
 

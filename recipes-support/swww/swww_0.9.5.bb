@@ -10,7 +10,6 @@ DEPENDS += "lz4"
 CARGO_BUILD_FLAGS:remove = "--frozen"
 
 SRCREV = "886ce3e9c5d88187fd765fe22c92338b038177c8"
-S = "${WORKDIR}/git"
 
 SRC_URI += " \
     git://github.com/LGFae/swww.git;protocol=https;branch=main \

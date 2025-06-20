@@ -9,7 +9,6 @@ SRC_URI = " \
 	file://pkgconfig.patch \
 "
 
-S = "${WORKDIR}/git"
 PV = "3.0.1"
 SRCREV = "22ceabf205d8d678710a43154da5a06b701c5830"
 

@@ -20,7 +20,6 @@ DEPENDS = " \
 
 SRC_URI = "git://github.com/jovanlanik/gtklock.git;protocol=https;branch=master"
 
-S = "${WORKDIR}/git"
 PV = "4.0.0"
 SRCREV = "66321fb2bf0d5869d779e7ac6b4d8d9c272ea707"
 

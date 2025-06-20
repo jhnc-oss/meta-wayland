@@ -41,7 +41,6 @@ SRC_URI = "git://github.com/swaywm/sway.git;protocol=https;branch=v1.10"
 
 SRCREV = "c93ff73051682913bf0238d15d6ee25d9a3e1a08"
 PV = "1.10"
-S = "${WORKDIR}/git"
 
 inherit meson pkgconfig features_check
 

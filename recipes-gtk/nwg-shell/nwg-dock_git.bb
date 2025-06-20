@@ -10,12 +10,10 @@ RDEPENDS:${PN} = "go-runtime"
 
 GO_IMPORT = "github.com/nwg-piotr/nwg-dock.git"
 
-SRC_URI = "git://${GO_IMPORT};destsuffix=src/${GO_IMPORT};nobranch=1;protocol=https"
+SRC_URI = "git://${GO_IMPORT};destsuffix=${BP}/src/${GO_IMPORT};nobranch=1;protocol=https"
 
 PV = "0.4.1"
 SRCREV = "3f010171ab8596552efdc2f03d5f09c0042bbb64"
-S = "${WORKDIR}/sources"
-UNPACKDIR = "${S}"
 
 inherit go go-mod pkgconfig
 

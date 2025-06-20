@@ -8,7 +8,6 @@ SRC_URI = "git://github.com/hyprwm/hyprcursor.git;protocol=https;branch=main"
 
 DEPENDS = "cairo librsvg libzip hyprlang tomlplusplus"
 
-S = "${WORKDIR}/git"
 SRCREV = "028bedbc63bf87937ce8f61f2a125fcc4929a98a"
 PV = "0.1.12"
 

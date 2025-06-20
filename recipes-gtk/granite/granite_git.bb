@@ -15,7 +15,6 @@ REQUIRED_DISTRO_FEATURES = "gobject-introspection-data"
 
 SRC_URI = "git://github.com/elementary/granite.git;protocol=https;nobranch=1"
 
-S = "${WORKDIR}/git"
 PV = "7.4.0"
 SRCREV = "949703f8649013695c6d32eb84a6b541ac0da4db"
 

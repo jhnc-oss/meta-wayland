@@ -9,7 +9,6 @@ SRC_URI = " \
 	git://github.com/JuliaStrings/utf8proc.git;protocol=https;branch=master \
 "
 
-S = "${WORKDIR}/git"
 PV = "2.8.0"
 SRCREV = "1cb28a66ca79a0845e99433fd1056257456cef8b"
 

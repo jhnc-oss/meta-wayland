@@ -29,7 +29,6 @@ DEPENDS = " \
 	wayland-protocols \
 "
 
-S = "${WORKDIR}/git"
 SRCREV = "6c64630df81b52208b210f02476f55e4db56e6cf"
 PV = "0.8.2"
 

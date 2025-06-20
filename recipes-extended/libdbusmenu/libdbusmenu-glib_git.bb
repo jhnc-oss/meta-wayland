@@ -7,7 +7,6 @@ SRC_URI = "git://github.com/JetBrains/libdbusmenu.git;protocol=https;branch=mast
 
 DEPENDS = "glib-2.0 json-glib dbus intltool-native libxslt-native"
 
-S = "${WORKDIR}/git"
 PV = "16.0.4"
 SRCREV = "38d7a2ada4b2a08c535491d43a39825868f2b065"
 EXTRA_OECONF += "--disable-dumper --disable-gtk --disable-gtk-doc"

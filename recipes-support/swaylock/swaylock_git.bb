@@ -22,7 +22,6 @@ SRC_URI = " \
 	git://github.com/swaywm/swaylock.git;protocol=https;branch=master \
 "
 
-S = "${WORKDIR}/git"
 PV = "1.7.2"
 SRCREV = "bd2dfec9ae0111b1858d5fab44f0f4fac4117d07"
 

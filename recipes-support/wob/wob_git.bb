@@ -25,7 +25,6 @@ PACKAGECONFIG[manpages] = "-Dman-pages=enabled,-Dman-pages=disabled,scdoc-native
 
 PACKAGECONFIG ??= ""
 
-S = "${WORKDIR}/git"
 PV = "0.16"
 SRCREV = "f7668d9715256a9d0dd05bc9eba7799d5ab2ce2d"
 

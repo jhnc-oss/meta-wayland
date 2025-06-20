@@ -19,7 +19,6 @@ SRC_URI = " \
 	git://github.com/wmww/gtk-layer-shell.git;protocol=https;branch=master \
 "
 
-S = "${WORKDIR}/git"
 PV = "0.9.0"
 SRCREV = "984dbbfc1d64c763e15a56dff662af267b551f68"
 

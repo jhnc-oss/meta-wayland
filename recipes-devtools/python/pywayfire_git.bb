@@ -8,4 +8,3 @@ SRC_URI = "git://github.com/WayfireWM/pywayfire.git;protocol=https;branch=main"
 SRCREV = "af2d7a187c8479c114102d6c9413ad25316b199a"
 PV = "0.3"
 
-S = "${WORKDIR}/git"

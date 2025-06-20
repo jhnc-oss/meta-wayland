@@ -29,7 +29,6 @@ RCONFLICTS:${PN} = "xdg-desktop-portal-wlr xdg-desktop-portal-gnome"
 inherit meson pkgconfig features_check
 REQUIRED_DISTRO_FEATURES = "opengl wayland"
 
-S = "${WORKDIR}/git"
 
 PACKAGECONFIG ?= "${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'systemd', '', d)}"
 PACKAGECONFIG[systemd] = "-Dsystemd=enabled,-Dsystemd=disabled,systemd"

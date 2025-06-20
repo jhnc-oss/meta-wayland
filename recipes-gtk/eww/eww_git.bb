@@ -22,7 +22,6 @@ SRC_URI += "git://github.com/elkowar/eww.git;protocol=https;nobranch=1"
 
 PV = "0.6.0+git"
 SRCREV = "0e409d4a52bd3d37d0aa0ad4e2d7f3b9a8adcdb7"
-S = "${WORKDIR}/git"
 
 inherit cargo rust cargo-update-recipe-crates pkgconfig
 

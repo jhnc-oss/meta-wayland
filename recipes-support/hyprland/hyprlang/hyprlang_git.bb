@@ -8,7 +8,6 @@ DEPENDS = "hyprutils"
 
 SRC_URI = "git://github.com/hyprwm/hyprlang.git;protocol=https;branch=main"
 
-S = "${WORKDIR}/git"
 SRCREV = "557241780c179cf7ef224df392f8e67dab6cef83"
 PV = "0.6.3"
 

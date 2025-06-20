@@ -17,8 +17,7 @@ SRC_URI = "git://${GO_IMPORT};destsuffix=src/${GO_IMPORT};nobranch=1;protocol=ht
 
 PV = "0.0.1"
 SRCREV = "782a37014de40f63115825c0b5bd343dee2ba668"
-S = "${WORKDIR}/sources"
-UNPACKDIR = "${S}"
+S = "${UNPACKDIR}/${BP}"
 
 inherit go go-mod pkgconfig gtk-icon-cache
 

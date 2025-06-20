@@ -10,7 +10,6 @@ SRC_URI = " \
 	file://0001-fix-wrong-math.patch \
 "
 
-S = "${WORKDIR}/git"
 SRCREV = "f582d648f37a9ed2de0c8650947487af8a54d3ad"
 PV = "0.7.1"
 

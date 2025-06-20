@@ -7,7 +7,6 @@ inherit meson pkgconfig gobject-introspection
 DEPENDS = "glib-2.0 json-glib"
 
 SRC_URI = "git://gitlab.gnome.org/World/Phosh/gmobile.git;protocol=https;branch=main"
-S = "${WORKDIR}/git"
 SRCREV = "ca8db41bb39a3117461614ae4558a3e3019a19be"
 PV = "0.2.1"
 

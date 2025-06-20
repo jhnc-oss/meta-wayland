@@ -8,7 +8,6 @@ SRC_URI += " \
     file://greetd.pam \
 "
 SRCREV = "08efe60feceea8c81f9571c666880ff1e1c2e3ff"
-S = "${WORKDIR}/git"
 PV = "0.10.3"
 
 DEPENDS = "libpam"

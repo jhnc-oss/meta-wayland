@@ -28,7 +28,6 @@ PACKAGECONFIG ?= " \
 SRC_URI = "git://github.com/nwg-piotr/nwg-launchers.git;protocol=https;branch=master"
 SRCREV = "c4d8d369782d32becfe8a8105abec9b61119a629"
 PV = "0.7.1.1"
-S = "${WORKDIR}/git"
 
 inherit meson pkgconfig
 

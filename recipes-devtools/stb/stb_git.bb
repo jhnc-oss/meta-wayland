@@ -5,7 +5,6 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=fb994481c55623ef338885280e676f3b"
 
 SRC_URI = "git://github.com/nothings/stb.git;protocol=https;branch=master"
 SRCREV = "013ac3beddff3dbffafd5177e7972067cd2b5083"
-S = "${WORKDIR}/git"
 
 do_install() {
 	install -d ${D}${includedir}/stb

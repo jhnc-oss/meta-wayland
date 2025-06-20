@@ -13,7 +13,6 @@ inherit meson gtk-icon-cache pkgconfig
 
 SRC_URI = "git://github.com/J-Lentz/iwgtk.git;protocol=https;branch=master"
 
-S = "${WORKDIR}/git"
 PV = "0.9"
 SRCREV = "9542ea7cb209c6692c83be95e8ab2826f5560289"
 

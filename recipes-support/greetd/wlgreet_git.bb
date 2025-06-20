@@ -10,7 +10,6 @@ inherit cargo pkgconfig
 
 SRC_URI = "git://git.sr.ht/~kennylevinsen/wlgreet;protocol=https;branch=master"
 
-S = "${WORKDIR}/git"
 PV = "0.5.0"
 SRCREV = "e4a7d1ff7f91bc28794e2420c7651a8e296c6509"
 

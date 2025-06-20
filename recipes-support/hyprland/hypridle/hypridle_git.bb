@@ -15,7 +15,6 @@ DEPENDS = " \
 	hyprland-protocols \
 "
 
-S = "${WORKDIR}/git"
 SRCREV = "84f9f2e127dba49c9bffe293f46bed400e0034a0"
 PV = "0.1.6"
 

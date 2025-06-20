@@ -54,7 +54,6 @@ SRC_URI = "gitsm://github.com/WayfireWM/wayfire.git;protocol=https;nobranch=1"
 
 SRCREV = "fdadd85665e3ec734d058c983495b2819da631c8"
 PV = "0.9.0"
-S = "${WORKDIR}/git"
 
 inherit meson pkgconfig features_check
 

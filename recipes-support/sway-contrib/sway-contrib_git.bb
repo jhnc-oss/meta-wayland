@@ -6,7 +6,6 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=1640a047991fe3cbc70d68830888e863"
 
 SRC_URI = "git://github.com/OctopusET/sway-contrib.git;protocol=https;branch=master"
 
-S = "${WORKDIR}/git"
 SRCREV = "b7825b218e677c65f6849be061b93bd5654991bf"
 PV = "1.9"
 

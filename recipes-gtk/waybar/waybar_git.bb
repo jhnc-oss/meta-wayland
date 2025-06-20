@@ -13,7 +13,6 @@ SRC_URI = " \
 	git://github.com/Alexays/Waybar.git;protocol=https;branch=master \
 "
 
-S = "${WORKDIR}/git"
 PV = "0.12.0"
 SRCREV = "8490a1d9b9a5c8770dd63e9faca0a5e01acedcae"
 

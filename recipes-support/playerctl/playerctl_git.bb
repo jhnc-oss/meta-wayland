@@ -11,7 +11,6 @@ inherit meson pkgconfig gobject-introspection
 
 EXTRA_OEMESON += "--buildtype=release -Dbash-completions=true -Dgtk-doc=false"
 
-S = "${WORKDIR}/git"
 PV = "2.4.1"
 SRCREV = "e5304e9dc9a0c0c32b3689c3f141cf266d27f59c"
 

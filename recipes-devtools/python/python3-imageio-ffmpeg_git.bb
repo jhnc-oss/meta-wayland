@@ -6,7 +6,6 @@ SRC_URI = "git://github.com/imageio/imageio-ffmpeg.git;protocol=https;branch=mai
 
 inherit python_setuptools_build_meta
 
-S = "${WORKDIR}/git"
 PV = "0.6.0"
 SRCREV = "ae47d8028c237ca5507ceef1b843ee427b442887"
 

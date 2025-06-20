@@ -27,7 +27,6 @@ DEPENDS = " \
 
 SRC_URI = "gitsm://gitlab.gnome.org/GNOME/calls.git;protocol=https;nobranch=1"
 
-S = "${WORKDIR}/git"
 SRCREV = "11ce0eae72f6f6eeb1c1de2cfe71046087368121"
 PV = "47.0"
 

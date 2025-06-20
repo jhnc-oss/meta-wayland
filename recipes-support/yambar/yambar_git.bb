@@ -25,7 +25,6 @@ RRECOMMENDS:${PN} += "font-awesome-otf"
 
 inherit meson pkgconfig
 
-S = "${WORKDIR}/git"
 PV = "1.11.0"
 SRCREV = "a2d30b96fbb026621ec11692272f0117f35a00fd"
 

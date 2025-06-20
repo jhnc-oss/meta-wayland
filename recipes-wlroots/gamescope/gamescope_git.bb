@@ -61,7 +61,6 @@ SRC_URI = "   \
 SRCREV = "df15bcd81ec65e109c740019cacff06ac6fb07db"
 PV = "3.16.11"
 
-S = "${WORKDIR}/git"
 
 inherit meson pkgconfig features_check
 

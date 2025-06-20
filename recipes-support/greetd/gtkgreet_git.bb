@@ -15,7 +15,6 @@ inherit meson pkgconfig
 
 SRC_URI = "git://git.sr.ht/~kennylevinsen/gtkgreet;protocol=https;branch=master"
 
-S = "${WORKDIR}/git"
 PV = "0.8"
 SRCREV = "7202ba6ec2334d64e1449e5f8310a63bd818d448"
 

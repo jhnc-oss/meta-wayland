@@ -10,7 +10,6 @@ RDEPENDS:${PN} = "python3-pillow"
 
 inherit setuptools3
 
-S = "${WORKDIR}/git"
 PV = "0.2.1"
 SRCREV = "3e96a52abfa34323c798a691b2970c6df3059fda"
 

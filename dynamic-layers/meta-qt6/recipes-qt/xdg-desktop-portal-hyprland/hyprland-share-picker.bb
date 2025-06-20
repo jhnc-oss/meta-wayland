@@ -14,6 +14,6 @@ inherit qt6-cmake features_check
 
 REQUIRED_DISTRO_FEATURES = "opengl wayland"
 
-S = "${WORKDIR}/git/hyprland-share-picker"
+S = "${UNPACKDIR}/${BP}/hyprland-share-picker"
 
 

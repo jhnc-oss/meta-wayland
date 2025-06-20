@@ -10,7 +10,6 @@ SRC_URI = " \
 	git://codeberg.org/dnkl/tllist.git;protocol=https;branch=master \
 "
 
-S = "${WORKDIR}/git"
 PV = "1.1.0"
 SRCREV = "8dcb0725c73eee9e350f41a921faf0bcd2ab9920"
 

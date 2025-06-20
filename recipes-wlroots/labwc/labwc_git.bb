@@ -37,7 +37,6 @@ SRC_URI = "git://github.com/labwc/labwc.git;protocol=https;branch=master"
 
 SRCREV = "9af441ecd36bbee66d4df46baa7b482872d989f2"
 PV = "0.8.4"
-S = "${WORKDIR}/git"
 
 inherit meson pkgconfig features_check gettext manpages
 
