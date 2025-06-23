@@ -27,7 +27,7 @@ PV = "0.5.0"
 inherit meson pkgconfig features_check
 
 EXTRA_OEMESON += "--buildtype release"
-GIR_EXTRA_LIBS_PATH="${WORKDIR}"
+GIR_EXTRA_LIBS_PATH = "${WORKDIR}"
 
 FILES:${PN} += "${prefix}"
 
