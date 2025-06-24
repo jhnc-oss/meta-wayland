@@ -1,7 +1,7 @@
 require cage.inc
 
 DEPENDS += "\
-    wlroots-0.18 \
+    wlroots-0.19 \
 "
 
-SRCREV = "19157d35649f96aa04d26036a76eaed65de60944"
+SRCREV = "3da3ec0c2776594a546478f0fc31f96ef74e03ac"
