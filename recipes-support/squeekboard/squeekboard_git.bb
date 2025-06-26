@@ -260,7 +260,7 @@ S = "${WORKDIR}/git"
 inherit cargo meson rust pkgconfig
 
 EXTRA_OEMESON = "\
-    -Dcargo-flags=[\'--target\',\'${HOST_SYS}\',\'-v\'] \
+    -Dcargo-flags=[\'--target\',\'${RUST_HOST_SYS}\',\'-v\'] \
     -Dtests=false \
     -Ddepdatadir=${datadir} \
     -Donline=false \
