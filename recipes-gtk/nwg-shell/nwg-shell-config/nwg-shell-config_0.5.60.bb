@@ -16,5 +16,5 @@ RDEPENDS:${PN} = "\
 
 inherit setuptools3
 
-SRCREV = "145bee8aa853331c63b12c7e486cce72973b7f30"
+SRCREV = "da13732599fc87f809efd194ffaae8f50c4d6488"
 
