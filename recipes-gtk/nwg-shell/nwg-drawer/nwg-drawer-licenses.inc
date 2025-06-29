@@ -4,20 +4,20 @@
 # Do not modify it by hand, as the contents will be replaced when
 # running the update-modules task.
 
-LICENSE += "& BSD-3-Clause & MIT & AGPL-3.0-only"
+LICENSE += "& AGPL-3.0-only & BSD-3-Clause & MIT"
 
 LIC_FILES_CHKSUM += "\
     file://pkg/mod/github.com/!karpeles!lab/weak@v0.1.1/LICENSE;md5=dd013f08c8940c6f43fdcc9987c0038a;spdx=MIT \
     file://pkg/mod/github.com/allan-simon/go-singleinstance@v0.0.0-20210120080615-d0997106ab37/LICENSE;md5=64080d7ce40e2ef2eee4754706a437c4;spdx=MIT \
-    file://pkg/mod/github.com/diamondburned/gotk4/pkg@v0.3.1/LICENSE;md5=48a3fe23ed1353e0995dadfda05ffdb6;spdx=Unknown \
+    file://pkg/mod/github.com/diamondburned/gotk4/pkg@v0.3.1/LICENSE;md5=48a3fe23ed1353e0995dadfda05ffdb6;spdx=AGPL-3.0-only \
     file://pkg/mod/github.com/diamondburned/gotk4-layer-shell/pkg@v0.0.0-20240109211357-6efa9f6dc438/LICENSE;md5=48a3fe23ed1353e0995dadfda05ffdb6;spdx=AGPL-3.0-only \
-    file://pkg/mod/github.com/expr-lang/expr@v1.17.2/LICENSE;md5=1cad8446548a7b361129ccfca629db1a;spdx=MIT \
-    file://pkg/mod/github.com/fsnotify/fsnotify@v1.9.0/LICENSE;md5=8bae8b116e2cfd723492b02d9a212fe2;spdx=Unknown \
+    file://pkg/mod/github.com/expr-lang/expr@v1.17.5/LICENSE;md5=1cad8446548a7b361129ccfca629db1a;spdx=MIT \
+    file://pkg/mod/github.com/fsnotify/fsnotify@v1.9.0/LICENSE;md5=8bae8b116e2cfd723492b02d9a212fe2;spdx=BSD-3-Clause \
     file://pkg/mod/github.com/joshuarubin/go-sway@v1.2.0/LICENSE;md5=31af8c91c36db9a0f3af00fd7f835a77;spdx=MIT \
     file://pkg/mod/github.com/joshuarubin/lifecycle@v1.1.4/LICENSE;md5=4c6cdbc97a8b3ebc75b8019059a1764b;spdx=MIT \
     file://pkg/mod/github.com/sirupsen/logrus@v1.9.3/LICENSE;md5=8dadfef729c08ec4e631c4f6fc5d43a0;spdx=MIT \
     file://pkg/mod/go.uber.org/multierr@v1.11.0/LICENSE.txt;md5=721ac51ede11efb667ff53a866be23c4;spdx=MIT \
     file://pkg/mod/go4.org/unsafe/assume-no-moving-gc@v0.0.0-20231121144256-b99613f794b6/LICENSE;md5=b2047a871cb3d8f43cf51a2b78e564ff;spdx=BSD-3-Clause \
-    file://pkg/mod/golang.org/x/sync@v0.14.0/LICENSE;md5=7998cb338f82d15c0eff93b7004d272a;spdx=BSD-3-Clause \
+    file://pkg/mod/golang.org/x/sync@v0.15.0/LICENSE;md5=7998cb338f82d15c0eff93b7004d272a;spdx=BSD-3-Clause \
     file://pkg/mod/golang.org/x/sys@v0.33.0/LICENSE;md5=7998cb338f82d15c0eff93b7004d272a;spdx=BSD-3-Clause \
 "

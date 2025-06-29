@@ -13,12 +13,11 @@ GO_IMPORT = "github.com/nwg-piotr/nwg-drawer.git"
 
 SRC_URI = "git://${GO_IMPORT};destsuffix=${BP}/src/${GO_IMPORT};nobranch=1;protocol=https"
 
-SRCREV = "a1c6c9e9782c6ce503bab453aeb91f67110d0741"
+SRCREV = "b6209d5ab30da1c4beadd22fb2a9a63bf1ef607b"
 
 require nwg-drawer-go-mods.inc nwg-drawer-licenses.inc
 
 inherit go go-mod pkgconfig go-mod-update-modules
-
 
 GO_INSTALL = "${GO_IMPORT}"
 GO_LINKSHARED = ""

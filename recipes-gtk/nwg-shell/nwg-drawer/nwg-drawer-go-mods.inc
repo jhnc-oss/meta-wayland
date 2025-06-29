@@ -11,7 +11,7 @@ SRC_URI += "\
     gomod://github.com/davecgh/go-spew;version=v1.1.1;mod=1;sha256sum=bcb29393251237b79a17b6c19bf29134f43e8f438c3198988fcd461a1cdf05cc \
     gomod://github.com/diamondburned/gotk4/pkg;version=v0.3.1;sha256sum=c9723192c5123d33d85cfbc39631f8246a76f767b44b36fb27f4366e7d8acdcd \
     gomod://github.com/diamondburned/gotk4-layer-shell/pkg;version=v0.0.0-20240109211357-6efa9f6dc438;sha256sum=3ef9010eaf29c3eae59874548604bead69cce6576de320c03c4216381be476d7 \
-    gomod://github.com/expr-lang/expr;version=v1.17.2;sha256sum=83ff8ba8f6c504875b6937ec6337e2aaf1367aafcae8e70a06b0d7bb8753bfa8 \
+    gomod://github.com/expr-lang/expr;version=v1.17.5;sha256sum=e4e3d59823c81d85519d7313729d8aa20d1574b1c801c4e1e9aa78eee92ca418 \
     gomod://github.com/fsnotify/fsnotify;version=v1.9.0;sha256sum=94e64824b23591b7aa504e3321d5ec3f57de88f4d49882eaefbbf6820dab746e \
     gomod://github.com/joshuarubin/go-sway;version=v1.2.0;sha256sum=bbe071602996dbfa1b8e810e0ecc59ce3e5f44ed8dce555e6cd9fb5b258278cd \
     gomod://github.com/joshuarubin/lifecycle;version=v1.0.0;mod=1;sha256sum=2f42c0d836de8768c3b18c4559a7d10dc1bccad7adfaaac225476f0a33220aca \
@@ -26,7 +26,7 @@ SRC_URI += "\
     gomod://go.uber.org/multierr;version=v1.11.0;sha256sum=2249b5d2fdce61f6ee661a679d8552599af084a761cbbc871da77641bddce0c3 \
     gomod://go4.org/unsafe/assume-no-moving-gc;version=v0.0.0-20231121144256-b99613f794b6;sha256sum=e9f5fa7ec7ae45153c6cb5b0c21e813860f9a4370b35ed1ab27398ba365dbb43 \
     gomod://golang.org/x/sync;version=v0.0.0-20190412183630-56d357773e84;mod=1;sha256sum=421f6139686d5891f3dc5a563d0995780d3279f65cad4d225cea52686794161c \
-    gomod://golang.org/x/sync;version=v0.14.0;sha256sum=8b19a2aa2162ec8fa1cba4762eb06b089ef8d2dbddf4e64ef51334e722b83a7f \
+    gomod://golang.org/x/sync;version=v0.15.0;sha256sum=74e221ae87caa0f9c7ec8c48c1ca39e9579ed89f094c7944bdda1cacae7d2a00 \
     gomod://golang.org/x/sys;version=v0.0.0-20220715151400-c0bba94af5f8;mod=1;sha256sum=f033333096fe198f3151deed93f2deba74e50bbfe7739134045bc3b7ce4a5024 \
     gomod://golang.org/x/sys;version=v0.33.0;sha256sum=182df79c87135f6dbd0d45656b6527e9221e28899ee44cc6cc7e7a396aedaef9 \
     gomod://gopkg.in/check.v1;version=v0.0.0-20161208181325-20d25e280405;mod=1;sha256sum=5c306e0d633cd66a11b40e2e5fbbc6da42110db7d72ea3c1524ceb45ee40c33f \
