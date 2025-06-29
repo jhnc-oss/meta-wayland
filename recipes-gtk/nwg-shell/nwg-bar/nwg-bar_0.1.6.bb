@@ -15,9 +15,9 @@ SRC_URI = "git://${GO_IMPORT};destsuffix=${BP}/src/${GO_IMPORT};nobranch=1;proto
 
 SRCREV = "c4da7d817747ad2f8cfda332d95bd4fc55eb6b34"
 
-inherit go go-mod pkgconfig
+require nwg-bar-go-mods.inc nwg-bar-licenses.inc
+
+inherit go go-mod pkgconfig go-mod-update-modules
 
 GO_INSTALL = "${GO_IMPORT}"
 GO_LINKSHARED = ""
-
-do_compile[network] = "1"

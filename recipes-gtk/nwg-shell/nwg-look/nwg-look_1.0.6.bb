@@ -10,7 +10,9 @@ GO_IMPORT = "github.com/nwg-piotr/nwg-look"
 SRC_URI = "git://${GO_IMPORT};destsuffix=${BP}/src/${GO_IMPORT};branch=main;protocol=https"
 SRCREV = "1282e6422491ea912ac22c5f532277eb011cc5bb"
 
-inherit go go-mod pkgconfig gtk-icon-cache
+require nwg-look-go-mods.inc nwg-look-licenses.inc
+
+inherit go go-mod pkgconfig go-mod-update-modules
 
 GO_INSTALL = "${GO_IMPORT}"
 
@@ -25,6 +27,4 @@ do_install:append() {
 }
 
 FILES:${PN} += "${datadir}"
-
-do_compile[network] = "1"
 

@@ -14,7 +14,9 @@ SRC_URI = "git://${GO_IMPORT};destsuffix=${BP}/src/${GO_IMPORT};nobranch=1;proto
 
 SRCREV = "ff1b4794255ed7501065982b067b3dbea0ae46ff"
 
-inherit go go-mod pkgconfig
+require nwg-dock-hyprland-go-mods.inc nwg-dock-hyprland-licenses.inc
+
+inherit go go-mod pkgconfig go-mod-update-modules
 
 GO_INSTALL = "${GO_IMPORT}"
 GO_LINKSHARED = ""
@@ -43,7 +45,5 @@ Restart=on-failure
 WantedBy=graphical-session.target
 EOF
 }
-
-do_compile[network] = "1"
 
 FILES:${PN} += "${systemd_user_unitdir}"

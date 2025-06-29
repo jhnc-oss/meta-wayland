@@ -19,7 +19,9 @@ SRC_URI = "git://${GO_IMPORT};destsuffix=${BP}/src/${GO_IMPORT};nobranch=1;proto
 
 SRCREV = "5806a1bb8b916478a5b25aec2a0c3cdcb071de0b"
 
-inherit go go-mod pkgconfig
+require nwg-menu-go-mods.inc nwg-menu-licenses.inc
+
+inherit go go-mod pkgconfig go-mod-update-modules
 
 GO_INSTALL = "${GO_IMPORT}"
 GO_LINKSHARED = ""
@@ -28,6 +30,4 @@ do_install:append() {
 	# remove precompiled x86 binary
 	rm -rf ${D}${libdir}/go/src/${GO_IMPORT}/bin
 }
-
-do_compile[network] = "1"
 
