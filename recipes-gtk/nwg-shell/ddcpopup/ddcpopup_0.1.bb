@@ -12,16 +12,15 @@ RDEPENDS:${PN} = "ddcutil"
 
 GO_IMPORT = "github.com/nwg-piotr/ddcpopup.git"
 
-SRC_URI = "git://${GO_IMPORT};destsuffix=src/${GO_IMPORT};nobranch=1;protocol=https"
+SRC_URI = "git://${GO_IMPORT};destsuffix=${BP}/src/${GO_IMPORT};nobranch=1;protocol=https"
 SRCREV = "8fab5132e49e08a1eeaa7a0dd3350d06f4399200"
-S = "${UNPACKDIR}/${BP}"
 
-inherit go go-mod pkgconfig
+inherit go go-mod pkgconfig go-mod-update-modules
+
+require ${PN}-go-mods.inc ${PN}-licenses.inc
 
 GO_INSTALL = "${GO_IMPORT}"
 GO_LINKSHARED = ""
-
-do_compile[network] = "1"
 
 do_install:append() {
 	mv ${D}${bindir}/main ${D}${bindir}/ddcpopup

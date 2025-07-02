@@ -15,7 +15,7 @@ SRC_URI = "git://${GO_IMPORT};destsuffix=${BP}/src/${GO_IMPORT};nobranch=1;proto
 
 SRCREV = "b6209d5ab30da1c4beadd22fb2a9a63bf1ef607b"
 
-require nwg-drawer-go-mods.inc nwg-drawer-licenses.inc
+require ${PN}-go-mods.inc ${PN}-licenses.inc
 
 inherit go go-mod pkgconfig go-mod-update-modules
 

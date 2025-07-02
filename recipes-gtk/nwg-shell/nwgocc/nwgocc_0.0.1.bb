@@ -13,12 +13,13 @@ RRECOMMENDS:${PN} = " \
 
 GO_IMPORT = "github.com/nwg-piotr/nwgocc.git"
 
-SRC_URI = "git://${GO_IMPORT};destsuffix=src/${GO_IMPORT};nobranch=1;protocol=https"
+SRC_URI = "git://${GO_IMPORT};destsuffix=${BP}/src/${GO_IMPORT};nobranch=1;protocol=https"
 
 SRCREV = "782a37014de40f63115825c0b5bd343dee2ba668"
-S = "${UNPACKDIR}/${BP}"
 
-inherit go go-mod pkgconfig gtk-icon-cache
+inherit go go-mod pkgconfig go-mod-update-modules gtk-icon-cache
+
+require ${PN}-go-mods.inc ${PN}-licenses.inc
 
 GO_INSTALL = "${GO_IMPORT}"
 GO_LINKSHARED = ""
@@ -41,6 +42,4 @@ do_install:append() {
 }
 
 FILES:${PN} += "${datadir}"
-
-do_compile[network] = "1"
 

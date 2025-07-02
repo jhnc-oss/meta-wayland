@@ -14,7 +14,7 @@ SRC_URI = "git://${GO_IMPORT};destsuffix=${BP}/src/${GO_IMPORT};nobranch=1;proto
 
 SRCREV = "ff1b4794255ed7501065982b067b3dbea0ae46ff"
 
-require nwg-dock-hyprland-go-mods.inc nwg-dock-hyprland-licenses.inc
+require ${PN}-go-mods.inc ${PN}-licenses.inc
 
 inherit go go-mod pkgconfig go-mod-update-modules
 

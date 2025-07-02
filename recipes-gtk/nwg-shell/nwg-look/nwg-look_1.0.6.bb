@@ -10,7 +10,7 @@ GO_IMPORT = "github.com/nwg-piotr/nwg-look"
 SRC_URI = "git://${GO_IMPORT};destsuffix=${BP}/src/${GO_IMPORT};branch=main;protocol=https"
 SRCREV = "1282e6422491ea912ac22c5f532277eb011cc5bb"
 
-require nwg-look-go-mods.inc nwg-look-licenses.inc
+require ${PN}-go-mods.inc ${PN}-licenses.inc
 
 inherit go go-mod pkgconfig go-mod-update-modules
 
