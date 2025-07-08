@@ -13,6 +13,7 @@ DEPENDS = " \
 	libinput \
 	seatd \
 	pixman \
+	virtual/libgl \
 	virtual/egl \
 	virtual/libgbm \
 	virtual/libgles3 \
@@ -24,6 +25,6 @@ DEPENDS = " \
 SRC_URI = "git://github.com/hyprwm/aquamarine.git;protocol=https;branch=main"
 SRC_URI += "file://0001-CMakeLists.txt-fix-linking-with-opengl.patch"
 
-SRCREV = "dd921421391e75793d0cc674dc15eca16b46a089"
+SRCREV = "d04e01e70c8b24f7b8fb340a66464e6922e90b1a"
 
 inherit cmake pkgconfig
