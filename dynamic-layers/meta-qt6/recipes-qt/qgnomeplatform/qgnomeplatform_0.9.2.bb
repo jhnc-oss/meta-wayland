@@ -19,7 +19,7 @@ RDEPENDS:${PN} = "adwaita-qt"
 
 inherit qt6-cmake
 
-EXTRA_OECMAKE += "-DUSE_QT6=ON"
+EXTRA_OECMAKE += "-DUSE_QT6=ON -DCMAKE_POLICY_VERSION_MINIMUM=3.5"
 
 SRC_URI = "git://github.com/FedoraQt/QGnomePlatform.git;protocol=https;nobranch=1"
 
