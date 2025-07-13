@@ -1,5 +1,5 @@
 SRC_URI = "git://github.com/hyprwm/hyprland-plugins.git;protocol=https;branch=main"
-SRCREV = "34f94ab7381860d42850fa41e91af497d4eb26dc"
+SRCREV = "d723e5b153b7990d36e62a425bda3768c41dd9eb"
 
 DEPENDS = " \
     pixman \
