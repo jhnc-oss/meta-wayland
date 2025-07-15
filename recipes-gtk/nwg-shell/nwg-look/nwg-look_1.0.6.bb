@@ -7,7 +7,7 @@ RDEPENDS:${PN} = "xcur2png go-runtime"
 
 GO_IMPORT = "github.com/nwg-piotr/nwg-look"
 
-SRC_URI = "git://${GO_IMPORT};destsuffix=${BP}/src/${GO_IMPORT};branch=main;protocol=https"
+SRC_URI = "git://${GO_IMPORT};destsuffix=${BB_GIT_DEFAULT_DESTSUFFIX}/src/${GO_IMPORT};branch=main;protocol=https"
 SRCREV = "1282e6422491ea912ac22c5f532277eb011cc5bb"
 
 require ${PN}-go-mods.inc ${PN}-licenses.inc

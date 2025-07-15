@@ -4,7 +4,7 @@ LIC_FILES_CHKSUM = "file://../LICENSE;md5=e6458723c467506fd0c4aea3be2bcf8a"
 
 require hyprland-plugins.inc
 
-S = "${UNPACKDIR}/${BP}/csgo-vulkan-fix"
+S = "${UNPACKDIR}/${BB_GIT_DEFAULT_DESTSUFFIX}/csgo-vulkan-fix"
 
 FILES:${PN} += "${libdir}/libcsgo-vulkan-fix.so"
 

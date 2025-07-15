@@ -13,7 +13,7 @@ RRECOMMENDS:${PN} = " \
 
 GO_IMPORT = "github.com/nwg-piotr/nwgocc.git"
 
-SRC_URI = "git://${GO_IMPORT};destsuffix=${BP}/src/${GO_IMPORT};nobranch=1;protocol=https"
+SRC_URI = "git://${GO_IMPORT};destsuffix=${BB_GIT_DEFAULT_DESTSUFFIX}/src/${GO_IMPORT};nobranch=1;protocol=https"
 
 SRCREV = "782a37014de40f63115825c0b5bd343dee2ba668"
 

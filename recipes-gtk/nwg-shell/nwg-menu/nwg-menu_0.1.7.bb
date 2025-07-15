@@ -15,7 +15,7 @@ RRECOMMENDS:${PN} = " \
 
 GO_IMPORT = "github.com/nwg-piotr/nwg-menu.git"
 
-SRC_URI = "git://${GO_IMPORT};destsuffix=${BP}/src/${GO_IMPORT};nobranch=1;protocol=https"
+SRC_URI = "git://${GO_IMPORT};destsuffix=${BB_GIT_DEFAULT_DESTSUFFIX}/src/${GO_IMPORT};nobranch=1;protocol=https"
 
 SRCREV = "5806a1bb8b916478a5b25aec2a0c3cdcb071de0b"
 
