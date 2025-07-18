@@ -8,7 +8,7 @@ SRC_URI += "file://0001-dont-bake-compile-flags-into-binary.patch"
 
 SRCREV = "91dcb41d2216be6b11955c59b54637bff6c2f296"
 
-DEPENDS = "cli11 qtbase qttools-native qtdeclarative qtshadertools spirv-tools virtual/libgbm"
+DEPENDS = "cli11 qtbase qttools-native qtdeclarative qtquick3d qtshadertools spirv-tools virtual/libgbm"
 
 inherit qt6-cmake pkgconfig
 
