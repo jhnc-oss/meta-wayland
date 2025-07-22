@@ -40,7 +40,7 @@ PACKAGECONFIG ?= " \
 "
 
 SRC_URI = "git://gitlab.freedesktop.org/wlroots/wlroots.git;branch=master;protocol=https"
-SRCREV = "58c3680d96bffa1b8f59c274050a6ecfa27e7c23"
+SRCREV = "ccec4116b3a113e9a082f9712f675c30552a0b35"
 
 
 inherit meson pkgconfig features_check
