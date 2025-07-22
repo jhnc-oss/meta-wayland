@@ -38,7 +38,7 @@ RRECOMMENDS:${PN} ?= " \
 
 SRC_URI = "git://github.com/swaywm/sway.git;protocol=https;branch=master"
 
-SRCREV = "a1ac2a2e93ffb3341253af30603cf16483d766bb"
+SRCREV = "e50b16a69969d136595efe2b595cf55c9cef39fb"
 
 inherit meson pkgconfig features_check
 
