@@ -1,0 +1,28 @@
+From c10190aa7437be4d0db8c4a2545d1feb8e17e5ad Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Sun, 27 Jul 2025 23:32:02 +0200
+Subject: [PATCH] style/CMakeLists.txt: set KVANTUM_STYLES_DIR
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+
+Upstream-Status: Pending
+---
+ style/CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/style/CMakeLists.txt b/Kvantum/style/CMakeLists.txt
+index 3ba5126c..e268bc55 100644
+--- a/style/CMakeLists.txt
++++ b/style/CMakeLists.txt
+@@ -34,7 +34,7 @@ if(QT_VERSION_MAJOR EQUAL 6)
+   execute_process(COMMAND "${REAL_QMAKE_EXECUTABLE}" -query QT_INSTALL_PLUGINS
+                   OUTPUT_VARIABLE _Qt6_PLUGIN_INSTALL_DIR
+                   ERROR_QUIET OUTPUT_STRIP_TRAILING_WHITESPACE)
+-  set(KVANTUM_STYLE_DIR "${_Qt6_PLUGIN_INSTALL_DIR}/styles/")
++  set(KVANTUM_STYLE_DIR "${CMAKE_INSTALL_PREFIX}/lib/plugins/styles/")
+ 
+   include_directories(${CMAKE_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}
+                       ${Qt6Core_INCLUDE_DIRS} ${Qt6Widgets_INCLUDE_DIRS}
+-- 
+2.50.1
+
