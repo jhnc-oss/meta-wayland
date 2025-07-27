@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=3000208d539ec061b899bce1d9ce9404"
 SRC_URI = "git://github.com/quickshell-mirror/quickshell.git;protocol=https;branch=master"
 SRC_URI += "file://0001-dont-bake-compile-flags-into-binary.patch"
 
-SRCREV = "91dcb41d2216be6b11955c59b54637bff6c2f296"
+SRCREV = "a5431dd02dc23d9ef1680e67777fed00fe5f7cda"
 
 DEPENDS = "cli11 qtbase qttools-native qtdeclarative qtquick3d qtshadertools spirv-tools virtual/libgbm"
 RRECOMMENDS:${PN} = "qt5compat"
