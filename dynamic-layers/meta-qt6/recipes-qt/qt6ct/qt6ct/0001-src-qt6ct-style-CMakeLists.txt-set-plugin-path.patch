@@ -1,0 +1,25 @@
+From ed29bf6ad09df6cba046b2649b5d6f7594c6d272 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Mon, 28 Jul 2025 12:10:27 +0200
+Subject: [PATCH] src/qt6ct-style/CMakeLists.txt: set plugin path
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+
+Upstream-Status: Pending
+---
+ src/qt6ct-style/CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/qt6ct-style/CMakeLists.txt b/src/qt6ct-style/CMakeLists.txt
+index ea8f426..c131729 100644
+--- a/src/qt6ct-style/CMakeLists.txt
++++ b/src/qt6ct-style/CMakeLists.txt
+@@ -11,4 +11,4 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../)
+ 
+ add_library(qt6ct-style MODULE ${app_SRCS})
+ target_link_libraries(qt6ct-style PRIVATE Qt6::Widgets qt6ct-common)
+-install(TARGETS qt6ct-style DESTINATION ${PLUGINDIR}/styles)
++install(TARGETS qt6ct-style DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/plugins/styles)
+-- 
+2.50.1
+

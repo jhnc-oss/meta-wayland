@@ -1,0 +1,25 @@
+From 197207257c7c7d1d20c2a4e65ebfa40171478509 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Mon, 28 Jul 2025 12:00:47 +0200
+Subject: [PATCH] src/qt6ct-qtplugin/CMakeLists.txt: set plugin path
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+
+Upstream-Status: Pending
+---
+ src/qt6ct-qtplugin/CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/qt6ct-qtplugin/CMakeLists.txt b/src/qt6ct-qtplugin/CMakeLists.txt
+index c3d7498..40774a9 100644
+--- a/src/qt6ct-qtplugin/CMakeLists.txt
++++ b/src/qt6ct-qtplugin/CMakeLists.txt
+@@ -10,4 +10,4 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../)
+ add_library(qt6ct-qtplugin MODULE ${app_SRCS})
+ set_target_properties(qt6ct-qtplugin PROPERTIES OUTPUT_NAME qt6ct)
+ target_link_libraries(qt6ct-qtplugin PRIVATE Qt6::Widgets Qt6::GuiPrivate qt6ct-common)
+-install(TARGETS qt6ct-qtplugin DESTINATION ${PLUGINDIR}/platformthemes)
++install(TARGETS qt6ct-qtplugin DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/plugins/platformthemes)
+-- 
+2.50.1
+
