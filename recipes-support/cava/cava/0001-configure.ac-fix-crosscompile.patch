@@ -1,0 +1,77 @@
+From ab53b2d40094eb12ffd4f470af4aaafae9dde3bb Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Tue, 29 Jul 2025 10:02:43 +0200
+Subject: [PATCH] configure.ac: fix crosscompile
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+
+Upstream-Status: Pending
+---
+ configure.ac | 40 +++++++++-------------------------------
+ 1 file changed, 9 insertions(+), 31 deletions(-)
+
+diff --git a/configure.ac b/configure.ac
+index 624e8d8..71845af 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -349,40 +349,18 @@ AM_CONDITIONAL([SDL_GLSL], [test "x$have_opengl" = "xyes"])
+ dnl ######################
+ dnl checking for ncursesw
+ dnl ######################
+-AC_ARG_ENABLE([output_ncurses],
+-  AS_HELP_STRING([--disable-output-ncurses],
+-    [do not include support for output with ncurses])
+-)
+-
+-AS_IF([test "x$enable_output_ncurses" != "xno"], [
+-  curses_config_bin="ncursesw6-config ncursesw5-config"
+-
+-  AC_PATH_PROGS(CURSES_CONFIG, $curses_config_bin)
+-
+-  AC_CHECK_LIB(ncursesw, initscr,
+-    curses_lib=ncursesw
+-  )
+-
+-  AC_CHECK_LIB($curses_lib, initscr,
+-    if test "$CURSES_CONFIG" = "" ; then
+-      LIBS="$LIBS -l$curses_lib"
+-      CPPFLAGS="$CPPFLAGS -DNCURSES"
+-    fi
+-    if test "$CURSES_CONFIG" != "" ; then
+-      CPPFLAGS="$CPPFLAGS `$CURSES_CONFIG --cflags` -DNCURSES"
+-      LIBS="$LIBS `$CURSES_CONFIG --libs`"
+-    fi
+ 
+-    AC_CHECK_HEADERS([curses.h], , AC_MSG_ERROR([missing curses.h header]))
+-    have_ncurses=yes,
++PKG_CHECK_MODULES(NCURSESW, ncursesw, have_ncursesw_pkg=yes, have_ncursesw_pkg=no)
++  if [[ $have_ncursesw_pkg = "yes" ]] ; then
++    LIBS="$LIBS $NCURSESW_LIBS"
++    CPPFLAGS="$CPPFLAGS $NCURSESW_CFLAGS"
++  fi
+ 
++  if [[ $have_ncursesw_pkg = "no" ]] ; then
+     AC_MSG_NOTICE([WARNING: building without ncursesw support ncursesw is recomended!])
+-    have_ncurses=no
+-  )],
+-  [have_ncurses=no]
+-)
++  fi
+ 
+-AM_CONDITIONAL([NCURSES], [test "x$have_ncurses" = "xyes"])
++AM_CONDITIONAL([NCURSES], [test "x$have_ncurses" = "xyes"])
+ 
+ 
+ dnl ######################
+@@ -422,7 +400,7 @@ dnl ######################
+ dnl checking for iniparser
+ dnl ######################
+ 
+-  PKG_CHECK_MODULES(INIPARSER, libiniparser, have_iniparser_pkg=yes, have_iniparser_pkg=no)
++  PKG_CHECK_MODULES(INIPARSER, iniparser, have_iniparser_pkg=yes, have_iniparser_pkg=no)
+   if [[ $have_iniparser_pkg = "yes" ]] ; then
+     LIBS="$LIBS $INIPARSER_LIBS"
+     CPPFLAGS="$CPPFLAGS $INIPARSER_CFLAGS"
+-- 
+2.50.1
+
