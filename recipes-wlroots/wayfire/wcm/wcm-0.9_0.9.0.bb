@@ -6,12 +6,12 @@ LICENSE = "MIT"
 
 LIC_FILES_CHKSUM = "file://${S}/LICENSE;md5=553c79c4d7ca30085e1d7bfea724a8aa"
 DEPENDS = " \
-	wayfire \
+	wayfire-0.9 \
 	wayland \
 	wayland-native \
 	wayland-protocols \
 	gtkmm3 \
-	wf-shell \
+	wf-shell-0.9 \
 "
 
 REQUIRED_DISTRO_FEATURES = "wayland"
@@ -21,7 +21,7 @@ SRCREV = "74a16f5ca6aaff9f17e8a38976968b3007c74e87"
 
 inherit meson pkgconfig features_check
 
-EXTRA_OEMESON += "--buildtype release"
+EXTRA_OEMESON += "--buildtype release -Denable_wdisplays=false"
 
 FILES:${PN} += "${prefix}"
 

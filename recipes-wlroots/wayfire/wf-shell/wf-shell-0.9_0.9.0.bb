@@ -10,7 +10,7 @@ DEPENDS = " \
 	wayland \
 	wayland-native \
 	wayland-protocols \
-	wayfire \
+	wayfire-0.9 \
 	gtkmm3 \
 	gtk-layer-shell \
 	pulseaudio \
