@@ -16,3 +16,5 @@ do_configure:prepend() {
 }
 
 FILES:${PN} += "${datadir}"
+
+RDEPENDS:${PN} = "ncurses-tools"
