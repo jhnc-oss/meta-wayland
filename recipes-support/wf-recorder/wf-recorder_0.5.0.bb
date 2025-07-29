@@ -20,15 +20,11 @@ REQUIRED_DISTRO_FEATURES = "wayland"
 SRC_URI = " \
 	git://github.com/ammen99/wf-recorder.git;protocol=https;branch=master \
 "
-SRCREV = "5cfca204b6737e9c82e7430e1b59337eb4467c52"
-
+SRCREV = "664fc451caa7559a39c2cdd70ff02ea781e2d4b3"
 
 inherit meson pkgconfig features_check
 
 EXTRA_OEMESON += "--buildtype release"
-GIR_EXTRA_LIBS_PATH = "${WORKDIR}"
 
-FILES:${PN} += "${prefix}"
-
-BBCLASSEXTEND = ""
+FILES:${PN} += "${datadir}/fish"
 
