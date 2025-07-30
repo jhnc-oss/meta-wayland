@@ -1,0 +1,28 @@
+From ab53b2d40094eb12ffd4f470af4aaafae9dde3bb Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Tue, 29 Jul 2025 10:02:43 +0200
+Subject: [PATCH] configure.ac: fix find iniparser
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+
+Upstream-Status: Inappropriate [oe-specific]
+---
+ configure.ac | 40 +++++++++-------------------------------
+ 1 file changed, 9 insertions(+), 31 deletions(-)
+
+diff --git a/configure.ac b/configure.ac
+index 624e8d8..40698e6 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -422,7 +414,7 @@ dnl ######################
+ dnl checking for iniparser
+ dnl ######################
+ 
+-  PKG_CHECK_MODULES(INIPARSER, libiniparser, have_iniparser_pkg=yes, have_iniparser_pkg=no)
++  PKG_CHECK_MODULES(INIPARSER, iniparser, have_iniparser_pkg=yes, have_iniparser_pkg=no)
+   if [[ $have_iniparser_pkg = "yes" ]] ; then
+     LIBS="$LIBS $INIPARSER_LIBS"
+     CPPFLAGS="$CPPFLAGS $INIPARSER_CFLAGS"
+-- 
+2.50.1
+
