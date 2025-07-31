@@ -29,7 +29,7 @@ DEPENDS = " \
 	wayland-protocols \
 "
 
-SRCREV = "31297a871b7b1aea35dcf8627c6bfecf33fe03db"
+SRCREV = "bdf0ef82822a4c434b79c8d315518c9db9a10f34"
 
 inherit cmake pkgconfig features_check
 
