@@ -8,15 +8,13 @@ SRC_URI = "git://github.com/rockowitz/ddcutil.git;protocol=https;branch=master"
 
 DEPENDS = "i2c-tools glib-2.0 kmod jansson"
 
-SRCREV = "ca610f91d5483e19bfdae88bb0094973cc81fc95"
+SRCREV = "0b26bbec67b09b5ab594a06de8bbbdea621e8628"
 
-inherit autotools pkgconfig gobject-introspection
+inherit autotools-brokensep pkgconfig gobject-introspection
 
 EXTRA_OECONF:remove = '--enable-introspection'
 
-CFLAGS += "-Wno-unused-but-set-variable"
-
-PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'drm x11 systemd', d)}"
+PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'x11 systemd', d)} drm usb"
 
 PACKAGECONFIG[drm] = "--enable-drm=yes,--enable-drm=no,libdrm"
 PACKAGECONFIG[systemd] = "--enable-udev=yes,--enable-udev=no,udev"
@@ -25,7 +23,7 @@ PACKAGECONFIG[x11] = "--enable-x11=yes,--enable-x11=no,libx11 xrandr"
 
 do_install:append () {
 	install -d ${D}${sysconfdir}/udev/rules.d
-	cp -rf ${D}${datadir}/ddcutil/data/* ${D}${sysconfdir}/udev/rules.d
+	echo 'SUBSYSTEM=="i2c-dev", KERNEL=="i2c-[0-9]*", ATTRS{class}=="0x030000", TAG+="uaccess" ' > ${D}${sysconfdir}/udev/rules.d/60-ddcutil-i2c.rules
 }
 
 FILES:${PN} += "${sysconfdir} ${libdir}/modules-load.d/ddcutil.conf"
