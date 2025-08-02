@@ -3,7 +3,7 @@ HOMEPAGE = "https://hyprland.org/"
 SECTION = "graphics"
 LICENSE = "BSD-3-Clause"
 
-LIC_FILES_CHKSUM = "file://LICENSE;md5=e5285450935e9c47f839569c8cbd4e29"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=caa26b106f897db6f8f81cc397942426"
 
 REQUIRED_DISTRO_FEATURES = "wayland opengl"
 
@@ -45,7 +45,7 @@ RRECOMMENDS:${PN} ?= " \
 
 SRC_URI = "gitsm://github.com/hyprwm/Hyprland.git;protocol=https;nobranch=1"
 SRC_URI += "file://0001-meson.build-use-pkgconfig-for-glaze.patch"
-SRCREV = "4e242d086e20b32951fdc0ebcbfb4d41b5be8dcc"
+SRCREV = "c14f792f8f1e733a0d8310712c7ca7969aa68a67"
 
 inherit meson pkgconfig features_check
 
