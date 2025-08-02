@@ -43,7 +43,7 @@ RDEPENDS:${PN} = "xwayland hwdata"
 
 CXXFLAGS:append = " -I${STAGING_INCDIR}/stb"
 
-PACKAGECONFIG ?= "${@bb.utils.filter('DISTRO_FEATURES', 'pipewire', d)} rt_cap avif_screenshots openvr input_emulation drm_backend"
+PACKAGECONFIG ?= "${@bb.utils.filter('DISTRO_FEATURES', 'pipewire', d)} sdl2_backend rt_cap avif_screenshots openvr input_emulation drm_backend"
 PACKAGECONFIG[benchmark] = "-Dbenchmark=enabled,-Dbenchmark=disabled"
 PACKAGECONFIG[input_emulation] = "-Dinput_emulation=enabled,-Dinput_emulation=disabled,libei"
 PACKAGECONFIG[openvr] = "-Denable_openvr_support=true,-Denable_openvr_support=false"
@@ -58,7 +58,7 @@ SRC_URI = "   \
 	file://0001-meson.build-dont-use-wrap-based-subprojects.patch \
 	file://0001-meson.build-dont-leak-buildpath.patch \
 "
-SRCREV = "eb620ab0f2ce4c39a1321e8f594c157c2c810c3e"
+SRCREV = "1faf7acd90f960b8e6c816bfea15f699b70527f9"
 
 
 inherit meson pkgconfig features_check
