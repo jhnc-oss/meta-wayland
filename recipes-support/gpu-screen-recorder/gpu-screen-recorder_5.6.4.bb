@@ -29,4 +29,8 @@ inherit meson pkgconfig features_check
 
 EXTRA_OEMESON += "--buildtype release"
 
+do_install:append() {
+	rm ${D}${systemd_user_unitdir}/${PN}.service
+}
+
 FILES:${PN} += "${libdir}"
