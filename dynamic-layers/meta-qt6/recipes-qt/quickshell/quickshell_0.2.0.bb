@@ -17,7 +17,7 @@ EXTRA_OECMAKE += "-DCMAKE_BUILD_TYPE=RelWithDebInfo"
 
 FILES:${PN} += "${libdir}/qml/Quickshell ${datadir}"
 
-PACKAGECONFIG = "${@bb.utils.filter('DISTRO_FEATURES', 'x11 wayland pipewire bluetooth pam', d)} hyprland mpris systray upower notifications"
+PACKAGECONFIG = "${@bb.utils.filter('DISTRO_FEATURES', 'x11 wayland pipewire bluetooth pam', d)} hyprland mpris systray upower notifications i3 greetd"
 PACKAGECONFIG[x11] = "-DX11=ON,-DX11=OFF,libx11 libxcb"
 PACKAGECONFIG[wayland] = "-DWAYLAND=ON,DWAYLAND=OFF,qtwayland qtwayland-native"
 PACKAGECONFIG[hyprland] = "-DHYPRLAND=ON,-DHYPRLAND=OFF"
