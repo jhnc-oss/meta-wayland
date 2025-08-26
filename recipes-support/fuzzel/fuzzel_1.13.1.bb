@@ -9,7 +9,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=3a7351a597a91e763901f7c76f21e798"
 REQUIRED_DISTRO_FEATURES = "wayland"
 
 SRC_URI = " \
-	git://codeberg.org/dnkl/fuzzel.git;protocol=https;branch=releases/1.12 \
+	git://codeberg.org/dnkl/fuzzel.git;protocol=https;branch=releases/1.13 \
 "
 
 DEPENDS = " \
@@ -23,7 +23,7 @@ DEPENDS = " \
 	wayland-protocols \
 "
 
-SRCREV = "05270d0458310abecec94a65c6e96b90db70e47a"
+SRCREV = "e0f866798824eaf5a00b03746df19e5b9fa35333"
 
 inherit meson pkgconfig features_check
 
