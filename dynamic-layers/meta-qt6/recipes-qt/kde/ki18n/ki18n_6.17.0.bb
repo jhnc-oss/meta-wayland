@@ -18,9 +18,9 @@ DEPENDS = " \
 inherit qt6-cmake gettext pkgconfig
 
 do_install:append() {
-	# cmake file contains tmpdir. FIXME
-	rm ${D}${libdir}/cmake/KF6I18n/KF6I18nMacros.cmake
+    sed -i 's|${STAGING_BINDIR_NATIVE}/python3-native|${bindir}|' ${D}${libdir}/cmake/KF6I18n/KF6I18nMacros.cmake
 }
+
 
 FILES:${PN} += "${libdir}/qml ${libdir}/plugins/kf6 ${datadir}/qlogging-categories6"
 
