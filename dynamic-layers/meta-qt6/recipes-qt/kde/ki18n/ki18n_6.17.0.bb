@@ -15,6 +15,12 @@ DEPENDS = " \
 	kconfig \
 "
 
-inherit qt6-cmake gettext
+inherit qt6-cmake gettext pkgconfig
+
+do_install:append() {
+	# cmake file contains tmpdir. FIXME
+	rm ${D}${libdir}/cmake/KF6I18n/KF6I18nMacros.cmake
+}
 
 FILES:${PN} += "${libdir}/qml ${libdir}/plugins/kf6 ${datadir}/qlogging-categories6"
+
