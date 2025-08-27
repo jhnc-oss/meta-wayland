@@ -19,4 +19,19 @@ DEPENDS = " \
 
 inherit qt6-cmake gettext pkgconfig
 
+do_configure:prepend() {
+	# Those files are provided by 'kconfig' package but dont make it into STAGING_SYSROOT
+	#|   The imported target "KF6::kconfig_compiler" references the file
+	#|
+	#|      "../6.17.0/recipe-sysroot/usr/libexec/kf6/kconfig_compiler_kf6"
+	#|
+	#|   but this file does not exist.
+	# add a hack to avoid cmake confusion:
+	mkdir -p ${STAGING_LIBEXECDIR}/kf6
+	touch ${STAGING_LIBEXECDIR}/kf6/kconf_update
+	touch ${STAGING_LIBEXECDIR}/kf6/kconfig_compiler_kf6
+}
+
 FILES:${PN} += "${libdir}/qml ${datadir}/qlogging-categories6"
+
+RDEPENDS:${PN} += "kconfig"
