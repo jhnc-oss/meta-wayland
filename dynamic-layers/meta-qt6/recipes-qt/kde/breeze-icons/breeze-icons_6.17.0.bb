@@ -4,6 +4,7 @@ LICENSE = "LGPL-2.1-only"
 LIC_FILES_CHKSUM += "file://COPYING.LIB;md5=2d5025d4aa3495befef8f17206a5b0a1"
 
 SRC_URI = "git://invent.kde.org/frameworks/breeze-icons.git;protocol=https;nobranch=1"
+SRC_URI += "file://0001-icons-dark-CMakeLists.txt-dont-use-target-binary.patch"
 SRCREV = "2a9b908671d4168fa94583f043c33f6b90aec3a7"
 
 DEPENDS = " \
@@ -18,9 +19,13 @@ DEPENDS = " \
 
 inherit qt6-cmake pkgconfig
 
+EXTRA_OECMAKE:class-native += "-DWITH_ICON_GENERATION=OFF"
+
 do_install:class-native() {
 	install -d ${D}${bindir}
-	install -m 755 ${B}/bin/qrcAlias ${D}${bindir}
+	for file in ${B}/bin/*; do
+		install -m 755 $file ${D}${bindir}
+	done
 }
 
 FILES:${PN} += "${libdir}/qml ${datadir}/icons"

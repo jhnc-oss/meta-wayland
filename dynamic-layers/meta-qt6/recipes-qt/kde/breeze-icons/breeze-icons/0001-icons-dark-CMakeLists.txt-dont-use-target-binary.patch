@@ -1,0 +1,28 @@
+From 7a59af580210d064316ac07e606cba06b9cab9fd Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Wed, 27 Aug 2025 20:01:28 +0200
+Subject: [PATCH] icons-dark/CMakeLists.txt: dont use target binary
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+
+Upstream-Status: Inappropriate [oe-specific]
+---
+ icons-dark/CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/icons-dark/CMakeLists.txt b/icons-dark/CMakeLists.txt
+index 567a7b1c..d03f8453 100644
+--- a/icons-dark/CMakeLists.txt
++++ b/icons-dark/CMakeLists.txt
+@@ -15,7 +15,7 @@ if(WITH_ICON_GENERATION)
+     # No trainling slashes on dirs. It will break scripts.
+     add_custom_target(breeze-generate-symbolic-dark ALL
+         COMMENT "Generating symbolic dark icons"
+-        COMMAND $<TARGET_FILE:generate-symbolic-dark> ${CMAKE_SOURCE_DIR}/icons ${ICON_GEN_DIR}
++        COMMAND "generate-symbolic-dark" ${CMAKE_SOURCE_DIR}/icons ${ICON_GEN_DIR}
+     )
+     # Auto-generate 24px monochrome icons from 22px versions
+     add_custom_target(breeze-generate-24px-versions-dark ALL
+-- 
+2.50.1
+
