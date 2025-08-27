@@ -7,6 +7,7 @@ SRC_URI = "git://invent.kde.org/frameworks/kcolorscheme.git;protocol=https;nobra
 SRCREV = "7272e587bccbed92b08aeb663c31e049e881918b"
 
 DEPENDS = " \
+	appstream-native \
 	qtbase \
 	qtwayland \
 	qtwayland-native \
