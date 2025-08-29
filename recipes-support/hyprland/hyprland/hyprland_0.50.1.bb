@@ -19,7 +19,6 @@ DEPENDS += " \
 	libdrm \
 	libinput \
 	libxcursor \
-	libxcb \
 	libxkbcommon \
 	pango \
 	pixman \
@@ -28,9 +27,6 @@ DEPENDS += " \
 	util-linux-libuuid \
 	virtual/egl \
 	wayland-native \
-	xcb-util-wm \
-	xcb-util-renderutil \
-	xcb-util-errors \
 	hyprwayland-scanner-native \
 "
 
@@ -45,19 +41,24 @@ RRECOMMENDS:${PN} ?= " \
 
 SRC_URI = "gitsm://github.com/hyprwm/Hyprland.git;protocol=https;nobranch=1"
 SRC_URI += "file://0001-meson.build-use-pkgconfig-for-glaze.patch"
-SRCREV = "0ed880f3f7dc2c746bf3590eee266c010d737558"
+SRCREV = "05a1c0aa7395d19213e587c83089ecbd7b92085c"
 
-inherit meson pkgconfig features_check
+inherit cmake pkgconfig features_check
 
+EXTRA_OECMAKE += "-DCMAKE_BUILD_TYPE=Release"
+ 
 PACKAGECONFIG ?= "${@bb.utils.filter('DISTRO_FEATURES', 'systemd xwayland', d)}"
 
-PACKAGECONFIG[systemd] = "-Dsystemd=enabled,-Dsystemd=disabled"
-PACKAGECONFIG[xwayland] = "-Dxwayland=enabled,-Dxwayland=disabled,libxcb xcb-util-wm xcb-util-renderutil xwayland,xwayland"
-PACKAGECONFIG[qt] = ",,hyprland-qtutils,hyprland-qtutils hyprpolkitagent xdg-desktop-portal-hyprland hyprsysteminfo hyprland-welcome hyprland-qt-support qt6ct"
+PACKAGECONFIG[tests] = "-DTESTS=ON,-DNO_TESTS=ON"
+PACKAGECONFIG[systemd] = "-DSYSTEMD=ON,-DNO_SYSTEMD=ON"
+PACKAGECONFIG[xwayland] = "-DXWAYLAND=ON,-DNO_XWAYLAND=ON,libxcb xcb-util-wm xcb-util-renderutil xcb-util-errors xwayland,xwayland"
+PACKAGECONFIG[qt] = ",,hyprland-qtutils,hyprland-qtutils hyprpolkitagent xdg-desktop-portal-hyprland hyprsysteminfo hyprland-welcome hyprland-qt-support hyprqt6engine qt6ct"
+
+B = "${S}"
 
 do_configure:prepend() {
 	cd ${S} && scripts/generateVersion.sh
 }
 
-FILES:${PN} += "${datadir} ${systemd_user_unitdir}"
 
+FILES:${PN} += "${datadir} ${systemd_user_unitdir} ${libdir}/hyprtestplugin.so"
