@@ -1,4 +1,4 @@
-From 3f89fbb25bee0064d74f882ea9fc73ad39234d34 Mon Sep 17 00:00:00 2001
+From 25da7d2c2e73b8ed752e1ec6a72b4ab9eff8fda4 Mon Sep 17 00:00:00 2001
 From: Markus Volk <f_l_k@t-online.de>
 Date: Thu, 14 Nov 2024 22:15:49 +0100
 Subject: [PATCH] uwsm/meson.build: dont fail for missing python-modules
@@ -12,7 +12,7 @@ Upstream-Status: Pending
  1 file changed, 6 insertions(+), 6 deletions(-)
 
 diff --git a/uwsm/meson.build b/uwsm/meson.build
-index d2ecf6b..c5ab845 100644
+index 328a402..c4f2f9a 100644
 --- a/uwsm/meson.build
 +++ b/uwsm/meson.build
 @@ -14,13 +14,13 @@ has_system_xdg = \
@@ -33,8 +33,5 @@ index d2ecf6b..c5ab845 100644
 +#  error('python xdg module not found')
 +#endif
  
- conf = configuration_data()
- conf.set('PROJECT_NAME', PROJECT_NAME)
--- 
-2.47.0
-
+ wrapper_file = configure_file(
+   input: 'wrapper.py.in',

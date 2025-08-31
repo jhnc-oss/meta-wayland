@@ -11,14 +11,14 @@ SRC_URI = " \
 	git://github.com/Vladimir-csp/uwsm.git;protocol=https;branch=master \
 	file://0001-uwsm-meson.build-dont-fail-for-missing-python-module.patch \
 "
-SRCREV = "7bb627b78c69c890417146150733f9728b227c67"
+SRCREV = "cf2b1d84059f1954d4ec864f2b46a86515acc3c1"
 
 
 PACKAGECONFIG ?= ""
 PACKAGECONFIG[manpages] = "-Dman-pages=enabled,-Dman-pages=disabled,scdoc-native"
 PACKAGECONFIG[uuctl] = "-Duuctl=enabled,-Duuctl=disabled,,fuzzel"
 
-FILES:${PN} += "${datadir}/licenses"
+FILES:${PN} += "${datadir}/licenses ${systemd_user_unitdir}"
 
 RDEPENDS:${PN} += "python3-dbus pyxdg python3-core whiptail"
 RRECOMMENDS:${PN} += "dbus-broker"
