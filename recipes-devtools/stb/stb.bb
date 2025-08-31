@@ -4,7 +4,7 @@ LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=fb994481c55623ef338885280e676f3b"
 
 SRC_URI = "git://github.com/nothings/stb.git;protocol=https;branch=master"
-SRCREV = "013ac3beddff3dbffafd5177e7972067cd2b5083"
+SRCREV = "f58f558c120e9b32c217290b80bad1a0729fbb2c"
 
 do_install() {
 	install -d ${D}${includedir}/stb
