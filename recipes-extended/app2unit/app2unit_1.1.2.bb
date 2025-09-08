@@ -3,7 +3,7 @@ LICENSE = "GPL-3.0-only"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=1ebbd3e34237af26da5dc08a4e440464"
 
 SRC_URI = "git://github.com/Vladimir-csp/app2unit.git;protocol=https;branch=master"
-SRCREV = "3cefa363fcb12adad671353e4042e8cb8b980a30"
+SRCREV = "da89627765177d8f54033ee24cee8e864860baeb"
 
 DEPENDS = "scdoc-native gzip-native"
 
