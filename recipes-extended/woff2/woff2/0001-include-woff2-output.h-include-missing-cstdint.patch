@@ -1,0 +1,25 @@
+From aa339475e54ef779fac2fbdc05713cadf36d6704 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Tue, 9 Sep 2025 20:04:20 +0200
+Subject: [PATCH] include/woff2/output.h: include missing cstdint
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+---
+ include/woff2/output.h | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/include/woff2/output.h b/include/woff2/output.h
+index c325f67..91f0d8c 100644
+--- a/include/woff2/output.h
++++ b/include/woff2/output.h
+@@ -9,6 +9,7 @@
+ #ifndef WOFF2_WOFF2_OUT_H_
+ #define WOFF2_WOFF2_OUT_H_
+ 
++#include <cstdint>
+ #include <algorithm>
+ #include <cstring>
+ #include <memory>
+-- 
+2.50.1
+
