@@ -15,7 +15,7 @@ DEPENDS = " \
 	hyprland-protocols \
 "
 
-SRCREV = "84f9f2e127dba49c9bffe293f46bed400e0034a0"
+SRCREV = "f158b2fe9293f9b25f681b8e46d84674e7bc7f01"
 
 inherit cmake pkgconfig
 
