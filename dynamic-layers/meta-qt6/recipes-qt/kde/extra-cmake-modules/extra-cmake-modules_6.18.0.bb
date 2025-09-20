@@ -5,8 +5,8 @@ LIC_FILES_CHKSUM += "file://LICENSES/MIT.txt;md5=38aa75cf4c4c87f018227d5ec9638d7
 LIC_FILES_CHKSUM += "file://LICENSES/BSD-2-Clause.txt;md5=63d6ee386b8aaba70b1bf15a79ca50f2"
 LIC_FILES_CHKSUM += "file://LICENSES/BSD-3-Clause.txt;md5=954f4d71a37096249f837652a7f586c0"
 
-SRC_URI = "https://download.kde.org/stable/frameworks/6.17/extra-cmake-modules-${PV}.tar.xz"
-SRC_URI[sha256sum] = "dfecb17d0238f4de1dd3485b92a6606137d4a9c67b9e4ce40407fe0f2aec0a40"
+SRC_URI = "https://download.kde.org/stable/frameworks/6.18/extra-cmake-modules-${PV}.tar.xz"
+SRC_URI[sha256sum] = "b2d2222cfe5ace502c60bd8a77a79bc0230f48cee83265c89dcc2618b960e293"
 
 DEPENDS = "cmake-native qttools qtbase-native qttools-native"
 
