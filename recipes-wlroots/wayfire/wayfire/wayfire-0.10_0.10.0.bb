@@ -32,14 +32,13 @@ DEPENDS += " \
 "
 
 RRECOMMENDS:${PN} += " \
-	wcm \
-	wf-recorder \
-	wf-shell \
+	wcm-0.10 \
+	wf-shell-0.10 \
 	pywayfire \
 "
 
 PACKAGECONFIG[gles32] = "-Denable_gles32=true,-Denable_gles32=false"
-PACKAGECONFIG[use_system_wfconfig] = "-Duse_system_wfconfig=enabled,-Duse_system_wfconfig=disabled,wf-config"
+PACKAGECONFIG[use_system_wfconfig] = "-Duse_system_wfconfig=enabled,-Duse_system_wfconfig=disabled,wf-config-0.10"
 PACKAGECONFIG[use_system_wlroots] = "-Duse_system_wlroots=enabled,-Duse_system_wlroots=disabled,wlroots-0.19"
 PACKAGECONFIG[xwayland] = "-Dxwayland=enabled,-Dxwayland=disabled,xwayland xcb-util-renderutil xcb-util-wm"
 PACKAGECONFIG[vulkan] = ",,vulkan-loader vulkan-headers glslang-native"
@@ -53,7 +52,7 @@ PACKAGECONFIG ?= " \
 
 SRC_URI = "gitsm://github.com/WayfireWM/wayfire.git;protocol=https;nobranch=1"
 
-SRCREV = "60231d5d8e7e4e5261894cea098b2c688726544f"
+SRCREV = "9229cef3b65b12d5eb10697deb66b304358d99e4"
 
 inherit meson pkgconfig features_check
 
