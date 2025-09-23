@@ -7,9 +7,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=706cd9899438a9385250ab6773c1fa53"
 
 REQUIRED_DISTRO_FEATURES = "wayland"
 
-SRC_URI = " \
-	git://git.sr.ht/~emersion/kanshi;protocol=https;branch=master \
-"
+SRC_URI = "git://gitlab.freedesktop.org/emersion/kanshi;protocol=https;branch=master"
 
 DEPENDS = "wayland wayland-native libscfg"
 
@@ -22,7 +20,7 @@ PACKAGECONFIG ?= " \
 	ipc \
 "
 
-SRCREV = "83dc2fd4ff28ba77b5729ab89fc1b8ea3b3e2882"
+SRCREV = "9c0391b1eb4d38f05f62bf93232bab34c74c6075"
 
 EXTRA_OEMESON += "--buildtype release"
 
