@@ -17,6 +17,6 @@ SRC_URI = " \
     git://github.com/jtheoof/swappy.git;protocol=https;branch=master \
 "
 
-SRCREV = "a996b2cec65aadd04ded780f141b02c5bdfbeb32"
+SRCREV = "c25040258fb9dde3dd7313e419a514436741cfe5"
 
 PACKAGECONFIG[manpages] = "-Dman-pages=enabled,-Dman-pages=disabled,scdoc-native"
