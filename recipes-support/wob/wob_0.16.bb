@@ -25,7 +25,7 @@ PACKAGECONFIG[manpages] = "-Dman-pages=enabled,-Dman-pages=disabled,scdoc-native
 
 PACKAGECONFIG ??= ""
 
-SRCREV = "f7668d9715256a9d0dd05bc9eba7799d5ab2ce2d"
+SRCREV = "6958b155da0b10800c09fd23f4dca0ffb65cafd2"
 
 EXTRA_OEMESON += "--buildtype release"
 
