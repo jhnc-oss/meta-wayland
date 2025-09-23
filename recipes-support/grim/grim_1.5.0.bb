@@ -18,9 +18,9 @@ DEPENDS += " \
 	wayland-protocols \
 "
 
-SRC_URI = "git://git.sr.ht/~emersion/grim;protocol=https;branch=master"
+SRC_URI = "git://gitlab.freedesktop.org/emersion/grim;protocol=https;branch=master"
 
-SRCREV = "7ba46364ab95141c79e0e18093aa66597256182c"
+SRCREV = "b7a99854e46945db9f50ba8d2417ac42321173d1"
 
 inherit meson pkgconfig features_check
 
