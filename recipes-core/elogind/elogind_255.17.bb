@@ -20,7 +20,7 @@ DEPENDS += " \
 "
 
 
-SRCREV = "a5d0503e56596e4495407e6bbdd89ec2cf1fbe98"
+SRCREV = "36917dda508996eedbb0b4b24af4e2dfe911179d"
 
 inherit meson pkgconfig
 
