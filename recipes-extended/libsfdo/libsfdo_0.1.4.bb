@@ -7,7 +7,7 @@ inherit meson pkgconfig
 
 SRC_URI = "git://gitlab.freedesktop.org/vyivel/libsfdo.git;protocol=https;nobranch=1"
 
-SRCREV = "b3936ed9826375334dbbaa999e7216d1b36b445b"
+SRCREV = "82115b19317f065ea3c4f52e62549bec81521203"
 
 PACKAGECONFIG ?= ""
 PACKAGECONFIG[examples] = "-Dexamples=true,-Dexamples=false"
