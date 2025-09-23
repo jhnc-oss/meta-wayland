@@ -10,7 +10,7 @@ SRC_URI = " \
 
 inherit meson
 
-SRCREV = "d377218338b706ce3ff517a80fc0f1b1cfd8fe80"
+SRCREV = "8d38ff96b223b1fded9cfd8955e9d4027c6abfc6"
 
 EXTRA_OEMESON += "--buildtype release"
 
