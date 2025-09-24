@@ -58,7 +58,7 @@ SRC_URI = "   \
 	file://0001-meson.build-dont-use-wrap-based-subprojects.patch \
 	file://0001-meson.build-dont-leak-buildpath.patch \
 "
-SRCREV = "1faf7acd90f960b8e6c816bfea15f699b70527f9"
+SRCREV = "cf288b95fa376a15f30fe8d1a9f750cad54742df"
 
 
 inherit meson pkgconfig features_check
