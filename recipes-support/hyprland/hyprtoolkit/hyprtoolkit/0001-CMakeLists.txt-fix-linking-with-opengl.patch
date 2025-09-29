@@ -1,0 +1,28 @@
+From 628c615bd108ceb04d7bda8db7c57fbcd47a0e52 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Mon, 29 Sep 2025 18:04:31 +0200
+Subject: [PATCH] CMakeLists.txt: fix linking with opengl
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+
+Upstream-Status: Pending
+---
+ CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 669dfcf..3cf9e7c 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -72,7 +72,7 @@ target_include_directories(
+   PRIVATE "./src" "./src/include" "./protocols" "${CMAKE_BINARY_DIR}")
+ set_target_properties(hyprtoolkit PROPERTIES VERSION ${HYPRTOOLKIT_VERSION}
+                                             SOVERSION 1)
+-target_link_libraries(hyprtoolkit OpenGL::EGL OpenGL::OpenGL PkgConfig::deps)
++target_link_libraries(hyprtoolkit EGL GL PkgConfig::deps)
+ 
+ check_include_file("sys/timerfd.h" HAS_TIMERFD)
+ pkg_check_modules(epoll IMPORTED_TARGET epoll-shim)
+-- 
+2.51.0
+
