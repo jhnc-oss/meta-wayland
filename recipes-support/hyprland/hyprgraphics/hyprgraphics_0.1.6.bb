@@ -8,10 +8,11 @@ DEPENDS = "pixman cairo jpeg hyprutils libwebp libpng file"
 
 SRC_URI = "git://github.com/hyprwm/hyprgraphics.git;protocol=https;branch=main"
 
-SRCREV = "32e6b8386f7dc70a4cc01607a826a281f3c52364"
+SRCREV = "f4995eaa46dad0e5db3834f6d6f0430f4dc3aab9"
 inherit cmake pkgconfig
 
 
-PACKAGECONFIG ?= "heif jxl"
+PACKAGECONFIG ?= "heif jxl svg"
 PACKAGECONFIG[heif] = ",,libheif"
 PACKAGECONFIG[jxl] = ",,libjxl"
+PACKAGECONFIG[svg] = ",,librsvg"
