@@ -6,6 +6,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=a0bf31bc487405beb07b19459ea85114"
 
 DEPENDS = " \
   aquamarine \
+  cairo \
   hyprgraphics \
   hyprlang \
   hyprutils \
@@ -24,6 +25,6 @@ DEPENDS = " \
 SRC_URI = "git://github.com/hyprwm/hyprtoolkit.git;protocol=https;branch=main"
 SRC_URI += "file://0001-CMakeLists.txt-fix-linking-with-opengl.patch"
 
-SRCREV = "4a74eab42f8caa1f9f0dafa5c627d55d3b1a7d95"
+SRCREV = "90432fe8a0ae1ad5d92f0f238347f4bce295f396"
 
 inherit cmake pkgconfig
