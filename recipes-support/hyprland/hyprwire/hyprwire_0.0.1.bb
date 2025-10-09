@@ -8,6 +8,6 @@ DEPENDS = "libffi hyprutils"
 
 SRC_URI = "git://github.com/hyprwm/hyprwire.git;protocol=https;branch=main"
 
-SRCREV = "9cf98cedf7cd3fa87dbf8acba259ae57aca5a27e"
+SRCREV = "a1f146a59cce70161595933a5e8b435b6c090a97"
 
 inherit cmake pkgconfig
