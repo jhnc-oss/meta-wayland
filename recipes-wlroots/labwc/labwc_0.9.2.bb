@@ -33,9 +33,9 @@ RRECOMMENDS:${PN} ?= " \
 	swaybg \
 "
 
-SRC_URI = "git://github.com/labwc/labwc.git;protocol=https;branch=0.9.0-maintenance;tag=${PV}"
+SRC_URI = "git://github.com/labwc/labwc.git;protocol=https;branch=master;tag=${PV}"
 
-SRCREV = "ca082e71727c18b914f592084b2067763d3bcfec"
+SRCREV = "70e5beb5ec4de9d4f01b1528c0016ccc9355730c"
 
 inherit meson pkgconfig features_check gettext manpages
 
