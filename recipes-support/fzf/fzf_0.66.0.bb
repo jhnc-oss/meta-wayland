@@ -7,7 +7,6 @@ GO_IMPORT = "github.com/junegunn/fzf"
 
 SRC_URI = "git://${GO_IMPORT};destsuffix=${BB_GIT_DEFAULT_DESTSUFFIX}/src/${GO_IMPORT};branch=master;protocol=https"
 
-PV = "0.66.0"
 SRCREV = "8cdfb23df69df0a991d122185b00e8900875a8cf"
 
 require ${PN}-go-mods.inc ${PN}-licenses.inc
