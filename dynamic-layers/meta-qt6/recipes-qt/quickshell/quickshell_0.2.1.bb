@@ -3,10 +3,10 @@ HOMEPAGE = "https://quickshell.org"
 LICENSE = "LGPL-3.0-only"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=3000208d539ec061b899bce1d9ce9404"
 
-SRC_URI = "git://github.com/quickshell-mirror/quickshell.git;protocol=https;branch=master"
+SRC_URI = "git://github.com/quickshell-mirror/quickshell.git;protocol=https;branch=0.2"
 SRC_URI += "file://0001-dont-bake-compile-flags-into-binary.patch"
 
-SRCREV = "a5431dd02dc23d9ef1680e67777fed00fe5f7cda"
+SRCREV = "a1a150fab00a93ea983aaca5df55304bc837f51b"
 
 DEPENDS = "cli11 qtbase qttools-native qtdeclarative qtquick3d qtshadertools spirv-tools virtual/libgbm"
 RRECOMMENDS:${PN} = "qt5compat"
