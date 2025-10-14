@@ -4,10 +4,12 @@ LICENSE = "BSD-3-Clause"
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=a0bf31bc487405beb07b19459ea85114"
 
-DEPENDS = "libffi hyprutils"
+DEPENDS = "hyprutils hyprwire-native libffi pugixml"
 
 SRC_URI = "git://github.com/hyprwm/hyprwire.git;protocol=https;branch=main"
 
-SRCREV = "a1f146a59cce70161595933a5e8b435b6c090a97"
+SRCREV = "08a2f94f6d894411cb3b229c088b026d1a98df60"
 
 inherit cmake pkgconfig
+
+BBCLASSEXTEND = "native"
