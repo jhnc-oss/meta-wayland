@@ -11,6 +11,7 @@ DEPENDS = " \
   hyprlang \
   hyprutils \
   hyprwayland-scanner-native \
+  iniparser \
   libdrm \
   libxkbcommon \
   pango \
@@ -25,6 +26,6 @@ DEPENDS = " \
 SRC_URI = "git://github.com/hyprwm/hyprtoolkit.git;protocol=https;branch=main"
 SRC_URI += "file://0001-CMakeLists.txt-fix-linking-with-opengl.patch"
 
-SRCREV = "9a73d1a4449ced3a67cf8347046430229dbb5a08"
+SRCREV = "a967ed67ef2e60a3f3cb03d600781129890c49b2"
 
 inherit cmake pkgconfig
