@@ -12,11 +12,12 @@ DEPENDS = "  \
 	hyprwire \
 	icu \
 	hyprlang \
+	libqalculate \
 "
 
 SRC_URI = "git://github.com/hyprwm/hyprlauncher.git;protocol=https;branch=main"
 
-SRCREV = "43d2b694186fe5bb0547a81a7f7a2ca3f9cbac24"
+SRCREV = "7b7688ed8072bcd9055abc91193eec3961fe7087"
 
 inherit cmake pkgconfig
 
