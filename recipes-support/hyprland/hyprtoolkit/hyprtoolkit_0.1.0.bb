@@ -26,6 +26,6 @@ DEPENDS = " \
 SRC_URI = "git://github.com/hyprwm/hyprtoolkit.git;protocol=https;branch=main"
 SRC_URI += "file://0001-CMakeLists.txt-fix-linking-with-opengl.patch"
 
-SRCREV = "a967ed67ef2e60a3f3cb03d600781129890c49b2"
+SRCREV = "08d6d6344b8638c0482c3466011bb9984ca346d6"
 
 inherit cmake pkgconfig
