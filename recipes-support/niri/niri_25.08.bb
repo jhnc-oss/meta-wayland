@@ -4,7 +4,7 @@ LICENSE = "GPL-3.0-only"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=5b4473596678d62d9d83096273422c8c"
 
 SRC_URI += " git://github.com/YaLTeR/niri.git;protocol=https;branch=main;lfs=0"
-SRCREV = "b7909dbf61c7c1511b9a51ef46e1d503d5ba3d05"
+SRCREV = "8c8447918f4fd7bc6c86a8622b1db52417fbbbbd"
 
 DEPENDS = " \
 	cairo \
@@ -22,6 +22,8 @@ DEPENDS = " \
 	wayland-native \
 	wayland-protocols \
 "
+
+PV:append = "+git"
 
 inherit cargo pkgconfig cargo-update-recipe-crates
 
