@@ -8,7 +8,7 @@ DEPENDS = "hyprutils hyprwire-native libffi pugixml"
 
 SRC_URI = "git://github.com/hyprwm/hyprwire.git;protocol=https;branch=main"
 
-SRCREV = "6a2a10baea47b2a00c6b18fefa24dcfcd0f67b9e"
+SRCREV = "39179e1078a3209fe3cbb1e618ffee8959682fbb"
 
 inherit cmake pkgconfig
 
