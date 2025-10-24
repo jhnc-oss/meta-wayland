@@ -40,7 +40,7 @@ RRECOMMENDS:${PN} ?= " \
 "
 
 SRC_URI = "gitsm://github.com/hyprwm/Hyprland.git;protocol=https;nobranch=1"
-SRCREV = "71a1216abcc7031776630a6d88f105605c4dc1c9"
+SRCREV = "aa5a239ac92a6bd6947cce2ca3911606df392cb6"
 
 inherit cmake pkgconfig features_check
 
@@ -52,12 +52,5 @@ PACKAGECONFIG[tests] = "-DTESTS=ON,-DNO_TESTS=ON"
 PACKAGECONFIG[systemd] = "-DSYSTEMD=ON,-DNO_SYSTEMD=ON"
 PACKAGECONFIG[xwayland] = "-DXWAYLAND=ON,-DNO_XWAYLAND=ON,libxcb xcb-util-wm xcb-util-renderutil xcb-util-errors xwayland,xwayland"
 PACKAGECONFIG[qt] = ",,hyprland-qtutils,hyprland-qtutils hyprpolkitagent xdg-desktop-portal-hyprland hyprsysteminfo hyprland-welcome hyprland-qt-support qt6ct"
-
-B = "${S}"
-
-do_configure:prepend() {
-	cd ${S} && scripts/generateVersion.sh
-}
-
 
 FILES:${PN} += "${datadir} ${systemd_user_unitdir} ${libdir}/hyprtestplugin.so"
