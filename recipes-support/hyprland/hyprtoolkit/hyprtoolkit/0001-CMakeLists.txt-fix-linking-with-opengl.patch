@@ -11,13 +11,13 @@ Upstream-Status: Pending
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 669dfcf..3cf9e7c 100644
+index 92fafef..f78da37 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -72,7 +72,7 @@ target_include_directories(
+@@ -77,7 +77,7 @@ target_include_directories(
    PRIVATE "./src" "./src/include" "./protocols" "${CMAKE_BINARY_DIR}")
  set_target_properties(hyprtoolkit PROPERTIES VERSION ${HYPRTOOLKIT_VERSION}
-                                             SOVERSION 1)
+                                             SOVERSION 2)
 -target_link_libraries(hyprtoolkit OpenGL::EGL OpenGL::OpenGL PkgConfig::deps)
 +target_link_libraries(hyprtoolkit EGL GL PkgConfig::deps)
  
