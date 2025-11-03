@@ -11,7 +11,7 @@ Upstream-Status: Pending
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 92fafef..f78da37 100644
+index b47f0b0..55e9176 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
 @@ -77,7 +77,7 @@ target_include_directories(
@@ -23,6 +23,15 @@ index 92fafef..f78da37 100644
  
  check_include_file("sys/timerfd.h" HAS_TIMERFD)
  pkg_check_modules(epoll IMPORTED_TARGET epoll-shim)
+@@ -111,7 +111,7 @@ if (NOT DISABLE_TESTS)
+   target_compile_options(hyprtoolkit_inline_tests PRIVATE --coverage)
+   target_link_options(hyprtoolkit_inline_tests PRIVATE --coverage)
+   target_include_directories(hyprtoolkit_inline_tests PUBLIC "./include" PRIVATE "./src" "./src/include" "./protocols" "${CMAKE_BINARY_DIR}")
+-  target_link_libraries(hyprtoolkit_inline_tests PRIVATE GTest::gtest_main OpenGL::EGL OpenGL::OpenGL PkgConfig::deps)
++  target_link_libraries(hyprtoolkit_inline_tests PRIVATE GTest::gtest_main EGL GL PkgConfig::deps)
+   gtest_discover_tests(hyprtoolkit_inline_tests)
+ endif()
+ 
 -- 
 2.51.0
 

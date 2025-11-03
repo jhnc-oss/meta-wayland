@@ -20,12 +20,17 @@ DEPENDS = " \
   virtual/libgbm \
   virtual/libgles3 \
   wayland \
+  wayland-native \
   wayland-protocols \
  "
 
 SRC_URI = "git://github.com/hyprwm/hyprtoolkit.git;protocol=https;branch=main"
 SRC_URI += "file://0001-CMakeLists.txt-fix-linking-with-opengl.patch"
 
-SRCREV = "0d1c886d5f7d0864b4c67c9dbfe460e821aecb3c"
+SRCREV = "d670521e247241ac5a5240ef013c9e7f414e5af2"
 
 inherit cmake pkgconfig
+
+
+PACKAGECONFIG ?= ""
+PACKAGECONFIG[tests] = ",-DDISABLE_TESTS=ON,gtest"
