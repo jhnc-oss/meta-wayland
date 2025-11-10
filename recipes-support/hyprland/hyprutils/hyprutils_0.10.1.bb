@@ -8,8 +8,11 @@ DEPENDS = "pixman"
 
 SRC_URI = "git://github.com/hyprwm/hyprutils.git;protocol=https;branch=main"
 
-SRCREV = "926689ddb9c0a8787e58c02c765a62e32d63d1f7"
+SRCREV = "01afe9245b54f090886720df908a9a4c58a4a63b"
 
 inherit cmake pkgconfig
 
 BBCLASSEXTEND = "native"
+
+PACKAGECONFIG ?= ""
+PACKAGECONFIG[tests] = "-DBUILD_TESTING=ON,-DBUILD_TESTING=OFF,googletest"
