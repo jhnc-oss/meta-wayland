@@ -19,7 +19,7 @@ FILES:${PN} += "${libdir}/qml/Quickshell ${datadir}"
 
 PACKAGECONFIG = "${@bb.utils.filter('DISTRO_FEATURES', 'x11 wayland pipewire bluetooth pam', d)} hyprland mpris systray upower notifications i3 greetd"
 PACKAGECONFIG[x11] = "-DX11=ON,-DX11=OFF,libx11 libxcb"
-PACKAGECONFIG[wayland] = "-DWAYLAND=ON,DWAYLAND=OFF,qtwayland qtwayland-native"
+PACKAGECONFIG[wayland] = "-DWAYLAND=ON,DWAYLAND=OFF"
 PACKAGECONFIG[hyprland] = "-DHYPRLAND=ON,-DHYPRLAND=OFF"
 PACKAGECONFIG[i3] = "-DI3=ON,-DI3=OFF"
 PACKAGECONFIG[greetd] = "-DGREETD=ON,-DGREETD=OFF"
