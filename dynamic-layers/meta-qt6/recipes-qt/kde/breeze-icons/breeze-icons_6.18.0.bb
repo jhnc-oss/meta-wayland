@@ -10,8 +10,6 @@ SRCREV = "640296c15419dddf9bbb5582f0c3019b7cc864aa"
 DEPENDS = " \
     breeze-icons-native \
     qtbase \
-    qtwayland \
-    qtwayland-native \
     qttools-native \
     extra-cmake-modules \
     python3-lxml-native \

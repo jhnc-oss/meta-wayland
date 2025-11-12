@@ -9,8 +9,6 @@ SRC_URI[sha256sum] = "a0a046039a11baebacd96d836e5765b981426f60d2cea9ff9a99ba8dbe
 
 DEPENDS = " \
 	qtbase \
-	qtwayland \
-	qtwayland-native \
 	qttools-native \
 	plasma-wayland-protocols \
 "

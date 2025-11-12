@@ -11,8 +11,6 @@ DEPENDS = " \
 	qtbase \
 	qtdeclarative \
 	qtdeclarative-native \
-	qtwayland \
-	qtwayland-native \
 "
 
 RDEPENDS:${PN} = "adwaita-qt"

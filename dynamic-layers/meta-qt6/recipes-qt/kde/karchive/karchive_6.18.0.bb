@@ -11,8 +11,6 @@ DEPENDS = " \
 	extra-cmake-modules \
 	openssl \
 	qtbase \
-	qtwayland \
-	qtwayland-native \
 	qttools-native \
 	extra-cmake-modules \
 	xz \

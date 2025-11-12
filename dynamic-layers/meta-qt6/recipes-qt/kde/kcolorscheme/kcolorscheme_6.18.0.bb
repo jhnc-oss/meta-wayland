@@ -9,8 +9,6 @@ SRCREV = "ba3ccfcd1b049e7b6a078765e5ef76803dde2afb"
 DEPENDS = " \
 	appstream-native \
 	qtbase \
-	qtwayland \
-	qtwayland-native \
 	qttools-native \
 	extra-cmake-modules \
 	kconfig \

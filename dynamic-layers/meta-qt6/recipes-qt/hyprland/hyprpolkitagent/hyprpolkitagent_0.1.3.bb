@@ -7,7 +7,7 @@ SRC_URI = "git://github.com/hyprwm/hyprpolkitagent.git;protocol=https;branch=mai
 
 SRCREV = "7e4054410f6d6331b239fea1c659ad6a917fbf6a"
 
-DEPENDS = "qtbase qtquick3d qttools-native qtwayland qtwayland-native polkit polkit-qt hyprutils"
+DEPENDS = "qtbase qtquick3d qttools-native polkit polkit-qt hyprutils"
 RDEPENDS:${PN} = "hyprland-qt-support"
 
 inherit qt6-cmake pkgconfig

@@ -9,8 +9,6 @@ SRCREV = "dd9f0222ac453c6b77fcea369b68649ac5eba633"
 DEPENDS = " \
 	breeze-icons \
 	qtbase \
-	qtwayland \
-	qtwayland-native \
 	qttools-native \
 	extra-cmake-modules \
 	karchive \

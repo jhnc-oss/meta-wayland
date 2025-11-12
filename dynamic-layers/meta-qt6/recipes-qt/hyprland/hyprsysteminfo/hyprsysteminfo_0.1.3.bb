@@ -7,7 +7,7 @@ SRC_URI = "git://github.com/hyprwm/hyprsysteminfo.git;protocol=https;branch=main
 
 SRCREV = "17f041e2d539bd63ec116a77236ea37a17c6b3e6"
 
-DEPENDS = "qtbase qtquick3d qttools-native hyprutils qtwayland qtwayland-native"
+DEPENDS = "qtbase qtquick3d qttools-native hyprutils"
 RDEPENDS:${PN} = "hyprland-qt-support"
 
 inherit qt6-cmake

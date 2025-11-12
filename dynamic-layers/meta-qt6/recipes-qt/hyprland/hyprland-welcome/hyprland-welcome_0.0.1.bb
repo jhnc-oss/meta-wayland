@@ -8,6 +8,5 @@ SRC_URI = "git://github.com/hyprwm/hyprland-welcome.git;protocol=https;branch=ma
 SRCREV = "51561c00288775ad7afc20f47783bb068093ca5a"
 
 DEPENDS = "qtbase"
-RDEPENDS:${PN} = "qtwayland"
 
 inherit qt6-cmake
