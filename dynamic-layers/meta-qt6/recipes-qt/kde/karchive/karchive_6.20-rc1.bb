@@ -4,7 +4,7 @@ LICENSE = "LGPL-2.1-only"
 LIC_FILES_CHKSUM += "file://LICENSES/LGPL-2.0-or-later.txt;md5=6d2d9952d88b50a51a5c73dc431d06c7"
 
 SRC_URI = "gitsm://invent.kde.org/frameworks/karchive.git;protocol=https;nobranch=1"
-SRCREV = "e54009eecbea39c4c0b8eb540160960183c30702"
+SRCREV = "38a87ad37786db23d1af8c51c8c5dfd73a00a218"
 
 DEPENDS = " \
 	bzip2 \
