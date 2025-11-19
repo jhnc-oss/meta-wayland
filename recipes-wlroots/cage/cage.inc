@@ -18,6 +18,10 @@ DEPENDS = "\
     wayland-protocols \
 "
 
+RDEPENDS:${PN} += " \
+    xkeyboard-config \
+"
+
 inherit meson pkgconfig features_check
 
 REQUIRED_DISTRO_FEATURES = "wayland"
