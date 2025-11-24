@@ -1,0 +1,49 @@
+From 4e91aaf63fe2de276c3b46e1a2d4ed8b7d7f95fa Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Mon, 24 Nov 2025 20:45:49 +0100
+Subject: [PATCH] sources/pyside6/libpyside/CMakeLists.txt: adjust variables
+
+Adds full path to PYSIDE_PYTHONPATH, PYSIDE_TYPESYSTEMS and PYSIDE_GLUE in /usr/lib/cmake/PySide6/PySide6Config.abi3.cmake
+
+This fixes an error seen while compiling kwidgetaddons 6.20 or kguiaddons 6.20:
+
+| CMake Error at /home/flk/bitbake-builds/poky/build/tmp/work/corei7-64-poky-linux/kguiaddons/6.20.0/recipe-sysroot/usr/lib/cmake/PySide6/PySide6Config.abi3.cmake:25 (message):
+|   File or directory
+|   /home/flk/bitbake-builds/poky/build/tmp/work/corei7-64-poky-linux/kguiaddons/6.20.0/recipe-sysroot/usr/typesystems
+|   referenced by variable PYSIDE_TYPESYSTEMS does not exist !
+| Call Stack (most recent call first):
+|   /home/flk/bitbake-builds/poky/build/tmp/work/corei7-64-poky-linux/kguiaddons/6.20.0/recipe-sysroot/usr/lib/cmake/PySide6/PySide6Config.abi3.cmake:53 (set_and_check)
+|   /home/flk/bitbake-builds/poky/build/tmp/work/corei7-64-poky-linux/kguiaddons/6.20.0/recipe-sysroot/usr/lib/cmake/PySide6/PySide6Config.cmake:5 (include)
+|   CMakeLists.txt:94 (find_package)
+| 
+| 
+| -- Configuring incomplete, errors occurred!
+| WARNING: /home/flk/bitbake-builds/poky/build/tmp
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+
+Upstream-Status: Inappropriate [oe-specific]
+---
+ sources/pyside6/libpyside/CMakeLists.txt | 22 +++++++++++-----------
+ 1 file changed, 11 insertions(+), 11 deletions(-)
+
+diff --git a/sources/pyside6/libpyside/CMakeLists.txt b/sources/pyside6/libpyside/CMakeLists.txt
+index b0050dd00..f429517e2 100644
+--- a/sources/pyside6/libpyside/CMakeLists.txt
++++ b/sources/pyside6/libpyside/CMakeLists.txt
+@@ -159,9 +159,9 @@ configure_package_config_file(
+ )
+ 
+ # Install-tree / wheel configuration
+-set(PYSIDE_PYTHONPATH "")
+-set(PYSIDE_TYPESYSTEMS "typesystems")
+-set(PYSIDE_GLUE "glue")
++set(PYSIDE_PYTHONPATH "${PYTHON_SITE_PACKAGES}/PySide6")
++set(PYSIDE_TYPESYSTEMS "${CMAKE_INSTALL_PREFIX}/share/PySide6${pyside6_SUFFIX}/typesystems")
++set(PYSIDE_GLUE "${CMAKE_INSTALL_PREFIX}/share/PySide6${pyside6_SUFFIX}/glue")
+ set(PYSIDE_SOVERSION "${pyside6_library_so_version}")
+ 
+ configure_package_config_file(
+-- 
+2.51.0
+
