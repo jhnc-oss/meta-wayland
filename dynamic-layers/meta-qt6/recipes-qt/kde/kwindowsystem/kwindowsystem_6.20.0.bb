@@ -4,8 +4,8 @@ LICENSE = "MIT & LGPL-2.1-only"
 LIC_FILES_CHKSUM += "file://LICENSES/MIT.txt;md5=38aa75cf4c4c87f018227d5ec9638d75"
 LIC_FILES_CHKSUM += "file://LICENSES/LGPL-2.1-only.txt;md5=fabba2a3bfeb22a6483d44e9ae824d3f"
 
-SRC_URI = "https://download.kde.org/stable/frameworks/6.18/kwindowsystem-${PV}.tar.xz"
-SRC_URI[sha256sum] = "a0a046039a11baebacd96d836e5765b981426f60d2cea9ff9a99ba8dbe56178e"
+SRC_URI = "git://invent.kde.org/frameworks/kwindowsystem.git;protocol=https;nobranch=1"
+SRCREV = "1136e9b0cd144b9969856d604b8079286f2ba654"
 
 DEPENDS = " \
 	qtbase \

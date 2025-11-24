@@ -4,7 +4,7 @@ LICENSE = "LGPL-2.1-only"
 LIC_FILES_CHKSUM += "file://LICENSES/LGPL-2.1-only.txt;md5=fabba2a3bfeb22a6483d44e9ae824d3f"
 
 SRC_URI = "git://invent.kde.org/frameworks/kguiaddons.git;protocol=https;nobranch=1"
-SRCREV = "719d16f877f1a5ea7c9806eebf275bff130e7182"
+SRCREV = "19580d6a57608f39f5d2bf1abfb5fbefadbfa4a2"
 
 DEPENDS = " \
 	qtbase \

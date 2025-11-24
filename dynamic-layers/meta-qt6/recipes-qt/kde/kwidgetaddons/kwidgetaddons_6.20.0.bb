@@ -3,8 +3,8 @@ HOMEPAGE = "https://github.com/KDE/kwidgetsaddons"
 LICENSE = "LGPL-2.1-only"
 LIC_FILES_CHKSUM += "file://LICENSES/LGPL-2.1-only.txt;md5=fabba2a3bfeb22a6483d44e9ae824d3f"
 
-SRC_URI = "git://github.com/KDE/kwidgetsaddons.git;protocol=https;nobranch=1"
-SRCREV = "a755cffa7f629abee2d9ba9cd19ac0c035a6e69f"
+SRC_URI = "git://invent.kde.org/frameworks/kwidgetsaddons.git;protocol=https;nobranch=1"
+SRCREV = "1a12b50afe1340e940885078bb7c3fb4ccf41d81"
 
 DEPENDS = " \
 	qtbase \

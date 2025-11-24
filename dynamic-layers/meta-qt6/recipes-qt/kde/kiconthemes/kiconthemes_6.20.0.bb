@@ -4,7 +4,7 @@ LICENSE = "MIT & LGPL-2.1-only"
 LIC_FILES_CHKSUM += "file://LICENSES/LGPL-2.1-only.txt;md5=fabba2a3bfeb22a6483d44e9ae824d3f"
 
 SRC_URI = "git://invent.kde.org/frameworks/kiconthemes.git;protocol=https;nobranch=1"
-SRCREV = "dd9f0222ac453c6b77fcea369b68649ac5eba633"
+SRCREV = "4a2f268e811346ed77334c47a47bfaddbf91f6de"
 
 DEPENDS = " \
 	breeze-icons \

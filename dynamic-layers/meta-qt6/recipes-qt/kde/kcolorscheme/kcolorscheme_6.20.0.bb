@@ -4,7 +4,7 @@ LICENSE = "LGPL-2.1-only"
 LIC_FILES_CHKSUM += "file://LICENSES/LGPL-2.1-only.txt;md5=41890f71f740302b785c27661123bff5"
 
 SRC_URI = "git://invent.kde.org/frameworks/kcolorscheme.git;protocol=https;nobranch=1"
-SRCREV = "ba3ccfcd1b049e7b6a078765e5ef76803dde2afb"
+SRCREV = "64d18eb67446f1e9e9544ac77a3b60430054a618"
 
 DEPENDS = " \
 	appstream-native \

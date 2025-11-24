@@ -12,7 +12,6 @@ DEPENDS = " \
 	openssl \
 	qtbase \
 	qttools-native \
-	extra-cmake-modules \
 	xz \
 	zlib \
 	zstd \
