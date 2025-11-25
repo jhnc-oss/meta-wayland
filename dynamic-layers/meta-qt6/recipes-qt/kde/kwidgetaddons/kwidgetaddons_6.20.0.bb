@@ -19,3 +19,5 @@ DEPENDS = " \
 inherit qt6-cmake pkgconfig
 
 FILES:${PN} += "${libdir}/qml ${PYTHON_SITEPACKAGES_DIR} ${datadir}/qlogging-categories6"
+
+RDEPENDS:${PN} += "kconfig"

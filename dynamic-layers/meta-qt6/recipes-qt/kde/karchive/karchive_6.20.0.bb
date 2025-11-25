@@ -21,3 +21,5 @@ inherit qt6-cmake pkgconfig
 
 FILES:${PN} += "${datadir}/qlogging-categories6"
 
+BBCLASSEXTEND = "native"
+

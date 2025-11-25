@@ -1,0 +1,30 @@
+From 27fec821dfd3b93836d9f2a8adfe5b16368ac105 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Tue, 25 Nov 2025 19:14:05 +0100
+Subject: [PATCH] src/CMakeLists.txt: fix runtime path
+
+edit KCONF_UPDATE_EXE
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+
+Upstream-Status: Inappropriate [oe-specific]
+---
+ src/CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index 7848ba4..da41bcc 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -29,7 +29,7 @@ target_link_libraries(kded6
+ )
+ 
+ target_compile_definitions(kded6 PRIVATE
+-    KCONF_UPDATE_EXE="$<TARGET_FILE:KF6::kconf_update>"
++    KCONF_UPDATE_EXE="${CMAKE_INSTALL_FULL_LIBEXECDIR}/kf6/kconf_update"
+ )
+ 
+ install(TARGETS kded6 ${KF_INSTALL_TARGETS_DEFAULT_ARGS} )
+-- 
+2.51.0
+

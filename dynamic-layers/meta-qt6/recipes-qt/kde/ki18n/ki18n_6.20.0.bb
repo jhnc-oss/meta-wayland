@@ -11,6 +11,7 @@ DEPENDS = " \
 	qttools-native \
 	extra-cmake-modules \
 	kconfig \
+	gettext-native \
 "
 
 inherit qt6-cmake gettext pkgconfig
@@ -19,6 +20,8 @@ do_install:append() {
     sed -i 's|${STAGING_BINDIR_NATIVE}/python3-native|${bindir}|' ${D}${libdir}/cmake/KF6I18n/KF6I18nMacros.cmake
 }
 
-
 FILES:${PN} += "${libdir}/qml ${libdir}/plugins/kf6 ${datadir}/qlogging-categories6"
 
+BBCLASSEXTEND = "native"
+
+RDEPENDS:${PN} += "kconfig"
