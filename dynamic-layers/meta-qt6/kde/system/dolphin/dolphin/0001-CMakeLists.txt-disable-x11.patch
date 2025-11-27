@@ -1,0 +1,31 @@
+From 74122954c5f439cfbf6ed89f2529b9ddefdb3a2b Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Thu, 27 Nov 2025 15:15:26 +0100
+Subject: [PATCH] CMakeLists.txt: disable x11
+
+This would require to build kwindowsystem with x11 support and will
+also add buildpath issues
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+
+Upstream-Status: Inappropriate [oe-specific]
+---
+ CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index d639f6568a..a9bcd7e9f9 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -62,7 +62,7 @@ if (Qt6Gui_VERSION VERSION_GREATER_EQUAL "6.10.0")
+     find_package(Qt6GuiPrivate ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE)
+ endif()
+ 
+-if (UNIX AND NOT APPLE AND NOT HAIKU)
++if (FALSE)
+     set(HAVE_X11 TRUE)
+ endif()
+ 
+-- 
+2.51.0
+
