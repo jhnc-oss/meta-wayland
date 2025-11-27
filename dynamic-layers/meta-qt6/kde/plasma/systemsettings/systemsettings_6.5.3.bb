@@ -1,7 +1,7 @@
 SUMMARY = "Plasma System Settings"
 HOMEPAGE = "https://invent.kde.org/plasma/systemsettings"
-LICENSE = "BSD-2-Clause"
-LIC_FILES_CHKSUM += "file://LICENSES/BSD-2-Clause.txt;md5=534956ece1a160a65f088a8f82672ef9"
+LICENSE = "GPL-2.0-only"
+LIC_FILES_CHKSUM += "file://LICENSES/GPL-2.0-only.txt;md5=9e2385fe012386d34dcc5c9863070881"
 
 SRC_URI = "git://invent.kde.org/plasma/systemsettings.git;protocol=https;nobranch=1"
 SRCREV = "c057967ac9d022547cba6505387f63cf2fd13540"
@@ -50,4 +50,4 @@ FILES:${PN} += " \
 	${systemd_user_unitdir} \
 "
 
-RDEPENDS:${PN} += "kconfig"
+RDEPENDS:${PN} += "kconfig kirigami qtquick3d"
