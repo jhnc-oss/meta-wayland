@@ -41,7 +41,7 @@ DEPENDS = " \
     kirigami \
     libplasma \
     kdecoration \
-    breeze-icons \
+    breeze \
     aurorae \
     libxcvt \
     libepoxy \
@@ -91,4 +91,4 @@ do_configure:prepend() {
 FILES:${PN} += "${datadir} ${libdir}/qml ${libdir}/plugins ${libdir}/kconf_update_bin ${systemd_user_unitdir}"
 
 
-RDEPENDS:${PN} += "kconfig kirigami qtquick3d breeze-icons"
+RDEPENDS:${PN} += "kconfig kirigami qtquick3d breeze aurorae"
