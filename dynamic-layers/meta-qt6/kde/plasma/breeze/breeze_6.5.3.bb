@@ -10,7 +10,9 @@ DEPENDS = " \
     qtbase \
     qttools-native \
     extra-cmake-modules \
+    frameworkintegration \
     qtquick3d \
+    qtsvg \
     kcmutils \
     kconfig-native \
     kconfigwidgets \
@@ -44,5 +46,5 @@ do_configure:prepend() {
 
 FILES:${PN} += "${libdir}/plugins ${datadir}"
 
-RDEPENDS:${PN} += "breeze-icons qtquick3d kconfig kirigami"
+RDEPENDS:${PN} += "breeze-icons qtquick3d kconfig kirigami frameworkintegration"
 
