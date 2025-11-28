@@ -22,3 +22,4 @@ inherit qt6-cmake pkgconfig mime-xdg mime
 EXTRA_OECMAKE += "-DBUILD_TESTING=OFF"
 
 FILES:${PN} += "${libdir} ${datadir}"
+
