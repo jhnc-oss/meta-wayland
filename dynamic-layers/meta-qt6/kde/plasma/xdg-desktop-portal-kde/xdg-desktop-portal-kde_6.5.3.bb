@@ -46,4 +46,4 @@ do_configure:prepend() {
 
 FILES:${PN} += "${libdir}/qml  ${libdir}/plugins ${datadir} ${systemd_user_unitdir}"
 
-RDEPENDS:${PN} += "kconfig"
+RDEPENDS:${PN} += "kconfig xdg-desktop-portal"
