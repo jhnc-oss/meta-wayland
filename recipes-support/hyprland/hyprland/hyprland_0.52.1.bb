@@ -38,7 +38,6 @@ RRECOMMENDS:${PN} ?= " \
 	slurp \
 	wl-clipboard \
 	hyprland-contrib \
-	hyprland-welcome \
 "
 
 SRC_URI = "gitsm://github.com/hyprwm/Hyprland.git;protocol=https;nobranch=1"
