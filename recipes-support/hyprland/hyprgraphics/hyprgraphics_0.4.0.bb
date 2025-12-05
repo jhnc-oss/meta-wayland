@@ -8,7 +8,7 @@ DEPENDS = "pixman cairo jpeg hyprutils libwebp libpng file"
 
 SRC_URI = "git://github.com/hyprwm/hyprgraphics.git;protocol=https;branch=main"
 
-SRCREV = "ffc999d980c7b3bca85d3ebd0a9fbadf984a8162"
+SRCREV = "8f1bec691b2d198c60cccabca7a94add2df4ed1a"
 inherit cmake pkgconfig
 
 
