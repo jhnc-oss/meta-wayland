@@ -11,26 +11,28 @@ Upstream-Status: Pending
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index b47f0b0..55e9176 100644
+index f16d7ce..74d587f 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -77,7 +77,7 @@ target_include_directories(
+@@ -73,7 +73,7 @@ target_include_directories(
    PRIVATE "./src" "./src/include" "./protocols" "${CMAKE_BINARY_DIR}")
  set_target_properties(hyprtoolkit PROPERTIES VERSION ${HYPRTOOLKIT_VERSION}
-                                             SOVERSION 3)
--target_link_libraries(hyprtoolkit PUBLIC OpenGL::EGL OpenGL::OpenGL PkgConfig::deps)
-+target_link_libraries(hyprtoolkit PUBLIC EGL GL PkgConfig::deps)
+                                              SOVERSION 4)
+-target_link_libraries(hyprtoolkit PUBLIC OpenGL::EGL OpenGL::OpenGL
++target_link_libraries(hyprtoolkit PUBLIC EGL
+                                          PkgConfig::deps)
  
  check_include_file("sys/timerfd.h" HAS_TIMERFD)
- pkg_check_modules(epoll IMPORTED_TARGET epoll-shim)
-@@ -111,7 +111,7 @@ if (NOT DISABLE_TESTS)
-   target_compile_options(hyprtoolkit_inline_tests PRIVATE --coverage)
-   target_link_options(hyprtoolkit_inline_tests PRIVATE --coverage)
-   target_include_directories(hyprtoolkit_inline_tests PUBLIC "./include" PRIVATE "./src" "./src/include" "./protocols" "${CMAKE_BINARY_DIR}")
--  target_link_libraries(hyprtoolkit_inline_tests PRIVATE GTest::gtest_main OpenGL::EGL OpenGL::OpenGL PkgConfig::deps)
-+  target_link_libraries(hyprtoolkit_inline_tests PRIVATE GTest::gtest_main EGL GL PkgConfig::deps)
-   gtest_discover_tests(hyprtoolkit_inline_tests)
- endif()
+@@ -171,8 +171,8 @@ if(BUILD_TESTING)
+     PUBLIC "./include"
+     PRIVATE "./src" "./src/include" "./protocols" "${CMAKE_BINARY_DIR}")
+   target_link_libraries(
+-    hyprtoolkit_tests PRIVATE hyprtoolkit GTest::gtest_main OpenGL::EGL
+-                                     OpenGL::OpenGL PkgConfig::deps)
++    hyprtoolkit_tests PRIVATE hyprtoolkit GTest::gtest_main EGL
++                                     PkgConfig::deps)
+ 
+   gtest_discover_tests(hyprtoolkit_tests)
  
 -- 
 2.51.0
