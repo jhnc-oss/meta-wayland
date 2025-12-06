@@ -4,7 +4,7 @@ LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=ea4d29875d83fbbf50485c846dbbbed8"
 
 SRC_URI = "git://github.com/stephenberry/glaze.git;protocol=https;nobranch=1"
-SRCREV = "dc6e2bbc2dc7e0f3a65fec4fb78ae7b17b9a4648"
+SRCREV = "f2ffb152b2c061330d415189e5088b249eb9d313"
 
 DEPENDS += "gcc-sanitizers libeigen"
 
