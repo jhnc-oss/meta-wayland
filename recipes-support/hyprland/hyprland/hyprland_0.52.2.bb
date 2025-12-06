@@ -15,11 +15,14 @@ DEPENDS += " \
 	hyprgraphics \
 	hyprlang \
 	hyprutils \
+	hyprwire \
+	hyprwire-native \
 	jq-native \
 	libdrm \
 	libinput \
 	libxcursor \
 	libxkbcommon \
+	muparser \
 	pango \
 	pixman \
 	re2 \
@@ -41,7 +44,7 @@ RRECOMMENDS:${PN} ?= " \
 "
 
 SRC_URI = "gitsm://github.com/hyprwm/Hyprland.git;protocol=https;nobranch=1"
-SRCREV = "967c3c7404d4fa00234e29c70df3e263386d2597"
+SRCREV = "cedadf4fdc63e04ab41cab00c0417ba248ce748e"
 
 inherit cmake pkgconfig features_check
 
