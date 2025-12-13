@@ -1,0 +1,28 @@
+From 63c142b0281d14b6b2384ec8c68b323b87d728f2 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Sat, 13 Dec 2025 06:55:16 +0100
+Subject: [PATCH] Cargo.toml: disable strip
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+
+Upstream-Status: Inappropriate [configuration]
+---
+ Cargo.toml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Cargo.toml b/Cargo.toml
+index b0958e33..29b05c63 100644
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -7,7 +7,7 @@ default-members = [ "yazi-fm", "yazi-cli" ]
+ codegen-units = 1
+ lto           = true
+ panic         = "abort"
+-strip         = true
++strip         = false
+ 
+ [profile.release-windows]
+ inherits = "release"
+-- 
+2.51.2
+
