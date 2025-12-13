@@ -52,7 +52,7 @@ PACKAGECONFIG ?= " \
 
 SRC_URI = "gitsm://github.com/WayfireWM/wayfire.git;protocol=https;nobranch=1"
 
-SRCREV = "9229cef3b65b12d5eb10697deb66b304358d99e4"
+SRCREV = "746bc7e96b75fa16a97d835608cc9b86fb5c9d06"
 
 inherit meson pkgconfig features_check
 
