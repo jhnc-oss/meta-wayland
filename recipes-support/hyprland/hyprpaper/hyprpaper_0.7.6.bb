@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=936078e4e67b0e1e1bd1e862d4ffbc25"
 SRC_URI = "git://github.com/hyprwm/hyprpaper.git;protocol=https;branch=main"
 SRC_URI += "file://0001-CMakeLists.txt-use-find_program-for-OpenGL.patch"
 
-SRCREV = "1733e0025b194c9bc083f4cd8782c5f151858a58"
+SRCREV = "07eb33e65db29b9fc76c83ea58c13ecc856170e8"
 
 DEPENDS += " \
 	cairo \
@@ -14,6 +14,9 @@ DEPENDS += " \
 	hyprlang \
 	hyprutils \
 	hyprgraphics \
+	hyprtoolkit \
+	hyprwire \
+	hyprwire-native \
 	hyprwayland-scanner-native \
 	virtual/egl \
 	virtual/libgles2 \
