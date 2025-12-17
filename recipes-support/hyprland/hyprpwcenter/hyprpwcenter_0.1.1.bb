@@ -14,7 +14,7 @@ DEPENDS = " \
 
 SRC_URI = "git://github.com/hyprwm/hyprpwcenter.git;protocol=https;branch=main"
 
-SRCREV = "fb8b44d49b9db36b973534b49dd7de696554137f"
+SRCREV = "9eecd6bbe34de260b262b8f284f7cf2a89cb6cb8"
 
 inherit cmake pkgconfig
 
