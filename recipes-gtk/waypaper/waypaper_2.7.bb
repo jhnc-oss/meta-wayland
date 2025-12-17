@@ -6,7 +6,7 @@ SRC_URI = "git://github.com/anufrievroman/waypaper.git;protocol=https;branch=mai
 
 inherit python_setuptools_build_meta
 
-SRCREV = "34fdc643b08274edff32b8b866c5f180d370c3fb"
+SRCREV = "e3fc4074725fae9999afff17d5b12cae99a12cef"
 
 FILES:${PN} += "${datadir}"
 
@@ -22,4 +22,4 @@ RDEPENDS:${PN} = " \
 	socat \
 "
 
-RRECOMMENDS:${PN} = "mpvpaper swww"
+RRECOMMENDS:${PN} = "mpvpaper awww"
