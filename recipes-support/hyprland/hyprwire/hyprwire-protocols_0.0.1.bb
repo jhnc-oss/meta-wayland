@@ -6,6 +6,6 @@ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda
 
 SRC_URI = "git://github.com/hyprwm/hyprwire-protocols.git;protocol=https;branch=hyprtavern"
 
-SRCREV = "b4a11329835584d302335aa26ab9f12ba9299bef"
+SRCREV = "f175135dab006dd126ef6f13ed9aaf7ba5b11455"
 
 inherit cmake
