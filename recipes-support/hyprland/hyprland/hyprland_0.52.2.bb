@@ -15,6 +15,7 @@ DEPENDS += " \
 	hyprgraphics \
 	hyprlang \
 	hyprutils \
+	hyprwayland-scanner-native \
 	hyprwire \
 	hyprwire-native \
 	jq-native \
@@ -30,17 +31,17 @@ DEPENDS += " \
 	util-linux-libuuid \
 	virtual/egl \
 	wayland-native \
-	hyprwayland-scanner-native \
 "
 
 RRECOMMENDS:${PN} ?= " \
 	foot \
-	jq \
 	grim \
+	hyprland-contrib \
 	hyprland-guiutils \
+	hyprshutdown \
+	jq \
 	slurp \
 	wl-clipboard \
-	hyprland-contrib \
 "
 
 SRC_URI = "gitsm://github.com/hyprwm/Hyprland.git;protocol=https;nobranch=1"
