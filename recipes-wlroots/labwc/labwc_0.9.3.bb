@@ -35,7 +35,7 @@ RRECOMMENDS:${PN} ?= " \
 
 SRC_URI = "git://github.com/labwc/labwc.git;protocol=https;branch=master;tag=${PV}"
 
-SRCREV = "70e5beb5ec4de9d4f01b1528c0016ccc9355730c"
+SRCREV = "a98fd8f9742ef7621c8b479353409fd06b82cf75"
 
 inherit meson pkgconfig features_check gettext manpages
 
