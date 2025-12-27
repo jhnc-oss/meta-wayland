@@ -1,7 +1,7 @@
 SUMMARY = "Range library for C++14/17/20"
 HOMEPAGE = "https://github.com/ericniebler/range-v3"
 LICENSE = "BSL-1.0"
-LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=1ebbd3e34237af26da5dc08a4e440464"
+LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=5dc23d5193abaedb6e42f05650004624"
 
 inherit cmake pkgconfig
 
