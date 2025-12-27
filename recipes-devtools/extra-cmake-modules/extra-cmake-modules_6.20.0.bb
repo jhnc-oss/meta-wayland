@@ -8,9 +8,9 @@ LIC_FILES_CHKSUM += "file://LICENSES/BSD-3-Clause.txt;md5=954f4d71a37096249f8376
 SRC_URI = "git://invent.kde.org/frameworks/extra-cmake-modules.git;protocol=https;nobranch=1"
 SRCREV = "d8d80bcc61341239519392eef1360c796bf25931"
 
-DEPENDS = "cmake-native qttools qtbase-native qttools-native"
+DEPENDS = "cmake-native"
 
-inherit qt6-cmake
+inherit cmake
 
 EXTRA_OECMAKE:append = "-DBUILD_TESTING=OFF"
 
