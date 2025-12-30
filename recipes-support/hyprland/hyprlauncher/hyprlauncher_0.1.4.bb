@@ -18,7 +18,7 @@ DEPENDS = "  \
 
 SRC_URI = "git://github.com/hyprwm/hyprlauncher.git;protocol=https;branch=main"
 
-SRCREV = "e50b5e0797915533c81cb95a6c3623541bfb5d7a"
+SRCREV = "bde196c357bba53a8da6401c3208f881342d6769"
 
 inherit cmake pkgconfig
 
