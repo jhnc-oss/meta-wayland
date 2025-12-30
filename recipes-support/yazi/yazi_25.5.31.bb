@@ -15,4 +15,4 @@ require ${PN}-crates.inc
 PACKAGES:remove = "${PN}-dbg"
 INSANE_SKIP:${PN} = "installed-vs-shipped"
 
-RRECOMMENDS:${PN} = "${@bb.utils.contains_any('DISTRO_FEATURES', 'wayland x11', 'ueberzugpp', '', d)} resvg fzf jq wl-clipboard chafa 7zip poppler zoxide"
+RRECOMMENDS:${PN} = "${@bb.utils.contains_any('DISTRO_FEATURES', 'wayland x11', 'ueberzugpp', '', d)} 7zip chafa fd fzf jq poppler resvg ripgrep wl-clipboard zoxide"
