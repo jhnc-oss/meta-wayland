@@ -1,5 +1,5 @@
 SRC_URI = "git://github.com/hyprwm/hyprland-plugins.git;protocol=https;branch=main"
-SRCREV = "7f94d2c09fe64be4dd7000bc8a950afe3f1232f3"
+SRCREV = "0b356053fa4e6a6f5e857529654ff45eba2859d8"
 
 DEPENDS += " \
     pixman \
@@ -11,14 +11,9 @@ DEPENDS += " \
     cairo \
     wayland-native \
     libxkbcommon \
+    hyprutils \
 "
 
 inherit cmake pkgconfig
-
-# Hack to allow patching the plugins
-do_configure:prepend() {
-	rm -rf ${S}/patches
-	rm -rf ${S}/.pc
-}
 
 FILES:${PN}-dev = ""
