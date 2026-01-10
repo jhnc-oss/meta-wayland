@@ -27,6 +27,6 @@ DEPENDS = " \
 
 inherit meson pkgconfig
 
-SRCREV = "ff35c7afe92e77017fdcf3396ea51aa5f29b7a84"
+SRCREV = "775931a4e1dc12779b67ed9561433e0715b59ba4"
 
 FILES:${PN} += "${datadir}/wayland-sessions/mango.desktop"
