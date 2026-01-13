@@ -15,4 +15,19 @@ require ${BPN}-crates.inc
 PACKAGES:remove = "${PN}-dbg"
 INSANE_SKIP:${PN} = "installed-vs-shipped"
 
-RRECOMMENDS:${PN} = "${@bb.utils.contains_any('DISTRO_FEATURES', 'wayland x11', 'ueberzugpp', '', d)} 7zip chafa fd fzf jq nerd-fonts-symbols poppler resvg ripgrep wl-clipboard zoxide"
+RRECOMMENDS:${PN} = " \
+    ${@bb.utils.contains_any('DISTRO_FEATURES', 'wayland x11', 'ueberzugpp', '', d)} \
+    ${@bb.utils.contains('LICENSE_FLAGS_ACCEPTED', 'commercial', 'ffmpeg', '', d)} \
+    7zip \
+    chafa \
+    fd \
+    fzf \
+    imagemagick \
+    jq \
+    nerd-fonts-symbols \
+    poppler \
+    resvg \
+    ripgrep \
+    wl-clipboard \
+    zoxide \
+"
