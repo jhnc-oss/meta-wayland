@@ -19,7 +19,7 @@ SRC_URI = " \
 	file://0001-generate-version.sh-dont-try-to-fetch-version-from-g.patch \
 "
 
-SRCREV = "b212e767e031891687bc6f5527ab61dddac6024e"
+SRCREV = "38de2ae450df667ac71ba4811fe535aa1954a217"
 
 inherit meson pkgconfig
 
