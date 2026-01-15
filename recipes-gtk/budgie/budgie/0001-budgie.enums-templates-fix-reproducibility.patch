@@ -1,0 +1,42 @@
+From e96a48415a9f4dd2865595fb0cc0c4506ff1e3d3 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Thu, 15 Jan 2026 08:04:54 +0100
+Subject: [PATCH] budgie.enums-templates: fix reproducibility
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+
+Upstream-Status: Pending
+---
+ src/plugin/panel/budgie-enums.c.template | 2 +-
+ src/plugin/panel/budgie-enums.h.template | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/plugin/panel/budgie-enums.c.template b/src/plugin/panel/budgie-enums.c.template
+index caba9591..576e750c 100644
+--- a/src/plugin/panel/budgie-enums.c.template
++++ b/src/plugin/panel/budgie-enums.c.template
+@@ -4,7 +4,7 @@
+ /*** END file-header ***/
+ 
+ /*** BEGIN file-production ***/
+-/* enumerations from "@filename@" */
++/* enumerations from "@basename@" */
+ /*** END file-production ***/
+ 
+ /*** BEGIN value-header ***/
+diff --git a/src/plugin/panel/budgie-enums.h.template b/src/plugin/panel/budgie-enums.h.template
+index cd9a67dd..83dc688c 100644
+--- a/src/plugin/panel/budgie-enums.h.template
++++ b/src/plugin/panel/budgie-enums.h.template
+@@ -12,7 +12,7 @@ G_BEGIN_DECLS
+ 
+ /*** BEGIN file-production ***/
+ 
+-/* enumerations from "@filename@" */
++/* enumerations from "@basename@" */
+ /*** END file-production ***/
+ 
+ /*** BEGIN value-header ***/
+-- 
+2.52.0
+
