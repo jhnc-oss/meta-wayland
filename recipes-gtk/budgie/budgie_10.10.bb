@@ -31,7 +31,7 @@ DEPENDS = " \
 
 inherit meson pkgconfig gettext gobject-introspection gtk-doc vala features_check
 
-RRECOMMENDS:${PN} = "swayidle gammastep grim slurp swaybg gtklock"
+RRECOMMENDS:${PN} = "swayidle gammastep grim slurp swaybg gtklock wlopm"
 
 REQUIRED_DISTRO_FEATURES = "gobject-introspection-data"
 
