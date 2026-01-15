@@ -3,7 +3,7 @@ LICENSE = "GPL-3.0-only"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=84dcc94da3adb52b53ae4fa38fe49e5d"
 
 SRC_URI = "git://github.com/Vladimir-csp/xdg-terminal-exec.git;protocol=https;branch=master"
-SRCREV = "3040888390df1c7ff1bb12c8aa84c4d4ae2e8e0f"
+SRCREV = "aeb3ef9360eda035b80e44baa2e74fb46fc691e3"
 
 DEPENDS = "scdoc-native gzip-native"
 
