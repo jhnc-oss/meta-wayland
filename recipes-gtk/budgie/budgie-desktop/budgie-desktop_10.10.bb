@@ -44,6 +44,16 @@ GIR_MESON_OPTION = ""
 
 EXTRA_OEMESON = "-Dwith-runtime-dependencies=false"
 
-FILES:${PN} += "i ${libdir}/budgie-desktop ${datadir}"
+FILES:${PN} += " ${libdir}/budgie-desktop ${datadir}"
 
-RRECOMMENDS:${PN} = "swayidle gammastep grim slurp swaybg gtklock"
+RRECOMMENDS:${PN} = " \
+    swayidle \
+    gammastep \
+    grim \
+    slurp \
+    swaybg \
+    gtklock \
+    wlopm \
+    budgie-control-center \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'kde', "budgie-desktop-services", '', d)} \
+"
