@@ -18,7 +18,6 @@ DEPENDS = " \
     gnome-desktop \
     gsettings-desktop-schemas \
     gnome-settings-daemon \
-    libwnck3 \
     accountsservice \
     libcanberra \
     libxfce4windowing \
@@ -50,6 +49,7 @@ RRECOMMENDS:${PN} = " \
     swayidle \
     gammastep \
     grim \
+    labwc \
     slurp \
     swaybg \
     gtklock \
@@ -58,6 +58,8 @@ RRECOMMENDS:${PN} = " \
     budgie-desktop-view \
     budgie-session \
     budgie-backgrounds \
-    magpie \
     ${@bb.utils.contains('DISTRO_FEATURES', 'kde', "budgie-desktop-services budgie-display-configurator", '', d)} \
+    gnome-settings-daemon \
+    gnome-desktop \
+    gsettings-desktop-schemas \
 "
