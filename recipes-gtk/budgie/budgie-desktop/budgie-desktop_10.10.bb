@@ -55,5 +55,9 @@ RRECOMMENDS:${PN} = " \
     gtklock \
     wlopm \
     budgie-control-center \
-    ${@bb.utils.contains('DISTRO_FEATURES', 'kde', "budgie-desktop-services", '', d)} \
+    budgie-desktop-view \
+    budgie-session \
+    budgie-backgrounds \
+    magpie \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'kde', "budgie-desktop-services budgie-display-configurator", '', d)} \
 "
