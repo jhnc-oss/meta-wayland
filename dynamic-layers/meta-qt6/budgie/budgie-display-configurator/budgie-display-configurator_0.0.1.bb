@@ -21,4 +21,4 @@ do_configure:prepend() {
 
 FILES:${PN} += "${datadir}"
 
-RDEPENDS:${PN} = "kconfig"
+RDEPENDS:${PN} = "kconfig kirigami kcolorscheme kcoreaddons qqc2-desktop-style"
