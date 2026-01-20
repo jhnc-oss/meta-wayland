@@ -14,3 +14,5 @@ EXTRA_OECMAKE = "-DBUILD_TESTING=OFF"
 
 PACKAGECONFIG ?= ""
 PACKAGECONFIG[openssl] = "-Dglaze_ENABLE_SSL=ON,-Dglaze_ENABLE_SSL=OFF,openssl"
+
+FILES:${PN} += "${datadir}"

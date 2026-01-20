@@ -5,7 +5,7 @@ LICENSE = "BSD-3-Clause"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=a0bf31bc487405beb07b19459ea85114"
 
 DEPENDS = " \
-	glaze \
+	glaze6 \
 	hyprtoolkit \
 	hyprutils \
 	pixman \

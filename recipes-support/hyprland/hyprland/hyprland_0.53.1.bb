@@ -10,7 +10,7 @@ REQUIRED_DISTRO_FEATURES = "wayland opengl"
 DEPENDS += " \
 	aquamarine \
 	cairo \
-	glaze \
+	glaze6 \
 	hyprcursor \
 	hyprgraphics \
 	hyprlang \
