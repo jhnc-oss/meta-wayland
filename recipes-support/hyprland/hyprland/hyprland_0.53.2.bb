@@ -45,12 +45,12 @@ RRECOMMENDS:${PN} ?= " \
 "
 
 SRC_URI = "gitsm://github.com/hyprwm/Hyprland.git;protocol=https;nobranch=1"
-SRCREV = "f1652b295130fd241bd3a6505908d6db562fdcf1"
+SRCREV = "39f3feddbee4a66be9608ed1eb7e73878d596b50"
 
 inherit cmake pkgconfig features_check
 
 EXTRA_OECMAKE += "-DCMAKE_BUILD_TYPE=Release"
- 
+
 PACKAGECONFIG ?= "${@bb.utils.filter('DISTRO_FEATURES', 'systemd xwayland', d)}"
 
 PACKAGECONFIG[tests] = "-DBUILD_TESTING=ON -DBUILD_HYPRTESTER=ON,-DBUILD_TESTING=OFF -DBUILD_HYPRTESTER=OFF"
