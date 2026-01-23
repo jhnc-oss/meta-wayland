@@ -23,7 +23,7 @@ DEPENDS = " \
 REQUIRED_DISTRO_FEATURES = "wayland x11"
 
 SRC_URI = "git://repo.dec05eba.com/gpu-screen-recorder;protocol=https;branch=master"
-SRCREV = "d5ba3f19fbb25f8588612e420d27a2930e1096a5"
+SRCREV = "c1af14340657daa39aa177e301bbde01aafa62fd"
 
 inherit meson pkgconfig features_check
 
