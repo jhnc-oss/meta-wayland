@@ -17,3 +17,10 @@ DEPENDS += " \
 inherit cmake pkgconfig
 
 FILES:${PN}-dev = ""
+
+# Hack to allow patching the plugins
+do_configure:prepend() {
+	rm -rf ${S}/patches
+	rm -rf ${S}/.pc
+}
+

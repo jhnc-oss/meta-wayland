@@ -3,7 +3,8 @@ LICENSE = "BSD-3-Clause"
 LIC_FILES_CHKSUM = "file://../LICENSE;md5=e6458723c467506fd0c4aea3be2bcf8a"
 
 require hyprland-plugins.inc
-
+ 
+SRC_URI += "file://0001-hyprexpo-compile-fix.patch"
 S = "${UNPACKDIR}/${BB_GIT_DEFAULT_DESTSUFFIX}/hyprexpo"
 
 FILES:${PN} += "${libdir}/libhyprexpo.so"

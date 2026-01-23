@@ -1,0 +1,31 @@
+From 2dc4b64213ce1033ef8fe87010308abbca653fe1 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Fri, 23 Jan 2026 20:43:18 +0100
+Subject: [PATCH] hyprexpo: compile fix
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+
+Upstream-Status: Pending
+---
+ hyprexpo/main.cpp | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/hyprexpo/main.cpp b/hyprexpo/main.cpp
+index 2129ea0..483c868 100644
+--- a/main.cpp
++++ b/main.cpp
+@@ -174,9 +174,9 @@ static Hyprlang::CParseResult expoGestureKeyword(const char* LHS, const char* RH
+     std::expected<void, std::string> resultFromGesture;
+ 
+     if (data[startDataIdx] == "expo")
+-        resultFromGesture = g_pTrackpadGestures->addGesture(makeUnique<CExpoGesture>(), fingerCount, direction, modMask, deltaScale, disableInhibit);
++        resultFromGesture = g_pTrackpadGestures->addGesture(makeUnique<CExpoGesture>(), fingerCount, direction, modMask, deltaScale);
+     else if (data[startDataIdx] == "unset")
+-        resultFromGesture = g_pTrackpadGestures->removeGesture(fingerCount, direction, modMask, deltaScale, disableInhibit);
++        resultFromGesture = g_pTrackpadGestures->removeGesture(fingerCount, direction, modMask, deltaScale);
+     else {
+         result.setError(std::format("Invalid gesture: {}", data[startDataIdx]).c_str());
+         return result;
+-- 
+2.52.0
+
