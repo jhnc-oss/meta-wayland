@@ -18,15 +18,15 @@ DEPENDS = " \
 	hwdata \
 	seatd \
 	pcre2 \
-	xwayland \
-	libxcb \
-	xcb-util-wm \
 	wlroots-0.19 \
 	scenefx \
 "
 
 inherit meson pkgconfig
 
-SRCREV = "775931a4e1dc12779b67ed9561433e0715b59ba4"
+SRCREV = "5172444e08b2c2be24bef0b5ccff2d2367332118"
+
+PACKAGECONFIG[xwayland] = "-Dxwayland=enabled,-Dxwayland=disabled,xwayland libxcb xcbutil-wm"
+PACKAGECONFIG ?= "${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'xwayland', '', d)}"
 
 FILES:${PN} += "${datadir}/wayland-sessions/mango.desktop"
