@@ -34,9 +34,10 @@ PACKAGECONFIG[x11] = ",,xcb-util-renderutil"
 PACKAGECONFIG[xwayland] = "-Dxwayland=enabled,-Dxwayland=disabled,xwayland xcb-util-wm,xwayland"
 
 PACKAGECONFIG ?= " \
-	${@bb.utils.filter('DISTRO_FEATURES', 'systemd vulkan x11 xwayland opengl', d)} \
-	libinput \
-	libliftoff \
+    ${@bb.utils.filter('DISTRO_FEATURES', 'systemd vulkan x11 opengl', d)} \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'xwayland', '', d)} \
+    libinput \
+    libliftoff \
 "
 
 SRC_URI = "git://gitlab.freedesktop.org/wlroots/wlroots.git;branch=master;protocol=https"
