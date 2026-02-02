@@ -19,7 +19,7 @@ index 475c744..e5426dd 100644
  set_target_properties(aquamarine PROPERTIES VERSION ${AQUAMARINE_VERSION}
                                              SOVERSION 9)
 -target_link_libraries(aquamarine OpenGL::EGL OpenGL::OpenGL PkgConfig::deps)
-+target_link_libraries(aquamarine EGL GL PkgConfig::deps)
++target_link_libraries(aquamarine EGL GLESv2 PkgConfig::deps)
  
  check_include_file("sys/timerfd.h" HAS_TIMERFD)
  pkg_check_modules(epoll IMPORTED_TARGET epoll-shim)
