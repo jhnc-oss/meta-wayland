@@ -4,7 +4,7 @@ LICENSE = "GPL-2.0-or-later"
 LIC_FILES_CHKSUM += "file://LICENSES/GPL-2.0-or-later.txt;md5=fed54355545ffd980b814dab4a3b312c"
 
 SRC_URI = "git://invent.kde.org/plasma/aurorae.git;protocol=https;nobranch=1"
-SRCREV = "be61e61ed993b0980e1e2742756bf0f745439372"
+SRCREV = "8d4d6aa493ee415a49f4987f19498751863cb50d"
 
 DEPENDS = " \
     qtbase \

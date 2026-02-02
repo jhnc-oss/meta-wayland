@@ -4,7 +4,7 @@ LICENSE = "LGPL-2.0-or-later"
 LIC_FILES_CHKSUM += "file://LICENSES/LGPL-2.0-or-later.txt;md5=e3e049b303846e4de3eeafccf035a404"
 
 SRC_URI = "git://invent.kde.org/plasma/kglobalacceld.git;protocol=https;nobranch=1"
-SRCREV = "75b77e162730f3bcd7102652313cefcf8ab55df0"
+SRCREV = "dd6cefe5e62fabc910b671041a8d070f644ee1b7"
 
 DEPENDS = " \
     qtbase \

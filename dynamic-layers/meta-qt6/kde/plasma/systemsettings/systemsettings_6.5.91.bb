@@ -4,7 +4,7 @@ LICENSE = "GPL-2.0-only"
 LIC_FILES_CHKSUM += "file://LICENSES/GPL-2.0-only.txt;md5=9e2385fe012386d34dcc5c9863070881"
 
 SRC_URI = "git://invent.kde.org/plasma/systemsettings.git;protocol=https;nobranch=1"
-SRCREV = "c057967ac9d022547cba6505387f63cf2fd13540"
+SRCREV = "743cbe70e56980b666d253d747325c6acd18062d"
 
 DEPENDS = " \
     qtbase \

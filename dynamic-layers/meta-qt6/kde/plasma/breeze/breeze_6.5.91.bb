@@ -4,7 +4,7 @@ LICENSE = "GPL-2.0-only"
 LIC_FILES_CHKSUM += "file://LICENSES/GPL-2.0-only.txt;md5=93e64b4a83c7e441e48bbdeeea05c977"
 
 SRC_URI = "git://invent.kde.org/plasma/breeze.git;protocol=https;nobranch=1"
-SRCREV = "db2be3e36c99a13b1058bb39462d20aad6ffda91"
+SRCREV = "cb3f24d1090edbdb7de7e507d82a7202c89c5e68"
 
 DEPENDS = " \
     qtbase \

@@ -4,7 +4,7 @@ LICENSE = "LGPL-2.0-or-later"
 LIC_FILES_CHKSUM += "file://LICENSES/LGPL-2.0-or-later.txt;md5=6d2d9952d88b50a51a5c73dc431d06c7"
 
 SRC_URI = "git://invent.kde.org/plasma/plasma-activities.git;protocol=https;nobranch=1"
-SRCREV = "81b689d761d652f96edb0e70aef39d9312ad6cb5"
+SRCREV = "5989ece4f5cfccafb117850c9dddfcf54130a5ac"
 
 DEPENDS = " \
     qtbase \

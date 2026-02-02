@@ -4,7 +4,7 @@ LICENSE = "LGPL-2.1-only"
 LIC_FILES_CHKSUM += "file://LICENSES/LGPL-2.1-only.txt;md5=fabba2a3bfeb22a6483d44e9ae824d3f"
 
 SRC_URI = "git://invent.kde.org/plasma/kdecoration.git;protocol=https;nobranch=1"
-SRCREV = "8a93a6ea399d72f2da29582cc95219feee865e84"
+SRCREV = "a9379b72d1076cb787380a8319f9c6fa781b18a6"
 
 DEPENDS = " \
     qtbase \

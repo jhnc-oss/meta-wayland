@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM += "file://LICENSES/GPL-2.0-only.txt;md5=93e64b4a83c7e441e48bbd
 
 SRC_URI = "git://invent.kde.org/plasma/libplasma.git;protocol=https;nobranch=1"
 SRC_URI += "file://0001-fix-compile-if-kwindowsystem-was-built-without-x11.patch"
-SRCREV = "01e07729b194f6a831c048cd6485569cd2176c9f"
+SRCREV = "707d47ed32f439ebab2e5a7cefc29bddb2fdc128"
 
 DEPENDS = " \
     qtbase \

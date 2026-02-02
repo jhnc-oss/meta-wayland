@@ -4,7 +4,7 @@ LICENSE = "GPL-2.0-only"
 LIC_FILES_CHKSUM += "file://LICENSES/GPL-2.0-only.txt;md5=93e64b4a83c7e441e48bbdeeea05c977"
 
 SRC_URI = "git://invent.kde.org/plasma/kwin.git;protocol=https;nobranch=1"
-SRCREV = "8b25936b278d8944c8b3e4b04a849f7bb6f3c404"
+SRCREV = "c87d5d545009fe3e9be452b28db6f595c299874e"
 
 DEPENDS = " \
     qtbase \

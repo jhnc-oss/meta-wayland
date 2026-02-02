@@ -4,7 +4,7 @@ LICENSE = "GPL-2.0-only"
 LIC_FILES_CHKSUM += "file://LICENSES/GPL-2.0-only.txt;md5=93e64b4a83c7e441e48bbdeeea05c977"
 
 SRC_URI = "git://invent.kde.org/plasma/knighttime.git;protocol=https;nobranch=1"
-SRCREV = "0b2083a903a35774cd5933e08c1af2361762c348"
+SRCREV = "633a7d1cc58563697cbb7de6cf7df9fc1e34d181"
 
 DEPENDS = " \
     qtbase \
