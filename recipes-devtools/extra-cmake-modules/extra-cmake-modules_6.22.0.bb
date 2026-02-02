@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM += "file://LICENSES/BSD-2-Clause.txt;md5=63d6ee386b8aaba70b1bf1
 LIC_FILES_CHKSUM += "file://LICENSES/BSD-3-Clause.txt;md5=954f4d71a37096249f837652a7f586c0"
 
 SRC_URI = "git://invent.kde.org/frameworks/extra-cmake-modules.git;protocol=https;nobranch=1"
-SRCREV = "d8d80bcc61341239519392eef1360c796bf25931"
+SRCREV = "3f76d71045e935ced4723c12345162f16cc8cb21"
 
 DEPENDS = "${@bb.utils.contains('DISTRO_FEATURES', 'kde', 'qttools qtbase-native qttools-native', '', d)}"
 
