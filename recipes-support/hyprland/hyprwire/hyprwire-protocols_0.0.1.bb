@@ -2,10 +2,9 @@ SUMMARY = "A centralized protocol spec repository for hyprwire/hyprtavern protoc
 HOMEPAGE = "https:/github.com/hyprwm/hypwire-protocols"
 LICENSE = "BSD-3-Clause"
 
-LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
-
+LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/BSD-3-Clause;md5=550794465ba0ec5312d6919e203a55f9"
 SRC_URI = "git://github.com/hyprwm/hyprwire-protocols.git;protocol=https;branch=hyprtavern"
 
-SRCREV = "f175135dab006dd126ef6f13ed9aaf7ba5b11455"
+SRCREV = "326e0cde63577cb035d3e7a6a3c543dc88764a26"
 
 inherit cmake
