@@ -4,7 +4,7 @@ LICENSE = "GPL-2.0-or-later"
 LIC_FILES_CHKSUM += "file://LICENSES/GPL-2.0-or-later.txt;md5=fed54355545ffd980b814dab4a3b312c"
 
 SRC_URI = "git://invent.kde.org/utilities/kate.git;protocol=https;nobranch=1"
-SRCREV = "411fcb20e4dcefddcad6de1181bd77dc9d05acfb"
+SRCREV = "7522080fe0908342de10696e2b4519c532178de5"
 
 DEPENDS = " \
     qtbase \
