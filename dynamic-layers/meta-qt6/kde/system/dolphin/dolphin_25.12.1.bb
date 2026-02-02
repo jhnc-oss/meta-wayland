@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM += "file://LICENSES/BSD-2-Clause.txt;md5=63d6ee386b8aaba70b1bf1
 
 SRC_URI = "git://invent.kde.org/system/dolphin.git;protocol=https;nobranch=1"
 SRC_URI += "file://0001-CMakeLists.txt-disable-x11.patch"
-SRCREV = "438d51032ae236af50d414e2bfdd36c0690f7f84"
+SRCREV = "fa17423b1f592fae5d827f2f3c705ed24e32a811"
 
 DEPENDS = " \
     qtbase \
