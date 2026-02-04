@@ -21,7 +21,7 @@ DEPENDS = " \
 	wayland-protocols \
 "
 
-SRCREV = "9fb7e6c9604d069b8b0c16871a8d8dc8d6e09973"
+SRCREV = "35d4d1369b18aca5634fb225d9435e8a9f5ae289"
 
 inherit meson pkgconfig features_check
 
