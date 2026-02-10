@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=a0836e8f0d25d383d1195ea44fdd185d"
 
 SRC_URI = "git://github.com/hyprwm/contrib.git;protocol=https;branch=main"
 
-SRCREV = "541628cebe42792ddf5063c4abd6402c2f1bd68f"
+SRCREV = "e291151acd302c568cdaf66f165f6cc6f32c424a"
 
 DEPENDS = "scdoc-native"
 RDEPENDS:${PN} = "bash sed jq libnotify grim slurp wl-clipboard"
