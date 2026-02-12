@@ -13,7 +13,7 @@ SRC_URI = " \
 	git://github.com/Alexays/Waybar.git;protocol=https;branch=master \
 "
 
-SRCREV = "41de8964f1e3278edf07902ad68ca5e01e7abeeb"
+SRCREV = "90b209add8937514d0a987aa842e701bd8f1232e"
 
 DEPENDS += " \
 	date \
