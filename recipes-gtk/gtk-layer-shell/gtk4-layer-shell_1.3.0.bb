@@ -19,7 +19,7 @@ SRC_URI = " \
 	git://github.com/wmww/gtk4-layer-shell.git;protocol=https;branch=main \
 "
 
-SRCREV = "4867d7b85cdf1e829fc1fd6f1d5f04c42cc99389"
+SRCREV = "1c963c51514581c41b9bdae08cdf69171265cdda"
 
 inherit meson pkgconfig features_check gobject-introspection vala
 
