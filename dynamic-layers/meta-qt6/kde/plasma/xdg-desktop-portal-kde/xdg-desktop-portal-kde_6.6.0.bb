@@ -4,7 +4,7 @@ LICENSE = "GPL-2.0-or-later"
 LIC_FILES_CHKSUM += "file://LICENSES/GPL-2.0-or-later.txt;md5=9e2385fe012386d34dcc5c9863070881"
 
 SRC_URI = "git://invent.kde.org/plasma/xdg-desktop-portal-kde.git;protocol=https;nobranch=1"
-SRCREV = "5ffb56fcb474f9699954dc59416f377b5aee7a3a"
+SRCREV = "b977f63f21b0fa67fd30b6cb994990dd46215b7f"
 
 DEPENDS = " \
     qtbase \

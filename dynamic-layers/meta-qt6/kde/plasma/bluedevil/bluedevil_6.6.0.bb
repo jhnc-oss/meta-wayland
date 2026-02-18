@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM += "file://LICENSES/GPL-2.0-only.txt;md5=93e64b4a83c7e441e48bbd
 
 SRC_URI = "git://invent.kde.org/plasma/bluedevil.git;protocol=https;nobranch=1"
 SRC_URI += "file://0001-src-kded-helpers-requestpin.cpp-fix-build-without-x1.patch"
-SRCREV = "ee0f9f683d2d45047fb5c0b484bc0a9037722a39"
+SRCREV = "22193893703d1ae3ecb178f1e2534478d445d018"
 
 DEPENDS = " \
     bluez-qt \

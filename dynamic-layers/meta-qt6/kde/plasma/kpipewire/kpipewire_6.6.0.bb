@@ -4,7 +4,7 @@ LICENSE = "LGPL-2.1-only"
 LIC_FILES_CHKSUM += "file://LICENSES/LGPL-2.1-only.txt;md5=41890f71f740302b785c27661123bff5"
 
 SRC_URI = "git://invent.kde.org/plasma/kpipewire.git;protocol=https;nobranch=1"
-SRCREV = "a91096881605321b12f3e65fd40f4ff125f11741"
+SRCREV = "52a5a9362d1cd68d181507a04a449929448d2403"
 
 DEPENDS = " \
     qtbase \

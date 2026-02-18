@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM += "file://../../../LICENSES/LGPL-3.0-only.txt;md5=c51d3eef3be1
 COMPATIBLE_HOST:class-target = "null"
 
 SRC_URI = "git://invent.kde.org/plasma/kwin.git;protocol=https;nobranch=1"
-SRCREV = "c87d5d545009fe3e9be452b28db6f595c299874e"
+SRCREV = "e53bb3be7ecf1735c7739b797f94d66de422ab4d"
 S = "${UNPACKDIR}/${BPN}-${PV}/src/wayland/tools"
 DEPENDS = " \
 	qtbase \
