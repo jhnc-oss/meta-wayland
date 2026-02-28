@@ -3,14 +3,14 @@ HOMEPAGE = "https://hyprland.org/"
 SECTION = "graphics"
 LICENSE = "BSD-3-Clause"
 
-LIC_FILES_CHKSUM = "file://LICENSE;md5=caa26b106f897db6f8f81cc397942426"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=83fb0c6a837b7f0de6df847876e6295d"
 
 REQUIRED_DISTRO_FEATURES = "wayland opengl"
 
 DEPENDS += " \
     aquamarine \
     cairo \
-    glaze6 \
+    glaze \
     hyprcursor \
     hyprgraphics \
     hyprlang \
@@ -46,7 +46,7 @@ RRECOMMENDS:${PN} ?= " \
 "
 
 SRC_URI = "gitsm://github.com/hyprwm/Hyprland.git;protocol=https;nobranch=1"
-SRCREV = "dd220efe7b1e292415bd0ea7161f63df9c95bfd3"
+SRCREV = "0002f148c9a4fe421a9d33c0faa5528cdc411e62"
 
 inherit cmake pkgconfig features_check
 
