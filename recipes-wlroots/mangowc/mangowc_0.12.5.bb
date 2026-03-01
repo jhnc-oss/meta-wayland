@@ -24,9 +24,9 @@ DEPENDS = " \
 
 inherit meson pkgconfig
 
-SRCREV = "5ae8975b11395dd73594fa7ea187fd5798510e30"
+SRCREV = "243848f43e96e0e6c79210e014219b25c6d35e86"
 
 PACKAGECONFIG[xwayland] = "-Dxwayland=enabled,-Dxwayland=disabled,xwayland libxcb xcb-util-wm"
 PACKAGECONFIG ?= "${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'xwayland', '', d)}"
 
-FILES:${PN} += "${datadir}/wayland-sessions/mango.desktop"
+FILES:${PN} += "${datadir}/wayland-sessions/mango.desktop ${datadir}/xdg-desktop-portal/mango-portals.conf"
