@@ -1,0 +1,30 @@
+From 2956a4fab61f959c02c944887a3e1d0cf9e94550 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Thu, 17 Jul 2025 16:40:09 +0200
+Subject: [PATCH] dont bake compile flags into binary
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+
+This fixes reproducibility
+
+Upstream-Status: Inappropriate [oe-specific]
+---
+ src/launch/command.cpp | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/src/launch/command.cpp b/src/launch/command.cpp
+index 64eb076..8965ae7 100644
+--- a/src/launch/command.cpp
++++ b/src/launch/command.cpp
+@@ -514,8 +514,6 @@ int runCommand(int argc, char** argv, QCoreApplication* coreApplication) {
+ 		if (state.log.verbosity > 1) {
+ 			qCInfo(logBare).noquote() << "\nBuildtime Qt Version:" << QT_VERSION_STR;
+ 			qCInfo(logBare).noquote() << "Runtime Qt Version:" << qVersion();
+-			qCInfo(logBare).noquote() << "Compiler:" << COMPILER;
+-			qCInfo(logBare).noquote() << "Compile Flags:" << COMPILE_FLAGS;
+ 		}
+ 
+ 		if (state.log.verbosity > 0) {
+-- 
+2.50.1
+
