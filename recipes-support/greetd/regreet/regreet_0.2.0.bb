@@ -12,4 +12,12 @@ inherit cargo cargo-update-recipe-crates pkgconfig
 
 require ${PN}-crates.inc
 
+do_install:append() {
+    install -d ${D}${sysconfdir}/tmpfiles.d
+    echo "d ${localstatedir}/lib/regreet 700 greeter - - -" > ${D}${sysconfdir}/tmpfiles.d/regreet.conf
+    echo "d ${localstatedir}/log/regreet 700 greeter - - -" >> ${D}${sysconfdir}/tmpfiles.d/regreet.conf
+}
+
+FILES:${PN} += "${sysconfdir}/tmpfiles.d"
+
 RDEPENDS:${PN} = "greetd"
