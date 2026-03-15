@@ -27,7 +27,7 @@ do_install:append() {
 }
 
 USERADD_PACKAGES = "${PN}"
-USERADD_PARAM:${PN} = "--system --user-group --groups video --no-create-home --shell /bin/sh greeter"
+USERADD_PARAM:${PN} = "--system --user-group --groups video --no-create-home --shell /bin/nologin greeter"
 
 PACKAGES += "agreety"
 
