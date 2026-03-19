@@ -1,30 +1,34 @@
-From 2956a4fab61f959c02c944887a3e1d0cf9e94550 Mon Sep 17 00:00:00 2001
+From 29c16fd38ed0c4a8708a5e4c0d827b1c68474d4e Mon Sep 17 00:00:00 2001
 From: Markus Volk <f_l_k@t-online.de>
-Date: Thu, 17 Jul 2025 16:40:09 +0200
+Date: Thu, 19 Mar 2026 17:28:29 +0100
 Subject: [PATCH] dont bake compile flags into binary
-
-Signed-off-by: Markus Volk <f_l_k@t-online.de>
 
 This fixes reproducibility
 
 Upstream-Status: Inappropriate [oe-specific]
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
 ---
- src/launch/command.cpp | 2 --
- 1 file changed, 2 deletions(-)
+ src/launch/command.cpp | 6 +-----
+ 1 file changed, 1 insertion(+), 5 deletions(-)
 
 diff --git a/src/launch/command.cpp b/src/launch/command.cpp
-index 64eb076..8965ae7 100644
+index ec1474b..dd53c02 100644
 --- a/src/launch/command.cpp
 +++ b/src/launch/command.cpp
-@@ -514,8 +514,6 @@ int runCommand(int argc, char** argv, QCoreApplication* coreApplication) {
- 		if (state.log.verbosity > 1) {
- 			qCInfo(logBare).noquote() << "\nBuildtime Qt Version:" << QT_VERSION_STR;
- 			qCInfo(logBare).noquote() << "Runtime Qt Version:" << qVersion();
--			qCInfo(logBare).noquote() << "Compiler:" << COMPILER;
--			qCInfo(logBare).noquote() << "Compile Flags:" << COMPILE_FLAGS;
- 		}
+@@ -479,11 +479,7 @@ int runCommand(int argc, char** argv, QCoreApplication* coreApplication) {
+ 	}
  
- 		if (state.log.verbosity > 0) {
+ 	if (state.misc.printVersion) {
+-		if (state.log.verbosity == 0) {
+-			qCInfo(logBare).noquote() << "noctalia-qs" << qs::debuginfo::qsVersion();
+-		} else {
+-			qCInfo(logBare).noquote() << qs::debuginfo::combinedInfo();
+-		}
++		qCInfo(logBare).noquote() << "noctalia-qs";
+ 	} else if (*state.subcommand.log) {
+ 		return readLogFile(state);
+ 	} else if (*state.subcommand.list) {
 -- 
-2.50.1
+2.53.0
 
