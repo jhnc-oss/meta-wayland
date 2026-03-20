@@ -23,7 +23,7 @@ SRC_URI = " \
 	file://0001-generate-version.sh-dont-try-to-fetch-version-from-g.patch \
 "
 
-SRCREV = "739cf115e6bc014b895bf945afccb88be6971be0"
+SRCREV = "ef15414b301513a75193fd872de79d6379f41a79"
 
 PACKAGECONFIG[grapheme-clustering] = "-Dgrapheme-clustering=enabled,-Dgrapheme-clustering=disabled,utf8proc"
 PACKAGECONFIG[docs] = "-Ddocs=enabled,-Ddocs=disabled,scdoc-native"
