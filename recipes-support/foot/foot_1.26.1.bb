@@ -26,7 +26,7 @@ SRC_URI = " \
 SRCREV = "ef15414b301513a75193fd872de79d6379f41a79"
 
 PACKAGECONFIG[grapheme-clustering] = "-Dgrapheme-clustering=enabled,-Dgrapheme-clustering=disabled,utf8proc"
-PACKAGECONFIG[docs] = "-Ddocs=enabled,-Ddocs=disabled,scdoc-native"
+PACKAGECONFIG[manpages] = "-Ddocs=enabled,-Ddocs=disabled,scdoc-native"
 PACKAGECONFIG[themes] = "-Dthemes=true,-Dthemes=false"
 
 PACKAGECONFIG ?= " \
@@ -36,7 +36,7 @@ PACKAGECONFIG ?= " \
 
 EXTRA_OEMESON += "--buildtype=release -Dterminfo=disabled"
 
-inherit meson pkgconfig
+inherit meson pkgconfig manpages
 
 FILES:${PN} = " \
 	${bindir} \
