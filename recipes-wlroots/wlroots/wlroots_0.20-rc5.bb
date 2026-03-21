@@ -40,8 +40,9 @@ PACKAGECONFIG ?= " \
     libliftoff \
 "
 
-SRC_URI = "git://gitlab.freedesktop.org/wlroots/wlroots.git;branch=0.19;protocol=https"
-SRCREV = "8c9e6b7c9f3c5344f456e97dc29dcd8d8a5f015b"
+SRC_URI = "git://gitlab.freedesktop.org/wlroots/wlroots.git;branch=0.20;protocol=https"
+SRCREV = "bba38a0d82f65234c320f4a31b9e3e8d1d42366b"
+
 
 inherit meson pkgconfig features_check
 
