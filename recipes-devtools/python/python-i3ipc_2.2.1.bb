@@ -2,11 +2,10 @@ SUMMARY = "An improved Python library to control i3wm and sway."
 LICENSE = "BSD-3-Clause"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=3961efb54421653518521529853444c4"
 
-RDEPENDS:${PN} = " \
-	python3 \
-	python-xlib \
-"
+RDEPENDS:${PN} = "python3"
 
-inherit setuptools3 pypi
+SRC_URI = "git://github.com/altdesktop/i3ipc-python.git;protocol=https;branch=master"
+SRCREV  = "9de8e885536bf611c96cc7c8ea0b2f19dd40f4f2"
 
-SRC_URI[sha256sum] = "e880d7d7147959ead5cb34764f08b97b41385b36eb8256e8af1ce163dbcccce8"
+inherit setuptools3
+
