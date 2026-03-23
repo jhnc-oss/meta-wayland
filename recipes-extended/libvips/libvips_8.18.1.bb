@@ -8,7 +8,7 @@ DEPENDS = "glib-2.0 expat fontconfig libheif jpeg lcms orc libpng poppler libjxl
 inherit meson  pkgconfig gettext gobject-introspection gi-docgen
 
 SRC_URI = "git://github.com/dloebl/libvips.git;protocol=https;nobranch=1"
-SRCREV = "de90e9bae6b050b2288c445ae82c7f8e4c9c370e"
+SRCREV = "d00e58e8afa0bb11830d4f6fdeacc076eb6bf748"
 
 GIR_MESON_ENABLE_FLAG = 'enabled'
 GIR_MESON_DISABLE_FLAG = 'disabled'
