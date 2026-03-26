@@ -17,6 +17,7 @@ DEPENDS = " \
 inherit qt6-cmake pkgconfig
 
 EXTRA_OECMAKE:class-native += "-DWITH_ICON_GENERATION=OFF"
+EXTRA_OECMAKE += "-DKF6_HOST_TOOLING=ON"
 
 do_install:class-native() {
 	install -d ${D}${bindir}
