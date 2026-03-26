@@ -14,7 +14,7 @@ DEPENDS = " \
 inherit meson pkgconfig gettext manpages
 
 SRC_URI = "git://github.com/BuddiesOfBudgie/budgie-session.git;protocol=https;nobranch=1"
-SRCREV = "9edd901a6225bf7762faa709b6b2554fa538f766"
+SRCREV = "020e5d0f55ee5ac186bcfac8aeb1dd765d275498"
 
 PACKAGECONFIG ?= "${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'systemd', 'consolekit', d)}"
 PACKAGECONFIG[systemd] = "-Dsystemd=true, -Dsystemd=false, systemd"
