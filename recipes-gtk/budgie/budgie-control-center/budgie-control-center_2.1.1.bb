@@ -43,7 +43,7 @@ inherit meson gtk-icon-cache gsettings bash-completion pkgconfig gettext gi-docg
 
 SRC_URI = "gitsm://github.com/BuddiesOfBudgie/budgie-control-center.git;protocol=https;nobranch=1"
 SRC_URI += "file://0001-Add-meson-option-to-pass-sysroot.patch"
-SRCREV = "5d4d82b19894cb4378654b7a2339abde21b68842"
+SRCREV = "8b7b4be0d70bc94224265a7af3f459c84e4546b0"
 
 EXTRA_OEMESON += "-Doe_sysroot=${STAGING_DIR_HOST}"
 GIDOCGEN_MESON_OPTION = 'documentation'
@@ -51,18 +51,14 @@ GIDOCGEN_MESON_OPTION = 'documentation'
 EXTRA_OEMESON += "-Dprofile=default"
 
 PACKAGECONFIG ?= " \
-    ${@bb.utils.filter('DISTRO_FEATURES', 'bluetooth wayland', d)} \
-    cheese \
+    ${@bb.utils.filter('DISTRO_FEATURES', 'wayland', d)} \
     ibus \
     cups \
     malcontent \
-    bluetooth \
 "
 PACKAGECONFIG[wayland] = "-Dwayland=true,-Dwayland=false,wayland wayland-native wayland-protocols"
-PACKAGECONFIG[cheese] = "-Dcheese=true,-Dcheese=false,cheese"
 PACKAGECONFIG[ibus] = "-Dibus=true,-Dibus=false,ibus"
 PACKAGECONFIG[malcontent] = "-Dmalcontent=true,-Dmalcontent=false,malcontent"
-PACKAGECONFIG[bluetooth] = "-Dbluetooth=true,-Dbluetooth=false,gnome-bluetooth3"
 PACKAGECONFIG[ssh] = "-Dssh=true,-Dssh=false"
 PACKAGECONFIG[cups] = ",,,cups system-config-printer cups-pk-helper"
 
