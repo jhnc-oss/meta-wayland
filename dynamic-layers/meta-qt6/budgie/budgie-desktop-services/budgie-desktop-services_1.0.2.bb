@@ -4,7 +4,7 @@ LICENSE = "MPL-2.0"
 LIC_FILES_CHKSUM = "file://COPYING;md5=f75d2927d3c1ed2414ef72048f5ad640"
 
 SRC_URI = "git://github.com/BuddiesOfBudgie/budgie-desktop-services.git;protocol=https;nobranch=1"
-SRCREV = "a10c05f21c792d2abd50a302539fc5f158c0f3f7"
+SRCREV = "daa5694998ad21b7be3117e99dcb049588bcc935"
 
 DEPENDS += "extra-cmake-modules qtbase qttools-native wayland wayland-native wayland-protocols kwayland libtoml11"
 
