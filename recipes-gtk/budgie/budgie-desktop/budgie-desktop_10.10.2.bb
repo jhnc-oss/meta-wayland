@@ -36,7 +36,7 @@ REQUIRED_DISTRO_FEATURES = "gobject-introspection-data"
 
 SRC_URI = "gitsm://github.com/BuddiesOfBudgie/budgie-desktop.git;protocol=https;nobranch=1"
 SRC_URI += "file://0001-budgie.enums-templates-fix-reproducibility.patch"
-SRCREV = "7d1558ce966b7dddae6a92c5d6dd10f64ab2910b"
+SRCREV = "4ef101b1cdde814317d3ded1d22361b6faa239ea"
 
 GTKDOC_MESON_OPTION = "with-gtk-doc"
 GIR_MESON_OPTION = ""
