@@ -1,0 +1,28 @@
+From 12da49047ae80ee075bfaca4069fd056801c1c6a Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Fri, 27 Mar 2026 18:31:00 +0100
+Subject: [PATCH] CMakeLists.txt: use only egl
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+
+Upstream-Status: Inappropriate [oe-specific]
+---
+ CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 4f0e54e..f9e7f5d 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -109,7 +109,7 @@ if(ENABLE_OPENGL)
+   target_compile_definitions(ueberzug PRIVATE ENABLE_OPENGL)
+   find_package(OpenGL REQUIRED)
+   list(APPEND UEBERZUG_SOURCES "src/util/egl.cpp")
+-  list(APPEND UEBERZUG_LIBRARIES OpenGL::OpenGL OpenGL::EGL)
++  list(APPEND UEBERZUG_LIBRARIES GL EGL)
+ endif()
+ 
+ if(ENABLE_X11)
+-- 
+2.53.0
+
