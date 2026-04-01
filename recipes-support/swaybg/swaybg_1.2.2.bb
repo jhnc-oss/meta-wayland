@@ -18,7 +18,7 @@ DEPENDS = " \
 
 SRC_URI = "git://github.com/swaywm/swaybg.git;protocol=https;branch=master"
 
-SRCREV = "1a70f3ab566f6d939a1e342158e830a38dfe31ac"
+SRCREV = "a59ea3dbe543b44177ad1b5bdb4afa1c5be9b9d2"
 
 inherit meson pkgconfig features_check
 
