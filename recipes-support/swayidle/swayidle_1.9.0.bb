@@ -18,7 +18,7 @@ SRC_URI = " \
 	git://github.com/swaywm/swayidle.git;protocol=https;branch=master \
 "
 
-SRCREV = "f554943bec003c2f70306123bd8db18465fcc3e4"
+SRCREV = "fedebc37e5c166995cfcc56a00a40f6468c85e7d"
 
 inherit meson pkgconfig features_check manpages
 
