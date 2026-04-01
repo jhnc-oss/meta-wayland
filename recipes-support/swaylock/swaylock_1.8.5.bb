@@ -22,7 +22,7 @@ SRC_URI = " \
 	git://github.com/swaywm/swaylock.git;protocol=https;branch=master \
 "
 
-SRCREV = "b0f417c488fd12b1ac9f7c3eea9b49d6221b761d"
+SRCREV = "1a4c472c11ee0354e5a689e33fad4ecce533ddc3"
 
 PACKAGECONFIG[pam] = ",,libpam"
 PACKAGECONFIG[gdk-pixbuf] = ",,gdk-pixbuf"
