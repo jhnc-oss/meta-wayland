@@ -28,6 +28,7 @@ SRC_URI += " \
     crate://crates.io/derive_builder/0.20.2 \
     crate://crates.io/derive_builder_core/0.20.2 \
     crate://crates.io/derive_builder_macro/0.20.2 \
+    crate://crates.io/dlib/0.5.2 \
     crate://crates.io/downcast-rs/1.2.1 \
     crate://crates.io/either/1.15.0 \
     crate://crates.io/env_logger/0.10.2 \
@@ -38,6 +39,7 @@ SRC_URI += " \
     crate://crates.io/flate2/1.1.5 \
     crate://crates.io/fnv/1.0.7 \
     crate://crates.io/foldhash/0.1.5 \
+    crate://crates.io/fontconfig/0.10.0 \
     crate://crates.io/fontdue/0.9.3 \
     crate://crates.io/glob/0.3.3 \
     crate://crates.io/hashbrown/0.14.5 \
@@ -128,11 +130,12 @@ SRC_URI += " \
     crate://crates.io/windows-link/0.2.1 \
     crate://crates.io/windows-sys/0.61.2 \
     crate://crates.io/winnow/0.7.14 \
-    crate://crates.io/xcb/1.6.0 \
-    crate://crates.io/xcb-util-cursor/0.3.5 \
-    crate://crates.io/xcb-util-cursor-sys/0.1.6 \
+    crate://crates.io/xcb/1.7.0 \
+    crate://crates.io/xcb-util-cursor/0.4.0 \
+    crate://crates.io/xcb-util-cursor-sys/0.2.0 \
     crate://crates.io/xcursor/0.3.10 \
     crate://crates.io/xkeysym/0.2.1 \
+    crate://crates.io/yeslogic-fontconfig-sys/6.0.0 \
     crate://crates.io/zerocopy/0.8.31 \
     crate://crates.io/zerocopy-derive/0.8.31 \
 "
@@ -163,6 +166,7 @@ SRC_URI[deranged-0.5.5.sha256sum] = "ececcb659e7ba858fb4f10388c250a7252eb0a27373
 SRC_URI[derive_builder-0.20.2.sha256sum] = "507dfb09ea8b7fa618fcf76e953f4f5e192547945816d5358edffe39f6f94947"
 SRC_URI[derive_builder_core-0.20.2.sha256sum] = "2d5bcf7b024d6835cfb3d473887cd966994907effbe9227e8c8219824d06c4e8"
 SRC_URI[derive_builder_macro-0.20.2.sha256sum] = "ab63b0e2bf4d5928aff72e83a7dace85d7bba5fe12dcc3c5a572d78caffd3f3c"
+SRC_URI[dlib-0.5.2.sha256sum] = "330c60081dcc4c72131f8eb70510f1ac07223e5d4163db481a04a0befcffa412"
 SRC_URI[downcast-rs-1.2.1.sha256sum] = "75b325c5dbd37f80359721ad39aca5a29fb04c89279657cffdda8736d0c0b9d2"
 SRC_URI[either-1.15.0.sha256sum] = "48c757948c5ede0e46177b7add2e67155f70e33c07fea8284df6576da70b3719"
 SRC_URI[env_logger-0.10.2.sha256sum] = "4cd405aab171cb85d6735e5c8d9db038c17d3ca007a4d2c25f337935c3d90580"
@@ -173,6 +177,7 @@ SRC_URI[find-msvc-tools-0.1.5.sha256sum] = "3a3076410a55c90011c298b04d0cfa770b00
 SRC_URI[flate2-1.1.5.sha256sum] = "bfe33edd8e85a12a67454e37f8c75e730830d83e313556ab9ebf9ee7fbeb3bfb"
 SRC_URI[fnv-1.0.7.sha256sum] = "3f9eec918d3f24069decb9af1554cad7c880e2da24a9afd88aca000531ab82c1"
 SRC_URI[foldhash-0.1.5.sha256sum] = "d9c4f5dac5e15c24eb999c26181a6ca40b39fe946cbe4c263c7209467bc83af2"
+SRC_URI[fontconfig-0.10.0.sha256sum] = "b19c4bca8c705ea23bfb3e3403a9e699344d1ee3205b631f03fe4dbf1e52429f"
 SRC_URI[fontdue-0.9.3.sha256sum] = "2e57e16b3fe8ff4364c0661fdaac543fb38b29ea9bc9c2f45612d90adf931d2b"
 SRC_URI[glob-0.3.3.sha256sum] = "0cc23270f6e1808e30a928bdc84dea0b9b4136a8bc82338574f23baf47bbd280"
 SRC_URI[hashbrown-0.14.5.sha256sum] = "e5274423e17b7c9fc20b6e7e208532f9b19825d82dfd615708b70edd83df41f1"
@@ -263,11 +268,12 @@ SRC_URI[winapi-util-0.1.11.sha256sum] = "c2a7b1c03c876122aa43f3020e6c3c3ee5c0508
 SRC_URI[windows-link-0.2.1.sha256sum] = "f0805222e57f7521d6a62e36fa9163bc891acd422f971defe97d64e70d0a4fe5"
 SRC_URI[windows-sys-0.61.2.sha256sum] = "ae137229bcbd6cdf0f7b80a31df61766145077ddf49416a728b02cb3921ff3fc"
 SRC_URI[winnow-0.7.14.sha256sum] = "5a5364e9d77fcdeeaa6062ced926ee3381faa2ee02d3eb83a5c27a8825540829"
-SRC_URI[xcb-1.6.0.sha256sum] = "f07c123b796139bfe0603e654eaf08e132e52387ba95b252c78bad3640ba37ea"
-SRC_URI[xcb-util-cursor-0.3.5.sha256sum] = "bf6417c51a1f5eda49156061175021bd3ccf0a759bc7c402bbea6a6a1ae14239"
-SRC_URI[xcb-util-cursor-sys-0.1.6.sha256sum] = "4c78acb131647687ee62f9e64c988457f23ecb8f3a078a37a312f989b320cb47"
+SRC_URI[xcb-1.7.0.sha256sum] = "ee4c580d8205abb0a5cf4eb7e927bd664e425b6c3263f9c5310583da96970cf6"
+SRC_URI[xcb-util-cursor-0.4.0.sha256sum] = "c256d10270e6789ebbed752ec17fcf98a04363dc97aa9b7b92ab1af3a7bc5744"
+SRC_URI[xcb-util-cursor-sys-0.2.0.sha256sum] = "8346f6cad5cb6b38645c53431ffe35bd0634e8154f529fa9d3f5f762c03c98b6"
 SRC_URI[xcursor-0.3.10.sha256sum] = "bec9e4a500ca8864c5b47b8b482a73d62e4237670e5b5f1d6b9e3cae50f28f2b"
 SRC_URI[xkeysym-0.2.1.sha256sum] = "b9cc00251562a284751c9973bace760d86c0276c471b4be569fe6b068ee97a56"
+SRC_URI[yeslogic-fontconfig-sys-6.0.0.sha256sum] = "503a066b4c037c440169d995b869046827dbc71263f6e8f3be6d77d4f3229dbd"
 SRC_URI[zerocopy-0.8.31.sha256sum] = "fd74ec98b9250adb3ca554bdde269adf631549f51d8a8f8f0a10b50f1cb298c3"
 SRC_URI[zerocopy-derive-0.8.31.sha256sum] = "d8a8d209fdf45cf5138cbb5a506f6b52522a25afccc534d1475dad8e31105c6a"
 # from testwl/Cargo.lock

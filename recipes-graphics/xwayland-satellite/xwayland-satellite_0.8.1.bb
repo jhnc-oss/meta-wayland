@@ -11,7 +11,7 @@ DEPENDS = " \
     clang-native \
 "
 
-SRCREV = "9a71e77b1e06dbad4a472265e59b52ac83cbe00c"
+SRCREV = "536bd32efc935bf876d6de385ec18a1b715c9358"
 
 inherit cargo cargo-update-recipe-crates pkgconfig
 
