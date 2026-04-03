@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=3000208d539ec061b899bce1d9ce9404"
 SRC_URI = "git://github.com/noctalia-dev/noctalia-qs.git;protocol=https;nobranch=1"
 SRC_URI += "file://0001-dont-bake-compile-flags-into-binary.patch"
 
-SRCREV = "1c0710cd7c9f1483bb6dbf5e69023da97136646d"
+SRCREV = "e7224b756dcd10eec040df818a4c7a0fda5d6eff"
 
 DEPENDS = "cli11 qtbase qttools-native qtdeclarative qtquick3d qtshadertools spirv-tools virtual/libgbm"
 RCONFLICTS:${PN} = "quickshell"
