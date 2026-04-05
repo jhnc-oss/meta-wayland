@@ -48,7 +48,7 @@ EXTRA_OEMESON += "--buildtype release"
 
 do_install:append() {
 	install -d ${D}${bindir}
-	install -m 0755 ${B}/tinywl/tinywl ${D}${bindir}/tinywl-0.18
+	install -m 0755 ${B}/tinywl/tinywl ${D}${bindir}/tinywl-${PV}
 }
 
 FILES:${PN} += "${libdir}/libwlroots-*.so"
