@@ -4,7 +4,7 @@ LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=3b83ef96387f14655fc854ddc3c6bd57"
 
 SRC_URI = "gitsm://github.com/luvit/luv.git;protocol=https;branch=master"
-SRCREV = "4c9fbc6cf6f3338bb0e0426710cf885ee557b540"
+SRCREV = "f65fe9d7616f9fbcd20227fc7a73b38d1c5c180d"
 
 DEPENDS = "luajit-native libuv"
 
