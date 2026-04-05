@@ -19,9 +19,9 @@ inherit meson pkgconfig features_check gobject-introspection vala
 
 SRC_URI = "gitsm://source.puri.sm/Librem5/feedbackd.git;protocol=https;nobranch=1"
 
-SRCREV = "09396c7d64ee047849e65eb7ce1b7aa88763a902"
+SRCREV = "f14642cb0408af9b6bf963eff3bc61eff6b0a1b2"
 
 EXTRA_OEMESON += "-Dtests=false"
 
-FILES:${PN} += "${datadir}"
+FILES:${PN} += "${datadir} ${systemd_user_unitdir}"
 
