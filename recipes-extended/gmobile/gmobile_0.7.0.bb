@@ -7,7 +7,7 @@ inherit meson pkgconfig gobject-introspection vala
 DEPENDS = "glib-2.0 json-glib"
 
 SRC_URI = "git://gitlab.gnome.org/World/Phosh/gmobile.git;protocol=https;branch=main"
-SRCREV = "fb21129f5d31a6e640225415a25118d8f16363a1"
+SRCREV = "917e02110c90b9704d2c25e1479aa1b3762c8420"
 
 do_install:append() {
 	install -m 0644 ${B}/gm-config.h ${D}${includedir}
