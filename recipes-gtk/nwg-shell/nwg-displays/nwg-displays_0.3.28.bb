@@ -16,7 +16,7 @@ RDEPENDS:${PN} = "\
 
 inherit setuptools3
 
-SRCREV = "e2fdb413dbfccecf795039209a092c321636a419"
+SRCREV = "ba3d64293f0f4a09f95b15f881363da2521b5849"
 
 do_install:append() {
 	install -d ${D}${datadir}/pixmaps ${D}${datadir}/applications
