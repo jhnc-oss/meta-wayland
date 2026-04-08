@@ -19,9 +19,9 @@ DEPENDS = " \
 "
 
 PACKAGECONFIG ?= ""
-PACKAGECONFIG[manpages] = "-Dman=true,-Dman=false,rst2man-native"
+PACKAGECONFIG[manpages] = "-Dman=true,-Dman=false,python3-docutils-native"
 
-inherit gsettings meson pkgconfig gtk-icon-cache gobject-introspection
+inherit gsettings meson pkgconfig gtk-icon-cache manpages gobject-introspection
 
 SRC_URI = "git://gitlab.gnome.org/World/Phosh/phosh-mobile-settings.git;protocol=https;nobranch=1;name=phosh-mobile-settings"
 SRC_URI += "git://gitlab.gnome.org/GNOME/libgnome-volume-control.git;protocol=https;subdir=${S}/subprojects/gvc;name=gvc;nobranch=1"
