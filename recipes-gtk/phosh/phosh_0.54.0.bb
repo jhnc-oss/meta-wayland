@@ -35,7 +35,7 @@ RDEPENDS:${PN} = " \
     polkit-gnome \
     gsettings-desktop-schemas \
     phoc \
-    squeekboard \
+    stevia \
     gnome-desktop \
     gnome-session \
     wl-clipboard \
