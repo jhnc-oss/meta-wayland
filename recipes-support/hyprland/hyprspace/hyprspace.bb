@@ -7,7 +7,7 @@ SRC_URI = " \
 	git://github.com/KZDKM/Hyprspace.git;protocol=https;branch=main \
 "
 
-SRCREV = "0a82e3724f929de8ad8fb04d2b7fa128493f24f7"
+SRCREV = "12ddde04f8584bf7de3151e6169918e0dda9f822"
 
 DEPENDS += " \
 	libdrm \
