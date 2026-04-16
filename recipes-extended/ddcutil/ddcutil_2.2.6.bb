@@ -4,11 +4,11 @@ SECTION = "libs"
 LICENSE = "GPL-2.0-only"
 LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 
-SRC_URI = "git://github.com/rockowitz/ddcutil.git;protocol=https;branch=master"
+SRC_URI = "git://github.com/rockowitz/ddcutil.git;protocol=https;branch=${PV}-release"
 
 DEPENDS = "i2c-tools glib-2.0 kmod jansson"
 
-SRCREV = "5a77cf7bd77eccac8276e8e9cad754179fdcdd05"
+SRCREV = "b06af8def1e61624f7f2231d512d91b4c1ac91e3"
 
 inherit autotools-brokensep pkgconfig gobject-introspection
 
