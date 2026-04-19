@@ -4,10 +4,19 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=818b1111623280b357eba3f8515d6cce"
 
 DEPENDS += "glib-2.0-native"
 
-inherit python_hatchling
+inherit python_hatchling gtk-icon-cache
 
 SRC_URI += "git://github.com/BlueManCZ/hyprmod.git;protocol=https;nobranch=1"
 SRCREV = "e6e3fc60bda0b60e71d8e69129f14c0927a38d6b"
+
+do_install:append() {
+	mkdir -p ${D}${datadir}
+	for dir in applications metainfo icons; do
+		cp -rf data/$dir ${D}${datadir}
+	done
+}
+
+FILES:${PN} += "${datadir}"
 
 RDEPENDS:${PN} = " \
 	gnome-desktop \
