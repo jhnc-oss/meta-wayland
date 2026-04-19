@@ -7,7 +7,7 @@ DEPENDS += "glib-2.0-native"
 inherit python_hatchling
 
 SRC_URI += "git://github.com/BlueManCZ/hyprmod.git;protocol=https;nobranch=1"
-SRCREV = "1afb12013d03a9fa0e7b34fbd239f3b459b03b73"
+SRCREV = "e6e3fc60bda0b60e71d8e69129f14c0927a38d6b"
 
 RDEPENDS:${PN} = " \
 	gnome-desktop \
