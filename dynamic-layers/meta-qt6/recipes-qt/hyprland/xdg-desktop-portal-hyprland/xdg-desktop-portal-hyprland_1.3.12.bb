@@ -4,7 +4,7 @@ LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=e0f1d50df739a9fb8eae12a8f37ce352"
 
 SRC_URI = "gitsm://github.com/hyprwm/xdg-desktop-portal-hyprland.git;protocol=https;nobranch=1"
-SRCREV = "4b8801228ff958d028f588f0c2b911dbf32297f9"
+SRCREV = "01e13c0a027a2d177df4dead76ac9d069e2cc8e6"
 
 DEPENDS = " \
     hyprlang \
