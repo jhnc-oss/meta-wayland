@@ -11,6 +11,7 @@ DEPENDS += " \
     aquamarine \
     cairo \
     glaze \
+    glslang \
     hyprcursor \
     hyprgraphics \
     hyprlang \
@@ -23,6 +24,7 @@ DEPENDS += " \
     libinput \
     libxcursor \
     libxkbcommon \
+    lua \
     muparser \
     pango \
     pixman \
@@ -46,18 +48,24 @@ RRECOMMENDS:${PN} ?= " \
 "
 
 SRC_URI = "gitsm://github.com/hyprwm/Hyprland.git;protocol=https;nobranch=1"
-SRCREV = "521ece463c4a9d3d128670688a34756805a4328f"
-
+SRCREV = "eff3bfe261e90b8950b59379ca7815f735a7aab6"
+PV:append = "+git"
 
 inherit cmake pkgconfig features_check
 
 EXTRA_OECMAKE += "-DCMAKE_BUILD_TYPE=Release"
 
-PACKAGECONFIG ?= "${@bb.utils.filter('DISTRO_FEATURES', 'systemd x11', d)}"
+do_configure:prepend() {
+	touch ${STAGING_BINDIR}/glslang
+}
+
+PACKAGECONFIG ?= "${@bb.utils.filter('DISTRO_FEATURES', 'systemd x11', d)} uwsm"
 
 PACKAGECONFIG[tests] = "-DBUILD_TESTING=ON -DBUILD_HYPRTESTER=ON,-DBUILD_TESTING=OFF -DBUILD_HYPRTESTER=OFF"
 PACKAGECONFIG[systemd] = "-DSYSTEMD=ON,-DNO_SYSTEMD=ON"
 PACKAGECONFIG[x11] = "-DXWAYLAND=ON,-DNO_XWAYLAND=ON,libxcb xcb-util-wm xcb-util-renderutil xcb-util-errors xwayland,xwayland"
 PACKAGECONFIG[qt] = ",,,hyprpolkitagent xdg-desktop-portal-hyprland hyprsysteminfo hyprland-qt-support qt6ct"
+PACKAGECONFIG[uwsm] = "-DUWSM=ON,-DNO_UWSM=ON,,uwsm"
+PACKAGECONFIG[hyprpm] = "-DHYPRPM=ON,-DNO_HYPRPM=ON"
 
 FILES:${PN} += "${datadir} ${systemd_user_unitdir} ${libdir}/hyprtestplugin.so"
