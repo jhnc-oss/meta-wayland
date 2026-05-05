@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=778ddc598b3f2a2da3657dda514da983"
 
 SRC_URI = "git://github.com/hyprwm/hyprsysteminfo.git;protocol=https;branch=main"
 
-SRCREV = "1959f049f5934be215a9eca9fbc1582438f4dbe2"
+SRCREV = "6f68a726531b53d87c6dd6ce474face27dde02ff"
 
 DEPENDS = "glaze hyprtoolkit hyprutils libdrm pciutils pixman"
 
