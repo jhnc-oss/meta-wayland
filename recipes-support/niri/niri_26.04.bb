@@ -29,10 +29,11 @@ require ${PN}-crates.inc
 
 export LIBCLANG_PATH = "${STAGING_LIBDIR_NATIVE}/libclang.so"
 
+PACKAGECONFIG ?= ""
+PACKAGECONFIG[xwayland] = ",,,xwayland-satellite"
+
 # smithay is fetched at do_compile
 CARGO_BUILD_FLAGS:remove = "--frozen"
 do_compile[network] = "1"
 
-# avoid packaging the debug symbols as they contain buildpaths (cargo_home)
-PACKAGES:remove = "${PN}-dbg"
-INSANE_SKIP:${PN} = "installed-vs-shipped"
+INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
