@@ -18,3 +18,5 @@ EXTRA_OECMAKE = " \
 	-DWITH_LUA_ENGINE=LuaJIT \
 	-DLUA_COMPAT53_DIR=${S}/deps/lua-compat-5.3 \
 "
+
+BBCLASSEXTEND = "native"
