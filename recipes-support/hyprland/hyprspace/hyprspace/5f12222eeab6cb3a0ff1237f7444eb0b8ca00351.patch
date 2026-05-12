@@ -1,0 +1,1003 @@
+From 5f12222eeab6cb3a0ff1237f7444eb0b8ca00351 Mon Sep 17 00:00:00 2001
+From: 0xl30 <mrmad0x0@gmail.com>
+Date: Mon, 11 May 2026 22:57:19 +0530
+Subject: [PATCH] Fix: Compatibility with Hyprland v0.55.0
+
+Upstream-Status: Submitted [https://github.com/KZDKM/Hyprspace/commit/5f12222eeab6cb3a0ff1237f7444eb0b8ca00351.patch]
+---
+ src/Globals.hpp  |  35 +++++++-----
+ src/Input.cpp    |  75 ++++++++++++------------
+ src/Layout.cpp   |  28 +++++----
+ src/Overview.cpp |  46 +--------------
+ src/Overview.hpp |   7 ---
+ src/Render.cpp   | 145 +++++++++++++++++++++++++++--------------------
+ src/main.cpp     | 140 +++++++++++++++++++++++++++------------------
+ 7 files changed, 249 insertions(+), 227 deletions(-)
+
+diff --git a/src/Globals.hpp b/src/Globals.hpp
+index a82da1e..d048b8e 100644
+--- a/src/Globals.hpp
++++ b/src/Globals.hpp
+@@ -1,38 +1,45 @@
+ #pragma once
+ 
++#include <functional>
++#include <tuple>
++#include <type_traits>
++
++#include <hyprutils/memory/SharedPtr.hpp>
++
+ #include <hyprland/src/plugins/PluginAPI.hpp>
+ #include <hyprland/src/Compositor.hpp>
+ #include <hyprland/src/render/Renderer.hpp>
+-#include <hyprland/src/config/ConfigManager.hpp>
++#include <hyprland/src/render/types.hpp>
+ #include <hyprland/src/managers/input/InputManager.hpp>
+ #include <hyprland/src/layout/LayoutManager.hpp>
+-#include <hyprland/src/event/EventBus.hpp>
+-#include <hyprland/src/helpers/time/Time.hpp>
+ #include <hyprland/src/managers/animation/AnimationManager.hpp>
+ #include <hyprland/src/config/ConfigValue.hpp>
+-#include <hyprutils/signal/Signal.hpp>
+-#include <functional>
+-#include <tuple>
++#include <hyprland/src/helpers/time/Time.hpp>
++#include <hyprland/src/event/EventBus.hpp>
+ 
+-// Helper to register a cancellable event listener that properly unpacks
+-// std::tuple<const EventType&, SCallbackInfo&> from the signal's void* args.
++// Hyprland v0.54+: cancellable input uses Event::SCallbackInfo (not legacy CEvent*).
++using SCallbackInfo = Event::SCallbackInfo;
++
++// Must match Hyprutils::Signal::CSignalT::RefArg (hyprutils/signal/Signal.hpp).
++template <typename T>
++using HyprSignalRefArg = std::conditional_t<std::is_trivially_copyable_v<T>, T, const T&>;
++
++// Unpack Hyprutils::CSignalT::emit() tuple — first event arg is often stored by value (trivial types).
+ template <typename EventType, typename Signal>
+-CHyprSignalListener listenCancellable(Signal& signal, std::function<void(const EventType&, Event::SCallbackInfo&)> handler) {
++CHyprSignalListener listenCancellable(Signal& signal, std::function<void(const EventType&, SCallbackInfo&)> handler) {
+     struct Hack : Hyprutils::Signal::CSignalBase {
+         using CSignalBase::registerListenerInternal;
+     };
+     return reinterpret_cast<Hack&>(signal).registerListenerInternal([handler](void* args) {
+-        auto* tup = static_cast<std::tuple<const EventType&, Event::SCallbackInfo&>*>(args);
++        using Tuple = std::tuple<HyprSignalRefArg<EventType>, HyprSignalRefArg<Event::SCallbackInfo&>>;
++        auto* tup = static_cast<Tuple*>(args);
+         handler(std::get<0>(*tup), std::get<1>(*tup));
+     });
+ }
+ 
+ inline HANDLE pHandle = NULL;
+ 
+-typedef SDispatchResult (*tMouseKeybind)(std::string);
+-extern void* pMouseKeybind;
+-
+-typedef void (*tRenderWindow)(void*, PHLWINDOW, PHLMONITOR, const Time::steady_tp&, bool, eRenderPassMode, bool, bool);
++typedef void (*tRenderWindow)(void*, PHLWINDOW, PHLMONITOR, const Time::steady_tp&, bool, Render::eRenderPassMode, bool, bool);
+ extern void* pRenderWindow;
+ typedef void (*tRenderLayer)(void*, PHLLS, PHLMONITOR, const Time::steady_tp&, bool, bool);
+ extern void* pRenderLayer;
+diff --git a/src/Input.cpp b/src/Input.cpp
+index 5976e42..177adcd 100644
+--- a/src/Input.cpp
++++ b/src/Input.cpp
+@@ -1,7 +1,13 @@
++#include <hyprland/src/desktop/view/Window.hpp>
++
+ #include "Overview.hpp"
+ #include "Globals.hpp"
+ 
+ bool CHyprspaceWidget::buttonEvent(bool pressed, Vector2D coords) {
++    bool Return;
++
++    const auto dragTarget = g_layoutManager->dragController()->target();
++    const auto targetWindow = dragTarget ? dragTarget->window() : nullptr;
+ 
+     // this is for click to exit, we set a timeout for button release
+     bool couldExit = false;
+@@ -30,35 +36,38 @@ bool CHyprspaceWidget::buttonEvent(bool pressed, Vector2D coords) {
+         targetWorkspace = g_pCompositor->createNewWorkspace(targetWorkspaceID, getOwner()->m_id);
+     }
+ 
+-    if (pressed) {
+-        // on press: check if cursor is over a window thumbnail and begin drag
+-        for (auto& [wref, wbox] : windowBoxes) {
+-            if (wbox.containsPoint(coords)) {
+-                draggedWindowRef = wref;
+-                return false;
++    // if the cursor is hovering over workspace, clicking should switch workspace instead of starting window drag
++    if (Config::autoDrag && (targetWorkspace == nullptr || !pressed)) {
++        if (g_layoutManager->dragController()->target())
++            g_layoutManager->endDragTarget();
++
++        if (pressed) {
++            const auto PWINDOW = g_pCompositor->vectorToWindowUnified(coords, Desktop::View::WINDOW_ONLY, nullptr);
++            if (PWINDOW) {
++                const auto LT = PWINDOW->layoutTarget();
++                if (LT)
++                    g_layoutManager->beginDragTarget(LT, MBIND_MOVE);
+             }
+         }
+-    } else if (auto dw = draggedWindowRef.lock()) {
+-        // on release: drop dragged window into target workspace
+-        draggedWindowRef.reset();
+-        if (targetWorkspace != nullptr) {
+-            g_pCompositor->moveWindowToWorkspaceSafe(dw, targetWorkspace);
+-            if (dw->m_isFloating) {
+-                auto targetPos = getOwner()->m_position + (getOwner()->m_size / 2.) - (dw->m_reportedSize / 2.);
+-                dw->m_position = targetPos;
+-                *dw->m_realPosition = targetPos;
+-            }
+-            if (Config::switchOnDrop) {
+-                g_pCompositor->getMonitorFromID(targetWorkspace->m_monitor->m_id)->changeWorkspace(targetWorkspace->m_id);
+-                if (Config::exitOnSwitch && active) hide();
+-            }
+-            updateLayout();
++    }
++    Return = false;
++
++    // release window on workspace to drop it in
++    if (targetWindow && targetWorkspace != nullptr && !pressed) {
++        g_pCompositor->moveWindowToWorkspaceSafe(targetWindow, targetWorkspace);
++        if (targetWindow->m_isFloating) {
++            auto targetPos = getOwner()->m_position + (getOwner()->m_size / 2.) - (targetWindow->m_reportedSize / 2.);
++            targetWindow->m_position = targetPos;
++            *targetWindow->m_realPosition = targetPos;
+         }
+-        return false;
++        if (Config::switchOnDrop) {
++            g_pCompositor->getMonitorFromID(targetWorkspace->m_monitor->m_id)->changeWorkspace(targetWorkspace->m_id);
++            if (Config::exitOnSwitch && active) hide();
++        }
++        updateLayout();
+     }
+-
+     // click workspace to change to workspace and exit overview
+-    if (targetWorkspace && !pressed) {
++    else if (targetWorkspace && !pressed) {
+         if (targetWorkspace->m_isSpecialWorkspace)
+             getOwner()->activeSpecialWorkspaceID() == targetWorkspaceID ? getOwner()->setSpecialWorkspace(nullptr) : getOwner()->setSpecialWorkspace(targetWorkspaceID);
+         else {
+@@ -69,7 +78,7 @@ bool CHyprspaceWidget::buttonEvent(bool pressed, Vector2D coords) {
+     // click elsewhere to exit overview
+     else if (Config::exitOnClick && targetWorkspace == nullptr && active && couldExit && !pressed) hide();
+ 
+-    return false;
++    return Return;
+ }
+ 
+ bool CHyprspaceWidget::axisEvent(double delta, wl_pointer_axis axis, Vector2D coords) {
+@@ -78,18 +87,14 @@ bool CHyprspaceWidget::axisEvent(double delta, wl_pointer_axis axis, Vector2D co
+     CBox widgetBox = {owner->m_position.x, owner->m_position.y - curYOffset->value(), owner->m_transformedSize.x, (Config::panelHeight + Config::reservedArea) * owner->m_scale};
+     if (Config::onBottom) widgetBox = {owner->m_position.x, owner->m_position.y + owner->m_transformedSize.y - ((Config::panelHeight + Config::reservedArea) * owner->m_scale) + curYOffset->value(), owner->m_transformedSize.x, (Config::panelHeight + Config::reservedArea) * owner->m_scale};
+ 
+-    // horizontal scroll pans the panel
+-    if (axis == WL_POINTER_AXIS_HORIZONTAL_SCROLL) {
+-        *workspaceScrollOffset = workspaceScrollOffset->goal() - delta * 2;
+-        return false;
+-    }
+-
+-    // scroll through panel if cursor is on it (vertical scroll)
++    // scroll through panel if cursor is on it
+     if (widgetBox.containsPoint(coords * getOwner()->m_scale)) {
+-        *workspaceScrollOffset = workspaceScrollOffset->goal() - delta * 2;
++        // only horizontal scroll pans the panel; ignore vertical scroll here
++        if (axis == WL_POINTER_AXIS_HORIZONTAL_SCROLL)
++            *workspaceScrollOffset = workspaceScrollOffset->goal() - delta * 2;
+     }
+-    // otherwise, vertical scroll switches active workspace
+-    else {
++    // otherwise, scroll to switch active workspace (vertical scroll only)
++    else if (axis == WL_POINTER_AXIS_VERTICAL_SCROLL) {
+         if (delta < 0) {
+             SWorkspaceIDName wsIDName = getWorkspaceIDNameFromString("r-1");
+             if (g_pCompositor->getWorkspaceByID(wsIDName.id) == nullptr) {
+diff --git a/src/Layout.cpp b/src/Layout.cpp
+index 9a6e59d..632d657 100644
+--- a/src/Layout.cpp
++++ b/src/Layout.cpp
+@@ -1,5 +1,6 @@
+ #include "Overview.hpp"
+ #include "Globals.hpp"
++#include <hyprland/src/config/legacy/ConfigManager.hpp>
+ 
+ // FIXME: preserve original workspace rules
+ void CHyprspaceWidget::updateLayout() {
+@@ -12,13 +13,10 @@ void CHyprspaceWidget::updateLayout() {
+ 
+     static auto PGAPSINDATA = CConfigValue<Hyprlang::CUSTOMTYPE>("general:gaps_in");
+     static auto PGAPSOUTDATA = CConfigValue<Hyprlang::CUSTOMTYPE>("general:gaps_out");
+-    auto* const PGAPSIN = (CCssGapData*)(PGAPSINDATA.ptr())->getData();
+-    auto* const PGAPSOUT = (CCssGapData*)(PGAPSOUTDATA.ptr())->getData();
++    auto* const PGAPSIN = (Config::CCssGapData*)(PGAPSINDATA.ptr())->getData();
++    auto* const PGAPSOUT = (Config::CCssGapData*)(PGAPSOUTDATA.ptr())->getData();
+ 
+-    // Set panel reservation as initial values BEFORE arranging layers,
+-    // so that arrangeLayersForMonitor adds LS reservations as dynamic data
+-    // on top of our panel reservation without double-counting.
+-    if (active) {
++   if (active) {
+         if (!Config::onBottom)
+             pMonitor->m_reservedArea = Desktop::CReservedArea(currentHeight, 0, 0, 0);
+         else
+@@ -27,7 +25,6 @@ void CHyprspaceWidget::updateLayout() {
+         pMonitor->m_reservedArea = Desktop::CReservedArea();
+     }
+ 
+-    // arrange layers adds LS dynamic reservations on top of our initial values
+     g_pHyprRenderer->arrangeLayersForMonitor(ownerID);
+ 
+     // gaps are created via workspace rules
+@@ -42,14 +39,20 @@ void CHyprspaceWidget::updateLayout() {
+             if (ws->m_monitor->m_id == ownerID && ws->m_id != oActiveWorkspace->m_id) {
+                 pMonitor->m_activeWorkspace = ws.lock();
+                 const auto curRules = std::to_string(pMonitor->activeWorkspaceID()) + ", gapsin:" + PGAPSIN->toString() + ", gapsout:" + PGAPSOUT->toString();
+-                if (Config::overrideGaps) g_pConfigManager->handleWorkspaceRules("", curRules);
++                if (Config::overrideGaps) {
++                    if (const auto legacy = Config::Legacy::mgr().lock())
++                        legacy->handleWorkspaceRules("", curRules);
++                }
+                 g_layoutManager->recalculateMonitor(pMonitor);
+             }
+         }
+         pMonitor->m_activeWorkspace = oActiveWorkspace;
+ 
+         const auto curRules = std::to_string(pMonitor->activeWorkspaceID()) + ", gapsin:" + std::to_string(Config::gapsIn) + ", gapsout:" + std::to_string(Config::gapsOut);
+-        if (Config::overrideGaps) g_pConfigManager->handleWorkspaceRules("", curRules);
++        if (Config::overrideGaps) {
++            if (const auto legacy = Config::Legacy::mgr().lock())
++                legacy->handleWorkspaceRules("", curRules);
++        }
+         g_layoutManager->recalculateMonitor(pMonitor);
+ 
+     }
+@@ -57,9 +60,12 @@ void CHyprspaceWidget::updateLayout() {
+         for (auto& ws : g_pCompositor->getWorkspaces()) {
+             if (ws->m_monitor->m_id == ownerID) {
+                 const auto curRules = std::to_string(ws->m_id) + ", gapsin:" + PGAPSIN->toString() + ", gapsout:" + PGAPSOUT->toString();
+-                if (Config::overrideGaps) g_pConfigManager->handleWorkspaceRules("", curRules);
+-                g_layoutManager->recalculateMonitor(pMonitor);
++                if (Config::overrideGaps) {
++                    if (const auto legacy = Config::Legacy::mgr().lock())
++                        legacy->handleWorkspaceRules("", curRules);
++                }
+             }
+         }
++        g_layoutManager->recalculateMonitor(pMonitor);
+     }
+ }
+diff --git a/src/Overview.cpp b/src/Overview.cpp
+index 7a422eb..9fc4744 100644
+--- a/src/Overview.cpp
++++ b/src/Overview.cpp
+@@ -1,10 +1,11 @@
+ #include "Overview.hpp"
+ #include "Globals.hpp"
++#include <hyprland/src/config/shared/animation/AnimationTree.hpp>
+ 
+ CHyprspaceWidget::CHyprspaceWidget(uint64_t inOwnerID) {
+     ownerID = inOwnerID;
+ 
+-    curAnimationConfig = *g_pConfigManager->getAnimationPropertyConfig("windows");
++    curAnimationConfig = *Config::animationTree()->getAnimationPropertyConfig("windows");
+ 
+     // the fuck is pValues???
+     curAnimation = *curAnimationConfig.pValues.lock();
+@@ -14,22 +15,6 @@ CHyprspaceWidget::CHyprspaceWidget(uint64_t inOwnerID) {
+         curAnimation.internalSpeed = Config::overrideAnimSpeed;
+ 
+     g_pAnimationManager->createAnimation(0.F, curYOffset, curAnimationConfig.pValues.lock(), AVARDAMAGE_ENTIRE);
+-    curYOffset->setCallbackOnEnd([this](auto) {
+-        if (!active) {
+-            auto owner = getOwner();
+-            if (owner) {
+-                g_pHyprRenderer->damageMonitor(owner);
+-                for (auto& ws : g_pCompositor->getWorkspaces()) {
+-                    if (!ws || ws->m_monitor->m_id != ownerID) continue;
+-                    for (auto& w : g_pCompositor->m_windows) {
+-                        if (!w || w->m_workspace != ws || !w->m_isMapped) continue;
+-                        g_pHyprRenderer->damageWindow(w);
+-                    }
+-                }
+-                g_pCompositor->scheduleFrameForMonitor(owner);
+-            }
+-        }
+-    }, false);
+     g_pAnimationManager->createAnimation(0.F, workspaceScrollOffset, curAnimationConfig.pValues.lock(), AVARDAMAGE_ENTIRE);
+     curYOffset->setValueAndWarp(Config::panelHeight);
+     workspaceScrollOffset->setValueAndWarp(0);
+@@ -55,7 +40,6 @@ void CHyprspaceWidget::show() {
+                     // use fakefullscreenstate to preserve client's internal state
+                     // fixes youtube fullscreen not restoring properly
+                     if (ws->m_fullscreenMode == FSMODE_FULLSCREEN) w->m_wantsInitialFullscreen = true;
+-                    // we use the getWindowFromHandle function to prevent dangling pointers
+                     prevFullscreen.emplace_back(std::make_tuple(PHLWINDOWREF(w), ws->m_fullscreenMode));
+                     g_pCompositor->setWindowFullscreenState(w, Desktop::View::SFullscreenState{.internal = FSMODE_NONE, .client = FSMODE_NONE});
+                 }
+@@ -139,19 +123,11 @@ void CHyprspaceWidget::hide() {
+     }
+ 
+     updateLayout();
+-    g_pHyprRenderer->damageMonitor(owner);
+-    for (auto& ws : g_pCompositor->getWorkspaces()) {
+-        if (!ws || ws->m_monitor->m_id != ownerID) continue;
+-        for (auto& w : g_pCompositor->m_windows) {
+-            if (!w || w->m_workspace != ws || !w->m_isMapped) continue;
+-            g_pHyprRenderer->damageWindow(w);
+-        }
+-    }
+     g_pCompositor->scheduleFrameForMonitor(owner);
+ }
+ 
+ void CHyprspaceWidget::updateConfig() {
+-    curAnimationConfig = *g_pConfigManager->getAnimationPropertyConfig("windows");
++    curAnimationConfig = *Config::animationTree()->getAnimationPropertyConfig("windows");
+ 
+     // the fuck is pValues???
+     curAnimation = *curAnimationConfig.pValues.lock();
+@@ -161,22 +137,6 @@ void CHyprspaceWidget::updateConfig() {
+         curAnimation.internalSpeed = Config::overrideAnimSpeed;
+ 
+     g_pAnimationManager->createAnimation(0.F, curYOffset, curAnimationConfig.pValues.lock(), AVARDAMAGE_ENTIRE);
+-    curYOffset->setCallbackOnEnd([this](auto) {
+-        if (!active) {
+-            auto owner = getOwner();
+-            if (owner) {
+-                g_pHyprRenderer->damageMonitor(owner);
+-                for (auto& ws : g_pCompositor->getWorkspaces()) {
+-                    if (!ws || ws->m_monitor->m_id != ownerID) continue;
+-                    for (auto& w : g_pCompositor->m_windows) {
+-                        if (!w || w->m_workspace != ws || !w->m_isMapped) continue;
+-                        g_pHyprRenderer->damageWindow(w);
+-                    }
+-                }
+-                g_pCompositor->scheduleFrameForMonitor(owner);
+-            }
+-        }
+-    }, false);
+     g_pAnimationManager->createAnimation(0.F, workspaceScrollOffset, curAnimationConfig.pValues.lock(), AVARDAMAGE_ENTIRE);
+     curYOffset->setValueAndWarp(Config::panelHeight);
+     workspaceScrollOffset->setValueAndWarp(0);
+diff --git a/src/Overview.hpp b/src/Overview.hpp
+index e99f699..d354ce8 100644
+--- a/src/Overview.hpp
++++ b/src/Overview.hpp
+@@ -16,13 +16,6 @@ class CHyprspaceWidget {
+     // modified on draw call, accessed on mouse click and release
+     std::vector<std::tuple<int, CBox>> workspaceBoxes;
+ 
+-    // for checking mouse hover over window thumbnails for drag initiation
+-    // modified on draw call, accessed on mouse click
+-    std::vector<std::tuple<PHLWINDOWREF, CBox>> windowBoxes;
+-
+-    // self-managed drag state: set on press over a window thumbnail, cleared on release
+-    PHLWINDOWREF draggedWindowRef;
+-
+     // for storing the fullscreen state of windows prior to overview activation (which unfullscreens all windows)
+     std::vector<std::tuple<PHLWINDOWREF, eFullscreenMode>> prevFullscreen;
+ 
+diff --git a/src/Render.cpp b/src/Render.cpp
+index 7fb7403..003a20e 100644
+--- a/src/Render.cpp
++++ b/src/Render.cpp
+@@ -1,10 +1,14 @@
+ #include "Overview.hpp"
+ #include "Globals.hpp"
++#include <hyprland/src/helpers/memory/Memory.hpp>
++#include <hyprland/src/config/shared/complex/ComplexDataTypes.hpp>
+ #include <hyprland/src/render/pass/RectPassElement.hpp>
+ #include <hyprland/src/render/pass/BorderPassElement.hpp>
+ #include <hyprland/src/render/pass/RendererHintsPassElement.hpp>
+ #include <hyprlang.hpp>
+ #include <hyprutils/utils/ScopeGuard.hpp>
++#include <algorithm>
++#include <climits>
+ 
+ 
+ void renderRect(CBox box, CHyprColor color) {
+@@ -22,7 +26,7 @@ void renderRectWithBlur(CBox box, CHyprColor color) {
+     g_pHyprRenderer->m_renderPass.add(makeUnique<CRectPassElement>(rectdata));
+ }
+ 
+-void renderBorder(CBox box, CGradientValueData gradient, int size) {
++void renderBorder(CBox box, const Config::CGradientValueData& gradient, int size) {
+     CBorderPassElement::SBorderData data;
+     data.box = box;
+     data.grad1 = gradient;
+@@ -35,7 +39,7 @@ void renderBorder(CBox box, CGradientValueData gradient, int size) {
+ void renderWindowStub(PHLWINDOW pWindow, PHLMONITOR pMonitor, PHLWORKSPACE pWorkspaceOverride, CBox rectOverride, const Time::steady_tp& time) {
+     if (!pWindow || !pMonitor || !pWorkspaceOverride) return;
+ 
+-    SRenderModifData renderModif;
++    Render::SRenderModifData renderModif;
+ 
+     const auto oWorkspace = pWindow->m_workspace;
+     const auto oFullscreen = pWindow->m_fullscreenState;
+@@ -45,37 +49,38 @@ void renderWindowStub(PHLWINDOW pWindow, PHLMONITOR pMonitor, PHLWORKSPACE pWork
+     const auto oPinned = pWindow->m_pinned;
+     const auto oFloating = pWindow->m_isFloating;
+ 
+-    const float curScaling = rectOverride.w / (oSize.x * pMonitor->m_scale);
++    const float    logicalW = std::max((float)oSize.x, 5.F);
++    const float    scaleMod = rectOverride.w / std::max(logicalW * pMonitor->m_scale, 5.F);
++    const Vector2D logicalTL = oRealPosition + pWindow->m_floatingOffset;
++    const Vector2D scaledTL  = (logicalTL - pMonitor->m_position) * pMonitor->m_scale;
++    const Vector2D translate = rectOverride.pos() / scaleMod - scaledTL;
+ 
+-    // using renderModif struct to override the position and scale of windows
+-    // this will be replaced by matrix transformations in hyprland
+-    renderModif.modifs.push_back(std::make_pair(SRenderModifData::eRenderModifType::RMOD_TYPE_TRANSLATE, std::any((pMonitor->m_position * pMonitor->m_scale) + (rectOverride.pos() / curScaling) - (oRealPosition * pMonitor->m_scale))));
+-    renderModif.modifs.push_back(std::make_pair(SRenderModifData::eRenderModifType::RMOD_TYPE_SCALE, std::any(curScaling)));
++    renderModif.modifs.push_back(std::make_pair(Render::SRenderModifData::eRenderModifType::RMOD_TYPE_TRANSLATE, std::any(translate)));
++    renderModif.modifs.push_back(std::make_pair(Render::SRenderModifData::eRenderModifType::RMOD_TYPE_SCALE, std::any(scaleMod)));
+     renderModif.enabled = true;
+     pWindow->m_workspace = pWorkspaceOverride;
+     pWindow->m_fullscreenState = Desktop::View::SFullscreenState{FSMODE_NONE};
+     pWindow->m_ruleApplicator->nearestNeighbor().set(false, Desktop::Types::PRIORITY_SET_PROP);
+     pWindow->m_isFloating = false;
+     pWindow->m_pinned = true;
+-    pWindow->m_ruleApplicator->rounding().set(pWindow->rounding() * curScaling * pMonitor->m_scale, Desktop::Types::PRIORITY_SET_PROP);
++    pWindow->m_ruleApplicator->rounding().set(pWindow->rounding() * scaleMod * pMonitor->m_scale, Desktop::Types::PRIORITY_SET_PROP);
+ 
+-    g_pHyprRenderer->m_renderPass.add(makeUnique<CRendererHintsPassElement>(CRendererHintsPassElement::SData{renderModif}));
+-    // remove modif as it goes out of scope (wtf is this blackmagic i need to relearn c++)
++    g_pHyprRenderer->m_renderPass.add(makeUnique<CRendererHintsPassElement>(CRendererHintsPassElement::SData{.renderModif = renderModif}));
+     Hyprutils::Utils::CScopeGuard x([] {
+-        g_pHyprRenderer->m_renderPass.add(makeUnique<CRendererHintsPassElement>(CRendererHintsPassElement::SData{SRenderModifData{}}));
+-        });
++        g_pHyprRenderer->m_renderPass.add(makeUnique<CRendererHintsPassElement>(CRendererHintsPassElement::SData{.renderModif = Render::SRenderModifData{}}));
++    });
+ 
+     g_pHyprRenderer->damageWindow(pWindow);
+ 
+-    (*(tRenderWindow)pRenderWindow)(g_pHyprRenderer.get(), pWindow, pMonitor, time, true, RENDER_PASS_ALL, false, false);
++    (*(tRenderWindow)pRenderWindow)(g_pHyprRenderer.get(), pWindow, pMonitor, time, true, Render::RENDER_PASS_ALL, false, false);
+ 
+     // restore values for normal window render
+     pWindow->m_workspace = oWorkspace;
+     pWindow->m_fullscreenState = oFullscreen;
+     pWindow->m_ruleApplicator->rounding().unset(Desktop::Types::PRIORITY_SET_PROP);
+-    pWindow->m_ruleApplicator->nearestNeighbor().unset(Desktop::Types::PRIORITY_SET_PROP);
+     pWindow->m_isFloating = oFloating;
+     pWindow->m_pinned = oPinned;
++    pWindow->m_ruleApplicator->rounding().unset(Desktop::Types::PRIORITY_SET_PROP);
+ }
+ 
+ void renderLayerStub(PHLLS pLayer, PHLMONITOR pMonitor, CBox rectOverride, const Time::steady_tp& time) {
+@@ -90,19 +95,18 @@ void renderLayerStub(PHLLS pLayer, PHLMONITOR pMonitor, CBox rectOverride, const
+ 
+     const float curScaling = rectOverride.w / (oSize.x);
+ 
+-    SRenderModifData renderModif;
++    Render::SRenderModifData renderModif;
+ 
+-    renderModif.modifs.push_back(std::make_pair(SRenderModifData::eRenderModifType::RMOD_TYPE_TRANSLATE, std::any(pMonitor->m_position + (rectOverride.pos() / curScaling) - oRealPosition)));
+-    renderModif.modifs.push_back(std::make_pair(SRenderModifData::eRenderModifType::RMOD_TYPE_SCALE, std::any(curScaling)));
++    renderModif.modifs.push_back(std::make_pair(Render::SRenderModifData::eRenderModifType::RMOD_TYPE_TRANSLATE, std::any(pMonitor->m_position + (rectOverride.pos() / curScaling) - oRealPosition)));
++    renderModif.modifs.push_back(std::make_pair(Render::SRenderModifData::eRenderModifType::RMOD_TYPE_SCALE, std::any(curScaling)));
+     renderModif.enabled = true;
+     pLayer->m_alpha->setValue(1);
+     pLayer->m_fadingOut = false;
+ 
+-    g_pHyprRenderer->m_renderPass.add(makeUnique<CRendererHintsPassElement>(CRendererHintsPassElement::SData{renderModif}));
+-    // remove modif as it goes out of scope (wtf is this blackmagic i need to relearn c++)
++    g_pHyprRenderer->m_renderPass.add(makeUnique<CRendererHintsPassElement>(CRendererHintsPassElement::SData{.renderModif = renderModif}));
+     Hyprutils::Utils::CScopeGuard x([] {
+-        g_pHyprRenderer->m_renderPass.add(makeUnique<CRendererHintsPassElement>(CRendererHintsPassElement::SData{SRenderModifData{}}));
+-        });
++        g_pHyprRenderer->m_renderPass.add(makeUnique<CRendererHintsPassElement>(CRendererHintsPassElement::SData{.renderModif = Render::SRenderModifData{}}));
++    });
+ 
+     (*(tRenderLayer)pRenderLayer)(g_pHyprRenderer.get(), pLayer, pMonitor, time, false, false);
+ 
+@@ -114,9 +118,6 @@ void renderLayerStub(PHLLS pLayer, PHLMONITOR pMonitor, CBox rectOverride, const
+ void CHyprspaceWidget::draw() {
+ 
+     workspaceBoxes.clear();
+-    windowBoxes.clear();
+-
+-    PHLWINDOW draggedWindow = draggedWindowRef.lock();
+ 
+     if (!active && !curYOffset->isBeingAnimated()) return;
+ 
+@@ -124,9 +125,13 @@ void CHyprspaceWidget::draw() {
+ 
+     if (!owner) return;
+ 
++    // Full-monitor clip in monitor-local coords. Never use default CBox() to "clear" clipBox —
++    // hyprutils::CBox() only sets w/h to 0 and leaves x/y uninitialized, which corrupts scissor state.
++    const CBox monitorClip = {{0, 0}, owner->m_transformedSize};
++
+     const auto time = Time::steadyNow();
+ 
+-    g_pHyprOpenGL->m_renderData.pCurrentMonData->blurFBShouldRender = true;
++    owner->m_blurFBShouldRender = true;
+ 
+     int bottomInvert = 1;
+     if (Config::onBottom) bottomInvert = -1;
+@@ -138,7 +143,7 @@ void CHyprspaceWidget::draw() {
+     widgetBox.x -= owner->m_position.x;
+     widgetBox.y -= owner->m_position.y;
+ 
+-    g_pHyprOpenGL->m_renderData.clipBox = CBox({0, 0}, owner->m_transformedSize);
++    g_pHyprRenderer->m_renderData.clipBox = monitorClip;
+ 
+     if (!Config::disableBlur) {
+         renderRectWithBlur(widgetBox, Config::panelBaseColor);
+@@ -150,7 +155,7 @@ void CHyprspaceWidget::draw() {
+     // Panel Border
+     if (Config::panelBorderWidth > 0) {
+         // Border box
+-        CBox borderBox = {widgetBox.x, owner->m_position.y + (Config::onBottom * owner->m_transformedSize.y) + (Config::panelHeight + Config::reservedArea - curYOffset->value() * owner->m_scale) * bottomInvert, owner->m_transformedSize.x, Config::panelBorderWidth};
++        CBox borderBox = {widgetBox.x, owner->m_position.y + (Config::onBottom * owner->m_transformedSize.y) + (Config::panelHeight + Config::reservedArea - curYOffset->value() * owner->m_scale) * bottomInvert, owner->m_transformedSize.x, static_cast<double>(Config::panelBorderWidth)};
+         borderBox.y -= owner->m_position.y;
+ 
+         renderRect(borderBox, Config::panelBorderColor);
+@@ -162,6 +167,8 @@ void CHyprspaceWidget::draw() {
+ 
+     //owner->addDamage(damageBox);
+     g_pHyprRenderer->damageMonitor(owner);
++
++    // damage the entire monitor to ensure full redraw during overview
+     g_pHyprRenderer->damageMonitor(owner);
+ 
+     // the list of workspaces to show
+@@ -233,7 +240,7 @@ void CHyprspaceWidget::draw() {
+         // workspace background rect (NOT background layer) and border
+         if (ws == owner->m_activeWorkspace) {
+             if (Config::workspaceBorderSize >= 1 && Config::workspaceActiveBorder.a > 0) {
+-                renderBorder(curWorkspaceBox, CGradientValueData(Config::workspaceActiveBorder), Config::workspaceBorderSize);
++                renderBorder(curWorkspaceBox, Config::CGradientValueData(Config::workspaceActiveBorder), Config::workspaceBorderSize);
+             }
+             if (!Config::disableBlur) {
+                 renderRectWithBlur(curWorkspaceBox, Config::workspaceActiveBackground); // cant really round it until I find a proper way to clip windows to a rounded rect
+@@ -248,7 +255,7 @@ void CHyprspaceWidget::draw() {
+         }
+         else {
+             if (Config::workspaceBorderSize >= 1 && Config::workspaceInactiveBorder.a > 0) {
+-                renderBorder(curWorkspaceBox, CGradientValueData(Config::workspaceInactiveBorder), Config::workspaceBorderSize);
++                renderBorder(curWorkspaceBox, Config::CGradientValueData(Config::workspaceInactiveBorder), Config::workspaceBorderSize);
+             }
+             if (!Config::disableBlur) {
+                 renderRectWithBlur(curWorkspaceBox, Config::workspaceInactiveBackground);
+@@ -262,15 +269,15 @@ void CHyprspaceWidget::draw() {
+         if (!Config::hideBackgroundLayers) {
+             for (auto& ls : owner->m_layerSurfaceLayers[0]) {
+                 CBox layerBox = {curWorkspaceBox.pos() + (ls->m_realPosition->value() - owner->m_position) * monitorSizeScaleFactor, ls->m_realSize->value() * monitorSizeScaleFactor};
+-                g_pHyprOpenGL->m_renderData.clipBox = curWorkspaceBox;
++                g_pHyprRenderer->m_renderData.clipBox = curWorkspaceBox;
+                 renderLayerStub(ls.lock(), owner, layerBox, time);
+-                g_pHyprOpenGL->m_renderData.clipBox = CBox();
++                g_pHyprRenderer->m_renderData.clipBox = monitorClip;
+             }
+             for (auto& ls : owner->m_layerSurfaceLayers[1]) {
+                 CBox layerBox = {curWorkspaceBox.pos() + (ls->m_realPosition->value() - owner->m_position) * monitorSizeScaleFactor, ls->m_realSize->value() * monitorSizeScaleFactor};
+-                g_pHyprOpenGL->m_renderData.clipBox = curWorkspaceBox;
++                g_pHyprRenderer->m_renderData.clipBox = curWorkspaceBox;
+                 renderLayerStub(ls.lock(), owner, layerBox, time);
+-                g_pHyprOpenGL->m_renderData.clipBox = CBox();
++                g_pHyprRenderer->m_renderData.clipBox = monitorClip;
+             }
+         }
+ 
+@@ -290,41 +297,53 @@ void CHyprspaceWidget::draw() {
+         }
+ 
+         if (ws != nullptr) {
+-            auto renderAndTrackWindow = [&](PHLWINDOW w) {
+-                if (w == draggedWindow) return; // hide thumbnail while dragging
+-                double wX = curWorkspaceRectOffsetX + ((w->m_realPosition->value().x - owner->m_position.x) * monitorSizeScaleFactor * owner->m_scale);
+-                double wY = curWorkspaceRectOffsetY + ((w->m_realPosition->value().y - owner->m_position.y) * monitorSizeScaleFactor * owner->m_scale);
+-                double wW = w->m_realSize->value().x * monitorSizeScaleFactor * owner->m_scale;
+-                double wH = w->m_realSize->value().y * monitorSizeScaleFactor * owner->m_scale;
+-                if (!(wW > 0 && wH > 0)) return;
+-                CBox curWindowBox = {wX, wY, wW, wH};
+-                g_pHyprOpenGL->m_renderData.clipBox = curWorkspaceBox;
+-                renderWindowStub(w, owner, owner->m_activeWorkspace, curWindowBox, time);
+-                g_pHyprOpenGL->m_renderData.clipBox = CBox();
+-                // record input-coordinate box for drag hit-testing
+-                CBox inputBox = curWindowBox;
+-                inputBox.scale(1.0 / owner->m_scale);
+-                inputBox.x += owner->m_position.x;
+-                inputBox.y += owner->m_position.y;
+-                windowBoxes.emplace_back(PHLWINDOWREF(w), inputBox);
+-            };
+-
+             // draw tiled windows
+             for (auto& w : g_pCompositor->m_windows) {
+                 if (!w) continue;
+-                if (w->m_workspace == ws && !w->m_isFloating)
+-                    renderAndTrackWindow(w);
++                if (w->m_workspace == ws && !w->m_isFloating) {
++                    double wX = curWorkspaceRectOffsetX + ((w->m_realPosition->value().x - owner->m_position.x) * monitorSizeScaleFactor * owner->m_scale);
++                    double wY = curWorkspaceRectOffsetY + ((w->m_realPosition->value().y - owner->m_position.y) * monitorSizeScaleFactor * owner->m_scale);
++                    double wW = w->m_realSize->value().x * monitorSizeScaleFactor * owner->m_scale;
++                    double wH = w->m_realSize->value().y * monitorSizeScaleFactor * owner->m_scale;
++                    if (!(wW > 0 && wH > 0)) continue;
++                    CBox curWindowBox = {wX, wY, wW, wH};
++                    g_pHyprRenderer->m_renderData.clipBox = curWorkspaceBox;
++                    //g_pHyprOpenGL->renderRectWithBlur(&curWindowBox, CHyprColor(0, 0, 0, 0));
++                    renderWindowStub(w, owner, owner->m_activeWorkspace, curWindowBox, time);
++                    g_pHyprRenderer->m_renderData.clipBox = monitorClip;
++                }
+             }
+             // draw floating windows
+             for (auto& w : g_pCompositor->m_windows) {
+                 if (!w) continue;
+-                if (w->m_workspace == ws && w->m_isFloating && ws->getLastFocusedWindow() != w)
+-                    renderAndTrackWindow(w);
++                if (w->m_workspace == ws && w->m_isFloating && ws->getLastFocusedWindow() != w) {
++                    double wX = curWorkspaceRectOffsetX + ((w->m_realPosition->value().x - owner->m_position.x) * monitorSizeScaleFactor * owner->m_scale);
++                    double wY = curWorkspaceRectOffsetY + ((w->m_realPosition->value().y - owner->m_position.y) * monitorSizeScaleFactor * owner->m_scale);
++                    double wW = w->m_realSize->value().x * monitorSizeScaleFactor * owner->m_scale;
++                    double wH = w->m_realSize->value().y * monitorSizeScaleFactor * owner->m_scale;
++                    if (!(wW > 0 && wH > 0)) continue;
++                    CBox curWindowBox = {wX, wY, wW, wH};
++                    g_pHyprRenderer->m_renderData.clipBox = curWorkspaceBox;
++                    //g_pHyprOpenGL->renderRectWithBlur(&curWindowBox, CHyprColor(0, 0, 0, 0));
++                    renderWindowStub(w, owner, owner->m_activeWorkspace, curWindowBox, time);
++                    g_pHyprRenderer->m_renderData.clipBox = monitorClip;
++                }
+             }
+             // draw last focused floating window on top
+             if (ws->getLastFocusedWindow())
+-                if (ws->getLastFocusedWindow()->m_isFloating)
+-                    renderAndTrackWindow(ws->getLastFocusedWindow());
++                if (ws->getLastFocusedWindow()->m_isFloating) {
++                    const auto w = ws->getLastFocusedWindow();
++                    double wX = curWorkspaceRectOffsetX + ((w->m_realPosition->value().x - owner->m_position.x) * monitorSizeScaleFactor * owner->m_scale);
++                    double wY = curWorkspaceRectOffsetY + ((w->m_realPosition->value().y - owner->m_position.y) * monitorSizeScaleFactor * owner->m_scale);
++                    double wW = w->m_realSize->value().x * monitorSizeScaleFactor * owner->m_scale;
++                    double wH = w->m_realSize->value().y * monitorSizeScaleFactor * owner->m_scale;
++                    if (!(wW > 0 && wH > 0)) continue;
++                    CBox curWindowBox = {wX, wY, wW, wH};
++                    g_pHyprRenderer->m_renderData.clipBox = curWorkspaceBox;
++                    //g_pHyprOpenGL->renderRectWithBlur(&curWindowBox, CHyprColor(0, 0, 0, 0));
++                    renderWindowStub(w, owner, owner->m_activeWorkspace, curWindowBox, time);
++                    g_pHyprRenderer->m_renderData.clipBox = monitorClip;
++                }
+         }
+ 
+         if (owner->m_activeWorkspace != ws || !Config::hideRealLayers) {
+@@ -332,17 +351,17 @@ void CHyprspaceWidget::draw() {
+             if (!Config::hideTopLayers)
+                 for (auto& ls : owner->m_layerSurfaceLayers[2]) {
+                     CBox layerBox = {curWorkspaceBox.pos() + (ls->m_realPosition->value() - owner->m_position) * monitorSizeScaleFactor, ls->m_realSize->value() * monitorSizeScaleFactor};
+-                    g_pHyprOpenGL->m_renderData.clipBox = curWorkspaceBox;
++                    g_pHyprRenderer->m_renderData.clipBox = curWorkspaceBox;
+                     renderLayerStub(ls.lock(), owner, layerBox, time);
+-                    g_pHyprOpenGL->m_renderData.clipBox = CBox();
++                    g_pHyprRenderer->m_renderData.clipBox = monitorClip;
+                 }
+ 
+             if (!Config::hideOverlayLayers)
+                 for (auto& ls : owner->m_layerSurfaceLayers[3]) {
+                     CBox layerBox = {curWorkspaceBox.pos() + (ls->m_realPosition->value() - owner->m_position) * monitorSizeScaleFactor, ls->m_realSize->value() * monitorSizeScaleFactor};
+-                    g_pHyprOpenGL->m_renderData.clipBox = curWorkspaceBox;
++                    g_pHyprRenderer->m_renderData.clipBox = curWorkspaceBox;
+                     renderLayerStub(ls.lock(), owner, layerBox, time);
+-                    g_pHyprOpenGL->m_renderData.clipBox = CBox();
++                    g_pHyprRenderer->m_renderData.clipBox = monitorClip;
+                 }
+         }
+ 
+@@ -362,4 +381,6 @@ void CHyprspaceWidget::draw() {
+         // set the current position to the next workspace box
+         curWorkspaceRectOffsetX += workspaceBoxW + Config::workspaceMargin * owner->m_scale;
+     }
++
++    g_pHyprRenderer->m_renderData.clipBox = monitorClip;
+ }
+diff --git a/src/main.cpp b/src/main.cpp
+index 0b48c0b..cc31607 100644
+--- a/src/main.cpp
++++ b/src/main.cpp
+@@ -1,15 +1,15 @@
+ #include <hyprland/src/plugins/PluginSystem.hpp>
+ #include <hyprland/src/plugins/PluginAPI.hpp>
++#include <hyprland/src/devices/IPointer.hpp>
+ #include <hyprland/src/devices/IKeyboard.hpp>
++#include <hyprland/src/devices/ITouch.hpp>
+ #include <hyprland/src/debug/log/Logger.hpp>
+-#include <hyprland/src/event/EventBus.hpp>
+ #include <hyprland/src/managers/SeatManager.hpp>
+-#include <hyprland/src/helpers/time/Time.hpp>
+-#include <hyprland/src/layout/LayoutManager.hpp>
++#include <hyprland/src/desktop/view/Window.hpp>
++#include <hyprutils/memory/SharedPtr.hpp>
+ #include "Overview.hpp"
+ #include "Globals.hpp"
+ 
+-void* pMouseKeybind;
+ void* pRenderWindow;
+ void* pRenderLayer;
+ 
+@@ -62,6 +62,7 @@ float Config::dragAlpha = 0.2;
+ 
+ int numWorkspaces = -1; //hyprsplit/split-monitor-workspaces support
+ 
++// Event listener handles (auto-unregister when destroyed)
+ CHyprSignalListener g_pRenderHook;
+ CHyprSignalListener g_pConfigReloadHook;
+ CHyprSignalListener g_pOpenLayerHook;
+@@ -119,17 +120,16 @@ void onRender(eRenderStage renderStage) {
+     else if (renderStage == eRenderStage::RENDER_PRE_WINDOWS) {
+ 
+ 
+-        const auto widget = getWidgetForMonitor(g_pHyprOpenGL->m_renderData.pMonitor);
++        const auto widget = getWidgetForMonitor(g_pHyprRenderer->m_renderData.pMonitor);
+         if (widget != nullptr)
+             if (widget->getOwner()) {
+                 //widget->draw();
+-                PHLWINDOW curWindow;
+-                if (const auto dragTarget = g_layoutManager->dragController()->target())
+-                    curWindow = dragTarget->window();
++                const auto dragTarget = g_layoutManager->dragController()->target();
++                const auto curWindow = dragTarget ? dragTarget->window() : nullptr;
+                 if (curWindow) {
+                     if (widget->isActive()) {
+-                        g_oAlpha = curWindow->m_activeInactiveAlpha->goal();
+-                        curWindow->m_activeInactiveAlpha->setValueAndWarp(0); // HACK: hide dragged window for the actual pass
++                        g_oAlpha = curWindow->alpha(Desktop::View::WINDOW_ALPHA_ACTIVE)->goal();
++                        curWindow->alpha(Desktop::View::WINDOW_ALPHA_ACTIVE)->setValueAndWarp(0); // HACK: hide dragged window for the actual pass
+                     }
+                 }
+                 else g_oAlpha = -1;
+@@ -140,22 +140,21 @@ void onRender(eRenderStage renderStage) {
+     }
+     else if (renderStage == eRenderStage::RENDER_POST_WINDOWS) {
+ 
+-        const auto widget = getWidgetForMonitor(g_pHyprOpenGL->m_renderData.pMonitor);
++        const auto widget = getWidgetForMonitor(g_pHyprRenderer->m_renderData.pMonitor);
+ 
+         if (widget != nullptr)
+             if (widget->getOwner()) {
+                 widget->draw();
+                 if (g_oAlpha != -1) {
+-                    PHLWINDOW curWindow;
+-                    if (const auto dragTarget = g_layoutManager->dragController()->target())
+-                        curWindow = dragTarget->window();
++                    const auto dragTarget = g_layoutManager->dragController()->target();
++                    const auto curWindow = dragTarget ? dragTarget->window() : nullptr;
+                     if (curWindow) {
+-                        curWindow->m_activeInactiveAlpha->setValueAndWarp(Config::dragAlpha);
++                        curWindow->alpha(Desktop::View::WINDOW_ALPHA_ACTIVE)->setValueAndWarp(Config::dragAlpha);
+                         curWindow->m_ruleApplicator->noBlur().unset(Desktop::Types::PRIORITY_SET_PROP);
+                         const auto time = Time::steadyNow();
+-                        (*(tRenderWindow)pRenderWindow)(g_pHyprRenderer.get(), curWindow, widget->getOwner(), time, true, RENDER_PASS_MAIN, false, false);
++                        (*(tRenderWindow)pRenderWindow)(g_pHyprRenderer.get(), curWindow, widget->getOwner(), time, true, Render::RENDER_PASS_MAIN, false, false);
+                         curWindow->m_ruleApplicator->noBlur().unset(Desktop::Types::PRIORITY_SET_PROP);
+-                        curWindow->m_activeInactiveAlpha->setValueAndWarp(g_oAlpha);
++                        curWindow->alpha(Desktop::View::WINDOW_ALPHA_ACTIVE)->setValueAndWarp(g_oAlpha);
+                     }
+                 }
+                 g_oAlpha = -1;
+@@ -165,7 +164,7 @@ void onRender(eRenderStage renderStage) {
+ }
+ 
+ // event hook, currently this is only here to re-hide top layer panels on workspace change
+-void onWorkspaceChange(const PHLWORKSPACE& pWorkspace) {
++void onWorkspaceChange(PHLWORKSPACE pWorkspace) {
+ 
+     if (!pWorkspace) return;
+ 
+@@ -176,11 +175,14 @@ void onWorkspaceChange(const PHLWORKSPACE& pWorkspace) {
+ }
+ 
+ // event hook for click and drag interaction
+-void onMouseButton(const IPointer::SButtonEvent& e, Event::SCallbackInfo& info) {
++void onMouseButton(const IPointer::SButtonEvent& event, SCallbackInfo& info) {
++    const SP<IPointer> pointer = g_pSeatManager->m_mouse.lock();
++    if (!pointer)
++        return;
+ 
+-    if (e.button != BTN_LEFT) return;
++    if (event.button != BTN_LEFT) return;
+ 
+-    const auto pressed = e.state == WL_POINTER_BUTTON_STATE_PRESSED;
++    const auto pressed = event.state == WL_POINTER_BUTTON_STATE_PRESSED;
+     const auto pMonitor = g_pCompositor->getMonitorFromCursor();
+     if (pMonitor) {
+         const auto widget = getWidgetForMonitor(pMonitor);
+@@ -194,14 +196,14 @@ void onMouseButton(const IPointer::SButtonEvent& e, Event::SCallbackInfo& info)
+ }
+ 
+ // event hook for scrolling through panel and workspaces
+-void onMouseAxis(const IPointer::SAxisEvent& e, Event::SCallbackInfo& info) {
++void onMouseAxis(const IPointer::SAxisEvent& event, SCallbackInfo& info) {
+ 
+     const auto pMonitor = g_pCompositor->getMonitorFromCursor();
+     if (pMonitor) {
+         const auto widget = getWidgetForMonitor(pMonitor);
+         if (widget) {
+             if (widget->isActive()) {
+-                info.cancelled = !widget->axisEvent(e.delta, e.axis, g_pInputManager->getMouseCoordsInternal());
++                info.cancelled = !widget->axisEvent(event.delta, event.axis, g_pInputManager->getMouseCoordsInternal());
+             }
+         }
+     }
+@@ -209,13 +211,13 @@ void onMouseAxis(const IPointer::SAxisEvent& e, Event::SCallbackInfo& info) {
+ }
+ 
+ // event hook for swipe
+-void onSwipeBegin(const IPointer::SSwipeBeginEvent& e, Event::SCallbackInfo& info) {
++void onSwipeBegin(const IPointer::SSwipeBeginEvent& event, SCallbackInfo& info) {
+ 
+     if (Config::disableGestures) return;
+ 
+     const auto widget = getWidgetForMonitor(g_pCompositor->getMonitorFromCursor());
+     if (widget != nullptr)
+-        widget->beginSwipe(e);
++        widget->beginSwipe(event);
+ 
+     // end other widget swipe
+     for (auto& w : g_overviewWidgets) {
+@@ -228,41 +230,44 @@ void onSwipeBegin(const IPointer::SSwipeBeginEvent& e, Event::SCallbackInfo& inf
+ }
+ 
+ // event hook for update swipe, most of the swiping mechanics are here
+-void onSwipeUpdate(const IPointer::SSwipeUpdateEvent& e, Event::SCallbackInfo& info) {
++void onSwipeUpdate(const IPointer::SSwipeUpdateEvent& event, SCallbackInfo& info) {
+ 
+     if (Config::disableGestures) return;
+ 
+     const auto widget = getWidgetForMonitor(g_pCompositor->getMonitorFromCursor());
+     if (widget != nullptr)
+-        info.cancelled = !widget->updateSwipe(e);
++        info.cancelled = !widget->updateSwipe(event);
+ }
+ 
+ // event hook for end swipe
+-void onSwipeEnd(const IPointer::SSwipeEndEvent& e, Event::SCallbackInfo& info) {
++void onSwipeEnd(const IPointer::SSwipeEndEvent& event, SCallbackInfo& info) {
+ 
+     if (Config::disableGestures) return;
+ 
+     const auto widget = getWidgetForMonitor(g_pCompositor->getMonitorFromCursor());
+     if (widget != nullptr)
+-        widget->endSwipe(e);
++        widget->endSwipe(event);
+ }
+ 
+ // Close overview with configurable key
+-void onKeyPress(const IKeyboard::SKeyEvent& e, Event::SCallbackInfo& info) {
+-    const auto k = g_pSeatManager->m_keyboard.lock();
+-    if (!k) return;
++void onKeyPress(const IKeyboard::SKeyEvent& event, SCallbackInfo& info) {
++    const SP<IKeyboard> keyboard = g_pSeatManager->m_keyboard.lock();
++    if (!keyboard || !keyboard->m_xkbSymState)
++        return;
+ 
+-    const auto keycode = e.keycode + 8; // Because to xkbcommon it's +8 from libinput
+-    const xkb_keysym_t keysym = xkb_state_key_get_one_sym(k->m_xkbSymState, keycode);
++    const auto keycode = event.keycode + 8; // Because to xkbcommon it's +8 from libinput
++    const xkb_keysym_t keysym = xkb_state_key_get_one_sym(keyboard->m_xkbSymState, keycode);
+ 
+-    // Get configured exit key (default to Escape if not configured)
+-    const auto cfgExitKey = std::any_cast<Hyprlang::STRING>(HyprlandAPI::getConfigValue(pHandle, "plugin:overview:exitKey")->getValue());
+-    const xkb_keysym_t cfgExitKeysym = xkb_keysym_from_name(cfgExitKey, XKB_KEYSYM_CASE_INSENSITIVE);
++    auto* pExitKeyCfg = HyprlandAPI::getConfigValue(pHandle, "plugin:overview:exitKey");
++    if (!pExitKeyCfg)
++        return;
+ 
+-    // If exit key is empty, disable keyboard exit
+-    if (cfgExitKey[0] == '\0')
++    const Hyprlang::STRING cfgExitKey = std::any_cast<Hyprlang::STRING>(pExitKeyCfg->getValue());
++    if (!cfgExitKey || cfgExitKey[0] == '\0')
+         return;
+ 
++    const xkb_keysym_t cfgExitKeysym = xkb_keysym_from_name(cfgExitKey, XKB_KEYSYM_CASE_INSENSITIVE);
++
+     if (keysym == cfgExitKeysym) {
+         // close all panels
+         bool overviewActive = false;
+@@ -280,14 +285,17 @@ void onKeyPress(const IKeyboard::SKeyEvent& e, Event::SCallbackInfo& info) {
+ 
+ PHLMONITOR g_pTouchedMonitor;
+ 
+-void onTouchDown(const ITouch::SDownEvent& e, Event::SCallbackInfo& info) {
+-    auto targetMonitor = g_pCompositor->getMonitorFromName(!e.device->m_boundOutput.empty() ? e.device->m_boundOutput : "");
++void onTouchDown(const ITouch::SDownEvent& event, SCallbackInfo& info) {
++    if (!event.device)
++        return;
++
++    auto targetMonitor = g_pCompositor->getMonitorFromName(!event.device->m_boundOutput.empty() ? event.device->m_boundOutput : "");
+     targetMonitor = targetMonitor ? targetMonitor : g_pCompositor->getMonitorFromCursor();
+ 
+     const auto widget = getWidgetForMonitor(targetMonitor);
+     if (widget != nullptr && targetMonitor != nullptr) {
+         if (widget->isActive()) {
+-            Vector2D pos = targetMonitor->m_position + e.pos * targetMonitor->m_size;
++            Vector2D pos = targetMonitor->m_position + event.pos * targetMonitor->m_size;
+             info.cancelled = !widget->buttonEvent(true, pos);
+             if (info.cancelled) {
+                 g_pTouchedMonitor = targetMonitor;
+@@ -298,14 +306,14 @@ void onTouchDown(const ITouch::SDownEvent& e, Event::SCallbackInfo& info) {
+     }
+ }
+ 
+-void onTouchMove(const ITouch::SMotionEvent& e, Event::SCallbackInfo& info) {
++void onTouchMove(const ITouch::SMotionEvent& event, SCallbackInfo& info) {
+     if (g_pTouchedMonitor == nullptr) return;
+ 
+-    g_pCompositor->warpCursorTo(g_pTouchedMonitor->m_position + g_pTouchedMonitor->m_size * e.pos);
++    g_pCompositor->warpCursorTo(g_pTouchedMonitor->m_position + g_pTouchedMonitor->m_size * event.pos);
+     g_pInputManager->simulateMouseMovement();
+ }
+ 
+-void onTouchUp(const ITouch::SUpEvent& e, Event::SCallbackInfo& info) {
++void onTouchUp(const ITouch::SUpEvent& event, SCallbackInfo& info) {
+     const auto widget = getWidgetForMonitor(g_pTouchedMonitor);
+     if (widget != nullptr && g_pTouchedMonitor != nullptr)
+         if (widget->isActive())
+@@ -502,22 +510,19 @@ APICALL EXPORT PLUGIN_DESCRIPTION_INFO PLUGIN_INIT(HANDLE inHandle) {
+     HyprlandAPI::addConfigValue(pHandle, "plugin:overview:dragAlpha", Hyprlang::FLOAT{0.2});
+     HyprlandAPI::addConfigValue(pHandle, "plugin:overview:exitKey", Hyprlang::STRING{"Escape"});
+ 
+-    g_pConfigReloadHook = Event::bus()->m_events.config.reloaded.listen([] { reloadConfig(); });
++    g_pConfigReloadHook = Event::bus()->m_events.config.reloaded.listen([]() { reloadConfig(); });
+     HyprlandAPI::reloadConfig();
+ 
+     HyprlandAPI::addDispatcherV2(pHandle, "overview:toggle", ::dispatchToggleOverview);
+     HyprlandAPI::addDispatcherV2(pHandle, "overview:open", ::dispatchOpenOverview);
+     HyprlandAPI::addDispatcherV2(pHandle, "overview:close", ::dispatchCloseOverview);
+ 
+-    g_pRenderHook = Event::bus()->m_events.render.stage.listen(onRender);
++    g_pRenderHook = Event::bus()->m_events.render.stage.listen([](eRenderStage stage) { onRender(stage); });
+ 
+     // refresh on layer change
+-    g_pOpenLayerHook = Event::bus()->m_events.layer.opened.listen([](const PHLLS&) { g_layoutNeedsRefresh = true; });
+-    g_pCloseLayerHook = Event::bus()->m_events.layer.closed.listen([](const PHLLS&) { g_layoutNeedsRefresh = true; });
+-
++    g_pOpenLayerHook = Event::bus()->m_events.layer.opened.listen([](PHLLS) { g_layoutNeedsRefresh = true; });
++    g_pCloseLayerHook = Event::bus()->m_events.layer.closed.listen([](PHLLS) { g_layoutNeedsRefresh = true; });
+ 
+-    // CKeybindManager::mouse (names too generic bruh) (this is a private function btw)
+-    pMouseKeybind = findFunctionBySymbol(pHandle, "mouse", "CKeybindManager::mouse");
+ 
+     g_pMouseButtonHook = listenCancellable<IPointer::SButtonEvent>(Event::bus()->m_events.input.mouse.button, onMouseButton);
+     g_pMouseAxisHook = listenCancellable<IPointer::SAxisEvent>(Event::bus()->m_events.input.mouse.axis, onMouseAxis);
+@@ -534,14 +539,39 @@ APICALL EXPORT PLUGIN_DESCRIPTION_INFO PLUGIN_INIT(HANDLE inHandle) {
+ 
+     g_pSwitchWorkspaceHook = Event::bus()->m_events.workspace.active.listen(onWorkspaceChange);
+ 
+-    pRenderWindow = findFunctionBySymbol(pHandle, "renderWindow", "CHyprRenderer::renderWindow");
+-    pRenderLayer = findFunctionBySymbol(pHandle, "renderLayer", "CHyprRenderer::renderLayer");
++    pRenderWindow = findFunctionBySymbol(pHandle, "renderWindow", "IHyprRenderer::renderWindow");
++    if (!pRenderWindow)
++        pRenderWindow = findFunctionBySymbol(pHandle, "renderWindow", "CHyprRenderer::renderWindow");
++    pRenderLayer = findFunctionBySymbol(pHandle, "renderLayer", "IHyprRenderer::renderLayer");
++    if (!pRenderLayer)
++        pRenderLayer = findFunctionBySymbol(pHandle, "renderLayer", "CHyprRenderer::renderLayer");
+ 
+     registerMonitors();
+-    g_pAddMonitorHook = Event::bus()->m_events.monitor.added.listen([](const PHLMONITOR&) { registerMonitors(); });
++    g_pAddMonitorHook = Event::bus()->m_events.monitor.added.listen([](PHLMONITOR) { registerMonitors(); });
+ 
+     return {"Hyprspace", "Workspace overview", "KZdkm", "0.1"};
+ }
+ 
+ APICALL EXPORT void PLUGIN_EXIT() {
++    g_pRenderHook.reset();
++    g_pConfigReloadHook.reset();
++    g_pOpenLayerHook.reset();
++    g_pCloseLayerHook.reset();
++    g_pMouseButtonHook.reset();
++    g_pMouseAxisHook.reset();
++    g_pTouchDownHook.reset();
++    g_pTouchMoveHook.reset();
++    g_pTouchUpHook.reset();
++    g_pSwipeBeginHook.reset();
++    g_pSwipeUpdateHook.reset();
++    g_pSwipeEndHook.reset();
++    g_pKeyPressHook.reset();
++    g_pSwitchWorkspaceHook.reset();
++    g_pAddMonitorHook.reset();
++
++    g_overviewWidgets.clear();
++
++    pRenderWindow = nullptr;
++    pRenderLayer = nullptr;
++    pHandle = nullptr;
+ }
