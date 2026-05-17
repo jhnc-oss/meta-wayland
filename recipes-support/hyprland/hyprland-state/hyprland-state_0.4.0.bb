@@ -5,6 +5,6 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=c62263f865258675e882916b0e77279a"
 inherit python_hatchling
 
 SRC_URI += "git://github.com/BlueManCZ/hyprland-state.git;protocol=https;nobranch=1"
-SRCREV = "201aa5879b1d0cbf8414367bf26e4fdd957a4297"
+SRCREV = "8765f4df7719745b322fe734e478c5f67faf7c9d"
 
 RDEPENDS:${PN} = "hyprland-config hyprland-socket hyprland-schema hyprland-monitors"
