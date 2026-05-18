@@ -14,7 +14,6 @@ DEPENDS += " \
     glslang \
     hyprcursor \
     hyprgraphics \
-    hyprlang \
     hyprutils \
     hyprwayland-scanner-native \
     hyprwire \
@@ -48,7 +47,8 @@ RRECOMMENDS:${PN} ?= " \
 "
 
 SRC_URI = "gitsm://github.com/hyprwm/Hyprland.git;protocol=https;nobranch=1"
-SRCREV = "39d7e209c79d451efab1b21151d5938289da838d"
+SRCREV = "4e3955716619c58a8e9e2f81af5f8f2862e77a1b"
+PV:append = "+git"
 
 inherit cmake pkgconfig features_check
 
