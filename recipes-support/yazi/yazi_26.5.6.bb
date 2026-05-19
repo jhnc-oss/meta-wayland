@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=9c0ba340a238122a2eb7974c71bf7ae4"
 
 SRC_URI = "git://github.com/sxyazi/yazi.git;protocol=https;branch=main"
 SRC_URI += "file://0001-Cargo.toml-disable-strip.patch"
-SRCREV = "4e0acf8cbfcd66924af38a9418d3e12dc31a7316"
+SRCREV = "aa526434f00bb44e2e902d9a4ac5f810da1018b9"
 
 inherit cargo cargo-update-recipe-crates
 
