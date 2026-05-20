@@ -7,6 +7,7 @@ REQUIRED_DISTRO_FEATURES = "x11 wayland"
 
 DEPENDS += " \
 	aom \
+	cmake-native \
 	glm \
 	glslang-native \
 	hwdata \
@@ -63,7 +64,15 @@ SRCREV = "f8b33d38c5acc35825c7966b208222770c4a623e"
 
 inherit meson pkgconfig features_check
 
-EXTRA_OEMESON += "--buildtype release"
+EXTRA_OEMESON += "--buildtype release --cross-file=${WORKDIR}/meson-${PN}.cross"
+
+do_write_config:append() {
+    cat >${WORKDIR}/meson-${PN}.cross <<EOF
+[binaries]
+cmake = '${STAGING_BINDIR_NATIVE}/cmake'
+EOF
+}
+
 
 FILES:${PN} += "${datadir} ${libdir}"
 FILES:${PN}-dev = "${includedir} ${libdir}/pkgconfig"
