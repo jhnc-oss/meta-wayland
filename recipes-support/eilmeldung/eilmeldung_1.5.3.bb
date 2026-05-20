@@ -4,7 +4,7 @@ LICENSE = "GPL-3.0-only"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=1ebbd3e34237af26da5dc08a4e440464"
 
 SRC_URI += " git://github.com/christo-auer/eilmeldung.git;protocol=https;nobranch=1"
-SRCREV = "677e3cf16fe87cb9a9624a4cedb0d6d5993d8a64"
+SRCREV = "c4299f99781223f37579b045beca25f47679568e"
 
 DEPENDS = "openssl libxml2 sqlite3 clang-native"
 
