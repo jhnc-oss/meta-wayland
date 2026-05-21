@@ -46,3 +46,5 @@ do_install:append() {
 }
 
 FILES:${PN} += "${datadir}"
+
+RDEPENDS:${PN} = "xwayland-satellite"
