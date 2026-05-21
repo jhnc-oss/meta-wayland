@@ -37,3 +37,12 @@ CARGO_BUILD_FLAGS:remove = "--frozen"
 do_compile[network] = "1"
 
 INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
+
+do_install:append() {
+	install -d ${D}${datadir}/xdg-desktop-portal ${D}${datadir}/wayland-sessions
+	install -m0644 ${S}/resources/niri.desktop ${D}${datadir}/wayland-sessions
+	install -m0644 ${S}/resources/niri-portals.conf ${D}${datadir}/xdg-desktop-portal
+	install -m0755 ${S}/resources/niri-session ${D}${bindir}
+}
+
+FILES:${PN} += "${datadir}"
