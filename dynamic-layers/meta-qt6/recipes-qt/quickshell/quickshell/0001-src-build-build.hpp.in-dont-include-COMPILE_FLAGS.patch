@@ -1,0 +1,28 @@
+From 3c7586cada68d643f70b191ccfee3712c6273a89 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Thu, 21 May 2026 12:23:29 +0200
+Subject: [PATCH] src/build/build.hpp.in: dont include COMPILE_FLAGS
+
+This adds buildpath issues to the quickshell binary
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+---
+ src/build/build.hpp.in | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/build/build.hpp.in b/src/build/build.hpp.in
+index acc3c58..e4dbfd9 100644
+--- a/src/build/build.hpp.in
++++ b/src/build/build.hpp.in
+@@ -11,7 +11,7 @@
+ #define CRASH_HANDLER @CRASH_HANDLER_DEF@
+ #define BUILD_TYPE "@CMAKE_BUILD_TYPE@"
+ #define COMPILER "@CMAKE_CXX_COMPILER_ID@ (@CMAKE_CXX_COMPILER_VERSION@)"
+-#define COMPILE_FLAGS "@CMAKE_CXX_FLAGS@"
++#define COMPILE_FLAGS ""
+ #define BUILD_CONFIGURATION "@QS_BUILD_OPTIONS@"
+ #define CRASHREPORT_URL "@CRASHREPORT_URL@"
+ // NOLINTEND
+-- 
+2.54.0
+
