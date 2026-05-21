@@ -63,7 +63,7 @@ PACKAGECONFIG ?= "${@bb.utils.filter('DISTRO_FEATURES', 'systemd x11', d)} uwsm"
 PACKAGECONFIG[tests] = "-DBUILD_TESTING=ON -DBUILD_HYPRTESTER=ON,-DBUILD_TESTING=OFF -DBUILD_HYPRTESTER=OFF"
 PACKAGECONFIG[systemd] = "-DSYSTEMD=ON,-DNO_SYSTEMD=ON"
 PACKAGECONFIG[x11] = "-DXWAYLAND=ON,-DNO_XWAYLAND=ON,libxcb xcb-util-wm xcb-util-renderutil xcb-util-errors xwayland,xwayland"
-PACKAGECONFIG[qt] = ",,,hyprpolkitagent xdg-desktop-portal-hyprland hyprsysteminfo hyprland-qt-support qt6ct"
+PACKAGECONFIG[qt] = ",,,xdg-desktop-portal-hyprland hyprsysteminfo hyprland-qt-support qt6ct"
 PACKAGECONFIG[uwsm] = "-DUWSM=ON,-DNO_UWSM=ON,,uwsm"
 PACKAGECONFIG[hyprpm] = "-DHYPRPM=ON,-DNO_HYPRPM=ON"
 
