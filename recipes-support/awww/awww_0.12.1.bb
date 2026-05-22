@@ -9,7 +9,7 @@ require ${PN}-crates.inc
 
 DEPENDS += "lz4 wayland-protocols wayland wayland-native"
 
-SRCREV = "7a8fc2e646b97e5ae508a44d3449e3b41345d456"
+SRCREV = "f66e12a76dbc4c669b2f1375f78bce49f5b19d66"
 
 SRC_URI += "git://codeberg.org/LGFae/awww.git;protocol=https;branch=main"
 
