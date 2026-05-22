@@ -21,7 +21,6 @@ DEPENDS = " \
 "
 
 RDEPENDS:${PN} = "grim slurp hyprlang"
-RCONFLICTS:${PN} = "xdg-desktop-portal-wlr xdg-desktop-portal-gnome"
 
 inherit qt6-cmake pkgconfig features_check
 
