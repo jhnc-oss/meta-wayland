@@ -1,0 +1,28 @@
+From 6505ccb3c48df921d7545f71a1543f89a5519b1f Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Sat, 23 May 2026 17:38:20 +0200
+Subject: [PATCH] assets buildpath
+
+Avoid buildpath issue
+
+Upstream-Status: Pending
+---
+ meson.build | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/meson.build b/meson.build
+index a123f5dcc..e8a759ede 100644
+--- a/meson.build
++++ b/meson.build
+@@ -760,7 +760,7 @@ executable('noctalia',
+   include_directories: _noctalia_inc,
+   cpp_args: [
+     '-Wall', '-Wextra', '-Wpedantic', '-Wconversion', '-Wshadow',
+-    '-DNOCTALIA_SOURCE_ASSETS_DIR="' + meson.project_source_root() / 'assets' + '"',
++    '-DNOCTALIA_SOURCE_ASSETS_DIR="' + 'assets' + '"',
+     '-DNOCTALIA_INSTALL_PREFIX="' + get_option('prefix') + '"',
+     '-DNOCTALIA_INSTALL_DATADIR="' + get_option('datadir') + '"',
+     '-DNOCTALIA_VERSION="' + meson.project_version() + '"',
+-- 
+2.54.0
+
