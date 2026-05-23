@@ -7,7 +7,7 @@ SRC_URI = "git://github.com/quickshell-mirror/quickshell.git;protocol=https;nobr
 SRC_URI += "file://0001-src-build-build.hpp.in-dont-include-COMPILE_FLAGS.patch"
 SRCREV = "59e9c47b0eb48a9e4bcf9631fa062ee939bd2e83"
 
-DEPENDS = "cli11 jemalloc libdrm qtbase qttools-native qtdeclarative qtquick3d qtshadertools spirv-tools virtual/libgbm"
+DEPENDS = "cli11 libdrm qtbase qttools-native qtdeclarative qtquick3d qtshadertools spirv-tools virtual/libgbm"
 RRECOMMENDS:${PN} = "qt5compat"
 
 inherit qt6-cmake pkgconfig
@@ -16,7 +16,11 @@ EXTRA_OECMAKE += "-DCMAKE_BUILD_TYPE=RelWithDebInfo"
 
 FILES:${PN} += "${libdir}/qml/Quickshell ${datadir}"
 
-PACKAGECONFIG = "${@bb.utils.filter('DISTRO_FEATURES', 'x11 wayland pipewire polkit bluetooth pam', d)} jemalloc hyprland mpris network systray upower notifications i3 greetd"
+PACKAGECONFIG = " \
+	${@bb.utils.filter('DISTRO_FEATURES', 'x11 wayland pipewire polkit bluetooth pam', d)} \
+	${@bb.utils.contains('TCLIBC', 'glibc', 'jemalloc', '', d)} \
+	hyprland mpris network systray upower notifications i3 greetd \
+"
 PACKAGECONFIG[x11] = "-DX11=ON,-DX11=OFF,libx11 libxcb"
 PACKAGECONFIG[wayland] = "-DWAYLAND=ON,DWAYLAND=OFF, wayland wayland-native wayland-protocols"
 PACKAGECONFIG[hyprland] = "-DHYPRLAND=ON,-DHYPRLAND=OFF"
