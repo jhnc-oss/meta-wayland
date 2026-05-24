@@ -4,7 +4,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=5bd433caa90a88d62bd293dabc90f4a3"
 
 SRC_URI = "git://github.com/noctalia-dev/noctalia-shell.git;protocol=https;branch=v5"
 SRC_URI += "file://0001-assets-buildpath.patch"
-SRCREV = "fcd8a6268ce0395cdcc4f1d403b5a10d8a882000"
+SRCREV = "d5af752b18621cfd42cccd99be6fc987a878b628"
 
 REQUIRED_DISTRO_FEATURES = "opengl pam polkit pipewire"
 
@@ -36,7 +36,7 @@ PACKAGECONFIG[jemalloc] = "-Djemalloc=enabled,-Djemalloc=disabled,jemalloc"
 
 FILES:${PN} += "${datadir}"
 
-RDEPENDS:${PN} += " \
+RRECOMMENDS:${PN} ?= " \
 	app2unit \
 	bash \
 	bluez5 \
@@ -52,6 +52,7 @@ RDEPENDS:${PN} += " \
 	gpu-screen-recorder \
 	matugen \
 	networkmanager \
+	playerctl \
 	power-profiles-daemon \
 	wlsunset \
 "
