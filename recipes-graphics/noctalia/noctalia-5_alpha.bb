@@ -4,7 +4,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=5bd433caa90a88d62bd293dabc90f4a3"
 
 SRC_URI = "git://github.com/noctalia-dev/noctalia-shell.git;protocol=https;branch=v5"
 SRC_URI += "file://0001-assets-buildpath.patch"
-SRCREV = "a801b169ad3e88c5f0c9e6c75605d2c3ec98e825"
+SRCREV = "22fb36c7280c6e51d03fb21aa2e6ce3cf345038c"
 
 REQUIRED_DISTRO_FEATURES = "opengl pam polkit pipewire"
 
@@ -50,7 +50,6 @@ RRECOMMENDS:${PN} ?= " \
 	findutils \
 	libnotify \
 	gpu-screen-recorder \
-	matugen \
 	networkmanager \
 	playerctl \
 	power-profiles-daemon \
