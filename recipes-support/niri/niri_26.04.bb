@@ -47,4 +47,4 @@ do_install:append() {
 
 FILES:${PN} += "${datadir}"
 
-RDEPENDS:${PN} = "xwayland-satellite"
+RDEPENDS:${PN} += "xwayland-satellite xdg-desktop-portal-gnome xdg-desktop-portal-gtk"
