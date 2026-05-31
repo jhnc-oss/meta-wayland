@@ -9,6 +9,7 @@ DEPENDS = " \
 	wayland \
 	wayland-native \
 	wayland-protocols \
+	cjson \
 	libinput \
 	libdrm \
 	libxkbcommon \
@@ -24,9 +25,11 @@ DEPENDS = " \
 
 inherit meson pkgconfig
 
-SRCREV = "50e1b652b273cbf7f5bf334e9969e22daada4c7a"
+SRCREV = "6584ed2fd52235bd93ac54b5f23663699cab9c23"
 
 PACKAGECONFIG[xwayland] = "-Dxwayland=enabled,-Dxwayland=disabled,xwayland libxcb xcb-util-wm"
 PACKAGECONFIG ?= "${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'xwayland', '', d)}"
 
 FILES:${PN} += "${datadir}/wayland-sessions/mango.desktop ${datadir}/xdg-desktop-portal/mango-portals.conf"
+
+RDEPENDS:${PN} += "xdg-desktop-portal-gtk"
