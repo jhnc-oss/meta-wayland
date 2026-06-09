@@ -5,6 +5,7 @@ LICENSE = "BSD-3-Clause"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=a0bf31bc487405beb07b19459ea85114"
 
 DEPENDS = " \
+  abseil-cpp \
   aquamarine \
   cairo \
   hyprgraphics \
@@ -27,7 +28,8 @@ DEPENDS = " \
 SRC_URI = "git://github.com/hyprwm/hyprtoolkit.git;protocol=https;branch=main"
 SRC_URI += "file://0001-CMakeLists.txt-fix-linking-with-opengl.patch"
 
-SRCREV = "795d06e76434a951855762104f2b0c8c3842e052"
+SRCREV = "bf9219cc53548c119e61d74b210076ceeded1f65"
+PV:append = "+git"
 
 inherit cmake pkgconfig
 
