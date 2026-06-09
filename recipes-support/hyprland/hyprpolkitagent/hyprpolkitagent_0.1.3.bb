@@ -5,11 +5,11 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=778ddc598b3f2a2da3657dda514da983"
 
 SRC_URI = "git://github.com/hyprwm/hyprpolkitagent.git;protocol=https;branch=main"
 
-SRCREV = "7e4054410f6d6331b239fea1c659ad6a917fbf6a"
+SRCREV = "a259bf1fcf141dc0fc49c242510814ea6ac33387"
+PV:append = "+git"
 
-DEPENDS = "qtbase qtquick3d qttools-native polkit polkit-qt hyprutils"
-RDEPENDS:${PN} = "hyprland-qt-support"
+DEPENDS = "hyprtoolkit polkit hyprutils sdbus-c++ libdrm pixman hyprgraphics"
 
-inherit qt6-cmake pkgconfig
+inherit cmake pkgconfig
 
 FILES:${PN} += "${systemd_user_unitdir} ${datadir}/dbus-1"
