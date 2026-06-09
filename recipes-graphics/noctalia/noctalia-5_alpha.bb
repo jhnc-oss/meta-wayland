@@ -2,9 +2,9 @@ SUMMARY = "A lightweight Wayland shell and bar built directly on Wayland + OpenG
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=5bd433caa90a88d62bd293dabc90f4a3"
 
-SRC_URI = "git://github.com/noctalia-dev/noctalia-shell.git;protocol=https;branch=v5"
+SRC_URI = "git://github.com/noctalia-dev/noctalia.git;protocol=https;branch=main"
 SRC_URI += "file://0001-assets-buildpath.patch"
-SRCREV = "aa420b7f077ca6c6dded999e317f776c5ba9f5c7"
+SRCREV = "65b228b950225ae7e4b212930a7a42f9248d24d9"
 
 REQUIRED_DISTRO_FEATURES = "opengl pam polkit pipewire"
 
