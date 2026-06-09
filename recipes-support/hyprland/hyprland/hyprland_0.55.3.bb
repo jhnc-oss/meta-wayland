@@ -47,8 +47,7 @@ RRECOMMENDS:${PN} ?= " \
 "
 
 SRC_URI = "gitsm://github.com/hyprwm/Hyprland.git;protocol=https;nobranch=1"
-SRCREV = "4e3955716619c58a8e9e2f81af5f8f2862e77a1b"
-PV:append = "+git"
+SRCREV = "fe5fe79a29ac3adaf3e75560b2f4b7a6d58b31c9"
 
 inherit cmake pkgconfig features_check
 
