@@ -7,6 +7,7 @@ REQUIRED_DISTRO_FEATURES = "x11 wayland"
 
 DEPENDS += " \
 	aom \
+	catch2 \
 	cmake-native \
 	glm \
 	glslang-native \
@@ -59,7 +60,7 @@ SRC_URI = "   \
 	file://0001-meson.build-dont-use-wrap-based-subprojects.patch \
 	file://0001-meson.build-dont-leak-buildpath.patch \
 "
-SRCREV = "f8b33d38c5acc35825c7966b208222770c4a623e"
+SRCREV = "6ea6b21e83a3077d60ee5ab044b472dfc399189d"
 
 
 inherit meson pkgconfig features_check
