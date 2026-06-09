@@ -4,7 +4,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=5bd433caa90a88d62bd293dabc90f4a3"
 
 SRC_URI = "git://github.com/noctalia-dev/noctalia.git;protocol=https;branch=main"
 SRC_URI += "file://0001-assets-buildpath.patch"
-SRCREV = "65b228b950225ae7e4b212930a7a42f9248d24d9"
+SRCREV = "094c37617059661085b06588f07a8bb4015efc2d"
 
 REQUIRED_DISTRO_FEATURES = "opengl pam polkit pipewire"
 
