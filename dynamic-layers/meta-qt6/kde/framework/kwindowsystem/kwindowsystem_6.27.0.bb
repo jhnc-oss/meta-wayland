@@ -10,6 +10,7 @@ SRCREV = "97aadfe443fcd097d78f9926d4c0fb8c52011727"
 DEPENDS = " \
 	qtbase \
 	qttools-native \
+	qtquick3d \
 	plasma-wayland-protocols \
 "
 

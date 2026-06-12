@@ -10,6 +10,7 @@ DEPENDS = " \
     bison-native \
     qtbase \
     qttools-native \
+    qtquick3d \
     extra-cmake-modules \
 "
 

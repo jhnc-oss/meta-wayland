@@ -10,6 +10,7 @@ DEPENDS = " \
     qtbase \
     qttools-native \
     extra-cmake-modules \
+    qtquick3d \
 "
 
 inherit qt6-cmake
