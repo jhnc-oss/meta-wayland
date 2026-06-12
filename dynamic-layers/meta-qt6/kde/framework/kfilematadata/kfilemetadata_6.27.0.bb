@@ -1,0 +1,36 @@
+SUMMARY = "KFileMetaData is a library for extracting metadata from files"
+HOMEPAGE = "https://invent.kde.org/frameworks/kfilemetadata"
+LICENSE = "BSD-3-Clause"
+LIC_FILES_CHKSUM += "file://LICENSES/BSD-3-Clause.txt;md5=954f4d71a37096249f837652a7f586c0"
+
+SRC_URI = "git://invent.kde.org/frameworks/kfilemetadata.git;protocol=https;nobranch=1"
+SRCREV = "c363e65a1e861aa7efcc8514b5337f1f253748c4"
+
+DEPENDS = " \
+	qtbase \
+	qttools-native \
+	extra-cmake-modules \
+	karchive \
+	kcoreaddons \
+	kconfig \
+	kcodecs \
+	ki18n \
+	poppler \
+	taglib \
+	exiv2 \
+	attr \
+	${@bb.utils.contains('LICENSE_FLAGS_ACCEPTED', 'commercial', 'ffmpeg', '', d)} \
+"
+
+inherit qt6-cmake pkgconfig gettext
+
+# cmake checks whether these files are present. We do not provide them in sysroot,
+# but at least they are included in the package -> just touch the files to avoid errors.
+do_configure:prepend() {
+	mkdir -p ${STAGING_LIBEXECDIR}/kf6 ${STAGING_DIR_HOST}${prefix}/metatypes
+	touch ${STAGING_LIBEXECDIR}/kf6/kconfig_compiler_kf6
+	touch ${STAGING_LIBEXECDIR}/kf6/kconf_update
+	touch ${STAGING_DIR_HOST}${prefix}/metatypes/qt6kf6coreaddons_metatypes.json
+}
+
+FILES:${PN} += "${libdir}/plugins ${datadir}/qlogging-categories6"

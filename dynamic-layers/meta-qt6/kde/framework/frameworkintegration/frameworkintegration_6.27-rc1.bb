@@ -1,0 +1,41 @@
+SUMMARY = "Integration of Qt application with KDE workspaces"
+HOMEPAGE = "https://invent.kde.org/frameworks/frameworkintegration"
+LICENSE = "LGPL-2.0-only"
+LIC_FILES_CHKSUM += "file://LICENSES/LGPL-2.0-only.txt;md5=6d2d9952d88b50a51a5c73dc431d06c7"
+
+SRC_URI = "git://invent.kde.org/frameworks/frameworkintegration.git;protocol=https;nobranch=1"
+SRCREV = "c3a9a85e23cc57be7753b84b4a23c1df12e6761d"
+
+DEPENDS = " \
+    qtbase \
+    qttools-native \
+    extra-cmake-modules \
+    kwidgetsaddons \
+    kconfig \
+    kcoreaddons \
+    kcolorscheme \
+    kiconthemes \
+    knotifications \
+    kpackage \
+    ki18n \
+    knewstuff \
+"
+
+inherit qt6-cmake gettext
+
+EXTRA_OECMAKE = "-DBUILD_TESTING=OFF"
+
+do_configure:prepend() {
+	# cmake checks whether these files are present. We do not provide them in sysroot,
+	# but at least they are included in the package -> just touch the files to avoid errors.
+	mkdir -p ${STAGING_LIBEXECDIR}/kf6 ${STAGING_DIR_HOST}${prefix}/metatypes
+	touch ${STAGING_LIBEXECDIR}/kf6/kconf_update
+	touch ${STAGING_LIBEXECDIR}/kf6/kconfig_compiler_kf6
+	touch ${STAGING_BINDIR}/kpackagetool6
+	touch ${STAGING_DIR_HOST}${prefix}/metatypes/qt6kf6configcore_metatypes.json
+	touch ${STAGING_DIR_HOST}${prefix}/metatypes/qt6kf6configgui_metatypes.json
+	touch ${STAGING_DIR_HOST}${prefix}/metatypes/qt6kf6coreaddons_metatypes.json
+}
+
+FILES:${PN} += "${libdir}/plugins ${datadir}"
+
