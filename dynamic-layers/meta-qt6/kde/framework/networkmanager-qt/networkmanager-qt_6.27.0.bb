@@ -9,6 +9,7 @@ SRCREV = "c959ca5807326622caadfb6516d3ac949ccb050f"
 DEPENDS = " \
     qtbase \
     qttools-native \
+    qtquick3d \
     extra-cmake-modules \
     networkmanager \
 "
