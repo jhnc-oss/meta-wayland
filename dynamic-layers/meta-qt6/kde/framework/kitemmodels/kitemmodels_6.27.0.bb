@@ -9,6 +9,7 @@ SRCREV = "b713738b2bef633bf1addcbcde3d5564c15f9b0f"
 DEPENDS = " \
 	qtbase \
 	qttools-native \
+	qtquick3d \
 	extra-cmake-modules \
 "
 
