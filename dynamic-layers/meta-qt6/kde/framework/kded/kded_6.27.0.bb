@@ -25,6 +25,8 @@ do_configure:prepend() {
 	touch ${STAGING_LIBEXECDIR}/kf6/kconfig_compiler_kf6
 	touch ${STAGING_LIBEXECDIR}/kf6/kconf_update
 	touch ${STAGING_DIR_HOST}${prefix}/metatypes/qt6kf6coreaddons_metatypes.json
+	touch ${STAGING_DIR_HOST}${prefix}/metatypes/qt6kf6configcore_metatypes.json
+	touch ${STAGING_DIR_HOST}${prefix}/metatypes/qt6kf6configgui_metatypes.json
 }
 
 inherit qt6-cmake
