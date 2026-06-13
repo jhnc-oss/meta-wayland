@@ -8,13 +8,14 @@ LIC_FILES_CHKSUM += "file://LICENSES/BSD-3-Clause.txt;md5=954f4d71a37096249f8376
 SRC_URI = "git://invent.kde.org/frameworks/extra-cmake-modules.git;protocol=https;nobranch=1"
 SRCREV = "fa262097a48f0f84529498741afcc7040e93b271"
 
-DEPENDS = "${@bb.utils.contains('DISTRO_FEATURES', 'kde', 'qttools qtbase-native qttools-native', '', d)}"
-
 inherit cmake
 
-EXTRA_OECMAKE += "-DBUILD_TESTING=OFF -DQT_HOST_PATH:PATH=${RECIPE_SYSROOT_NATIVE}${prefix_native}"
+EXTRA_OECMAKE += "-DBUILD_TESTING=OFF"
 
 FILES:${PN}-dev += " ${datadir}/ECM"
+
+PACKAGECONFIG ?= ""
+PACKAGECONFIG[qt] = "-DQT_HOST_PATH:PATH=${RECIPE_SYSROOT_NATIVE}${prefix_native},,qttools qtbase-native qttools-native"
 
 BBCLASSEXTEND = "native nativesdk"
 
