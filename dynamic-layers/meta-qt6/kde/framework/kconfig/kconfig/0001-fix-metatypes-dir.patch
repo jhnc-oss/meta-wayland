@@ -1,0 +1,54 @@
+From f02e065eed1ecbc074426a4f4671a4de9bcd3f25 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Sat, 13 Jun 2026 04:00:02 +0200
+Subject: [PATCH] fix metatypes dir
+
+---
+ src/core/CMakeLists.txt | 4 ++--
+ src/gui/CMakeLists.txt  | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/src/core/CMakeLists.txt b/src/core/CMakeLists.txt
+index 8213a47a..210e7c5b 100644
+--- a/src/core/CMakeLists.txt
++++ b/src/core/CMakeLists.txt
+@@ -6,7 +6,7 @@ qt_extract_metatypes(KF6ConfigCore OUTPUT_FILES METATYPES_FILE)
+ # see https://qt-project.atlassian.net/browse/QTBUG-123052
+ # might be replaced with proper Qt API once that exists
+ get_filename_component(METATYPES_FILE_NAME ${METATYPES_FILE} NAME)
+-target_sources(KF6ConfigCore INTERFACE $<INSTALL_INTERFACE:${KDE_INSTALL_QTMETATYPESDIR}/${METATYPES_FILE_NAME}>)
++target_sources(KF6ConfigCore INTERFACE $<INSTALL_INTERFACE:lib/metatypes/${METATYPES_FILE_NAME}>)
+ 
+ set_target_properties(KF6ConfigCore PROPERTIES
+     VERSION     ${KCONFIG_VERSION}
+@@ -102,4 +102,4 @@ install(FILES
+   DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KConfigCore COMPONENT Devel
+ )
+ 
+-install(FILES ${METATYPES_FILE} DESTINATION ${KDE_INSTALL_QTMETATYPESDIR})
++install(FILES ${METATYPES_FILE} DESTINATION ${KDE_INSTALL_LIBDIR}/metatypes)
+diff --git a/src/gui/CMakeLists.txt b/src/gui/CMakeLists.txt
+index 1ee1df39..232d5687 100644
+--- a/src/gui/CMakeLists.txt
++++ b/src/gui/CMakeLists.txt
+@@ -6,7 +6,7 @@ qt_extract_metatypes(KF6ConfigGui OUTPUT_FILES METATYPES_FILE)
+ # see https://qt-project.atlassian.net/browse/QTBUG-123052
+ # might be replaced with proper Qt API once that exists
+ get_filename_component(METATYPES_FILE_NAME ${METATYPES_FILE} NAME)
+-target_sources(KF6ConfigGui INTERFACE $<INSTALL_INTERFACE:${KDE_INSTALL_QTMETATYPESDIR}/${METATYPES_FILE_NAME}>)
++target_sources(KF6ConfigGui INTERFACE $<INSTALL_INTERFACE:lib/metatypes/${METATYPES_FILE_NAME}>)
+ 
+ set_target_properties(KF6ConfigGui PROPERTIES
+     VERSION     ${KCONFIG_VERSION}
+@@ -75,7 +75,7 @@ if(NOT BUILD_SHARED_LIBS)
+     )
+ endif()
+ 
+-install(FILES ${METATYPES_FILE} DESTINATION ${KDE_INSTALL_QTMETATYPESDIR})
++install(FILES ${METATYPES_FILE} DESTINATION ${KDE_INSTALL_LIBDIR}/metatypes)
+ 
+ install(TARGETS KF6ConfigGui EXPORT KF6ConfigTargets ${KF_INSTALL_TARGETS_DEFAULT_ARGS})
+ 
+-- 
+2.54.0
+

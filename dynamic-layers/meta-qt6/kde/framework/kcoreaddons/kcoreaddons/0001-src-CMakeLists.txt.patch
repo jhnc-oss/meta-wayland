@@ -1,0 +1,37 @@
+From e1b6c6281eb3a9aa528a41bf01c6f430e8c42cdc Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Sat, 13 Jun 2026 03:30:41 +0200
+Subject: [PATCH] cmake fix
+
+---
+ src/lib/CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/lib/CMakeLists.txt b/src/lib/CMakeLists.txt
+index 85d8da49..0589054c 100644
+--- a/src/lib/CMakeLists.txt
++++ b/src/lib/CMakeLists.txt
+@@ -35,7 +35,7 @@ qt_extract_metatypes(KF6CoreAddons OUTPUT_FILES METATYPES_FILE)
+ # see https://qt-project.atlassian.net/browse/QTBUG-123052
+ # might be replaced with proper Qt API once that exists
+ get_filename_component(METATYPES_FILE_NAME ${METATYPES_FILE} NAME)
+-target_sources(KF6CoreAddons INTERFACE $<INSTALL_INTERFACE:${KDE_INSTALL_QTMETATYPESDIR}/${METATYPES_FILE_NAME}>)
++target_sources(KF6CoreAddons INTERFACE $<INSTALL_INTERFACE:lib/metatypes/${METATYPES_FILE_NAME}>)
+ 
+ set_target_properties(KF6CoreAddons PROPERTIES
+     VERSION     ${KCOREADDONS_VERSION}
+diff --git a/src/lib/CMakeLists.txt b/src/lib/CMakeLists.txt
+index 85d8da49..0200c16b 100644
+--- a/src/lib/CMakeLists.txt
++++ b/src/lib/CMakeLists.txt
+@@ -383,6 +383,6 @@ install(FILES
+ )
+ install(FILES plugin/kpluginmetadata.schema.json DESTINATION ${KDE_INSTALL_DATADIR}/kf6/jsonschema COMPONENT Devel)
+ 
+-install(FILES ${METATYPES_FILE} DESTINATION ${KDE_INSTALL_QTMETATYPESDIR})
++install(FILES ${METATYPES_FILE} DESTINATION ${KDE_INSTALL_LIBDIR}/metatypes)
+ 
+ ecm_generate_qdoc(KF6CoreAddons kcoreaddons.qdocconf)
+-- 
+2.54.0
+

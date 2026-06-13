@@ -19,11 +19,6 @@ DEPENDS = " \
 
 inherit qt6-cmake
 
-do_configure:prepend() {
-	mkdir -p ${STAGING_DIR_HOST}${prefix}/metatypes
-	touch ${STAGING_DIR_HOST}${prefix}/metatypes/qt6kf6coreaddons_metatypes.json
-}
-
 CXXFLAGS += "-I${STAGING_INCDIR}/PySide6/KCoreAddons"
 
 FILES:${PN} += "${PYTHON_SITEPACKAGES_DIR} ${datadir}"

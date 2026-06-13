@@ -4,6 +4,7 @@ LICENSE = "LGPL-2.1-only"
 LIC_FILES_CHKSUM += "file://LICENSES/LGPL-2.1-only.txt;md5=fabba2a3bfeb22a6483d44e9ae824d3f"
 
 SRC_URI = "git://invent.kde.org/frameworks/kguiaddons.git;protocol=https;nobranch=1"
+SRC_URI += "file://0001-fix-metatypes-dir.patch"
 SRCREV = "fdc090e85cec8da9c2d08b85813807c9bfe454cf"
 
 DEPENDS = " \
@@ -23,6 +24,6 @@ EXTRA_OECMAKE += " \
 	-DBUILD_TESTING=OFF \
 "
 
-FILES:${PN} += "${libdir}/qml ${PYTHON_SITEPACKAGES_DIR} ${datadir}/qlogging-categories6 ${prefix}/metatypes"
+FILES:${PN} += "${libdir}/qml ${PYTHON_SITEPACKAGES_DIR} ${datadir}/qlogging-categories6 ${libdir}/metatypes"
 
 BBCLASSEXTEND = "native"

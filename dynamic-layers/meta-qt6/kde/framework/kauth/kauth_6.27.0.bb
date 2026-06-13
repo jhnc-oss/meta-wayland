@@ -15,10 +15,5 @@ DEPENDS = " \
 
 inherit qt6-cmake
 
-do_configure:prepend() {
-	mkdir -p ${STAGING_DIR_HOST}${prefix}/metatypes
-	touch ${STAGING_DIR_HOST}${prefix}/metatypes/qt6kf6coreaddons_metatypes.json
-}
-
 FILES:${PN} += "${libdir}/plugins ${datadir}"
 

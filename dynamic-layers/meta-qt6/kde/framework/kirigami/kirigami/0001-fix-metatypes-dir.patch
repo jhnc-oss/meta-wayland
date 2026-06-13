@@ -1,0 +1,34 @@
+From cdd9194bf6e82cb079cf912f3ff807efac991064 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Sat, 13 Jun 2026 04:21:48 +0200
+Subject: [PATCH] fix metatypes dir
+
+---
+ src/platform/CMakeLists.txt | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/platform/CMakeLists.txt b/src/platform/CMakeLists.txt
+index 13d929005..4da688827 100644
+--- a/src/platform/CMakeLists.txt
++++ b/src/platform/CMakeLists.txt
+@@ -6,7 +6,7 @@ qt_extract_metatypes(KirigamiPlatform OUTPUT_FILES METATYPES_FILE)
+ # see https://qt-project.atlassian.net/browse/QTBUG-123052
+ # might be replaced with proper Qt API once that exists
+ get_filename_component(METATYPES_FILE_NAME ${METATYPES_FILE} NAME)
+-target_sources(KirigamiPlatform INTERFACE $<INSTALL_INTERFACE:${KDE_INSTALL_QTMETATYPESDIR}/${METATYPES_FILE_NAME}>)
++target_sources(KirigamiPlatform INTERFACE $<INSTALL_INTERFACE:lib/metatypes/${METATYPES_FILE_NAME}>)
+ 
+ ecm_add_qml_module(KirigamiPlatform
+     URI "org.kde.kirigami.platform"
+@@ -145,7 +145,7 @@ install(FILES
+     COMPONENT Devel
+ )
+ 
+-install(FILES ${METATYPES_FILE} DESTINATION ${KDE_INSTALL_QTMETATYPESDIR})
++install(FILES ${METATYPES_FILE} DESTINATION ${KDE_INSTALL_LIBDIR}/metatypes)
+ 
+ ecm_finalize_qml_module(KirigamiPlatform EXPORT KF6KirigamiPlatformTargets)
+ 
+-- 
+2.54.0
+

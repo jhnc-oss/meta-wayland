@@ -15,7 +15,7 @@ DEPENDS = " \
 	ki18n \
 	kwindowsystem \
 	knotifications \
-	kwidgetaddons \
+	kwidgetsaddons \
 	kcolorscheme \
 	kdbusaddons \
 	kcrash \

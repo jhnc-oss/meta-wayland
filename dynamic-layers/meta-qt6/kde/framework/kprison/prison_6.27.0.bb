@@ -16,6 +16,8 @@ DEPENDS = " \
     libdmtx \
 "
 
+EXTRA_OECMAKE += "-DWITH_ZXING=OFF"
+
 inherit qt6-cmake gettext
 
 FILES:${PN} += "${libdir}/qml ${datadir}"

@@ -23,11 +23,6 @@ EXTRA_OECMAKE += "-DBUILD_TESTING=OFF"
 
 inherit qt6-cmake pkgconfig gettext
 
-do_configure:prepend() {
-	mkdir -p ${STAGING_DIR_HOST}${prefix}/metatypes
-	touch ${STAGING_DIR_HOST}${prefix}/metatypes/qt6kf6coreaddons_metatypes.json
-}
-
 do_install:append() {
 	sed -i -e 's|${STAGING_DIR_HOST}||' ${D}${libdir}/cmake/KPipeWire/KPipeWireTargets.cmake
 	sed -i -e 's|\;${STAGING_DIR_HOST}|\;|' ${D}${libdir}/cmake/KPipeWire/KPipeWireTargets.cmake

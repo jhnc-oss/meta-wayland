@@ -28,11 +28,9 @@ do_configure:prepend() {
 	#|
 	#|   but this file does not exist.
 	# add a hack to avoid cmake confusion:
-	mkdir -p ${STAGING_LIBEXECDIR}/kf6 ${STAGING_DIR_HOST}${prefix}/metatypes
+	mkdir -p ${STAGING_LIBEXECDIR}/kf6
 	touch ${STAGING_LIBEXECDIR}/kf6/kconf_update
 	touch ${STAGING_LIBEXECDIR}/kf6/kconfig_compiler_kf6
-	touch ${STAGING_DIR_HOST}${prefix}/metatypes/qt6kf6configcore_metatypes.json
-	touch ${STAGING_DIR_HOST}${prefix}/metatypes/qt6kf6configgui_metatypes.json
 }
 
 FILES:${PN} += "${libdir}/qml  ${libdir}/plugins/kiconthemes6 ${datadir}/qlogging-categories6"
