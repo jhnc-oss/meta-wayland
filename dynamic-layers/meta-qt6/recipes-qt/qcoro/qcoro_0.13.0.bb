@@ -1,4 +1,4 @@
-SUMMARY = "cpptrace is a simple and portable C++ stacktrace library supporting C++11 and greater"
+SUMMARY = "The QCoro library provides set of tools to make use of C++20 coroutines with Qt"
 HOMEPAGE = "https://github.com/qcoro/qcoro"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM += "file://LICENSE;md5=380f1e4dae9580cea509410524d5165d"
