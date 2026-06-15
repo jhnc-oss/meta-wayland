@@ -12,6 +12,7 @@ DEPENDS = " \
     extra-cmake-modules \
     flatpak \
     pipewire \
+    baloo \
     karchive \
     kauth \
     kcoreaddons \
@@ -45,7 +46,9 @@ DEPENDS = " \
     kwallet \
     kcolorscheme \
     plasma-activities \
+    plasma-activities-stats \
     libplasma \
+    kuserfeedback \
     kwayland \
     kwin \
     kirigami \
@@ -80,6 +83,7 @@ do_configure:prepend() {
 	# but at least they are included in the package -> just touch the files to avoid errors.
 	mkdir -p ${STAGING_LIBEXECDIR}/kf6
 	ln -sf ${STAGING_LIBEXECDIR_NATIVE}/kf6/kconfig_compiler_kf6 ${STAGING_LIBEXECDIR}/kf6/kconfig_compiler_kf6
+	touch ${STAGING_LIBEXECDIR}/kf6/kconf_update
 	touch ${STAGING_BINDIR}/kpackagetool6
 	ln -sf ${STAGING_LIBEXECDIR_NATIVE}/kf6/kcmdesktopfilegenerator ${STAGING_LIBEXECDIR}/kf6/kcmdesktopfilegenerator
 }
