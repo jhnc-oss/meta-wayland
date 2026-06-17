@@ -25,7 +25,7 @@ DEPENDS = " \
 
 inherit meson pkgconfig
 
-SRCREV = "db8d22ae8e39fb53d766c33c974c0c6a5fe43359"
+SRCREV = "24fb167ae6ffc0272b2feb0c293b3c8a9a2125ae"
 
 PACKAGECONFIG[xwayland] = "-Dxwayland=enabled,-Dxwayland=disabled,xwayland libxcb xcb-util-wm"
 PACKAGECONFIG ?= "${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'xwayland', '', d)}"
