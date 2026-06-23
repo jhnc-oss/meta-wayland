@@ -1,0 +1,30 @@
+From 7659eddb17a53b166bf93036dce91346b5058096 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Tue, 23 Jun 2026 08:40:18 +0200
+Subject: [PATCH] assets buildpath
+
+Avoid buildpath issue
+
+Upstream-Status: Pending
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+---
+ meson.build | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/meson.build b/meson.build
+index e4031eb..939a0ae 100644
+--- a/meson.build
++++ b/meson.build
+@@ -206,7 +206,7 @@ executable('noctalia-greeter',
+   cpp_args: [
+     '-Wall', '-Wextra', '-Wpedantic', '-Wconversion', '-Wshadow',
+     '-DNOCTALIA_GREETER_VERSION="' + meson.project_version() + '"',
+-    '-DNOCTALIA_GREETER_ASSETS_DIR="' + meson.project_source_root() / 'assets' + '"',
++    '-DNOCTALIA_GREETER_ASSETS_DIR="' + 'assets' + '"',
+     '-DNOCTALIA_GREETER_INSTALLED_ASSETS_DIR="' + get_option('datadir') / 'noctalia-greeter' / 'assets' + '"',
+   ],
+   install: true,
+-- 
+2.54.0
+
