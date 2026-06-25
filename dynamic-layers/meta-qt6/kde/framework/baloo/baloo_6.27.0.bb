@@ -32,4 +32,8 @@ do_configure:prepend() {
 	touch ${STAGING_LIBEXECDIR}/kf6/kconf_update
 }
 
+do_install:append() {
+    sed -i -e 's|${STAGING_DIR_HOST}||g' ${D}${libdir}/cmake/KF6Baloo/KF6BalooTargets.cmake
+}
+
 FILES:${PN} += "${datadir} ${systemd_user_unitdir} ${libdir}/qml ${libdir}/plugins"
