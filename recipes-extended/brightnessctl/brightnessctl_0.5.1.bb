@@ -5,8 +5,11 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=b3ad8718387309bb4fbcb4adce0d77c1"
 SRC_URI = "git://github.com/Hummer12007/brightnessctl.git;protocol=https;branch=master"
 SRCREV = "e70bc55cf053caa285695ac77507e009b5508ee3"
 
-do_compile() {
+do_configure() {
 	./configure
+}
+
+do_compile() {
 	oe_runmake
 }
 
