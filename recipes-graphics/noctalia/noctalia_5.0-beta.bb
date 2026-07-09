@@ -4,7 +4,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=5bd433caa90a88d62bd293dabc90f4a3"
 
 SRC_URI = "git://github.com/noctalia-dev/noctalia.git;protocol=https;branch=main"
 SRC_URI += "file://0001-assets-buildpath.patch"
-SRCREV = "f5da9103446de8ae0d9b755257908b0910e020dd"
+SRCREV = "32bcfb9c9783874c5c0f9709e3f741b07e54ca65"
 
 REQUIRED_DISTRO_FEATURES = "opengl pam polkit pipewire"
 
@@ -16,19 +16,23 @@ DEPENDS += " \
 	freetype \
 	cairo \
 	fontconfig \
+	glib-2.0 \
 	pango \
 	harfbuzz \
 	librsvg \
 	libxkbcommon \
 	libxml2 \
 	libqalculate \
-	glib-2.0 \
+	md4c \
+	nlohmann-json \
 	polkit \
 	pipewire \
 	wireplumber \
 	libpam \
 	curl \
 	libwebp \
+	stb \
+	tomlplusplus \
 	${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'virtual/egl virtual/libgles2', 'epoxy', d)} \
 "
 
