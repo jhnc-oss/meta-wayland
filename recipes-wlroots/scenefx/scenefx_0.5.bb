@@ -12,12 +12,12 @@ DEPENDS = " \
 	libdrm \
 	libxkbcommon \
 	pixman \
-	wlroots-0.19 \
+	wlroots-0.20 \
 "
 
 inherit meson pkgconfig
 
-SRCREV = "0f069970b410195aa5908d98c6fb41f3f0cd6e76"
+SRCREV = "37ccd723bef49e6891156ffafce8f549f01446cc"
 
-FILES:${PN} += "${libdir}/libscenefx-0.4.so"
+FILES:${PN} += "${libdir}/libscenefx-0.5.so"
 FILES:${PN}-dev = "${includedir} ${libdir}/pkgconfig"
