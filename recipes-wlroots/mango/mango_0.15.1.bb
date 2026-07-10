@@ -19,13 +19,13 @@ DEPENDS = " \
 	hwdata \
 	seatd \
 	pcre2 \
-	wlroots-0.19 \
+	wlroots-0.20 \
 	scenefx \
 "
 
 inherit meson pkgconfig
 
-SRCREV = "24fb167ae6ffc0272b2feb0c293b3c8a9a2125ae"
+SRCREV = "bf6289cf8d1b36eabfa73b3419935631722ad966"
 
 PACKAGECONFIG[xwayland] = "-Dxwayland=enabled,-Dxwayland=disabled,xwayland libxcb xcb-util-wm"
 PACKAGECONFIG ?= "${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'xwayland', '', d)}"
