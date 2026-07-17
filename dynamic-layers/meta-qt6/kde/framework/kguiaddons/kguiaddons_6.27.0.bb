@@ -8,6 +8,7 @@ SRC_URI += "file://0001-fix-metatypes-dir.patch"
 SRCREV = "fdc090e85cec8da9c2d08b85813807c9bfe454cf"
 
 DEPENDS = " \
+	clang-native \
 	qtbase \
 	qttools-native \
 	extra-cmake-modules \
@@ -23,6 +24,22 @@ inherit qt6-cmake mime-xdg pkgconfig
 EXTRA_OECMAKE += " \
 	-DBUILD_TESTING=OFF \
 "
+
+replace_llvm_config_path() {
+    if [ -f "${STAGING_BINDIR_CROSS}/llvm-config" ]; then
+        sed -i \
+            's#@LLVM_CONFIG_PATH@#${STAGING_BINDIR_NATIVE}/llvm-config#g' \
+            ${STAGING_BINDIR_CROSS}/llvm-config
+    fi
+}
+
+do_configure:prepend:class-target() {
+    replace_llvm_config_path
+}
+
+do_configure:prepend:class-nativesdk() {
+    replace_llvm_config_path
+}
 
 FILES:${PN} += "${libdir}/qml ${PYTHON_SITEPACKAGES_DIR} ${datadir}/qlogging-categories6 ${libdir}/metatypes"
 

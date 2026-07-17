@@ -7,6 +7,7 @@ SRC_URI = "git://invent.kde.org/frameworks/kxmlgui.git;protocol=https;nobranch=1
 SRCREV = "f29725adb7674392f0b7ab5be0b646493e2f69cd"
 
 DEPENDS = " \
+	clang-native \
 	qtbase \
 	qttools-native \
 	extra-cmake-modules \
@@ -25,6 +26,22 @@ DEPENDS = " \
 "
 
 inherit qt6-cmake gettext
+
+replace_llvm_config_path() {
+    if [ -f "${STAGING_BINDIR_CROSS}/llvm-config" ]; then
+        sed -i \
+            's#@LLVM_CONFIG_PATH@#${STAGING_BINDIR_NATIVE}/llvm-config#g' \
+            ${STAGING_BINDIR_CROSS}/llvm-config
+    fi
+}
+
+do_configure:prepend:class-target() {
+    replace_llvm_config_path
+}
+
+do_configure:prepend:class-nativesdk() {
+    replace_llvm_config_path
+}
 
 # cmake checks whether these files are present. We do not provide them in sysroot,
 # but at least they are included in the package -> just touch the files to avoid errors.
