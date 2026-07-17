@@ -1,0 +1,41 @@
+From 0ced5ef6acac57a45610f7bdfe7b43462ac4b563 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Thu, 25 Jun 2026 17:15:35 +0200
+Subject: [PATCH] osd.cpp: disable x11
+
+---
+ osd/osd.cpp | 11 -----------
+ 1 file changed, 11 deletions(-)
+
+diff --git a/osd/osd.cpp b/osd/osd.cpp
+index 45e61596..1f598611 100644
+--- a/osd/osd.cpp
++++ b/osd/osd.cpp
+@@ -12,7 +12,6 @@
+ #include <LayerShellQt/Window>
+ 
+ #include <KWindowSystem>
+-#include <KX11Extras>
+ 
+ #include <Plasma/Plasma>
+ 
+@@ -75,16 +74,6 @@ void Osd::showActionSelector()
+         layerWindow->setKeyboardInteractivity(LayerShellQt::Window::KeyboardInteractivityOnDemand);
+         m_osdActionSelector->setScreen(screen);
+         m_osdActionSelector->setVisible(true);
+-    } else {
+-        auto newGeometry = m_osdActionSelector->geometry();
+-        newGeometry.moveCenter(screen->geometry().center());
+-        KX11Extras::setState(m_osdActionSelector->winId(), NET::SkipPager | NET::SkipSwitcher | NET::SkipTaskbar);
+-        KX11Extras::setType(m_osdActionSelector->winId(), NET::OnScreenDisplay);
+-        m_osdActionSelector->setVisible(true);
+-        // Workaround wrong geometry by setting geometry after it is visible, not before.
+-        // Because KWin replace OSD at lower area of the screen.
+-        m_osdActionSelector->setGeometry(newGeometry);
+-        m_osdActionSelector->requestActivate();
+     }
+ }
+ 
+-- 
+2.54.0
+
