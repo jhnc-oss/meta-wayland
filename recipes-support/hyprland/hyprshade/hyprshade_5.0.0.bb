@@ -8,4 +8,4 @@ RDEPENDS:${PN} += "python3-more-itertools python3-click python3-chevron"
 
 inherit python_hatchling
 
-SRCREV = "ac3a18c501ead4c2f15c4c5eba2fbc0c455d19f3"
+SRCREV = "5195f8b84bf8fead4aa39c47785fc85b87a5746e"
