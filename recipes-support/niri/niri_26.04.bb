@@ -28,6 +28,8 @@ inherit cargo pkgconfig cargo-update-recipe-crates
 require ${PN}-crates.inc
 
 export LIBCLANG_PATH = "${STAGING_LIBDIR_NATIVE}/libclang.so"
+export CLANG_PATH = "${STAGING_BINDIR_NATIVE}/clang"
+export BINDGEN_EXTRA_CLANG_ARGS = "${HOST_CC_ARCH} ${TOOLCHAIN_OPTIONS} --target=${TARGET_SYS}"
 
 PACKAGECONFIG ?= ""
 PACKAGECONFIG[xwayland] = ",,,xwayland-satellite"
