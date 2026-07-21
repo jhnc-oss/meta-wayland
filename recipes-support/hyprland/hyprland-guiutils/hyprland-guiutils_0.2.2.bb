@@ -8,6 +8,6 @@ DEPENDS = "pixman libdrm hyprlang hyprutils hyprtoolkit hyprwayland-scanner-nati
 
 SRC_URI = "git://github.com/hyprwm/hyprland-guiutils.git;protocol=https;branch=main"
 
-SRCREV = "c2e906261142f5dd1ee0bfc44abba23e2754c660"
+SRCREV = "a16ad89ed5fb4192c966018a80c652de8d96f748"
 
 inherit cmake pkgconfig
