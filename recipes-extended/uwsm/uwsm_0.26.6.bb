@@ -14,11 +14,13 @@ SRC_URI = " \
 SRCREV = "469a39a5436f6c1086b4904d42227c03aee2e394"
 
 
-PACKAGECONFIG ?= ""
+PACKAGECONFIG ?= "uuctl uwsm-app fumon"
 PACKAGECONFIG[manpages] = "-Dman-pages=enabled,-Dman-pages=disabled,scdoc-native"
 PACKAGECONFIG[uuctl] = "-Duuctl=enabled,-Duuctl=disabled,,fuzzel"
+PACKAGECONFIG[uwsm-app] = "-Duwsm-app=enabled,-Duwsm-app=disabled"
+PACKAGECONFIG[fumon] = "-Dfumon=enabled,-Dfumon=disabled"
 
-FILES:${PN} += "${datadir}/licenses ${systemd_user_unitdir}"
+FILES:${PN} += "${datadir}/licenses ${systemd_user_unitdir} ${nonarch_libdir}/systemd/user-preset/80-fumon.preset"
 
 RDEPENDS:${PN} += "python3-dbus pyxdg python3-core whiptail"
 RRECOMMENDS:${PN} += "dbus-broker"
