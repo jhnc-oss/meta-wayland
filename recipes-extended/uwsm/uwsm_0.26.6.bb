@@ -11,7 +11,7 @@ SRC_URI = " \
 	git://github.com/Vladimir-csp/uwsm.git;protocol=https;branch=master \
 	file://0001-uwsm-meson.build-dont-fail-for-missing-python-module.patch \
 "
-SRCREV = "3294dd3163bf9f2334b787b3cde5a14e56491404"
+SRCREV = "469a39a5436f6c1086b4904d42227c03aee2e394"
 
 
 PACKAGECONFIG ?= ""
