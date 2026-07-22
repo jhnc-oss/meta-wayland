@@ -7,7 +7,7 @@ inherit cmake pkgconfig
 
 SRC_URI = "git://github.com/jstkdng/ueberzugpp.git;protocol=https;branch=master"
 SRC_URI += "file://0001-CMakeLists.txt-fix-gl-egl.patch"
-SRCREV = "c1c76e34bac97403ed3f2f403fcf96b5cfd0b914"
+SRCREV = "9eedfdc355653fd80beed0ae1413b6a4dff38309"
 
 DEPENDS = "openssl cli11 fmt spdlog range-v3 libvips libsixel extra-cmake-modules chafa nlohmann-json tbb"
 
