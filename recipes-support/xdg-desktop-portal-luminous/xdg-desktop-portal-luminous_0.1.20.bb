@@ -4,9 +4,9 @@ LICENSE = "GPL-3.0-only"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=33ecba7309ee0bbf1c82fbcd47ba0e8c"
 
 SRC_URI = "git://github.com/waycrate/xdg-desktop-portal-luminous.git;protocol=https;nobranch=1"
-SRCREV = "62619628dc11e43989a2d37476f07ea836298253"
+SRCREV = "4624d51b3d2999cca233cc37c6bf6e0bb83e9308"
 
-DEPENDS = "wayshot pipewire clang-native"
+DEPENDS = "glib-2.0 libxkbcommon wayshot pipewire clang-native wayland wayland-protocols"
 
 require xdg-desktop-portal-luminous-crates.inc
 
@@ -16,4 +16,6 @@ do_compile:prepend() {
 	export LIBCLANG_PATH="${STAGING_LIBDIR_NATIVE}/libclang.so"
 }
 
-RCONFLICTS:${PN} = "xdg-desktop-portal-wlr"
+CARGO_BUILD_FLAGS += "--workspace"
+
+RDEPENDS:${PN} = "slurp"
