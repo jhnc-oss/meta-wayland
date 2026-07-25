@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=3db2f084b045f74bdb05b1189934c391"
 
 SRC_URI = "git://github.com/ajeetdsouza/zoxide.git;protocol=https;branch=main"
 
-SRCREV = "859268aec873465b6707f73001003a76adcafabd"
+SRCREV = "f84f9a3e1d16fabf3e34b199ec7d552993b41f29"
 
 inherit cargo cargo-update-recipe-crates
 
