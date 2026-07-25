@@ -8,7 +8,7 @@ SRC_URI = "git://github.com/rockowitz/ddcutil.git;protocol=https;branch=${PV}-re
 
 DEPENDS = "i2c-tools glib-2.0 kmod jansson"
 
-SRCREV = "b06af8def1e61624f7f2231d512d91b4c1ac91e3"
+SRCREV = "4edf054c6bfddcc62174bbc453e26c73cfbe7bbf"
 
 inherit autotools-brokensep pkgconfig gobject-introspection
 
