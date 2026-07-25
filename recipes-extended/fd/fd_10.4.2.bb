@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://LICENSE-MIT;md5=96713c739748a44f86272791c89ce344"
 
 SRC_URI = "git://github.com/sharkdp/fd.git;protocol=https;branch=master"
 
-SRCREV = "d38148f0aabdd073b4080cde770f679f3197b920"
+SRCREV = "7027d45303b412be6fa9c09d689cc6276748fb38"
 
 inherit cargo cargo-update-recipe-crates
 
