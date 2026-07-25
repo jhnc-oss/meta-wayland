@@ -1,11 +1,13 @@
 SUMMARY = "raylib is a simple and easy-to-use library to enjoy videogames programming"
 HOMEPAGE = "https://github.com/raysan5/raylib"
 LICENSE = "zlib-acknowledgement"
-LIC_FILES_CHKSUM = "file://LICENSE;md5=e5c04526673eda16f837e05cb1177261"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=4f718fed396a1bda683c98481e5b57a8"
 
-DEPENDS = "glfw"
+DEPENDS = "glfw xext"
 
 SRC_URI = "git://github.com/raysan5/raylib.git;protocol=https;nobranch=1"
-SRCREV = "c1ab645ca298a2801097931d1079b10ff7eb9df8"
+SRCREV = "dbc56a87da87d973a9c5baa4e7438a9d20121d28"
 
 inherit cmake
+
+EXTRA_OECMAKE += "-DBUILD_SHARED_LIBS=ON"
