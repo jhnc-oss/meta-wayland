@@ -6,11 +6,13 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=570a9b3749dd0463a1778803b12a6dce"
 
 SRC_URI = "git://github.com/Qalculate/libqalculate;protocol=https;branch=master"
 
-SRCREV = "c081977d84cb7c3712e37b1d93fed05c7f4bb39d"
+SRCREV = "d01cfdae6f965bf9264af3b52db8f5b0345fe1da"
 
 inherit autotools pkgconfig gettext
 
-DEPENDS += "libxml2 curl icu virtual/libiconv readline mpfr gmp intltool-native p11-kit"
+EXTRA_OEMAKE += "USE_NLS=no"
+
+DEPENDS += "libxml2 curl icu readline mpfr gmp p11-kit"
 
 FILES:${PN} += "${datadir}/qalculate"
 
