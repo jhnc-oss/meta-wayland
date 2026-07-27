@@ -11,18 +11,18 @@ Upstream-Status: Pending
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/meson.build b/meson.build
-index a123f5dcc..e8a759ede 100644
+index ce124e71f..2e19bfc09 100644
 --- a/meson.build
 +++ b/meson.build
-@@ -922,7 +922,7 @@ noctalia_exe = executable('noctalia',
-   include_directories: _noctalia_inc,
-   cpp_args: [
-     '-Wall', '-Wextra', '-Wno-missing-field-initializers', '-Wpedantic', '-Wconversion', '-Wshadow',
--    '-DNOCTALIA_SOURCE_ASSETS_DIR="' + meson.project_source_root() / 'assets' + '"',
-+    '-DNOCTALIA_SOURCE_ASSETS_DIR="' + 'assets' + '"',
-     '-DNOCTALIA_INSTALL_PREFIX="' + get_option('prefix') + '"',
-     '-DNOCTALIA_INSTALL_DATADIR="' + get_option('datadir') + '"',
-     '-DNOCTALIA_VERSION="' + meson.project_version() + '"',
+@@ -1039,7 +1039,7 @@ _noctalia_test_dependencies = _noctalia_system_dependencies + [
+ ]
+ 
+ _noctalia_compile_definitions = [
+-  '-DNOCTALIA_SOURCE_ASSETS_DIR="' + meson.project_source_root() / 'assets' + '"',
++  '-DNOCTALIA_SOURCE_ASSETS_DIR="' + 'assets' + '"',
+   '-DNOCTALIA_INSTALL_PREFIX="' + get_option('prefix') + '"',
+   '-DNOCTALIA_INSTALL_DATADIR="' + get_option('datadir') + '"',
+   '-DNOCTALIA_VERSION="' + meson.project_version() + '"',
 -- 
 2.54.0
 
