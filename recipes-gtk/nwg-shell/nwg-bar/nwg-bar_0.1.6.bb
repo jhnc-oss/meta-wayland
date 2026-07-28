@@ -1,6 +1,6 @@
 SUMMARY = "nwg-bar for wlroots based compositors."
 DESCRIPTION = "The nwg-bar command creates a button bar on the basis of a JSON template placed in the ~/.config/nwg-bar/ folder."
-LICENSE = "MIT"
+LICENSE = "BSD-3-Clause AND ISC AND MIT"
 LIC_FILES_CHKSUM = "file://src/${GO_IMPORT}/LICENSE;md5=dcdbccfd08fcfd7002d16ca7fa5ad5cb"
 
 DEPENDS = " \

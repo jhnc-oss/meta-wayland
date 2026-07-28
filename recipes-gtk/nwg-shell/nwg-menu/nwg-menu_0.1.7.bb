@@ -1,7 +1,7 @@
 SUMMARY = "MenuStart plugin to nwg-panel."
 DESCRIPTION = "This code provides the MenuStart plugin to nwg-panel. It \
 also may be used standalone with a little help from command line arguments."
-LICENSE = "MIT"
+LICENSE = "BSD-3-Clause AND ISC AND MIT"
 LIC_FILES_CHKSUM = "file://src/${GO_IMPORT}/LICENSE;md5=fffa55ad1c828db5e334374fb1182530"
 
 DEPENDS = " \

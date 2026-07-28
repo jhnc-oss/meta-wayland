@@ -1,5 +1,5 @@
 SUMMARY = "ddcpopup allows to control basic settings of external (not laptop built-in) monitors."
-LICENSE = "MIT"
+LICENSE = "BSD-3-Clause AND ISC AND MIT"
 LIC_FILES_CHKSUM = "file://src/${GO_IMPORT}/README.md;md5=63b79d68c363846305e6bb4fbf116a35"
 
 DEPENDS = " \

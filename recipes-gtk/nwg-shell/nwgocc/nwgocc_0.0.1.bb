@@ -1,5 +1,5 @@
 SUMMARY = "nwg Control Center is a highly customisable, GTK-based GUI, intended for use with window managers."
-LICENSE = "MIT"
+LICENSE = "ISC AND MIT"
 LIC_FILES_CHKSUM = "file://src/${GO_IMPORT}/LICENSE;md5=fffa55ad1c828db5e334374fb1182530"
 
 DEPENDS = " \

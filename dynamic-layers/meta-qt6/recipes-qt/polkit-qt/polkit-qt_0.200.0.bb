@@ -1,5 +1,5 @@
 SUMMARY = "PolicyKit Qt wrapper"
-LICENSE = "GPL-2.0-or-later & LGPL-2.0-or-later & BSD-3-Clause"
+LICENSE = "GPL-2.0-or-later AND LGPL-2.0-or-later AND BSD-3-Clause"
 LIC_FILES_CHKSUM = " \
 	file://LICENSES/GPL-2.0-or-later.txt;md5=9e2385fe012386d34dcc5c9863070881 \
 	file://LICENSES/LGPL-2.0-or-later.txt;md5=da48810c4ddf8e49efa031294a26b98c \

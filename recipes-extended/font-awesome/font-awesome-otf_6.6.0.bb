@@ -3,7 +3,7 @@ SUMMARY = "Font Awesome"
 HOMEPAGE = "https://fontawesome.com/"
 SECTION = "base/fonts"
 
-LICENSE = "CC-BY-4.0 & OFL-1.1"
+LICENSE = "CC-BY-4.0 AND OFL-1.1"
 LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=9b9d97c72a232b7715f2aed4bf4a4d45"
 
 SRC_URI = " \

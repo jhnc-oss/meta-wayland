@@ -1,6 +1,6 @@
 SUMMARY = "Icon GUI utilities"
 HOMEPAGE = "https://api.kde.org/frameworks/kiconthemes/html/index.html"
-LICENSE = "MIT & LGPL-2.1-only"
+LICENSE = "MIT AND LGPL-2.1-only"
 LIC_FILES_CHKSUM += "file://LICENSES/LGPL-2.1-only.txt;md5=fabba2a3bfeb22a6483d44e9ae824d3f"
 
 SRC_URI = "git://invent.kde.org/frameworks/kiconthemes.git;protocol=https;nobranch=1"

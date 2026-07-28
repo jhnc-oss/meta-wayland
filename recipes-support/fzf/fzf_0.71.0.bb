@@ -1,6 +1,6 @@
 SUMMARY = "A command-line fuzzy finder"
 HOMEPAGE = "https://github.com/junegunn/fzf.git"
-LICENSE = "MIT"
+LICENSE = "BSD-3-Clause AND MIT"
 LIC_FILES_CHKSUM = "file://src/${GO_IMPORT}/LICENSE;md5=edd55e9a395baee52799d6fb23fef6e5"
 
 GO_IMPORT = "github.com/junegunn/fzf"

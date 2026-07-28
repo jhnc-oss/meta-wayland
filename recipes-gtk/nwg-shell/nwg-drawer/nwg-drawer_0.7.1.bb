@@ -1,5 +1,5 @@
 SUMMARY = "GTK3-based application launcher for wlroots based compositors."
-LICENSE = "MIT"
+LICENSE = "AGPL-3.0-only AND BSD-3-Clause AND MIT"
 LIC_FILES_CHKSUM = "file://src/${GO_IMPORT}/LICENSE;md5=0bfb54bb2e805f7da490004ef8a2adab"
 
 DEPENDS = " \

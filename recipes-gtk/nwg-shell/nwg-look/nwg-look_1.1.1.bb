@@ -1,5 +1,5 @@
 SUMMARY = "Nwg-look is a GTK3 settings editor, designed to work properly in wlroots-based Wayland environment."
-LICENSE = "MIT"
+LICENSE = "BSD-3-Clause AND ISC AND MIT"
 LIC_FILES_CHKSUM = "file://src/${GO_IMPORT}/LICENSE;md5=1fca41e83d55632fc67a83ba612de118"
 
 DEPENDS = "xcur2png gtk+3"

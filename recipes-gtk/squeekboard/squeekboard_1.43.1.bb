@@ -4,7 +4,7 @@ primarily for the Librem 5 phone. \
 It squeaks because some Rust got inside."
 HOMEPAGE = "https://developer.puri.sm/projects/squeekboard/"
 BUGTRACKER = "https://gitlab.gnome.org/World/Phosh/squeekboard/-/issues"
-LICENSE = "GPL-3.0-only & GPL-3.0-or-later"
+LICENSE = "GPL-3.0-only AND GPL-3.0-or-later"
 LIC_FILES_CHKSUM = "file://COPYING;md5=1ebbd3e34237af26da5dc08a4e440464 \
                     file://debian/copyright;md5=4dbf2d985c407c84a6622b9c95f23802"
 

@@ -1,5 +1,5 @@
 SUMMARY = "Go version of the psuinfo python script."
-LICENSE = "BSD-2-Clause"
+LICENSE = "BSD-2-Clause AND BSD-3-Clause"
 LIC_FILES_CHKSUM = "file://src/${GO_IMPORT}/LICENSE;md5=22ed6cb3c33862e689e075b45066a779"
 
 GO_IMPORT = "github.com/nwg-piotr/gopsuinfo.git"
