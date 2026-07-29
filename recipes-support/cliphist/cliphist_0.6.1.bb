@@ -1,5 +1,5 @@
 SUMMARY = "Clipboard history “manager” for Wayland"
-LICENSE = "GPL-3.0-only"
+LICENSE = "BSD-3-Clause AND GPL-3.0-only AND MIT"
 LIC_FILES_CHKSUM = "file://src/${GO_IMPORT}/LICENSE;md5=1ebbd3e34237af26da5dc08a4e440464"
 
 GO_IMPORT = "github.com/sentriz/cliphist.git"
