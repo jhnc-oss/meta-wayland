@@ -1,0 +1,53 @@
+From 25346e0ed79b4258168517700c3725174f7f4255 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Fri, 31 Jul 2026 19:21:27 +0200
+Subject: [PATCH] disable NLS support
+
+---
+ Makefile.am  | 2 +-
+ configure.ac | 9 ---------
+ 2 files changed, 1 insertion(+), 10 deletions(-)
+
+diff --git a/Makefile.am b/Makefile.am
+index d32e343f..2eaba16b 100644
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -2,7 +2,7 @@
+ 
+ ACLOCAL_AMFLAGS = -I m4
+ 
+-SUBDIRS = po-defs po-defs-fixed po-defs-fixed/fixed data libqalculate src man po docs tests
++SUBDIRS = data libqalculate src docs tests
+ 
+ EXTRA_DIST = config.rpath  \
+ 	autogen.sh \
+diff --git a/configure.ac b/configure.ac
+index 36b8c961..40f2089d 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -325,11 +325,6 @@ AC_DEFINE_UNQUOTED(PACKAGE_LOCALE_DIR, "$PACKAGE_LOCALE_DIR",
+ 	[The directory in which qalculate's locale data will be stored])
+ 	 AC_MSG_RESULT("$PACKAGE_LOCALE_DIR")
+ 
+-QALCULATE_PODEFS_RULE='%.po: $(top_srcdir)/po-defs/$@ $(top_srcdir)/po-defs-fixed/remove-untranslated.cc; $(top_builddir)/po-defs-fixed/fixpo $(top_srcdir)/po-defs/$@ $@'
+-AC_SUBST(QALCULATE_PODEFS_RULE)
+-
+-AC_CONFIG_LINKS([po-defs-fixed/fixed/LINGUAS:po-defs/LINGUAS])
+-
+ dnl  --------
+ dnl | output |-----------------------------------------------------------------
+ dnl  --------
+@@ -339,10 +334,6 @@ AC_CONFIG_FILES([
+   src/Makefile
+   libqalculate/Makefile
+   data/Makefile
+-  po/Makefile.in
+-  po-defs/Makefile.in
+-  po-defs-fixed/Makefile
+-  po-defs-fixed/fixed/Makefile
+   docs/Makefile
+   docs/reference/Makefile
+   man/Makefile
+-- 
+2.55.0
+

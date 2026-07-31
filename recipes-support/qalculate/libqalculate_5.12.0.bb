@@ -5,12 +5,12 @@ LICENSE = "GPL-2.0-only"
 LIC_FILES_CHKSUM = "file://COPYING;md5=570a9b3749dd0463a1778803b12a6dce"
 
 SRC_URI = "git://github.com/Qalculate/libqalculate;protocol=https;branch=master"
-
+SRC_URI += "file://0001-disable-NLS-support.patch"
 SRCREV = "d01cfdae6f965bf9264af3b52db8f5b0345fe1da"
 
-inherit autotools pkgconfig gettext
+inherit autotools pkgconfig
 
-EXTRA_OEMAKE += "USE_NLS=no"
+EXTRA_OECONF += "--disable-nls"
 
 DEPENDS += "libxml2 curl icu readline mpfr gmp p11-kit"
 
