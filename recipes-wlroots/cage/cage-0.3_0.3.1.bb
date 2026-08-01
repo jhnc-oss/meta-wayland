@@ -4,4 +4,4 @@ DEPENDS += "\
     wlroots-0.20 \
 "
 
-SRCREV = "3783af4fadc27057b24025fefe78d942e3f01128"
+SRCREV = "b7b774ac957b6d8c7b39f0dcb9ebe19de3e8a45d"
