@@ -18,5 +18,21 @@ DEPENDS = " \
 
 inherit qt6-cmake pkgconfig
 
+replace_llvm_config_path() {
+    if [ -f "${STAGING_BINDIR_CROSS}/llvm-config" ]; then
+        sed -i \
+            's#@LLVM_CONFIG_PATH@#${STAGING_BINDIR_NATIVE}/llvm-config#g' \
+            ${STAGING_BINDIR_CROSS}/llvm-config
+    fi
+}
+
+do_configure:prepend:class-target() {
+    replace_llvm_config_path
+}
+
+do_configure:prepend:class-nativesdk() {
+    replace_llvm_config_path
+}
+
 EXTRA_OECMAKE += "-DWITHOUT_X11=ON"
 FILES:${PN} += "${datadir} ${PYTHON_SITEPACKAGES_DIR}"
