@@ -23,7 +23,7 @@ DEPENDS = " \
 
 SRC_URI = "git://github.com/hyprwm/aquamarine.git;protocol=https;branch=main"
 SRC_URI += "file://0001-CMakeLists.txt-fix-linking-with-opengl.patch"
-
-SRCREV = "a79fb21b2e2a82dd061a6d071802bcf38bd5c383"
+SRCREV = "6c1ea38a2c17df307fb582b32c6b5856b12e551e"
+PV:append= "+git"
 
 inherit cmake pkgconfig
