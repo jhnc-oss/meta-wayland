@@ -1,0 +1,116 @@
+From 93f3cb6410b7a9bf52e88643f349ed807c081385 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Mon, 3 Aug 2026 20:49:37 +0200
+Subject: [PATCH] CMakeLists.txt: make ksysguard optional
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+---
+ CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index d989fd5f94..e11af3fec6 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -190,7 +190,7 @@ find_package(ScreenSaverDBusInterface CONFIG REQUIRED)
+ find_package(KRunnerAppDBusInterface CONFIG REQUIRED)
+ find_package(KSMServerDBusInterface CONFIG REQUIRED)
+ find_package(KF6ItemModels CONFIG REQUIRED)
+-find_package(KSysGuard CONFIG REQUIRED)
++find_package(KSysGuard CONFIG OPTIONAL)
+ find_package(KF6KDED CONFIG REQUIRED)
+ 
+ find_package(KF6Baloo ${KF6_MIN_VERSION})
+ diff --git a/applets/taskmanager/CMakeLists.txt b/applets/taskmanager/CMakeLists.txt
+index 06a8a96ee8..5ef4cb4a27 100644
+--- a/applets/taskmanager/CMakeLists.txt
++++ b/applets/taskmanager/CMakeLists.txt
+@@ -54,7 +54,6 @@ target_link_libraries(org.kde.plasma.taskmanager PRIVATE
+                       KF6::KIOFileWidgets # KFilePlacesModel
+                       KF6::Notifications # KNotificationJobUiDelegate
+                       Plasma::Plasma
+-                      KSysGuard::ProcessCore
+                       KF6::Service
+                       KF6::WindowSystem
+                       PW::LibNotificationManager)
+                       
+diff --git a/applets/taskmanager/backend.cpp b/applets/taskmanager/backend.cpp
+index 6516a7ed4b..a1a89fd6df 100644
+--- a/applets/taskmanager/backend.cpp
++++ b/applets/taskmanager/backend.cpp
+@@ -25,6 +25,7 @@
+ #include <QAction>
+ #include <QActionGroup>
+ #include <QApplication>
++#include <QFile>
+ #include <QJsonArray>
+ #include <QMenu>
+ #include <QQuickItem>
+@@ -38,9 +39,6 @@
+ #include <PlasmaActivities/Stats/ResultSet>
+ #include <PlasmaActivities/Stats/Terms>
+ 
+-#include <processcore/process.h>
+-#include <processcore/processes.h>
+-
+ namespace KAStats = KActivities::Stats;
+ 
+ using namespace KAStats;
+@@ -493,29 +491,39 @@ bool Backend::isApplication(const QUrl &url) const
+ 
+ qint64 Backend::parentPid(qint64 pid) const
+ {
+-    KSysGuard::Processes procs;
+-    procs.updateOrAddProcess(pid);
+-
+-    KSysGuard::Process *proc = procs.getProcess(pid);
+-    if (!proc) {
++    if (pid <= 0) {
+         return -1;
+     }
+ 
+-    int parentPid = proc->parentPid();
+-    if (parentPid != -1) {
+-        procs.updateOrAddProcess(parentPid);
++#if defined(Q_OS_LINUX)
++    QFile statFile(QStringLiteral("/proc/%1/stat").arg(pid));
++    if (!statFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
++        return -1;
++    }
+ 
+-        KSysGuard::Process *parentProc = procs.getProcess(parentPid);
+-        if (!parentProc) {
+-            return -1;
+-        }
++    const QByteArray data = statFile.readAll();
++    // Format: pid (comm) state ppid ...
++    // The comm field is in parentheses and may itself contain spaces/parens,
++    // so find the LAST ')' and parse fields after that.
++    const int closeParen = data.lastIndexOf(')');
++    if (closeParen == -1) {
++        return -1;
++    }
+ 
+-        if (!proc->cGroup().isEmpty() && parentProc->cGroup() == proc->cGroup()) {
+-            return parentProc->pid();
+-        }
++    const QByteArray rest = data.mid(closeParen + 1).trimmed();
++    const QList<QByteArray> fields = rest.split(' ');
++    // fields[0] = state, fields[1] = ppid
++    if (fields.size() < 2) {
++        return -1;
+     }
+ 
++    bool ok = false;
++    const qint64 ppid = fields.at(1).toLongLong(&ok);
++    return ok ? ppid : -1;
++#else
++    Q_UNUSED(pid)
+     return -1;
++#endif
+ }
+ 
+ #include "moc_backend.cpp"
+-- 
+2.55.0
+
