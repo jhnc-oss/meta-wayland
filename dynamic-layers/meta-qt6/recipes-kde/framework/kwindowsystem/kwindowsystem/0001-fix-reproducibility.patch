@@ -1,0 +1,25 @@
+From f6583782fccccfe4ee8764747a279b534693a49c Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Mon, 3 Aug 2026 18:59:21 +0200
+Subject: [PATCH] fix reproducibility
+
+---
+ src/CMakeLists.txt | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index af2e87c0..8fa9d8a9 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -73,7 +73,7 @@ if (KWINDOWSYSTEM_X11)
+    # we install kkeyserver_x11.h which needs the X11 headers available
+    # if we don't add the include path here code that includes kkeyserver.h will fail
+    # to compile unless X11 is installed in /usr/include
+-   target_include_directories(KF6WindowSystem PUBLIC ${XCB_XCB_INCLUDE_DIR})
++   target_include_directories(KF6WindowSystem PRIVATE ${XCB_XCB_INCLUDE_DIR})
+ endif ()
+ 
+ if (KWINDOWSYSTEM_WAYLAND)
+-- 
+2.55.0
+
