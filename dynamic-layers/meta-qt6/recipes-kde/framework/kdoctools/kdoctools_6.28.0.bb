@@ -22,13 +22,18 @@ DEPENDS = " \
 
 inherit qt6-cmake gettext perlnative
 
-EXTRA_OECMAKE:class-target += "-DMEINPROC6_EXECUTABLE=${STAGING_BINDIR_NATIVE}/meinproc6"
+EXTRA_OECMAKE:class-target += "-DMEINPROC6_EXECUTABLE=${STAGING_BINDIR_NATIVE}/meinproc6 -DDOCBOOKL10NHELPER_EXECUTABLE=${STAGING_BINDIR_NATIVE}/docbookl10nhelper"
+
+do_install:append:class-native() {
+    install -m0755 ${B}/bin/docbookl10nhelper ${D}${bindir}
+}
 
 do_install:append:class-target() {
     sed -i 's|${STAGING_DATADIR}|${datadir}|' ${D}${datadir}/kf6/kdoctools/customization/kde-include-common.xsl
     sed -i 's|${STAGING_DATADIR}|${datadir}|' ${D}${datadir}/kf6/kdoctools/customization/kde-include-man.xsl
     sed -i 's|${STAGING_DATADIR}|${datadir}|' ${D}${datadir}/kf6/kdoctools/customization/dtd/kdedbx45.dtd 
-    sed -i 's|${STAGING_DATADIR}|${datadir}|' ${D}${datadir}/kf6/kdoctools/customization/xsl/all-l10n.xml 
+    sed -i 's|${STAGING_DATADIR}|${datadir}|' ${D}${datadir}/kf6/kdoctools/customization/xsl/all-l10n.xml
+    ln -sf ${STAGING_BINDIR_NATIVE}/docbookl10nhelper ${STAGING_BINDIR}/docbookl10nhelper
 }
 
 FILES:${PN} += "${datadir}"
