@@ -4,6 +4,7 @@ LICENSE = "LGPL-2.0-or-later"
 LIC_FILES_CHKSUM += "file://LICENSES/LGPL-2.0-or-later.txt;md5=da48810c4ddf8e49efa031294a26b98c"
 
 SRC_URI = "git://invent.kde.org/plasma/plasma-workspace.git;protocol=https;nobranch=1"
+SRC_URI += "file://0001-CMakeLists.txt-make-ksysguard-optional.patch"
 SRCREV = "4c3ace3dfc7b06b3107b52b6e09508be14e73e8a"
 
 DEPENDS = " \
@@ -68,13 +69,14 @@ DEPENDS = " \
     polkit-qt \
     kio-fuse \
     knighttime \
+    kscreenlocker \
     qtquick3d \
     qcoro \
     kscreen \
     layer-shell-qt \
 "
 
-inherit qt6-cmake gettext pkgconfig
+inherit qt6-cmake gettext pkgconfig mime-xdg
 
 EXTRA_OECMAKE += "-DBUILD_TESTING=OFF -DWITH_X11=OFF"
 
@@ -88,6 +90,14 @@ do_configure:prepend() {
 	ln -sf ${STAGING_LIBEXECDIR_NATIVE}/kf6/kcmdesktopfilegenerator ${STAGING_LIBEXECDIR}/kf6/kcmdesktopfilegenerator
 }
 
-FILES:${PN} += "${libdir}/qml ${datadir}/qlogging-categories6"
+do_install:append() {
+        sed -i 's:${STAGING_DIR_NATIVE}::' ${D}${systemd_user_unitdir}/plasma-restoresession.service
+        sed -i 's:${STAGING_DIR_NATIVE}::' ${D}${systemd_user_unitdir}/plasma-kcminit-phase1.service
+        sed -i 's:${STAGING_DIR_NATIVE}::' ${D}${datadir}/kconf_update/migrate-calendar-to-plugin-id.py
+}
 
+FILES:${PN} += " ${datadir} ${libdir}"
+FILES:${PN}-dev = "${includedir} ${libdir}/cmake "
 RDEPENDS:${PN} += "kconfig"
+
+INSANE_SKIP:${PN} = "dev-so dev-deps"

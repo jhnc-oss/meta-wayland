@@ -1,0 +1,26 @@
+From fc7430693988a327e208d2a2676fdd092924d16b Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Mon, 3 Aug 2026 20:01:47 +0200
+Subject: [PATCH] CMakeLists.txt: make ksysguard optional
+
+project has been deprecated and doesnt build with kf6
+---
+ CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index a6ff213996..a50169a363 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -75,7 +75,7 @@ find_package(PlasmaActivitiesStats ${PROJECT_DEP_VERSION} REQUIRED)
+ find_package(KSysGuard ${PROJECT_DEP_VERSION} CONFIG)
+ set_package_properties(KSysGuard PROPERTIES
+     DESCRIPTION "Components to monitor the system"
+-    TYPE REQUIRED
++    TYPE OPTIONAL
+ )
+ find_package(KF6Screen ${PROJECT_DEP_VERSION} CONFIG REQUIRED)
+ find_package(LayerShellQt ${PROJECT_DEP_VERSION} CONFIG REQUIRED)
+-- 
+2.55.0
+
