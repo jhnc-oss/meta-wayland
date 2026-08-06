@@ -3,6 +3,7 @@ From: Markus Volk <f_l_k@t-online.de>
 Date: Fri, 31 Jul 2026 19:21:27 +0200
 Subject: [PATCH] disable NLS support
 
+Upstream-Status: Inappropriate
 ---
  Makefile.am  | 2 +-
  configure.ac | 9 ---------
