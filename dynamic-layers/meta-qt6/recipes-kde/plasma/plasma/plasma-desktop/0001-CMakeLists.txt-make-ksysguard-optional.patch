@@ -4,6 +4,8 @@ Date: Mon, 3 Aug 2026 20:49:37 +0200
 Subject: [PATCH] CMakeLists.txt: make ksysguard optional
 
 Signed-off-by: Markus Volk <f_l_k@t-online.de>
+
+Upstream-Status: Inappropriate
 ---
  CMakeLists.txt | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)

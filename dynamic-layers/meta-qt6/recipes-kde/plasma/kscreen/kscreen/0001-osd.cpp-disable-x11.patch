@@ -3,6 +3,7 @@ From: Markus Volk <f_l_k@t-online.de>
 Date: Thu, 25 Jun 2026 17:15:35 +0200
 Subject: [PATCH] osd.cpp: disable x11
 
+Upstream-Status: Inappropriate
 ---
  osd/osd.cpp | 11 -----------
  1 file changed, 11 deletions(-)

@@ -3,6 +3,7 @@ From: Markus Volk <f_l_k@t-online.de>
 Date: Sat, 13 Jun 2026 04:19:11 +0200
 Subject: [PATCH] fix metatypes dir
 
+Upstream-Status: Inappropriate
 ---
  src/CMakeLists.txt | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)

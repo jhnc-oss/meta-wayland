@@ -1,0 +1,31 @@
+SUMMARY = "Breeze icons"
+HOMEPAGE = "https://api.kde.org/frameworks/breeze-icons/html/index.html"
+LICENSE = "LGPL-2.1-only"
+LIC_FILES_CHKSUM += "file://COPYING.LIB;md5=2d5025d4aa3495befef8f17206a5b0a1"
+
+SRC_URI = "git://invent.kde.org/frameworks/breeze-icons.git;protocol=https;nobranch=1"
+SRCREV = "a806a2dbc75b9d7d089c2d0053bc5db46a31340a"
+
+DEPENDS = " \
+    breeze-icons-native \
+    qtbase \
+    qttools-native \
+    extra-cmake-modules \
+    python3-lxml-native \
+"
+
+inherit qt6-cmake pkgconfig
+
+EXTRA_OECMAKE:class-native += "-DWITH_ICON_GENERATION=OFF"
+EXTRA_OECMAKE += "-DKF6_HOST_TOOLING=ON"
+
+do_install:class-native() {
+	install -d ${D}${bindir}
+	for file in ${B}/bin/*; do
+		install -m 755 $file ${D}${bindir}
+	done
+}
+
+FILES:${PN} += "${libdir}/qml ${datadir}/icons"
+
+BBCLASSEXTEND = "native"

@@ -3,6 +3,7 @@ From: Markus Volk <f_l_k@t-online.de>
 Date: Mon, 3 Aug 2026 18:59:21 +0200
 Subject: [PATCH] fix reproducibility
 
+Upstream-Status: Pending
 ---
  src/CMakeLists.txt | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)

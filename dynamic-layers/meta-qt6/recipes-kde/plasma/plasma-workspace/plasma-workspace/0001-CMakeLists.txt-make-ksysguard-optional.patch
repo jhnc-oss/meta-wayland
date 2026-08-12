@@ -4,6 +4,8 @@ Date: Mon, 3 Aug 2026 20:01:47 +0200
 Subject: [PATCH] CMakeLists.txt: make ksysguard optional
 
 project has been deprecated and doesnt build with kf6
+
+Upstream-Status: Pending
 ---
  CMakeLists.txt | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)

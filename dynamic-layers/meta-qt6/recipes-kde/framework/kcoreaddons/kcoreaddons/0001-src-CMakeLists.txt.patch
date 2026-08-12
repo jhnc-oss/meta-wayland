@@ -3,6 +3,7 @@ From: Markus Volk <f_l_k@t-online.de>
 Date: Sat, 13 Jun 2026 03:30:41 +0200
 Subject: [PATCH] cmake fix
 
+Upstream-Status: Inappropriate
 ---
  src/lib/CMakeLists.txt | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
