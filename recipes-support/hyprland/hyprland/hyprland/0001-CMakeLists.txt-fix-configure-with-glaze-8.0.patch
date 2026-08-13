@@ -1,0 +1,28 @@
+From 2620707ad6930d20bb373e9660800e7e4d42ff64 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Thu, 13 Aug 2026 10:28:32 +0200
+Subject: [PATCH] CMakeLists.txt: fix configure with glaze 8.0
+
+---
+ CMakeLists.txt | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index cf7f53aa0..8de4d588a 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -130,9 +130,9 @@ set(GLES_VERSION "GLES3")
+ find_package(OpenGL REQUIRED COMPONENTS ${GLES_VERSION})
+ find_package(glslang CONFIG REQUIRED)
+ 
+-find_package(glaze 7...<8 QUIET)
++find_package(glaze 8...<9 QUIET)
+ if(NOT glaze_FOUND)
+-  set(GLAZE_VERSION v7.2.0)
++  set(GLAZE_VERSION v8.0.0)
+   message(STATUS "glaze dependency not found, retrieving ${GLAZE_VERSION} with FetchContent")
+   include(FetchContent)
+   FetchContent_Declare(
+-- 
+2.55.0
+
