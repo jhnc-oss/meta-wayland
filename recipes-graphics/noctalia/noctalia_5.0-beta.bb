@@ -3,8 +3,7 @@ LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=5bd433caa90a88d62bd293dabc90f4a3"
 
 SRC_URI = "git://github.com/noctalia-dev/noctalia.git;protocol=https;branch=main"
-SRC_URI += "file://0001-assets-buildpath.patch"
-SRCREV = "cd06851db4f40ab61d219a903518a1ca03fc3db3"
+SRCREV = "a064c063f204518619b8c032c944138a0349966b"
 
 REQUIRED_DISTRO_FEATURES = "opengl pam polkit pipewire"
 
