@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=7246f848faa4e9c9fc0ea91122d6e680"
 inherit python_hatchling
 
 SRC_URI += "git://github.com/yt-dlp/yt-dlp.git;protocol=https;nobranch=1"
-SRCREV = "fdec00e0bf530dc6c3cc7b1dd780e95d9ae460e9"
+SRCREV = "3a08beaf031ab68f966401ead017ac81fe8486cf"
 
 RRECOMMENDS:${PN} += "ejs ffmpeg"
 RDEPENDS:${PN} = " \
