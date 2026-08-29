@@ -1,0 +1,171 @@
+From 66517ed818e249def60e5a1887568bc97aadb40b Mon Sep 17 00:00:00 2001
+From: OpenEmbedded <oe@example.org>
+Date: Sat, 29 Aug 2026 17:33:37 +0000
+Subject: [PATCH] cmake: add install() rules, exported find_package(udis86)
+ config, and a pkgconfig .pc file
+
+Upstream-Status: Inappropriate
+---
+ CMakeLists.txt              | 41 ++++++++++++++++++++++++++++++++-----
+ cmake/udis86.pc.in          | 10 +++++++++
+ cmake/udis86Config.cmake.in |  5 +++++
+ libudis86/CMakeLists.txt    | 35 +++++++++++++++++++++++++++++--
+ udcli/CMakeLists.txt        |  7 ++++++-
+ udcli/config.h.in           |  3 +++
+ 6 files changed, 93 insertions(+), 8 deletions(-)
+ create mode 100644 cmake/udis86.pc.in
+ create mode 100644 cmake/udis86Config.cmake.in
+ create mode 100644 udcli/config.h.in
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 86a6357..c2a395f 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -1,11 +1,42 @@
+ cmake_minimum_required(VERSION 3.12)
+-project(udis86 LANGUAGES C)
++project(udis86 LANGUAGES C VERSION 1.7.2)
+ 
+-include_directories("${PROJECT_SOURCE_DIR}")
++include(GNUInstallDirs)
++include(CMakePackageConfigHelpers)
+ 
+ add_subdirectory(libudis86)
+ add_subdirectory(udcli)
+ 
+-add_library(udis86 INTERFACE)
+-target_include_directories(udis86 INTERFACE ${CMAKE_SOURCE_DIR})
+-target_link_libraries(udis86 INTERFACE libudis86)
++install(EXPORT udis86Targets
++	FILE udis86Targets.cmake
++	NAMESPACE udis86::
++	DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/udis86
++)
++
++configure_package_config_file(
++	${CMAKE_CURRENT_SOURCE_DIR}/cmake/udis86Config.cmake.in
++	${CMAKE_CURRENT_BINARY_DIR}/udis86Config.cmake
++	INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/udis86
++)
++
++write_basic_package_version_file(
++	${CMAKE_CURRENT_BINARY_DIR}/udis86ConfigVersion.cmake
++	VERSION ${PROJECT_VERSION}
++	COMPATIBILITY SameMajorVersion
++)
++
++install(FILES
++	${CMAKE_CURRENT_BINARY_DIR}/udis86Config.cmake
++	${CMAKE_CURRENT_BINARY_DIR}/udis86ConfigVersion.cmake
++	DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/udis86
++)
++
++configure_file(
++	${CMAKE_CURRENT_SOURCE_DIR}/cmake/udis86.pc.in
++	${CMAKE_CURRENT_BINARY_DIR}/udis86.pc
++	@ONLY
++)
++
++install(FILES ${CMAKE_CURRENT_BINARY_DIR}/udis86.pc
++	DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig
++)
+diff --git a/cmake/udis86.pc.in b/cmake/udis86.pc.in
+new file mode 100644
+index 0000000..05cd441
+--- /dev/null
++++ b/cmake/udis86.pc.in
+@@ -0,0 +1,10 @@
++prefix=@CMAKE_INSTALL_PREFIX@
++exec_prefix=${prefix}
++libdir=@CMAKE_INSTALL_FULL_LIBDIR@
++includedir=@CMAKE_INSTALL_FULL_INCLUDEDIR@
++
++Name: udis86
++Description: Disassembler library for x86 and x86-64
++Version: @CMAKE_PROJECT_VERSION@
++Libs: -L${libdir} -ludis86
++Cflags: -I${includedir}
+diff --git a/cmake/udis86Config.cmake.in b/cmake/udis86Config.cmake.in
+new file mode 100644
+index 0000000..7a5587b
+--- /dev/null
++++ b/cmake/udis86Config.cmake.in
+@@ -0,0 +1,5 @@
++@PACKAGE_INIT@
++
++include("${CMAKE_CURRENT_LIST_DIR}/udis86Targets.cmake")
++
++check_required_components(udis86)
+diff --git a/libudis86/CMakeLists.txt b/libudis86/CMakeLists.txt
+index b6d34a9..00178da 100644
+--- a/libudis86/CMakeLists.txt
++++ b/libudis86/CMakeLists.txt
+@@ -27,6 +27,37 @@ set(FILES
+ 	udint.h
+ 	udis86.c)
+ 
+-add_library(libudis86 STATIC ${FILES})
++add_library(udis86 SHARED ${FILES})
++add_library(udis86::udis86 ALIAS udis86)
+ 
+-target_include_directories(libudis86 PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+\ No newline at end of file
++set_target_properties(udis86 PROPERTIES
++	OUTPUT_NAME udis86
++	VERSION ${CMAKE_PROJECT_VERSION}
++	SOVERSION 1
++	PUBLIC_HEADER "${CMAKE_SOURCE_DIR}/udis86.h"
++)
++
++target_include_directories(udis86 PUBLIC
++	$<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}>
++	$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
++)
++
++install(TARGETS udis86
++	EXPORT udis86Targets
++	LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
++	ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
++	RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
++	PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
++)
++
++# udis86.h pulls these in via relative "libudis86/..." includes, so
++# they must be installed alongside it under includedir/libudis86/
++# (mirrors libudis86/Makefile.am's include_la_HEADERS).
++install(FILES
++	types.h
++	extern.h
++	itab.h
++	syn.h
++	decode.h
++	DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/libudis86
++)
+diff --git a/udcli/CMakeLists.txt b/udcli/CMakeLists.txt
+index 109c5ab..92d7b2e 100644
+--- a/udcli/CMakeLists.txt
++++ b/udcli/CMakeLists.txt
+@@ -1,5 +1,10 @@
+ cmake_minimum_required(VERSION 3.12)
+ project(udcli LANGUAGES C)
+ 
+-add_executable(udcli EXCLUDE_FROM_ALL udcli.c)
++configure_file(config.h.in ${CMAKE_CURRENT_BINARY_DIR}/config.h @ONLY)
++
++add_executable(udcli udcli.c)
++target_include_directories(udcli PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
+ target_link_libraries(udcli udis86)
++
++install(TARGETS udcli RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
+diff --git a/udcli/config.h.in b/udcli/config.h.in
+new file mode 100644
+index 0000000..1b85e08
+--- /dev/null
++++ b/udcli/config.h.in
+@@ -0,0 +1,3 @@
++/* Minimal generated config.h for the CMake build, providing the
++ * subset of autoconf-generated defines that udcli.c relies on. */
++#define PACKAGE_STRING "udis86 @CMAKE_PROJECT_VERSION@"
+-- 
+2.43.0
+
