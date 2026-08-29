@@ -14,16 +14,15 @@ diff --git a/CMakeLists.txt b/CMakeLists.txt
 index 475c744..e5426dd 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -67,7 +67,7 @@ target_include_directories(
+@@ -71,7 +71,7 @@ target_include_directories(
    PRIVATE "./src" "./src/include" "./protocols" "${CMAKE_BINARY_DIR}")
  set_target_properties(aquamarine PROPERTIES VERSION ${AQUAMARINE_VERSION}
-                                             SOVERSION 13)
--target_link_libraries(aquamarine OpenGL::EGL OpenGL::OpenGL PkgConfig::deps)
-+target_link_libraries(aquamarine EGL GLESv2 PkgConfig::deps)
+                                             SOVERSION 14)
+-target_link_libraries(aquamarine OpenGL::EGL OpenGL::OpenGL PkgConfig::deps Threads::Threads)
++target_link_libraries(aquamarine EGL OpenGL PkgConfig::deps Threads::Threads)
  
  check_include_file("sys/timerfd.h" HAS_TIMERFD)
  pkg_check_modules(epoll IMPORTED_TARGET epoll-shim)
-
 -- 
 2.49.0
 
