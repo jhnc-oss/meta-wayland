@@ -29,6 +29,7 @@ DEPENDS += " \
     pixman \
     re2 \
     tomlplusplus \
+    udis86 \
     util-linux-libuuid \
     virtual/egl \
     virtual/libgles3 \
@@ -47,7 +48,7 @@ RRECOMMENDS:${PN} ?= " \
 "
 
 SRC_URI = "gitsm://github.com/hyprwm/Hyprland.git;protocol=https;nobranch=1"
-SRC_URI += "file://0001-CMakeLists.txt-fix-configure-with-glaze-8.0.patch"
+SRC_URI += "file://0001-CMakeLists-allow-glaze-8.x.patch"
 SRCREV = "efb50993780079460b0cbed1363e2166a2de1d9f"
 
 inherit cmake pkgconfig features_check
