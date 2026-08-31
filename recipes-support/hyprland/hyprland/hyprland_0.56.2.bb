@@ -19,6 +19,7 @@ DEPENDS += " \
     hyprwire \
     hyprwire-native \
     jq-native \
+    libcanberra \
     libdrm \
     libinput \
     libxcursor \
@@ -28,6 +29,7 @@ DEPENDS += " \
     pango \
     pixman \
     re2 \
+    sdbus-c++ \
     tomlplusplus \
     udis86 \
     util-linux-libuuid \
@@ -47,9 +49,9 @@ RRECOMMENDS:${PN} ?= " \
 	wl-clipboard \
 "
 
-SRC_URI = "gitsm://github.com/hyprwm/Hyprland.git;protocol=https;nobranch=1"
-SRC_URI += "file://0001-CMakeLists-allow-glaze-8.x.patch"
-SRCREV = "efb50993780079460b0cbed1363e2166a2de1d9f"
+SRC_URI = "gitsm://github.com/hyprwm/Hyprland.git;protocol=https;nobranch=1;name=hyprland"
+SRCREV = "86c24e2e079aa62214421c76f01b603fc8178125"
+PV:append = "+git"
 
 inherit cmake pkgconfig features_check
 
