@@ -42,6 +42,7 @@ DEPENDS = " \
     kxmlgui \
     ksvg \
     libplasma \
+    libxkbfile \
     plasma-activities \
     plasma-activities-stats \
     plasma5-support \
