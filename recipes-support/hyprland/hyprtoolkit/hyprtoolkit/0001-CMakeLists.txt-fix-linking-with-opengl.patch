@@ -14,25 +14,26 @@ diff --git a/CMakeLists.txt b/CMakeLists.txt
 index f16d7ce..74d587f 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -73,7 +73,7 @@ target_include_directories(
+@@ -84,7 +84,7 @@ target_include_directories(
    PRIVATE "./src" "./src/include" "./protocols" "${CMAKE_BINARY_DIR}")
  set_target_properties(hyprtoolkit PROPERTIES VERSION ${HYPRTOOLKIT_VERSION}
-                                              SOVERSION 5)
+                                               SOVERSION 5)
 -target_link_libraries(hyprtoolkit PUBLIC OpenGL::EGL OpenGL::OpenGL
-+target_link_libraries(hyprtoolkit PUBLIC EGL
++target_link_libraries(hyprtoolkit PUBLIC EGL OpenGL
                                           PkgConfig::deps)
  
  check_include_file("sys/timerfd.h" HAS_TIMERFD)
-@@ -171,8 +171,8 @@ if(BUILD_TESTING)
+@@ -209,8 +209,8 @@ if(BUILD_TESTING)
      PUBLIC "./include"
      PRIVATE "./src" "./src/include" "./protocols" "${CMAKE_BINARY_DIR}")
    target_link_libraries(
 -    hyprtoolkit_tests PRIVATE hyprtoolkit GTest::gtest_main OpenGL::EGL
 -                                     OpenGL::OpenGL PkgConfig::deps)
 +    hyprtoolkit_tests PRIVATE hyprtoolkit GTest::gtest_main EGL
-+                                     PkgConfig::deps)
++                                     OpenGL PkgConfig::deps)
  
    gtest_discover_tests(hyprtoolkit_tests)
+ 
  
 -- 
 2.51.0
