@@ -7,7 +7,8 @@ DEPENDS += "glib-2.0-native"
 inherit python_hatchling gtk-icon-cache
 
 SRC_URI += "git://github.com/BlueManCZ/hyprmod.git;protocol=https;nobranch=1"
-SRCREV = "7480b39adbd14da89fca54e4fc68ea397b081f44"
+SRCREV = "ffd47d804d8996cf3852dbb7ca1c949c424a57fb"
+PV:append = "+git"
 
 do_install:append() {
 	mkdir -p ${D}${datadir}
