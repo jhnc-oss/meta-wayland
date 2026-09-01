@@ -1,0 +1,33 @@
+From 558d1a52482ed76dec19ae0f1c14de89afa1e02d Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Tue, 1 Sep 2026 18:32:27 +0200
+Subject: [PATCH] fix-crosscompile
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+
+Upstream-Status: Pending
+---
+ meson.build | 6 +-----
+ 1 file changed, 1 insertion(+), 5 deletions(-)
+
+diff --git a/meson.build b/meson.build
+index 60beb6e..4f6f669 100644
+--- a/meson.build
++++ b/meson.build
+@@ -105,12 +105,8 @@ subdir('umbrielfx')
+ 
+ # wlroots cursor-shape header pulls enum defs from wayland-protocols.
+ wayland_protocols_enums = declare_dependency(
+-  include_directories: include_directories(
+-    wayland_protocols_dep.get_variable(pkgconfig: 'includedir'),
+-    is_system: true,
+-  ),
++  dependencies: wayland_protocols_dep,
+ )
+-
+ layer_shell_client_h = custom_target(
+   'wlr-layer-shell-unstable-v1-client-protocol.h',
+   input: 'protocols/wlr-layer-shell-unstable-v1.xml',
+-- 
+2.55.0
+
