@@ -9,7 +9,7 @@ DEPENDS = "python3-hatch-vcs-native nodejs-native"
 SRC_URI += "git://github.com/yt-dlp/ejs.git;protocol=https;nobranch=1"
 SRCREV = "4fb477f4af56880cfd324c48bd4294a2d2294e50"
 
-RDEPENDS:${PN} = "nodejs"
+RDEPENDS:${PN} = "quickjs"
 
 # avoid 'npm error request to https://registry.npmjs.org/yocto-queue/-/yocto-queue-0.1.0.tgz failed'
 do_compile[network] = "1"
