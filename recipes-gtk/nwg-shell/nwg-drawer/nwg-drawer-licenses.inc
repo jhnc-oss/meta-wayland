@@ -4,7 +4,7 @@
 # Do not modify it by hand, as the contents will be replaced when
 # running the update-modules task.
 
-LICENSE += "& AGPL-3.0-only & BSD-3-Clause & MIT"
+LICENSE += "AND AGPL-3.0-only AND BSD-3-Clause AND MIT"
 
 LIC_FILES_CHKSUM += "\
     file://pkg/mod/github.com/!karpeles!lab/weak@v0.1.1/LICENSE;md5=dd013f08c8940c6f43fdcc9987c0038a;spdx=MIT \

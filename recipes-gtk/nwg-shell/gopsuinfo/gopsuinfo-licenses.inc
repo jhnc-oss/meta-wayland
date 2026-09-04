@@ -4,7 +4,7 @@
 # Do not modify it by hand, as the contents will be replaced when
 # running the update-modules task.
 
-LICENSE += "& BSD-3-Clause"
+LICENSE += "AND BSD-3-Clause"
 
 LIC_FILES_CHKSUM += "\
     file://pkg/mod/github.com/shirou/gopsutil@v3.21.1+incompatible/LICENSE;md5=ed7522382cec5b7a6d6ebb8e30eed40e;spdx=BSD-3-Clause \

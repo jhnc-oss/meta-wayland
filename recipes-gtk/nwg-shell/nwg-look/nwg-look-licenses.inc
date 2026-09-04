@@ -4,7 +4,7 @@
 # Do not modify it by hand, as the contents will be replaced when
 # running the update-modules task.
 
-LICENSE += "& BSD-3-Clause & ISC & MIT"
+LICENSE += "AND BSD-3-Clause AND ISC AND MIT"
 
 LIC_FILES_CHKSUM += "\
     file://pkg/mod/github.com/gotk3/gotk3@v0.6.5-0.20240618185848-ff349ae13f56/LICENSE;md5=82d02ae7d63483ef7474e8f4f95d687e;spdx=ISC \

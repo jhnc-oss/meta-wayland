@@ -7,7 +7,6 @@ DEPENDS = " \
 "
 
 RRECOMMENDS:${PN} = " \
-	light \
 	playerctl \
 "
 

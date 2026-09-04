@@ -8,7 +8,6 @@ SRC_URI = " \
 
 RDEPENDS:${PN} = "\
 	bash \
-	light \
 	python3 \
 	python-i3ipc \
 	python3-psutil \

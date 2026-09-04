@@ -4,7 +4,7 @@
 # Do not modify it by hand, as the contents will be replaced when
 # running the update-modules task.
 
-LICENSE += "& BSD-3-Clause & ISC & MIT"
+LICENSE += "AND BSD-3-Clause AND ISC AND MIT"
 
 LIC_FILES_CHKSUM += "\
     file://pkg/mod/github.com/allan-simon/go-singleinstance@v0.0.0-20210120080615-d0997106ab37/LICENSE;md5=64080d7ce40e2ef2eee4754706a437c4;spdx=MIT \
