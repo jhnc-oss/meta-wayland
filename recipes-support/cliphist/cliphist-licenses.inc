@@ -4,7 +4,7 @@
 # Do not modify it by hand, as the contents will be replaced when
 # running the update-modules task.
 
-LICENSE += "& BSD-3-Clause & MIT"
+LICENSE += "AND BSD-3-Clause AND MIT"
 
 LIC_FILES_CHKSUM += "\
     file://pkg/mod/go.etcd.io/bbolt@v1.3.9/LICENSE;md5=13b2a308eefa10d841e3bf2467dbe07a;spdx=MIT \
