@@ -18,3 +18,5 @@ DEPENDS = " \
 inherit qt6-cmake gettext
 
 FILES:${PN} += "${datadir}"
+
+BBCLASSEXTEND = "native"
