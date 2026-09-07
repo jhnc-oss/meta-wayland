@@ -101,6 +101,6 @@ do_install:append() {
 
 FILES:${PN} += " ${datadir} ${libdir} ${nonarch_libdir}/sddm"
 FILES:${PN}-dev = "${includedir} ${libdir}/cmake "
-RDEPENDS:${PN} += "kconfig"
+RDEPENDS:${PN} += "kconfig kactivitymanagerd kquickcharts"
 
 INSANE_SKIP:${PN} = "dev-so dev-deps"
