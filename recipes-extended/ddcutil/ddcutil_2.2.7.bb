@@ -14,8 +14,9 @@ inherit autotools-brokensep pkgconfig gobject-introspection
 
 EXTRA_OECONF:remove = '--enable-introspection'
 
-PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'x11 systemd', d)} drm usb"
+PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'dbus x11 systemd', d)} drm usb"
 
+PACKAGECONFIG[dbus] = "--enable-dbus=yes,--enable-dbus=no,dbus"
 PACKAGECONFIG[drm] = "--enable-drm=yes,--enable-drm=no,libdrm"
 PACKAGECONFIG[systemd] = "--enable-udev=yes,--enable-udev=no,udev"
 PACKAGECONFIG[usb] = "--enable-usb=yes,--enable-usb=no,libusb1"
