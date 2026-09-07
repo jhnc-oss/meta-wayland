@@ -1,0 +1,2 @@
+PACKAGECONFIG:append = " qt6"
+PACKAGECONFIG[qt6] = "-DENABLE_QT6=ON -DQT_HOST_PATH:PATH=${RECIPE_SYSROOT_NATIVE}${prefix_native},-DENABLE_QT6=OFF,qtbase qtbase-native"
