@@ -12,7 +12,6 @@ DEPENDS = " \
     qtdeclarative \
     extra-cmake-modules \
     kconfig \
-    kconfig-native \
     ki18n \
     kcrash \
     kservice \
@@ -29,16 +28,9 @@ DEPENDS = " \
     ksystemstats \
 "
 
-inherit qt6-cmake gettext
+inherit kf6 gettext
 
 EXTRA_OECMAKE += "-DBUILD_TESTING=OFF"
-
-do_configure:prepend() {
-	mkdir -p ${STAGING_LIBEXECDIR}/kf6
-	touch ${STAGING_LIBEXECDIR}/kf6/kconf_update
-	touch ${STAGING_BINDIR}/kpackagetool6
-	ln -sf ${STAGING_LIBEXECDIR_NATIVE}/kf6/kconfig_compiler_kf6 ${STAGING_LIBEXECDIR}/kf6
-}
 
 FILES:${PN} += "${libdir}/plugins ${libdir}/qml ${libdir}/libPlasmaSystemMonitor*.so ${datadir}"
 FILES:${PN}-dev = "${includedir} ${libdir}/cmake"

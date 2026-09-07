@@ -13,7 +13,6 @@ DEPENDS = " \
     qtwayland \
     extra-cmake-modules \
     kconfig \
-    kconfig-native \
     ki18n \
     kiconthemes \
     kio \
@@ -28,15 +27,9 @@ DEPENDS = " \
     plasma-wayland-protocols \
 "
 
-inherit qt6-cmake gettext pkgconfig
+inherit kf6 gettext pkgconfig
 
 EXTRA_OECMAKE += "-DBUILD_TESTING=OFF -DBUILD_QT5=OFF -DBUILD_QT6=ON"
-
-do_configure:prepend() {
-	mkdir -p ${STAGING_LIBEXECDIR}/kf6
-	touch ${STAGING_LIBEXECDIR}/kf6/kconf_update
-	ln -sf ${STAGING_LIBEXECDIR_NATIVE}/kf6/kconfig_compiler_kf6 ${STAGING_LIBEXECDIR}/kf6
-}
 
 FILES:${PN} += "${libdir}/plugins ${datadir}"
 

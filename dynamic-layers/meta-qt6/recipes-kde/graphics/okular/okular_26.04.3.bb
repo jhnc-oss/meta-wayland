@@ -16,7 +16,6 @@ DEPENDS = " \
     kbookmarks \
     kcompletion \
     kconfig \
-    kconfig-native \
     kconfigwidgets \
     kcoreaddons \
     ki18n \
@@ -41,7 +40,7 @@ DEPENDS = " \
     jpeg \
 "
 
-inherit qt6-cmake gettext mime-xdg
+inherit kf6 gettext mime-xdg
 
 EXTRA_OECMAKE += " \
     -DBUILD_TESTING=OFF \
@@ -51,12 +50,6 @@ EXTRA_OECMAKE += " \
     -DCMAKE_DISABLE_FIND_PACKAGE_KExiv2Qt6=ON \
     -DFORCE_NOT_REQUIRED_DEPENDENCIES="LibSpectre;DjVuLibre;EPub;Discount" \
 "
-
-do_configure:prepend() {
-	mkdir -p ${STAGING_LIBEXECDIR}/kf6
-	touch ${STAGING_LIBEXECDIR}/kf6/kconf_update
-	ln -sf ${STAGING_LIBEXECDIR_NATIVE}/kf6/kconfig_compiler_kf6 ${STAGING_LIBEXECDIR}/kf6
-}
 
 FILES:${PN} += "${libdir}/plugins ${libdir}/qml ${datadir}"
 FILES:${PN}-dev = "${includedir} ${libdir}/cmake ${libdir}/lib*.so"

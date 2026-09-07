@@ -12,8 +12,6 @@ DEPENDS = " \
     qtsvg \
     extra-cmake-modules \
     kconfig \
-    kconfig-native \
-    kcmutils-tools-native \
     kiconthemes \
     ki18n \
     kcmutils \
@@ -26,19 +24,12 @@ DEPENDS = " \
     kwidgetsaddons \
 "
 
-inherit qt6-cmake gettext mime-xdg
+inherit kf6 gettext mime-xdg
 
 PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'x11', d)}"
 PACKAGECONFIG[x11] = "-DWITH_X11=ON,-DWITH_X11=OFF,libx11"
 
 EXTRA_OECMAKE += "-DBUILD_TESTING=OFF -DBUILD_DOC=OFF"
-
-do_configure:prepend() {
-	mkdir -p ${STAGING_LIBEXECDIR}/kf6
-	touch ${STAGING_LIBEXECDIR}/kf6/kconf_update
-	ln -sf ${STAGING_LIBEXECDIR_NATIVE}/kf6/kconfig_compiler_kf6 ${STAGING_LIBEXECDIR}/kf6
-	ln -sf ${STAGING_LIBEXECDIR_NATIVE}/kf6/kcmdesktopfilegenerator ${STAGING_LIBEXECDIR}/kf6
-}
 
 FILES:${PN} += "${libdir}/plugins ${datadir}"
 

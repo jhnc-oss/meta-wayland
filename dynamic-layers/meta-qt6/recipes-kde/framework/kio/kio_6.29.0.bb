@@ -30,19 +30,10 @@ DEPENDS = " \
     solid \
 "
 
-inherit qt6-cmake gettext mime mime-xdg
-
-# cmake checks whether these files are present. We do not provide them in sysroot,
-# but at least they are included in the package -> just touch the files to avoid errors.
-do_configure:prepend() {
-	mkdir -p ${STAGING_LIBEXECDIR}/kf6
-	touch ${STAGING_LIBEXECDIR}/kf6/kconfig_compiler_kf6
-	touch ${STAGING_LIBEXECDIR}/kf6/kconf_update
-}
+inherit kf6 gettext mime mime-xdg
 
 PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'x11', d)}"
 PACKAGECONFIG[x11] = "-DWITH_X11=ON,-DWITH_X11=OFF"
-
 
 FILES:${PN} += "${libdir}/plugins ${libdir}/libkuriikwsfiltereng_private.so ${datadir}"
 FILES:${PN}-dev = " \

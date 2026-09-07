@@ -17,15 +17,7 @@ DEPENDS = " \
     kirigami \
 "
 
-inherit qt6-cmake gettext
-
-# cmake checks whether these files are present. We do not provide them in sysroot,
-# but at least they are included in the package -> just touch the files to avoid errors.
-do_configure:prepend() {
-	mkdir -p ${STAGING_LIBEXECDIR}/kf6
-	touch ${STAGING_LIBEXECDIR}/kf6/kconfig_compiler_kf6
-	touch ${STAGING_LIBEXECDIR}/kf6/kconf_update
-}
+inherit kf6 gettext
 
 FILES:${PN} += "${libdir}/qml ${datadir}/qlogging-categories6"
 

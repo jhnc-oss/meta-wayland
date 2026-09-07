@@ -19,13 +19,11 @@ DEPENDS = " \
     kauth \
     kcrash \
     kcmutils \
-    kcmutils-tools-native \
     ki18n \
     kservice \
     kwidgetsaddons \
     kwindowsystem \
     kdbusaddons \
-    kconfig-native \
     kguiaddons \
     kidletime \
     ksvg \
@@ -68,7 +66,7 @@ DEPENDS = " \
     qtwaylandscanner-kde-native \
 "
 
-inherit qt6-cmake gettext pkgconfig
+inherit kf6 gettext pkgconfig
 
 PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'x11', d)}"
 PACKAGECONFIG[x11] = "-DKWIN_BUILD_X11=ON,-DKWIN_BUILD_X11=OFF,libx11 libxcb xcb-util-cursor xcb-util-keysyms xcb-util-wm libxkbcommon,xwayland"
@@ -79,17 +77,6 @@ EXTRA_OECMAKE += " \
 	-DQTWAYLANDSCANNER_KDE_EXECUTABLE=${STAGING_BINDIR_NATIVE}/qtwaylandscanner_kde \
 "
 
-do_configure:prepend() {
-	# cmake checks whether these files are present. We do not provide them in sysroot,
-	# but at least they are included in the package -> just touch the files to avoid errors.
-	mkdir -p ${STAGING_LIBEXECDIR}/kf6
-	touch ${STAGING_LIBEXECDIR}/kf6/kconf_update
-	touch ${STAGING_BINDIR}/kpackagetool6
-	# kwin indeed wants to use kconfig_compiler_kf6 and kcmdesktopfilegenerator-> create links instead of touch
-	ln -sf ${STAGING_LIBEXECDIR_NATIVE}/kf6/kconfig_compiler_kf6 ${STAGING_LIBEXECDIR}/kf6
-	ln -sf ${STAGING_LIBEXECDIR_NATIVE}/kf6/kcmdesktopfilegenerator ${STAGING_LIBEXECDIR}/kf6
-}
-
 do_install:append() {
 	if ! ${@bb.utils.contains('PACKAGECONFIG', 'x11', 'true', 'false', d)}; then
 		sed -i "s| --xwayland||" ${D}${systemd_user_unitdir}/plasma-kwin_wayland.service
@@ -97,6 +84,5 @@ do_install:append() {
 }
 
 FILES:${PN} += "${datadir} ${libdir}/qml ${libdir}/plugins ${libdir}/kconf_update_bin ${systemd_user_unitdir}"
-
 
 RDEPENDS:${PN} += "kconfig kirigami qtquick3d breeze aurorae qt5compat milou"

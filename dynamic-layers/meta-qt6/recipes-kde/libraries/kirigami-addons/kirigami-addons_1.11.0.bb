@@ -14,7 +14,6 @@ DEPENDS = " \
     kirigami \
     ki18n \
     kconfig \
-    kconfig-native \
     kcoreaddons \
     kcrash \
     kguiaddons \
@@ -23,15 +22,9 @@ DEPENDS = " \
     kiconthemes \
 "
 
-inherit qt6-cmake gettext
+inherit kf6 gettext
 
 EXTRA_OECMAKE += "-DBUILD_TESTING=OFF -DBUILD_EXAMPLES=OFF"
-
-do_configure:prepend() {
-	mkdir -p ${STAGING_LIBEXECDIR}/kf6
-	touch ${STAGING_LIBEXECDIR}/kf6/kconf_update
-	ln -sf ${STAGING_LIBEXECDIR_NATIVE}/kf6/kconfig_compiler_kf6 ${STAGING_LIBEXECDIR}/kf6
-}
 
 FILES:${PN} += "${libdir}/qml ${datadir}"
 

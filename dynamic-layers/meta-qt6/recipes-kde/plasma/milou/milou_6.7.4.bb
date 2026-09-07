@@ -17,16 +17,7 @@ DEPENDS = " \
     kpackage \
 "
 
-inherit qt6-cmake gettext
-
-do_configure:prepend() {
-	# cmake checks whether these files are present. We do not provide them in sysroot,
-	# but at least they are included in the package -> just touch the files to avoid errors.
-	mkdir -p ${STAGING_LIBEXECDIR}/kf6
-	touch ${STAGING_LIBEXECDIR}/kf6/kconf_update
-	touch ${STAGING_LIBEXECDIR}/kf6/kconfig_compiler_kf6
-	touch ${STAGING_BINDIR}/kpackagetool6
-}
+inherit kf6 gettext
 
 EXTRA_OECMAKE += "-DBUILD_TESTING=OFF"
 

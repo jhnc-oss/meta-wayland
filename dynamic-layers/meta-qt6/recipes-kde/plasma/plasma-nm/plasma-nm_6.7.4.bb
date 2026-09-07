@@ -11,8 +11,6 @@ DEPENDS = " \
     qttools-native \
     qtdeclarative \
     extra-cmake-modules \
-    kconfig-native \
-    kcmutils-tools-native \
     kcolorscheme \
     kcompletion \
     kcoreaddons \
@@ -40,17 +38,9 @@ DEPENDS = " \
     networkmanager \
 "
 
-inherit qt6-cmake gettext pkgconfig mime-xdg
+inherit kf6 gettext pkgconfig mime-xdg
 
 EXTRA_OECMAKE += "-DBUILD_TESTING=OFF -DBUILD_OPENCONNECT=OFF"
-
-do_configure:prepend() {
-	mkdir -p ${STAGING_LIBEXECDIR}/kf6
-	touch ${STAGING_LIBEXECDIR}/kf6/kconf_update
-	touch ${STAGING_BINDIR}/kpackagetool6
-	ln -sf ${STAGING_LIBEXECDIR_NATIVE}/kf6/kconfig_compiler_kf6 ${STAGING_LIBEXECDIR}/kf6
-	ln -sf ${STAGING_LIBEXECDIR_NATIVE}/kf6/kcmdesktopfilegenerator ${STAGING_LIBEXECDIR}/kf6
-}
 
 FILES:${PN} += "${libdir}/qml ${libdir}/plugins ${libdir}/libplasmanm_*.so ${datadir}"
 FILES:${PN}-dev = "${includedir} ${libdir}/cmake"

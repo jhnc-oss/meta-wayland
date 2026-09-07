@@ -14,8 +14,6 @@ DEPENDS = " \
     gperf-native \
     karchive \
     kconfig \
-    kconfig-native \
-    kcmutils-tools-native \
     kcoreaddons \
     ki18n \
     kio \
@@ -35,7 +33,7 @@ DEPENDS = " \
     libtirpc \
 "
 
-inherit qt6-cmake gettext pkgconfig mime
+inherit kf6 gettext pkgconfig mime
 
 PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'x11', d)}"
 PACKAGECONFIG[x11] = "-DWITHOUT_X11=OFF,-DWITHOUT_X11=ON,libx11 libxcursor"
@@ -50,14 +48,6 @@ EXTRA_OECMAKE += " \
     -DCMAKE_DISABLE_FIND_PACKAGE_PList=ON \
     -DCMAKE_DISABLE_FIND_PACKAGE_libappimage=ON \
 "
-
-do_configure:prepend() {
-	mkdir -p ${STAGING_LIBEXECDIR}/kf6
-	touch ${STAGING_LIBEXECDIR}/kf6/kconf_update
-	touch ${STAGING_BINDIR}/kpackagetool6
-	ln -sf ${STAGING_LIBEXECDIR_NATIVE}/kf6/kconfig_compiler_kf6 ${STAGING_LIBEXECDIR}/kf6
-	ln -sf ${STAGING_LIBEXECDIR_NATIVE}/kf6/kcmdesktopfilegenerator ${STAGING_LIBEXECDIR}/kf6
-}
 
 FILES:${PN} += "${libdir}/plugins ${libdir}/libexec ${datadir}"
 

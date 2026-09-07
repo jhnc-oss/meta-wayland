@@ -12,8 +12,6 @@ DEPENDS = " \
     qtdeclarative \
     qtwayland \
     extra-cmake-modules \
-    kconfig-native \
-    kcmutils-tools-native \
     kauth \
     kconfig \
     kcrash \
@@ -42,20 +40,12 @@ DEPENDS = " \
     wayland-native \
 "
 
-inherit qt6-cmake gettext pkgconfig
+inherit kf6 gettext pkgconfig
 
 PACKAGECONFIG ?= "ddcutil"
 PACKAGECONFIG[ddcutil] = ",-DCMAKE_DISABLE_FIND_PACKAGE_DDCUtil=ON,ddcutil"
 
 EXTRA_OECMAKE += "-DBUILD_TESTING=OFF -DCMAKE_DISABLE_FIND_PACKAGE_KF6DocTools=ON"
-
-do_configure:prepend() {
-	mkdir -p ${STAGING_LIBEXECDIR}/kf6
-	touch ${STAGING_LIBEXECDIR}/kf6/kconf_update
-	touch ${STAGING_BINDIR}/kpackagetool6
-	ln -sf ${STAGING_LIBEXECDIR_NATIVE}/kf6/kconfig_compiler_kf6 ${STAGING_LIBEXECDIR}/kf6
-	ln -sf ${STAGING_LIBEXECDIR_NATIVE}/kf6/kcmdesktopfilegenerator ${STAGING_LIBEXECDIR}/kf6
-}
 
 FILES:${PN} += "${libdir}/qml ${libdir}/plugins ${datadir} ${systemd_user_unitdir}"
 

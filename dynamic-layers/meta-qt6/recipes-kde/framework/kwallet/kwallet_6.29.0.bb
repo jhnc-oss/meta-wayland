@@ -11,7 +11,6 @@ DEPENDS = " \
 	qttools-native \
 	extra-cmake-modules \
 	kconfig \
-	kconfig-native \
 	kcoreaddons \
 	ki18n \
 	kwindowsystem \
@@ -24,17 +23,9 @@ DEPENDS = " \
 	libsecret \
 "
 
-inherit qt6-cmake gettext pkgconfig
+inherit kf6 gettext pkgconfig
 
 # ksecret daemon build requires qt5
 EXTRA_OECMAKE += "-DOE_QCA_PATH_HOST_ROOT=${STAGING_DIR_HOST} -DBUILD_KSECRETD=OFF"
-
-# cmake checks whether these files are present. We do not provide them in sysroot,
-# but at least they are included in the package -> just touch the files to avoid errors.
-do_configure:prepend() {
-	mkdir -p ${STAGING_LIBEXECDIR}/kf6
-	ln -sf ${STAGING_LIBEXECDIR_NATIVE}/kf6/kconfig_compiler_kf6 ${STAGING_LIBEXECDIR}/kf6/kconfig_compiler_kf6
-	touch ${STAGING_LIBEXECDIR}/kf6/kconf_update
-}
 
 FILES:${PN} += "${datadir}"

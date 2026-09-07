@@ -17,7 +17,6 @@ DEPENDS = " \
     wayland-protocols \
     extra-cmake-modules \
     kconfig \
-    kconfig-native \
     kio \
     kitemmodels \
     ki18n \
@@ -36,7 +35,7 @@ DEPENDS = " \
     tiff \
 "
 
-inherit qt6-cmake gettext mime-xdg
+inherit kf6 gettext mime-xdg
 
 PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'x11', d)}"
 PACKAGECONFIG[x11] = "-DWITHOUT_X11=OFF,-DWITHOUT_X11=ON,libx11"
@@ -50,12 +49,6 @@ EXTRA_OECMAKE += " \
     -DCMAKE_DISABLE_FIND_PACKAGE_KDcrawQt6=ON \
     -DCMAKE_DISABLE_FIND_PACKAGE_CFitsio=ON \
 "
-
-do_configure:prepend() {
-	mkdir -p ${STAGING_LIBEXECDIR}/kf6
-	touch ${STAGING_LIBEXECDIR}/kf6/kconf_update
-	ln -sf ${STAGING_LIBEXECDIR_NATIVE}/kf6/kconfig_compiler_kf6 ${STAGING_LIBEXECDIR}/kf6
-}
 
 FILES:${PN} += "${libdir}/plugins ${datadir}"
 FILES:${PN}-dev = "${includedir} ${libdir}/cmake"

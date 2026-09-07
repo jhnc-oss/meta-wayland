@@ -11,10 +11,8 @@ DEPENDS = " \
     qtquick3d \
     extra-cmake-modules \
     kconfig \
-    kconfig-native \
     kcrash \
     kcmutils \
-    kcmutils-tools-native \
     ki18n \
     kglobalaccel \
     knotifications \
@@ -35,19 +33,9 @@ DEPENDS = " \
     xinput \
 "
 
-inherit cmake gettext
+inherit kf6 gettext
 
-EXTRA_OECMAKE += "-DBUILD_TESTING=OFF EXTRA_OECMAKE -DQT_HOST_PATH:PATH=${RECIPE_SYSROOT_NATIVE}${prefix_native}"
-
-do_configure:prepend() {
-	# cmake checks whether these files are present. We do not provide them in sysroot,
-	# but at least they are included in the package -> just touch the files to avoid errors.
-	mkdir -p ${STAGING_LIBEXECDIR}/kf6
-	touch ${STAGING_LIBEXECDIR}/kf6/kconf_update
-	ln -sf ${STAGING_LIBEXECDIR_NATIVE}/kf6/kconfig_compiler_kf6 ${STAGING_LIBEXECDIR}/kf6/kconfig_compiler_kf6
-	ln -sf ${STAGING_LIBEXECDIR_NATIVE}/kf6/kcmdesktopfilegenerator ${STAGING_LIBEXECDIR}/kf6
-	touch ${STAGING_BINDIR}/kpackagetool6
-}
+EXTRA_OECMAKE += "-DBUILD_TESTING=OFF"
 
 FILES:${PN} += "${libdir}/qml ${libdir}/plugins ${datadir} ${systemd_user_unitdir}"
 

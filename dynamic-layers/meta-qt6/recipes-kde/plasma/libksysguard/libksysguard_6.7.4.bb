@@ -12,7 +12,6 @@ DEPENDS = " \
     qtdeclarative \
     extra-cmake-modules \
     kconfig \
-    kconfig-native \
     kcoreaddons \
     ki18n \
     kauth \
@@ -28,16 +27,9 @@ DEPENDS = " \
     zlib \
 "
 
-inherit qt6-cmake gettext pkgconfig
+inherit kf6 gettext pkgconfig
 
 EXTRA_OECMAKE += "-DBUILD_TESTING=OFF -DCMAKE_DISABLE_FIND_PACKAGE_libpcap=ON"
-
-do_configure:prepend() {
-	mkdir -p ${STAGING_LIBEXECDIR}/kf6
-	touch ${STAGING_LIBEXECDIR}/kf6/kconf_update
-	touch ${STAGING_BINDIR}/kpackagetool6
-	ln -sf ${STAGING_LIBEXECDIR_NATIVE}/kf6/kconfig_compiler_kf6 ${STAGING_LIBEXECDIR}/kf6
-}
 
 do_install:append() {
 	sed -i "s|;${STAGING_INCDIR}\"|\"|; s|${STAGING_LIBDIR}/libsensors.so|sensors|" ${D}${libdir}/cmake/KSysGuard/KSysGuardLibraryTargets.cmake

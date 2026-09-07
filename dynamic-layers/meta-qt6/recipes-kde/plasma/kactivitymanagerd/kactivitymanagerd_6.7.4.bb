@@ -12,7 +12,6 @@ DEPENDS = " \
     extra-cmake-modules \
     boost \
     kconfig \
-    kconfig-native \
     kcrash \
     kdbusaddons \
     kglobalaccel \
@@ -22,15 +21,9 @@ DEPENDS = " \
     kxmlgui \
 "
 
-inherit qt6-cmake gettext
+inherit kf6 gettext
 
 EXTRA_OECMAKE += "-DBUILD_TESTING=OFF"
-
-do_configure:prepend() {
-	mkdir -p ${STAGING_LIBEXECDIR}/kf6
-	touch ${STAGING_LIBEXECDIR}/kf6/kconf_update
-	ln -sf ${STAGING_LIBEXECDIR_NATIVE}/kf6/kconfig_compiler_kf6 ${STAGING_LIBEXECDIR}/kf6
-}
 
 FILES:${PN} += "${libdir}/plugins ${libdir}/libkactivitymanagerd_plugin.so ${datadir} ${systemd_user_unitdir}"
 FILES:${PN}-dev = "${includedir} ${libdir}/cmake"

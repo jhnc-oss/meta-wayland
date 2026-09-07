@@ -18,10 +18,8 @@ DEPENDS = " \
     kauth \
     kcrash \
     kconfig \
-    kconfig-native \
     ki18n \
     kcmutils \
-    kcmutils-tools-native \
     knewstuff \
     kio \
     knotifications \
@@ -58,24 +56,12 @@ DEPENDS = " \
     systemsettings \
 "
 
-inherit qt6-cmake gettext pkgconfig
+inherit kf6 gettext pkgconfig
 
 PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'x11', d)}"
 PACKAGECONFIG[x11] = ",-DCMAKE_DISABLE_FIND_PACKAGE_X11=ON,libx11 libxcb xcb-util-image"
 
 EXTRA_OECMAKE = "-DBUILD_TESTING=OFF -DBUILD_DOC=OFF -DBUILD_KCM_MOUSE_X11=OFF -DBUILD_KCM_TOUCHPAD_X11=OFF"
-
-do_configure:prepend() {
-	# cmake checks whether these files are present. We do not provide them in sysroot,
-	# but at least they are included in the package -> just touch the files to avoid errors.
-	mkdir -p ${STAGING_LIBEXECDIR}/kf6
-	touch ${STAGING_LIBEXECDIR}/kf6/kconf_update
-	touch ${STAGING_BINDIR}/kpackagetool6
-	ln -sf ${STAGING_LIBEXECDIR_NATIVE}/kf6/kconfig_compiler_kf6 ${STAGING_LIBEXECDIR}/kf6
-	ln -sf ${STAGING_LIBEXECDIR_NATIVE}/kf6/kcmdesktopfilegenerator ${STAGING_LIBEXECDIR}/kf6
-	ln -sf ${STAGING_BINDIR_NATIVE}/meinproc6 ${STAGING_BINDIR}
-	ln -sf ${STAGING_BINDIR_NATIVE}/checkXML6 ${STAGING_BINDIR}
-}
 
 FILES:${PN} += "${libdir}/qml ${libdir}/plugins ${datadir} ${systemd_user_unitdir}"
 

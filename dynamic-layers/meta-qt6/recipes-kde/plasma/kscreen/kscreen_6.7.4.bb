@@ -13,13 +13,11 @@ DEPENDS = " \
     qt5compat \
     extra-cmake-modules \
     kconfig \
-    kconfig-native \
     kcoreaddons \
     kdbusaddons \
     ki18n \
     kitemmodels \
     kcmutils \
-    kcmutils-tools-native \
     ksvg \
     kxmlgui \
     kcrash \
@@ -33,22 +31,12 @@ DEPENDS = " \
     wayland-native \
 "
 
-inherit qt6-cmake gettext
+inherit kf6 gettext
 
 PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'x11', d)}"
 PACKAGECONFIG[x11] = "-DWITH_X11=ON,-DWITH_X11=OFF,libx11 libxcb xcb-util"
 
 EXTRA_OECMAKE += "-DBUILD_TESTING=OFF"
-
-do_configure:prepend() {
-	# cmake checks whether these files are present. We do not provide them in sysroot,
-	# but at least they are included in the package -> just touch the files to avoid errors.
-	mkdir -p ${STAGING_LIBEXECDIR}/kf6
-	touch ${STAGING_LIBEXECDIR}/kf6/kconf_update
-	ln -sf ${STAGING_LIBEXECDIR_NATIVE}/kf6/kconfig_compiler_kf6 ${STAGING_LIBEXECDIR}/kf6/kconfig_compiler_kf6
-	ln -sf ${STAGING_LIBEXECDIR_NATIVE}/kf6/kcmdesktopfilegenerator ${STAGING_LIBEXECDIR}/kf6
-	touch ${STAGING_BINDIR}/kpackagetool6
-}
 
 FILES:${PN} += "${libdir}/qml ${libdir}/plugins ${datadir} ${systemd_user_unitdir}"
 

@@ -11,7 +11,6 @@ DEPENDS = " \
     qttools-native \
     extra-cmake-modules \
     kconfig \
-    kconfig-native \
     kcrash \
     kdbusaddons \
     kfilemetadata \
@@ -28,15 +27,9 @@ DEPENDS = " \
     zlib \
 "
 
-inherit qt6-cmake gettext mime-xdg
+inherit kf6 gettext mime-xdg
 
 EXTRA_OECMAKE += "-DBUILD_TESTING=OFF -DBUILD_DOC=OFF"
-
-do_configure:prepend() {
-	mkdir -p ${STAGING_LIBEXECDIR}/kf6
-	touch ${STAGING_LIBEXECDIR}/kf6/kconf_update
-	ln -sf ${STAGING_LIBEXECDIR_NATIVE}/kf6/kconfig_compiler_kf6 ${STAGING_LIBEXECDIR}/kf6
-}
 
 FILES:${PN} += "${libdir}/plugins ${datadir}"
 FILES:${PN}-dev = "${includedir} ${libdir}/cmake"

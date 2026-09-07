@@ -10,7 +10,6 @@ DEPENDS = " \
     qtbase \
     qttools-native \
     extra-cmake-modules \
-    kconfig-native \
     kconfig \
     kcoreaddons \
     kdbusaddons \
@@ -24,13 +23,7 @@ DEPENDS = " \
     inotify-tools \
 "
 
-inherit qt6-cmake gettext
-
-do_configure:prepend() {
-	mkdir -p ${STAGING_LIBEXECDIR}/kf6
-	ln -sf ${STAGING_LIBEXECDIR_NATIVE}/kf6/kconfig_compiler_kf6 ${STAGING_LIBEXECDIR}/kf6/kconfig_compiler_kf6
-	touch ${STAGING_LIBEXECDIR}/kf6/kconf_update
-}
+inherit kf6 gettext
 
 do_install:append() {
     sed -i -e 's|${STAGING_DIR_HOST}||g' ${D}${libdir}/cmake/KF6Baloo/KF6BalooTargets.cmake

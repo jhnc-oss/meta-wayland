@@ -11,8 +11,6 @@ DEPENDS = " \
     qttools-native \
     qtdeclarative \
     extra-cmake-modules \
-    kconfig-native \
-    kcmutils-tools-native \
     kconfig \
     kcoreaddons \
     ki18n \
@@ -27,17 +25,9 @@ DEPENDS = " \
     systemsettings \
 "
 
-inherit qt6-cmake gettext pkgconfig
+inherit kf6 gettext pkgconfig
 
 EXTRA_OECMAKE += "-DBUILD_TESTING=OFF -DBUILD_DOC=OFF"
-
-do_configure:prepend() {
-	mkdir -p ${STAGING_LIBEXECDIR}/kf6
-	touch ${STAGING_LIBEXECDIR}/kf6/kconf_update
-	touch ${STAGING_BINDIR}/kpackagetool6
-	ln -sf ${STAGING_LIBEXECDIR_NATIVE}/kf6/kconfig_compiler_kf6 ${STAGING_LIBEXECDIR}/kf6
-	ln -sf ${STAGING_LIBEXECDIR_NATIVE}/kf6/kcmdesktopfilegenerator ${STAGING_LIBEXECDIR}/kf6
-}
 
 do_configure:append() {
 	sed -i "s|${STAGING_BINDIR_NATIVE}/qdbus|${bindir}/qdbus|" ${B}/kcms/kwinsupportinfo/kcm_kwinsupportinfo.json

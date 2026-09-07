@@ -25,17 +25,9 @@ DEPENDS = " \
 	python3-build-native \
 "
 
-inherit qt6-cmake gettext
+inherit kf6 gettext
 
 export LLVM_INSTALL_DIR = "${STAGING_DIR_NATIVE}${prefix_native}"
-
-# cmake checks whether these files are present. We do not provide them in sysroot,
-# but at least they are included in the package -> just touch the files to avoid errors.
-do_configure:prepend() {
-	mkdir -p ${STAGING_LIBEXECDIR}/kf6
-	touch ${STAGING_LIBEXECDIR}/kf6/kconfig_compiler_kf6
-	touch ${STAGING_LIBEXECDIR}/kf6/kconf_update
-}
 
 FILES:${PN} += "${datadir}/qlogging-categories6  ${PYTHON_SITEPACKAGES_DIR}"
 

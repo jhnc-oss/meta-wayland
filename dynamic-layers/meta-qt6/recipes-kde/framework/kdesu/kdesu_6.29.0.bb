@@ -11,21 +11,14 @@ DEPENDS = " \
     qttools-native \
     extra-cmake-modules \
     kconfig \
-    kconfig-native \
     kcoreaddons \
     ki18n \
     kpty \
 "
 
-inherit qt6-cmake gettext
+inherit kf6 gettext
 
 EXTRA_OECMAKE += "-DBUILD_TESTING=OFF -DKDESU_USE_SUDO_DEFAULT=ON"
-
-do_configure:prepend() {
-	mkdir -p ${STAGING_LIBEXECDIR}/kf6
-	touch ${STAGING_LIBEXECDIR}/kf6/kconf_update
-	ln -sf ${STAGING_LIBEXECDIR_NATIVE}/kf6/kconfig_compiler_kf6 ${STAGING_LIBEXECDIR}/kf6
-}
 
 FILES:${PN} += "${libdir}/libexec ${datadir}"
 

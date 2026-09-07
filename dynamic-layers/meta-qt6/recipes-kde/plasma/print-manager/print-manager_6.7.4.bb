@@ -12,8 +12,6 @@ DEPENDS = " \
     qtdeclarative \
     extra-cmake-modules \
     kconfig \
-    kconfig-native \
-    kcmutils-tools-native \
     kconfigwidgets \
     kcoreaddons \
     kdbusaddons \
@@ -31,7 +29,7 @@ DEPENDS = " \
     cups \
 "
 
-inherit qt6-cmake gettext pkgconfig
+inherit kf6 gettext pkgconfig
 
 EXTRA_OECMAKE += " \
     -DBUILD_TESTING=OFF \
@@ -39,14 +37,6 @@ EXTRA_OECMAKE += " \
     -DCMAKE_DISABLE_FIND_PACKAGE_PackageKitQt6=ON \
     -DCMAKE_DISABLE_FIND_PACKAGE_CupsSmb=ON \
 "
-
-do_configure:prepend() {
-	mkdir -p ${STAGING_LIBEXECDIR}/kf6
-	touch ${STAGING_LIBEXECDIR}/kf6/kconf_update
-	touch ${STAGING_BINDIR}/kpackagetool6
-	ln -sf ${STAGING_LIBEXECDIR_NATIVE}/kf6/kconfig_compiler_kf6 ${STAGING_LIBEXECDIR}/kf6
-	ln -sf ${STAGING_LIBEXECDIR_NATIVE}/kf6/kcmdesktopfilegenerator ${STAGING_LIBEXECDIR}/kf6
-}
 
 FILES:${PN} += "${libdir}/plugins ${libdir}/qml ${libdir}/libkcups.so ${datadir}"
 FILES:${PN}-dev = "${includedir} ${libdir}/cmake"

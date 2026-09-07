@@ -11,8 +11,6 @@ DEPENDS = " \
     qttools-native \
     qtdeclarative \
     extra-cmake-modules \
-    kconfig-native \
-    kcmutils-tools-native \
     kirigami \
     kirigami-addons \
     kcoreaddons \
@@ -36,21 +34,13 @@ DEPENDS = " \
     qcoro \
 "
 
-inherit qt6-cmake gettext pkgconfig mime-xdg
+inherit kf6 gettext pkgconfig mime-xdg
 
 PACKAGECONFIG ?= "flatpak"
 PACKAGECONFIG[flatpak] = ",,flatpak"
 PACKAGECONFIG[fwupd] = ",,fwupd"
 
 EXTRA_OECMAKE += "-DBUILD_TESTING=OFF -DCMAKE_DISABLE_FIND_PACKAGE_packagekitqt6=ON"
-
-do_configure:prepend() {
-	mkdir -p ${STAGING_LIBEXECDIR}/kf6
-	touch ${STAGING_LIBEXECDIR}/kf6/kconf_update
-	touch ${STAGING_BINDIR}/kpackagetool6
-	ln -sf ${STAGING_LIBEXECDIR_NATIVE}/kf6/kconfig_compiler_kf6 ${STAGING_LIBEXECDIR}/kf6
-	ln -sf ${STAGING_LIBEXECDIR_NATIVE}/kf6/kcmdesktopfilegenerator ${STAGING_LIBEXECDIR}/kf6
-}
 
 FILES:${PN} += "${libdir}/qml ${libdir}/plugins ${libdir}/plasma-discover ${datadir} ${systemd_user_unitdir}"
 

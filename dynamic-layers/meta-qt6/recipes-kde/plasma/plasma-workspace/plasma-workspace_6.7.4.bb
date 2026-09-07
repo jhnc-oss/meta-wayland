@@ -29,13 +29,11 @@ DEPENDS = " \
     kidletime \
     kitemmodels \
     kcmutils \
-    kcmutils-tools-native \
     kded \
     kio \
     knewstuff \
     knotifications \
     kconfig \
-    kconfig-native \
     kpackage \
     kparts \
     prison \
@@ -76,22 +74,12 @@ DEPENDS = " \
     layer-shell-qt \
 "
 
-inherit qt6-cmake gettext pkgconfig mime-xdg
+inherit kf6 gettext pkgconfig mime-xdg
 
 PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'x11', d)}"
 PACKAGECONFIG[x11] = "-DWITH_X11=ON,-DWITH_X11=OFF,libx11 libxcb libice libsm libxau libxcursor libxfixes libxft libxrender libxtst xcb-util xcb-util-cursor xcb-util-image"
 
 EXTRA_OECMAKE += "-DBUILD_TESTING=OFF -DWITH_X11_SESSION=OFF -DINSTALL_SDDM_WAYLAND_SESSION=ON"
-
-do_configure:prepend() {
-	# cmake checks whether these files are present. We do not provide them in sysroot,
-	# but at least they are included in the package -> just touch the files to avoid errors.
-	mkdir -p ${STAGING_LIBEXECDIR}/kf6
-	ln -sf ${STAGING_LIBEXECDIR_NATIVE}/kf6/kconfig_compiler_kf6 ${STAGING_LIBEXECDIR}/kf6/kconfig_compiler_kf6
-	touch ${STAGING_LIBEXECDIR}/kf6/kconf_update
-	touch ${STAGING_BINDIR}/kpackagetool6
-	ln -sf ${STAGING_LIBEXECDIR_NATIVE}/kf6/kcmdesktopfilegenerator ${STAGING_LIBEXECDIR}/kf6/kcmdesktopfilegenerator
-}
 
 do_install:append() {
         sed -i 's:${STAGING_DIR_NATIVE}::' ${D}${systemd_user_unitdir}/plasma-restoresession.service

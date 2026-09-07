@@ -12,8 +12,6 @@ DEPENDS = " \
     qtdeclarative \
     extra-cmake-modules \
     kconfig \
-    kconfig-native \
-    kcmutils-tools-native \
     kcoreaddons \
     kdeclarative \
     kglobalaccel \
@@ -32,17 +30,9 @@ DEPENDS = " \
     glib-2.0 \
 "
 
-inherit qt6-cmake gettext pkgconfig
+inherit kf6 gettext pkgconfig
 
 EXTRA_OECMAKE += "-DBUILD_TESTING=OFF -DBUILD_DOC=OFF"
-
-do_configure:prepend() {
-	mkdir -p ${STAGING_LIBEXECDIR}/kf6
-	touch ${STAGING_LIBEXECDIR}/kf6/kconf_update
-	touch ${STAGING_BINDIR}/kpackagetool6
-	ln -sf ${STAGING_LIBEXECDIR_NATIVE}/kf6/kconfig_compiler_kf6 ${STAGING_LIBEXECDIR}/kf6
-	ln -sf ${STAGING_LIBEXECDIR_NATIVE}/kf6/kcmdesktopfilegenerator ${STAGING_LIBEXECDIR}/kf6
-}
 
 FILES:${PN} += "${libdir}/qml ${libdir}/plugins ${datadir}"
 

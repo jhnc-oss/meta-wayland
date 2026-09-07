@@ -11,7 +11,6 @@ DEPENDS = " \
     qttools-native \
     qtmultimedia \
     extra-cmake-modules \
-    kconfig-native \
     kbookmarks \
     kconfig \
     kconfigwidgets \
@@ -36,15 +35,9 @@ DEPENDS = " \
     icu \
 "
 
-inherit qt6-cmake gettext mime mime-xdg
+inherit kf6 gettext mime mime-xdg
 
 EXTRA_OECMAKE += "-DBUILD_TESTING=OFF -DWITH_KAPSULE=OFF -DCMAKE_DISABLE_FIND_PACKAGE_KF6DocTools=ON"
-
-do_configure:prepend() {
-	mkdir -p ${STAGING_LIBEXECDIR}/kf6
-	touch ${STAGING_LIBEXECDIR}/kf6/kconf_update
-	ln -sf ${STAGING_LIBEXECDIR_NATIVE}/kf6/kconfig_compiler_kf6 ${STAGING_LIBEXECDIR}/kf6
-}
 
 FILES:${PN} += "${libdir}/plugins ${datadir}"
 

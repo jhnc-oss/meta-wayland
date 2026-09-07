@@ -11,7 +11,6 @@ DEPENDS = " \
     qttools-native \
     extra-cmake-modules \
     libxkbcommon \
-    kconfig-native \
     kcoreaddons \
     kguiaddons \
     ki18n \
@@ -34,17 +33,7 @@ DEPENDS = " \
     kfilemetadata \
 "
 
-inherit qt6-cmake gettext mime mime-xdg
-
-do_configure:prepend() {
-	# cmake checks whether these files are present. We do not provide them in sysroot,
-	# but at least they are included in the package -> just touch the files to avoid errors.
-	mkdir -p ${STAGING_LIBEXECDIR}/kf6
-	touch ${STAGING_LIBEXECDIR}/kf6/kconf_update
-	touch ${STAGING_LIBEXECDIR}/kf6/kcmdesktopfilegenerator
-	# dolphin indeed wants to use kconfig_compiler_kf6 -> create a link instead of touch
-	ln -sf ${STAGING_LIBEXECDIR_NATIVE}/kf6/kconfig_compiler_kf6 ${STAGING_LIBEXECDIR}/kf6
-}
+inherit kf6 gettext mime mime-xdg
 
 FILES:${PN} += " \
 	${libdir}/kconf_update_bin \
