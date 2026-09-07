@@ -78,7 +78,7 @@ DEPENDS = " \
 
 inherit qt6-cmake gettext pkgconfig mime-xdg
 
-EXTRA_OECMAKE += "-DBUILD_TESTING=OFF -DWITH_X11=OFF"
+EXTRA_OECMAKE += "-DBUILD_TESTING=OFF -DWITH_X11=OFF -DINSTALL_SDDM_WAYLAND_SESSION=ON"
 
 do_configure:prepend() {
 	# cmake checks whether these files are present. We do not provide them in sysroot,
@@ -96,7 +96,7 @@ do_install:append() {
         sed -i 's:${STAGING_DIR_NATIVE}::' ${D}${datadir}/kconf_update/migrate-calendar-to-plugin-id.py
 }
 
-FILES:${PN} += " ${datadir} ${libdir}"
+FILES:${PN} += " ${datadir} ${libdir} ${nonarch_libdir}/sddm"
 FILES:${PN}-dev = "${includedir} ${libdir}/cmake "
 RDEPENDS:${PN} += "kconfig"
 
