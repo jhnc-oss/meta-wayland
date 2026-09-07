@@ -28,7 +28,10 @@ DEPENDS = " \
 
 inherit qt6-cmake gettext mime-xdg
 
-EXTRA_OECMAKE += "-DBUILD_TESTING=OFF -DBUILD_DOC=OFF -DWITH_X11=OFF"
+PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'x11', d)}"
+PACKAGECONFIG[x11] = "-DWITH_X11=ON,-DWITH_X11=OFF,libx11"
+
+EXTRA_OECMAKE += "-DBUILD_TESTING=OFF -DBUILD_DOC=OFF"
 
 do_configure:prepend() {
 	mkdir -p ${STAGING_LIBEXECDIR}/kf6

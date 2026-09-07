@@ -37,10 +37,12 @@ DEPENDS = " \
 
 inherit qt6-cmake gettext pkgconfig mime
 
+PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'x11', d)}"
+PACKAGECONFIG[x11] = "-DWITHOUT_X11=OFF,-DWITHOUT_X11=ON,libx11 libxcursor"
+
 EXTRA_OECMAKE += " \
     -DBUILD_TESTING=OFF \
     -DBUILD_DOC=OFF \
-    -DWITHOUT_X11=ON \
     -DCMAKE_DISABLE_FIND_PACKAGE_Samba=ON \
     -DCMAKE_DISABLE_FIND_PACKAGE_KExiv2Qt6=ON \
     -DCMAKE_DISABLE_FIND_PACKAGE_OpenEXR=ON \

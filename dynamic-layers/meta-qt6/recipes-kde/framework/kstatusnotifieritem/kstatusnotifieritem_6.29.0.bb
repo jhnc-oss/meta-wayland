@@ -20,5 +20,6 @@ inherit qt6-cmake pkgconfig
 
 export LLVM_INSTALL_DIR = "${STAGING_DIR_NATIVE}${prefix_native}"
 
-EXTRA_OECMAKE += "-DWITHOUT_X11=ON"
+PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'x11', d)}"
+PACKAGECONFIG[x11] = "-DWITHOUT_X11=OFF,-DWITHOUT_X11=ON,libx11"
 FILES:${PN} += "${datadir} ${PYTHON_SITEPACKAGES_DIR}"

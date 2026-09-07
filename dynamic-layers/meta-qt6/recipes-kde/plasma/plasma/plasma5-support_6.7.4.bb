@@ -28,7 +28,10 @@ DEPENDS = " \
 
 inherit qt6-cmake gettext pkgconfig
 
-EXTRA_OECMAKE = "-DBUILD_TESTING=OFF -DWITH_X11=OFF"
+PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'x11', d)}"
+PACKAGECONFIG[x11] = "-DWITH_X11=ON,-DWITH_X11=OFF,libx11"
+
+EXTRA_OECMAKE = "-DBUILD_TESTING=OFF"
 
 do_configure:prepend() {
 	# cmake checks whether these files are present. We do not provide them in sysroot,

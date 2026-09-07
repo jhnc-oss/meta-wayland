@@ -4,7 +4,6 @@ LICENSE = "GPL-2.0-or-later"
 LIC_FILES_CHKSUM += "file://LICENSES/GPL-2.0-or-later.txt;md5=9e2385fe012386d34dcc5c9863070881"
 
 SRC_URI = "git://invent.kde.org/plasma/kscreen.git;protocol=https;nobranch=1"
-SRC_URI += "file://0001-osd.cpp-disable-x11.patch"
 SRCREV = "d8d71db5e2f5ac25e3de75d0476b7701b7cbaea8"
 
 DEPENDS = " \
@@ -36,7 +35,10 @@ DEPENDS = " \
 
 inherit qt6-cmake gettext
 
-EXTRA_OECMAKE += "-DBUILD_TESTING=OFF -DWITH_X11=OFF"
+PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'x11', d)}"
+PACKAGECONFIG[x11] = "-DWITH_X11=ON,-DWITH_X11=OFF,libx11 libxcb xcb-util"
+
+EXTRA_OECMAKE += "-DBUILD_TESTING=OFF"
 
 do_configure:prepend() {
 	# cmake checks whether these files are present. We do not provide them in sysroot,

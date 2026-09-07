@@ -4,7 +4,6 @@ LICENSE = "GPL-2.0-only"
 LIC_FILES_CHKSUM += "file://LICENSES/GPL-2.0-only.txt;md5=93e64b4a83c7e441e48bbdeeea05c977"
 
 SRC_URI = "git://invent.kde.org/plasma/libplasma.git;protocol=https;nobranch=1"
-SRC_URI += "file://0001-fix-compile-if-kwindowsystem-was-built-without-x11.patch"
 SRCREV = "b1e346733ff527433e1849eb85305580d10e712a"
 
 DEPENDS = " \
@@ -42,7 +41,10 @@ do_configure:prepend() {
 	touch ${STAGING_BINDIR}/kpackagetool6
 }
 
-EXTRA_OECMAKE += "-DWITHOUT_X11=ON -DBUILD_TESTING=OFF"
+PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'x11', d)}"
+PACKAGECONFIG[x11] = "-DWITHOUT_X11=OFF,-DWITHOUT_X11=ON,libx11 libxcb libxrender"
+
+EXTRA_OECMAKE += "-DBUILD_TESTING=OFF"
 
 FILES:${PN} += "${libdir}/qml ${libdir}/plugins ${datadir}"
 

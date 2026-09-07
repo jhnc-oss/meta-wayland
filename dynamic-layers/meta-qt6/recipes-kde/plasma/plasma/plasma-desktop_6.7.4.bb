@@ -60,6 +60,9 @@ DEPENDS = " \
 
 inherit qt6-cmake gettext pkgconfig
 
+PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'x11', d)}"
+PACKAGECONFIG[x11] = ",-DCMAKE_DISABLE_FIND_PACKAGE_X11=ON,libx11 libxcb xcb-util-image"
+
 EXTRA_OECMAKE = "-DBUILD_TESTING=OFF -DBUILD_DOC=OFF -DBUILD_KCM_MOUSE_X11=OFF -DBUILD_KCM_TOUCHPAD_X11=OFF"
 
 do_configure:prepend() {

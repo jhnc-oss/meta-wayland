@@ -78,7 +78,10 @@ DEPENDS = " \
 
 inherit qt6-cmake gettext pkgconfig mime-xdg
 
-EXTRA_OECMAKE += "-DBUILD_TESTING=OFF -DWITH_X11=OFF -DINSTALL_SDDM_WAYLAND_SESSION=ON"
+PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'x11', d)}"
+PACKAGECONFIG[x11] = "-DWITH_X11=ON,-DWITH_X11=OFF,libx11 libxcb libice libsm libxau libxcursor libxfixes libxft libxrender libxtst xcb-util xcb-util-cursor xcb-util-image"
+
+EXTRA_OECMAKE += "-DBUILD_TESTING=OFF -DWITH_X11_SESSION=OFF -DINSTALL_SDDM_WAYLAND_SESSION=ON"
 
 do_configure:prepend() {
 	# cmake checks whether these files are present. We do not provide them in sysroot,

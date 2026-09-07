@@ -17,6 +17,9 @@ DEPENDS = " \
 
 inherit qt6-cmake
 
-EXTRA_OECMAKE += "-DHAVE_X11=OFF -DHAVE_WAYLAND=ON"
+PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'x11', d)}"
+PACKAGECONFIG[x11] = "-DWITH_X11=ON,-DWITH_X11=OFF,libx11 libxcb libxext libxscrnsaver"
+
+EXTRA_OECMAKE += "-DHAVE_WAYLAND=ON"
 
 FILES:${PN} += "${libdir} ${datadir}"

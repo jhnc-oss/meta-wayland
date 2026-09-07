@@ -40,7 +40,8 @@ do_configure:prepend() {
 	touch ${STAGING_LIBEXECDIR}/kf6/kconf_update
 }
 
-EXTRA_OECMAKE += "-DWITH_X11=OFF"
+PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'x11', d)}"
+PACKAGECONFIG[x11] = "-DWITH_X11=ON,-DWITH_X11=OFF"
 
 
 FILES:${PN} += "${libdir}/plugins ${libdir}/libkuriikwsfiltereng_private.so ${datadir}"

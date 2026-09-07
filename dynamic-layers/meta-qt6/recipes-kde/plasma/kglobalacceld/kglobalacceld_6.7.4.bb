@@ -23,7 +23,10 @@ DEPENDS = " \
 
 inherit qt6-cmake
 
-EXTRA_OECMAKE += "-DBUILD_TESTING=OFF -DWITH_X11=OFF"
+PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'x11', d)}"
+PACKAGECONFIG[x11] = "-DWITH_X11=ON,-DWITH_X11=OFF,libxcb xcb-util-keysyms"
+
+EXTRA_OECMAKE += "-DBUILD_TESTING=OFF"
 
 do_configure:prepend() {
 	# cmake checks whether these files are present. We do not provide them in sysroot,
@@ -33,6 +36,6 @@ do_configure:prepend() {
 	touch ${STAGING_LIBEXECDIR}/kf6/kconfig_compiler_kf6
 }
 
-FILES:${PN} += "${systemd_user_unitdir} ${datadir}"
+FILES:${PN} += "${libdir}/plugins ${systemd_user_unitdir} ${datadir}"
 
 RDEPENDS:${PN} += "kconfig"

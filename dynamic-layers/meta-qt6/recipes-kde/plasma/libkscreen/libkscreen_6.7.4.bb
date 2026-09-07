@@ -25,6 +25,9 @@ do_configure:prepend() {
 	touch ${STAGING_BINDIR}/kpackagetool6
 }
 
-EXTRA_OECMAKE += "-DWITHOUT_X11=ON -DBUILD_TESTING=OFF"
+PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'x11', d)}"
+PACKAGECONFIG[x11] = ",-DCMAKE_DISABLE_FIND_PACKAGE_X11=ON,libx11 libxcb"
+
+EXTRA_OECMAKE += "-DBUILD_TESTING=OFF"
 
 FILES:${PN} += "${libdir} ${datadir} ${systemd_user_unitdir}"

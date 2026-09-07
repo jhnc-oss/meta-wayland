@@ -28,7 +28,7 @@ do_configure:prepend() {
 	touch ${STAGING_BINDIR}/kpackagetool6
 }
 
-EXTRA_OECMAKE += "-DWITHOUT_X11=ON -DBUILD_TESTING=OFF"
+EXTRA_OECMAKE += "-DBUILD_TESTING=OFF"
 
 FILES:${PN} += "${libdir}/qml ${libdir}/plugins ${datadir}"
 

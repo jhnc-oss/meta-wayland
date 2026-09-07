@@ -4,7 +4,6 @@ LICENSE = "BSD-2-Clause"
 LIC_FILES_CHKSUM += "file://LICENSES/BSD-2-Clause.txt;md5=63d6ee386b8aaba70b1bf15a79ca50f2"
 
 SRC_URI = "git://invent.kde.org/system/dolphin.git;protocol=https;nobranch=1"
-SRC_URI += "file://0001-CMakeLists.txt-disable-x11.patch"
 SRCREV = "2131cb786aac6bb09cc6638a8da50660f97dacc0"
 
 DEPENDS = " \

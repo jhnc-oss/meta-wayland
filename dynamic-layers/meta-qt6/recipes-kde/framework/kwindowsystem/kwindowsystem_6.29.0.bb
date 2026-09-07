@@ -13,11 +13,12 @@ DEPENDS = " \
 	qttools-native \
 	qtquick3d \
 	plasma-wayland-protocols \
-	libx11 \
-	libxcb \
 "
 
 inherit cmake pkgconfig
+
+PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'x11', d)}"
+PACKAGECONFIG[x11] = "-DKWINDOWSYSTEM_X11=ON,-DKWINDOWSYSTEM_X11=OFF,libx11 libxcb xcb-util-keysyms xcb-util-wm"
 
 EXTRA_OECMAKE += "-DQT_HOST_PATH:PATH=${RECIPE_SYSROOT_NATIVE}${prefix_native}"
 
