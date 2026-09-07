@@ -27,21 +27,7 @@ DEPENDS = " \
 
 inherit qt6-cmake gettext
 
-replace_llvm_config_path() {
-    if [ -f "${STAGING_BINDIR_CROSS}/llvm-config" ]; then
-        sed -i \
-            's#@LLVM_CONFIG_PATH@#${STAGING_BINDIR_NATIVE}/llvm-config#g' \
-            ${STAGING_BINDIR_CROSS}/llvm-config
-    fi
-}
-
-do_configure:prepend:class-target() {
-    replace_llvm_config_path
-}
-
-do_configure:prepend:class-nativesdk() {
-    replace_llvm_config_path
-}
+export LLVM_INSTALL_DIR = "${STAGING_DIR_NATIVE}${prefix_native}"
 
 # cmake checks whether these files are present. We do not provide them in sysroot,
 # but at least they are included in the package -> just touch the files to avoid errors.
