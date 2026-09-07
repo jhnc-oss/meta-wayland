@@ -8,20 +8,20 @@ SRC_URI += "file://0001-src-CMakeLists.txt.patch"
 SRCREV = "8ce411949768ea1d41ab090cb9a9f3089ee73233"
 
 DEPENDS = " \
-	clang-native \
 	qtbase \
 	qttools-native \
 	extra-cmake-modules \
 	kconfig \
 	plasma-wayland-protocols \
-	python3-shiboken6-generator-native \
-	python3-pyside6 \
-	python3-build-native \
+	util-linux \
 "
+
+DEPENDS:append:class-target = " clang-native python3-shiboken6-generator-native python3-pyside6 python3-build-native"
 
 inherit qt6-cmake pkgconfig mime-xdg mime
 
 EXTRA_OECMAKE += "-DBUILD_TESTING=OFF"
+EXTRA_OECMAKE:append:class-native = " -DBUILD_PYTHON_BINDINGS=OFF"
 
 export LLVM_INSTALL_DIR = "${STAGING_DIR_NATIVE}${prefix_native}"
 
