@@ -1,1 +1,1 @@
-PACKAGECONFIG:append:class-target = " cups"
+PACKAGECONFIG:append:class-target = " cups sql-sqlite"
