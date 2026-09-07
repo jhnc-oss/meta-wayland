@@ -16,7 +16,7 @@ DEPENDS = " \
 inherit qt6-cmake pkgconfig
 
 do_install:append() {
-    sed -i 's:${STAGING_INCDIR}:${includedir}:' ${D}${libdir}/cmake/KF6ModemManagerQt/KF6ModemManagerQtTargets.cmake
+    sed -i "s:${STAGING_INCDIR}:\${_IMPORT_PREFIX}/include:" ${D}${libdir}/cmake/KF6ModemManagerQt/KF6ModemManagerQtTargets.cmake
 }
 
 FILES:${PN} += "${libdir}/qml  ${datadir}"
