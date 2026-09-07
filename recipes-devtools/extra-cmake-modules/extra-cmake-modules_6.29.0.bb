@@ -6,6 +6,7 @@ LIC_FILES_CHKSUM += "file://LICENSES/BSD-2-Clause.txt;md5=63d6ee386b8aaba70b1bf1
 LIC_FILES_CHKSUM += "file://LICENSES/BSD-3-Clause.txt;md5=954f4d71a37096249f837652a7f586c0"
 
 SRC_URI = "git://invent.kde.org/frameworks/extra-cmake-modules.git;protocol=https;nobranch=1"
+SRC_URI += "file://0001-ECMGeneratePythonBindings-derive-the-module-suffix-from-Shiboken6.patch"
 SRCREV = "42f0170593df4920068946494c6978ca7005217b"
 
 inherit cmake

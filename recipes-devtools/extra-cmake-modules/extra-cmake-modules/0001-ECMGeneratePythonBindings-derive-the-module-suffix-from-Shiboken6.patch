@@ -1,0 +1,53 @@
+From 062bfec50db81bf529aeedd9b9945247dcb10449 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Mon, 7 Sep 2026 09:38:39 +0200
+Subject: [PATCH] ECMGeneratePythonBindings: derive the module suffix from
+ Shiboken6
+
+The bindings module was named "<Package>.${Python3_SOABI}" unconditionally.
+That is wrong in two cases:
+
+- PySide6 and Shiboken6 built with the limited API compile the bindings
+  with Py_LIMITED_API as well, so the module should carry the ".abi3"
+  suffix like the PySide6 modules do.
+- When cross compiling, FindPython3 does not query the interpreter and
+  Python3_SOABI ends up empty, which produces files like
+  "KCoreAddons..so" that Python refuses to import.
+
+Shiboken6Config exports SHIBOKEN_PYTHON_EXTENSION_SUFFIX with the suffix
+its own modules use. Prefer that, fall back to Python3_SOABI and finally
+to no suffix at all.
+
+Upstream-Status: Pending
+---
+ modules/ECMGeneratePythonBindings.cmake | 13 +++++++++++--
+ 1 file changed, 11 insertions(+), 2 deletions(-)
+
+diff --git a/modules/ECMGeneratePythonBindings.cmake b/modules/ECMGeneratePythonBindings.cmake
+index 4fce392..e49cb7d 100644
+--- a/modules/ECMGeneratePythonBindings.cmake
++++ b/modules/ECMGeneratePythonBindings.cmake
+@@ -191,9 +191,18 @@ function(ecm_generate_python_bindings)
+         )
+     endif()
+ 
+-    # Adjust the name of generated module.
++    # Adjust the name of generated module. Use the extension suffix Shiboken6
++    # was built with, which is ".abi3" when PySide6 uses the limited API.
++    # Python3_SOABI does not reflect that and it is empty when cross compiling.
++    if (SHIBOKEN_PYTHON_EXTENSION_SUFFIX)
++        set(module_suffix "${SHIBOKEN_PYTHON_EXTENSION_SUFFIX}")
++    elseif (Python3_SOABI)
++        set(module_suffix ".${Python3_SOABI}")
++    else()
++        set(module_suffix "")
++    endif()
+     set_property(TARGET ${PB_PACKAGE_NAME} PROPERTY PREFIX "")
+-    set_property(TARGET ${PB_PACKAGE_NAME} PROPERTY LIBRARY_OUTPUT_NAME "${PB_PACKAGE_NAME}.${Python3_SOABI}")
++    set_property(TARGET ${PB_PACKAGE_NAME} PROPERTY LIBRARY_OUTPUT_NAME "${PB_PACKAGE_NAME}${module_suffix}")
+     set_property(TARGET ${PB_PACKAGE_NAME} PROPERTY LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/${PB_PACKAGE_NAME}/build/lib)
+ 
+     # Build Python Wheel
+-- 
+2.55.0
+
