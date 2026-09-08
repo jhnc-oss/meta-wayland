@@ -19,7 +19,7 @@ DEPENDS = " \
 RRECOMMENDS:${PN} = "ncurses-terminfo"
 
 SRC_URI = " \
-	git://codeberg.org/dnkl/foot.git;protocol=https;branch=master \
+	git://codeberg.org/dnkl/foot.git;protocol=https;branch=master;tag=1.27.0 \
 	file://0001-generate-version.sh-dont-try-to-fetch-version-from-g.patch \
 "
 

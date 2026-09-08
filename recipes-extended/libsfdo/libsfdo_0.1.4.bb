@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=896bac785747ebab7d4e9d693e517573"
 
 inherit meson pkgconfig
 
-SRC_URI = "git://gitlab.freedesktop.org/vyivel/libsfdo.git;protocol=https;nobranch=1"
+SRC_URI = "git://gitlab.freedesktop.org/vyivel/libsfdo.git;protocol=https;nobranch=1;tag=v0.1.4"
 
 SRCREV = "82115b19317f065ea3c4f52e62549bec81521203"
 

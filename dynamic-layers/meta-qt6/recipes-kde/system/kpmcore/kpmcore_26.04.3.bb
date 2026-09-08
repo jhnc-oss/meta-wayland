@@ -8,7 +8,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/MIT.txt;md5=38aa75cf4c4c87f018227d5ec9638d75 \
 "
 
-SRC_URI = "git://invent.kde.org/system/kpmcore.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/system/kpmcore.git;protocol=https;nobranch=1;tag=v26.04.3"
 SRCREV = "6339fabef0a795729cf03136a93bbb3b240575db"
 
 DEPENDS = " \

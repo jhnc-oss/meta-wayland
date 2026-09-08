@@ -8,7 +8,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/LGPL-2.1-or-later.txt;md5=2a4f4fd2128ea2f65047ee63fbca9f68 \
 "
 
-SRC_URI = "git://invent.kde.org/frameworks/sonnet.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/frameworks/sonnet.git;protocol=https;nobranch=1;tag=v6.29.0"
 SRCREV = "6a2c185fc05dcfca3f97dd239b6336b2d8940aaf"
 
 DEPENDS = " \

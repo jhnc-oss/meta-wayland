@@ -12,7 +12,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/LicenseRef-KDE-Accepted-LGPL.txt;md5=e4b79a181b6483b37d39a27f4d75e60a \
 "
 
-SRC_URI = "git://invent.kde.org/plasma/milou.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/plasma/milou.git;protocol=https;nobranch=1;tag=v6.7.4"
 SRCREV = "4a1b2356d9b313223b4bb9e6abd36209cc329345"
 
 DEPENDS = " \

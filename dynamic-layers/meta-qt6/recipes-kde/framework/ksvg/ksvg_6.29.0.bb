@@ -18,7 +18,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/Qt-LGPL-exception-1.1.txt;md5=38d22f987f077611a625f5729dd0fd39 \
 "
 
-SRC_URI = "git://invent.kde.org/frameworks/ksvg.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/frameworks/ksvg.git;protocol=https;nobranch=1;tag=v6.29.0"
 SRCREV = "d7cc8c0bfffe058b2b669da7cf4a83ccb44d20f8"
 
 DEPENDS = " \

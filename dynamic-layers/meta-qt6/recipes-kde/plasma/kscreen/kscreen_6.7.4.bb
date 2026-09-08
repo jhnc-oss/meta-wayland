@@ -10,7 +10,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/LicenseRef-KDE-Accepted-GPL.txt;md5=b4c280013bbbadfbe92219498dc5228c \
 "
 
-SRC_URI = "git://invent.kde.org/plasma/kscreen.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/plasma/kscreen.git;protocol=https;nobranch=1;tag=v6.7.4"
 SRCREV = "d8d71db5e2f5ac25e3de75d0476b7701b7cbaea8"
 
 DEPENDS = " \

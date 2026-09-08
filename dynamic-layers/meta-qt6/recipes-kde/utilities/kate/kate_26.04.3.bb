@@ -9,7 +9,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/MIT.txt;md5=38aa75cf4c4c87f018227d5ec9638d75 \
 "
 
-SRC_URI = "git://invent.kde.org/utilities/kate.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/utilities/kate.git;protocol=https;nobranch=1;tag=v26.04.3"
 SRCREV = "f4c3ee85ec006dca2a8e9a740be031fade9c7c38"
 
 DEPENDS = " \

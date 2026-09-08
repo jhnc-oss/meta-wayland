@@ -16,7 +16,7 @@ DEPENDS += " \
 "
 
 SRC_URI = " \
-	git://github.com/wmww/gtk4-layer-shell.git;protocol=https;branch=main \
+	git://github.com/wmww/gtk4-layer-shell.git;protocol=https;branch=main;tag=v1.3.0 \
 "
 
 SRCREV = "1c963c51514581c41b9bdae08cdf69171265cdda"

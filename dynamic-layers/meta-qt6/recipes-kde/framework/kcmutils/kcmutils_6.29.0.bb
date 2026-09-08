@@ -12,7 +12,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/LicenseRef-KDE-Accepted-LGPL.txt;md5=6a2eced623a7c9d0c8996ce24917d006 \
 "
 
-SRC_URI = "git://invent.kde.org/frameworks/kcmutils.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/frameworks/kcmutils.git;protocol=https;nobranch=1;tag=v6.29.0"
 SRCREV = "ec2a6709df71b4c0145e90047294df4575f5ccc2"
 
 DEPENDS = " \

@@ -3,7 +3,7 @@ HOMEPAGE = "https://quickshell.org"
 LICENSE = "LGPL-3.0-only"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=3000208d539ec061b899bce1d9ce9404"
 
-SRC_URI = "git://github.com/quickshell-mirror/quickshell.git;protocol=https;nobranch=1"
+SRC_URI = "git://github.com/quickshell-mirror/quickshell.git;protocol=https;nobranch=1;tag=v0.3.0"
 SRC_URI += "file://0001-src-build-build.hpp.in-dont-include-COMPILE_FLAGS.patch"
 SRCREV = "59e9c47b0eb48a9e4bcf9631fa062ee939bd2e83"
 

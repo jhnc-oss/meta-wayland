@@ -20,7 +20,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/MIT.txt;md5=7dda4e90ded66ab88b86f76169f28663 \
 "
 
-SRC_URI = "git://invent.kde.org/plasma/kdeplasma-addons.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/plasma/kdeplasma-addons.git;protocol=https;nobranch=1;tag=v6.7.4"
 SRC_URI += "file://0001-make-the-Rust-based-kameleon-qmk-helper-optional.patch"
 SRCREV = "57ab0e90662dd258bf35d07c1c0503a260f7d16d"
 

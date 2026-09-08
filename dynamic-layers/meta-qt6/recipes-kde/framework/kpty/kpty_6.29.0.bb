@@ -8,7 +8,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/LGPL-2.0-or-later.txt;md5=6d2d9952d88b50a51a5c73dc431d06c7 \
 "
 
-SRC_URI = "git://invent.kde.org/frameworks/kpty.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/frameworks/kpty.git;protocol=https;nobranch=1;tag=v6.29.0"
 SRCREV = "96fb3da14c9ae05cf3446a067a0cd24aea68ed5e"
 
 DEPENDS = " \

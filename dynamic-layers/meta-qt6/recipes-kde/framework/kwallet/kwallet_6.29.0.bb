@@ -10,7 +10,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/LGPL-3.0-or-later.txt;md5=c51d3eef3be114124d11349ca0d7e117 \
 "
 
-SRC_URI = "git://invent.kde.org/frameworks/kwallet.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/frameworks/kwallet.git;protocol=https;nobranch=1;tag=v6.29.0"
 SRCREV = "5b54d22174cf8f31cebd2bc6e83096beedbbe738"
 
 DEPENDS = " \

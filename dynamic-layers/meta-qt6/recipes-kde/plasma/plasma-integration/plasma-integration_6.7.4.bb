@@ -15,7 +15,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/LicenseRef-Qt-Commercial.txt;md5=df490d93422a5e93c436cdb31a6c4e74 \
 "
 
-SRC_URI = "git://invent.kde.org/plasma/plasma-integration.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/plasma/plasma-integration.git;protocol=https;nobranch=1;tag=v6.7.4"
 SRCREV = "eeb0f503466582ad7b68d7e7c7dd365411db5696"
 
 DEPENDS = " \

@@ -4,7 +4,7 @@ LICENSE = "GPL-3.0-only"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=1ebbd3e34237af26da5dc08a4e440464"
 
 SRC_URI += " \
-    git://git.sr.ht/~kennylevinsen/greetd;protocol=https;nobranch=1 \
+    git://git.sr.ht/~kennylevinsen/greetd;protocol=https;nobranch=1;tag=0.10.3 \
     file://greetd.pam \
 "
 SRCREV = "08efe60feceea8c81f9571c666880ff1e1c2e3ff"

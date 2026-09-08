@@ -19,7 +19,7 @@ inherit qt6-cmake
 
 EXTRA_OECMAKE += "-DUSE_QT6=ON -DCMAKE_POLICY_VERSION_MINIMUM=3.5"
 
-SRC_URI = "git://github.com/FedoraQt/QGnomePlatform.git;protocol=https;nobranch=1"
+SRC_URI = "git://github.com/FedoraQt/QGnomePlatform.git;protocol=https;nobranch=1;tag=0.9.2"
 
 SRCREV = "71f1fe577b5b665bc19c7ab3736ffe8387fa52ee"
 

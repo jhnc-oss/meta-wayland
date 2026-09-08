@@ -16,7 +16,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/bzip2-1.0.6.txt;md5=f1d2fdc6b1d232981a8007aa1854d24d \
 "
 
-SRC_URI = "git://invent.kde.org/frameworks/baloo.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/frameworks/baloo.git;protocol=https;nobranch=1;tag=v6.29.0"
 SRCREV = "99dd4609948287da70168408da1fc596093c3980"
 
 DEPENDS = " \

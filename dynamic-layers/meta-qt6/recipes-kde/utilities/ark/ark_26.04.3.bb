@@ -9,7 +9,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/MIT.txt;md5=4dd71a82d66fd9e3ca0cc65b8be370c0 \
 "
 
-SRC_URI = "git://invent.kde.org/utilities/ark.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/utilities/ark.git;protocol=https;nobranch=1;tag=v26.04.3"
 SRCREV = "8fa2f61ec11d32c43d9366ee7ea67e21e5f446d1"
 
 DEPENDS = " \

@@ -12,7 +12,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/MIT.txt;md5=38aa75cf4c4c87f018227d5ec9638d75 \
 "
 
-SRC_URI = "git://invent.kde.org/frameworks/syntax-highlighting.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/frameworks/syntax-highlighting.git;protocol=https;nobranch=1;tag=v6.29.0"
 SRCREV = "fc04c764cf9a0317bb48d207ee7bb2de2c902eb8"
 
 DEPENDS = " \

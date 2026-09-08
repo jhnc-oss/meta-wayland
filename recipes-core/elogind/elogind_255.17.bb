@@ -5,7 +5,7 @@ SECTION = "base/shell"
 LICENSE = "LGPL-2.1-only"
 LIC_FILES_CHKSUM = "file://LICENSE.LGPL2.1;md5=4fbd65380cdd255951079008b364516c"
 
-SRC_URI = "git://github.com/elogind/elogind.git;protocol=https;nobranch=1"
+SRC_URI = "git://github.com/elogind/elogind.git;protocol=https;nobranch=1;tag=v255.17"
 
 DEPENDS += " \
 	acl dbus \

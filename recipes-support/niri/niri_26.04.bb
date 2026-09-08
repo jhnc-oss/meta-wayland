@@ -3,7 +3,7 @@ HOMEPAGE = "https://github.com/YaLTeR/niri"
 LICENSE = "GPL-3.0-only"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=5b4473596678d62d9d83096273422c8c"
 
-SRC_URI += " git://github.com/YaLTeR/niri.git;protocol=https;branch=main;lfs=0"
+SRC_URI += " git://github.com/YaLTeR/niri.git;protocol=https;branch=main;lfs=0;tag=v26.04"
 SRCREV = "8ed0da44d974c32c6877d2f4630c314da0717ecb"
 
 DEPENDS = " \

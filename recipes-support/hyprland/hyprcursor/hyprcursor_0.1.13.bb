@@ -4,7 +4,7 @@ LICENSE = "BSD-3-Clause"
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=778ddc598b3f2a2da3657dda514da983"
 
-SRC_URI = "git://github.com/hyprwm/hyprcursor.git;protocol=https;branch=main"
+SRC_URI = "git://github.com/hyprwm/hyprcursor.git;protocol=https;branch=main;tag=v0.1.13"
 
 DEPENDS = "cairo librsvg libzip hyprlang tomlplusplus"
 

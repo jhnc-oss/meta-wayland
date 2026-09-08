@@ -10,7 +10,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/MIT.txt;md5=38aa75cf4c4c87f018227d5ec9638d75 \
 "
 
-SRC_URI = "git://invent.kde.org/frameworks/kquickcharts.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/frameworks/kquickcharts.git;protocol=https;nobranch=1;tag=v6.29.0"
 SRCREV = "e6b2abf27910126e7c0142cd33727c529eb164df"
 
 DEPENDS = " \

@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/GPL-2.0-or-later.txt;md5=9e2385fe012386d34dcc5c9863070881 \
 "
 
-SRC_URI = "git://invent.kde.org/plasma/polkit-kde-agent-1.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/plasma/polkit-kde-agent-1.git;protocol=https;nobranch=1;tag=v6.7.4"
 SRCREV = "d09f12b04e88b6c4ac093c5f2b62ea34db25e299"
 
 DEPENDS = " \

@@ -13,7 +13,7 @@ LIC_FILES_CHKSUM = " \
 "
 COMPATIBLE_HOST:class-target = "null"
 
-SRC_URI = "git://invent.kde.org/frameworks/kcmutils.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/frameworks/kcmutils.git;protocol=https;nobranch=1;tag=v6.29.0"
 SRCREV = "ec2a6709df71b4c0145e90047294df4575f5ccc2"
 
 DEPENDS = "qtbase qttools-native extra-cmake-modules"

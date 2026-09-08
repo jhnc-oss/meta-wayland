@@ -3,7 +3,7 @@ HOMEPAGE = "https://hyprland.org/"
 LICENSE = "BSD-3-Clause"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=936078e4e67b0e1e1bd1e862d4ffbc25"
 
-SRC_URI = "git://github.com/hyprwm/hyprpicker.git;protocol=https;branch=main"
+SRC_URI = "git://github.com/hyprwm/hyprpicker.git;protocol=https;branch=main;tag=v0.4.7"
 SRCREV = "8c163ce9b8a40f85babe4dd6e23a238787351164"
 
 DEPENDS = " \

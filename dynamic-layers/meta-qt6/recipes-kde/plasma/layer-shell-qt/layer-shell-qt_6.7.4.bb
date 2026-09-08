@@ -11,7 +11,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/MIT.txt;md5=7dda4e90ded66ab88b86f76169f28663 \
 "
 
-SRC_URI = "git://invent.kde.org/plasma/layer-shell-qt.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/plasma/layer-shell-qt.git;protocol=https;nobranch=1;tag=v6.7.4"
 SRCREV = "1613a5f61150192d8187989466d4ff961f4ce2c4"
 
 DEPENDS = " \

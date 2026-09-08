@@ -37,7 +37,7 @@ PACKAGECONFIG ?= " \
 	libinput \
 "
 
-SRC_URI = "git://gitlab.freedesktop.org/wlroots/wlroots.git;branch=0.16;protocol=https"
+SRC_URI = "git://gitlab.freedesktop.org/wlroots/wlroots.git;branch=0.16;protocol=https;tag=0.16.2"
 SRCREV = "0a32b5a74db06a27bee55a47205951bb277a9657"
 
 inherit meson pkgconfig features_check

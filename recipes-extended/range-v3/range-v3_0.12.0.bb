@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=5dc23d5193abaedb6e42f05650004624"
 
 inherit cmake pkgconfig
 
-SRC_URI = "git://github.com/ericniebler/range-v3.git;protocol=https;branch=master"
+SRC_URI = "git://github.com/ericniebler/range-v3.git;protocol=https;branch=master;tag=0.12.0"
 SRCREV = "a81477931a8aa2ad025c6bda0609f38e09e4d7ec"
 
 CXXFLAGS += "-Wno-maybe-uninitialized"

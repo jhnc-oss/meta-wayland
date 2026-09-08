@@ -19,7 +19,7 @@ DEPENDS = " \
 inherit meson pkgconfig features_check manpages
 
 SRC_URI = " \
-	git://github.com/swaywm/swaylock.git;protocol=https;branch=master \
+	git://github.com/swaywm/swaylock.git;protocol=https;branch=master;tag=v1.8.5 \
 "
 
 SRCREV = "1a4c472c11ee0354e5a689e33fad4ecce533ddc3"

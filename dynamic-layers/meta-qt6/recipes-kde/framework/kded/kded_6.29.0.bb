@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/LGPL-2.0-or-later.txt;md5=6d2d9952d88b50a51a5c73dc431d06c7 \
 "
 
-SRC_URI = "git://invent.kde.org/frameworks/kded.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/frameworks/kded.git;protocol=https;nobranch=1;tag=v6.29.0"
 SRC_URI += "file://0001-src-CMakeLists.txt-fix-runtime-path.patch"
 SRCREV = "f38e14e0ced0312231150aaec922417eda8aed42"
 

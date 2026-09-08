@@ -7,7 +7,7 @@ inherit cmake pkgconfig
 
 DEPENDS += "brotli"
 
-SRC_URI = "git://github.com/google/woff2.git;protocol=https;branch=master"
+SRC_URI = "git://github.com/google/woff2.git;protocol=https;branch=master;tag=v1.0.2"
 SR_URI += "file://0001-include-woff2-output.h-include-missing-cstdint.patch"
 SRCREV = "1bccf208bca986e53a647dfe4811322adb06ecf8"
 

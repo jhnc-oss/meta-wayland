@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=1ebbd3e34237af26da5dc08a4e440464"
 
 DEPENDS = "autoconf-native automake-native glib-2.0-native sassc-native gtk4 gtk4-layer-shell pango pulseaudio libinput"
 
-SRC_URI = "git://github.com/ErikReider/SwayOSD.git;protocol=https;branch=main"
+SRC_URI = "git://github.com/ErikReider/SwayOSD.git;protocol=https;branch=main;tag=v0.3.0"
 
 SRCREV = "6a38a0994dfaf95ed6b778cc13d360767d95f234"
 

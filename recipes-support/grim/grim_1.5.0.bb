@@ -18,7 +18,7 @@ DEPENDS += " \
 	wayland-protocols \
 "
 
-SRC_URI = "git://gitlab.freedesktop.org/emersion/grim;protocol=https;branch=master"
+SRC_URI = "git://gitlab.freedesktop.org/emersion/grim;protocol=https;branch=master;tag=v1.5.0"
 
 SRCREV = "b7a99854e46945db9f50ba8d2417ac42321173d1"
 

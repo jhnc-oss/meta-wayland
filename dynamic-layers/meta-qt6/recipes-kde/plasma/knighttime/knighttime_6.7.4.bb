@@ -13,7 +13,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/MIT.txt;md5=3912d958d00bac4a6b550f75d7c806bb \
 "
 
-SRC_URI = "git://invent.kde.org/plasma/knighttime.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/plasma/knighttime.git;protocol=https;nobranch=1;tag=v6.7.4"
 SRCREV = "bdee860f787fd1f2e1e2efe4d65ed6138eeaeb4e"
 
 DEPENDS = " \

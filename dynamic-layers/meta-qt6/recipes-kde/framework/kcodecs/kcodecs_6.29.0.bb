@@ -13,7 +13,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/MPL-1.1.txt;md5=bf952b9d390406a3cda9fb3fe9df72af \
 "
 
-SRC_URI = "git://invent.kde.org/frameworks/kcodecs.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/frameworks/kcodecs.git;protocol=https;nobranch=1;tag=v6.29.0"
 SRCREV = "8c9f6a7c144e70ad651ac5b07899a6bd5ca13f4a"
 
 DEPENDS = " \

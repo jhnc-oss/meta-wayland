@@ -8,7 +8,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/LGPL-2.0-or-later.txt;md5=6d2d9952d88b50a51a5c73dc431d06c7 \
 "
 
-SRC_URI = "git://invent.kde.org/frameworks/kholidays.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/frameworks/kholidays.git;protocol=https;nobranch=1;tag=v6.29.0"
 SRCREV = "b69bc2db2116c311514735113a3de12e6504ffc8"
 
 DEPENDS = " \

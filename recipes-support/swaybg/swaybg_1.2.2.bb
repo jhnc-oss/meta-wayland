@@ -16,7 +16,7 @@ DEPENDS = " \
             wayland-protocols \
 "
 
-SRC_URI = "git://github.com/swaywm/swaybg.git;protocol=https;branch=master"
+SRC_URI = "git://github.com/swaywm/swaybg.git;protocol=https;branch=master;tag=v1.2.2"
 
 SRCREV = "a59ea3dbe543b44177ad1b5bdb4afa1c5be9b9d2"
 

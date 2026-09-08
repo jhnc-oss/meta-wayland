@@ -12,7 +12,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/MIT.txt;md5=7dda4e90ded66ab88b86f76169f28663 \
 "
 
-SRC_URI = "git://invent.kde.org/plasma/xdg-desktop-portal-kde.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/plasma/xdg-desktop-portal-kde.git;protocol=https;nobranch=1;tag=v6.7.4"
 SRCREV = "cc3074c811a171ef910b1210214cbd9452e966aa"
 
 DEPENDS = " \

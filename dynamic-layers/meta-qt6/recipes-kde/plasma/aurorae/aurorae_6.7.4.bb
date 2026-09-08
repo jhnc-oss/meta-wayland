@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/MIT.txt;md5=e267b5203c8a34cf7f21e5a2102df564 \
 "
 
-SRC_URI = "git://invent.kde.org/plasma/aurorae.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/plasma/aurorae.git;protocol=https;nobranch=1;tag=v6.7.4"
 SRCREV = "3425c1cfc1fed00129a85b0461b6b6805cfd1835"
 
 DEPENDS = " \

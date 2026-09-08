@@ -15,7 +15,7 @@ DEPENDS = " \
 "
 
 SRC_URI = " \
-	git://codeberg.org/dnkl/fcft.git;protocol=https;branch=releases/3.3 \
+	git://codeberg.org/dnkl/fcft.git;protocol=https;branch=releases/3.3;tag=3.3.3 \
 	file://0001-generate-version.sh-dont-try-to-fetch-version-from-g.patch \
 "
 

@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = " \
     file://COPYING.DOC;md5=28d73eafa40ebd0ccdc6b37df8de10a3 \
 "
 
-SRC_URI = "git://invent.kde.org/graphics/gwenview.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/graphics/gwenview.git;protocol=https;nobranch=1;tag=v26.04.3"
 SRCREV = "e8c78de6d06b17c5f4db41caf4aa3060334cdb8f"
 
 DEPENDS = " \

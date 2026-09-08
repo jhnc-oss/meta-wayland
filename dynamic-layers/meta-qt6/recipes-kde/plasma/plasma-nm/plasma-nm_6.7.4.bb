@@ -14,7 +14,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/LicenseRef-KDE-Accepted-LGPL.txt;md5=e4b79a181b6483b37d39a27f4d75e60a \
 "
 
-SRC_URI = "git://invent.kde.org/plasma/plasma-nm.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/plasma/plasma-nm.git;protocol=https;nobranch=1;tag=v6.7.4"
 SRCREV = "b6c03fe24b30d2a963a41dd83784e36086d7257e"
 
 DEPENDS = " \

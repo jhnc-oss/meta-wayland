@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=1ebbd3e34237af26da5dc08a4e440464"
 
 inherit cmake pkgconfig
 
-SRC_URI = "git://github.com/jstkdng/ueberzugpp.git;protocol=https;branch=master"
+SRC_URI = "git://github.com/jstkdng/ueberzugpp.git;protocol=https;branch=master;tag=v2.9.10"
 SRC_URI += "file://0001-CMakeLists.txt-fix-gl-egl.patch"
 SRCREV = "9eedfdc355653fd80beed0ae1413b6a4dff38309"
 

@@ -9,7 +9,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/LicenseRef-KDE-Accepted-LGPL.txt;md5=e4b79a181b6483b37d39a27f4d75e60a \
 "
 
-SRC_URI = "git://invent.kde.org/plasma/kpipewire.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/plasma/kpipewire.git;protocol=https;nobranch=1;tag=v6.7.4"
 SRCREV = "e1c0f1ce0b41eea83d5b4fa32db1ac3a56f8e1b4"
 
 DEPENDS = " \

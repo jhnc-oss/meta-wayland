@@ -7,7 +7,7 @@ DEPENDS = "gdk-pixbuf jpeg libpng curl gd"
 
 inherit autotools pkgconfig gettext bash-completion
 
-SRC_URI = "git://github.com/saitoha/libsixel.git;protocol=https;nobranch=1"
+SRC_URI = "git://github.com/saitoha/libsixel.git;protocol=https;nobranch=1;tag=v1.8.7-r2"
 SRCREV = "764f4e618c8bbc427fb74622e3227243fe6762fb"
 
 FILES:${PN} += "${datadir}/zsh ${libdir}/python*"

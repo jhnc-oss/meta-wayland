@@ -16,7 +16,7 @@ DEPENDS = "  \
 	libqalculate \
 "
 
-SRC_URI = "git://github.com/hyprwm/hyprlauncher.git;protocol=https;branch=main"
+SRC_URI = "git://github.com/hyprwm/hyprlauncher.git;protocol=https;branch=main;tag=v0.1.6"
 
 SRCREV = "c682906a0836447c27c8d974f35493d3baa79d64"
 

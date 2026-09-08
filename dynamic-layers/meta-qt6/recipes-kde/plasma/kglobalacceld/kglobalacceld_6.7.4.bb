@@ -9,7 +9,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/LicenseRef-KDE-Accepted-LGPL.txt;md5=e4b79a181b6483b37d39a27f4d75e60a \
 "
 
-SRC_URI = "git://invent.kde.org/plasma/kglobalacceld.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/plasma/kglobalacceld.git;protocol=https;nobranch=1;tag=v6.7.4"
 SRCREV = "dcec45c0375319f4d128c147a38b6392ce75f2c1"
 
 DEPENDS = " \

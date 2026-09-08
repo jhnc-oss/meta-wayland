@@ -15,7 +15,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/LicenseRef-KDE-Accepted-LGPL.txt;md5=e4b79a181b6483b37d39a27f4d75e60a \
 "
 
-SRC_URI = "git://invent.kde.org/plasma/bluedevil.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/plasma/bluedevil.git;protocol=https;nobranch=1;tag=v6.7.4"
 SRC_URI += "file://0001-src-kded-helpers-requestpin.cpp-fix-build-without-x1.patch"
 SRCREV = "3017e275c589157e1cefa211c4e8d5fce56f0da1"
 

@@ -7,7 +7,7 @@ DEPENDS = "glib-2.0 libavif  libheif jpeg libjxl librsvg tiff libwebp"
 
 inherit autotools pkgconfig gettext gtk-doc
 
-SRC_URI = "git://github.com/hpjansson/chafa.git;protocol=https;nobranch=1"
+SRC_URI = "git://github.com/hpjansson/chafa.git;protocol=https;nobranch=1;tag=1.18.2"
 SRCREV = "571246107ac9cb88dee2c6c69cda5dd9805820da"
 
 FILES:${PN} += "${libdir}/chafa"

@@ -14,7 +14,7 @@ RRECOMMENDS:${PN} = "grim slurp"
 inherit meson gtk-icon-cache mime-xdg pkgconfig manpages
 
 SRC_URI = " \
-    git://github.com/jtheoof/swappy.git;protocol=https;branch=master \
+    git://github.com/jtheoof/swappy.git;protocol=https;branch=master;tag=v1.8.0 \
 "
 
 SRCREV = "c25040258fb9dde3dd7313e419a514436741cfe5"

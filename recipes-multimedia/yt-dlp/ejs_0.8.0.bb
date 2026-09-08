@@ -6,7 +6,7 @@ inherit python_hatchling
 
 DEPENDS = "python3-hatch-vcs-native nodejs-native"
 
-SRC_URI += "git://github.com/yt-dlp/ejs.git;protocol=https;nobranch=1"
+SRC_URI += "git://github.com/yt-dlp/ejs.git;protocol=https;nobranch=1;tag=0.8.0"
 SRCREV = "4fb477f4af56880cfd324c48bd4294a2d2294e50"
 
 RDEPENDS:${PN} = "quickjs"

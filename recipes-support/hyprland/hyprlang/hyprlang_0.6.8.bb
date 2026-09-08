@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=b5b6bed06dd8ed68f00c26d0b4cede89"
 
 DEPENDS = "hyprutils"
 
-SRC_URI = "git://github.com/hyprwm/hyprlang.git;protocol=https;branch=main"
+SRC_URI = "git://github.com/hyprwm/hyprlang.git;protocol=https;branch=main;tag=v0.6.8"
 
 SRCREV = "3a1c1b25b059dae2c6bbc46991562ba1158d125c"
 

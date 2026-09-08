@@ -2,7 +2,7 @@ SUMMARY = "xwayland-satellite grants rootless Xwayland integration to any Waylan
 LICENSE = "MPL-2.0"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=9741c346eef56131163e13b9db1241b3"
 
-SRC_URI = "git://github.com/Supreeeme/xwayland-satellite.git;protocol=https;branch=main"
+SRC_URI = "git://github.com/Supreeeme/xwayland-satellite.git;protocol=https;branch=main;tag=v0.8.2"
 
 DEPENDS = " \
     xwayland \

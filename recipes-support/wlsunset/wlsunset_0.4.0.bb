@@ -16,7 +16,7 @@ DEPENDS += " \
 
 inherit meson pkgconfig features_check manpages
 
-SRC_URI = "git://git.sr.ht/~kennylevinsen/wlsunset;protocol=https;nobranch=1"
+SRC_URI = "git://git.sr.ht/~kennylevinsen/wlsunset;protocol=https;nobranch=1;tag=0.4.0"
 
 PACKAGECONFIG[manpages] = ",,scdoc-native"
 

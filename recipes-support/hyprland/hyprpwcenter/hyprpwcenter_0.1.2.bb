@@ -12,7 +12,7 @@ DEPENDS = " \
   hyprutils \
  "
 
-SRC_URI = "git://github.com/hyprwm/hyprpwcenter.git;protocol=https;branch=main"
+SRC_URI = "git://github.com/hyprwm/hyprpwcenter.git;protocol=https;branch=main;tag=v0.1.2"
 
 SRCREV = "2ce8f3d174f2ae1c50c7dcc182d809a5ab33cad2"
 

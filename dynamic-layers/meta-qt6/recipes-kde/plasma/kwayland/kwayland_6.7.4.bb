@@ -12,7 +12,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/MIT.txt;md5=38aa75cf4c4c87f018227d5ec9638d75 \
 "
 
-SRC_URI = "git://invent.kde.org/plasma/kwayland.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/plasma/kwayland.git;protocol=https;nobranch=1;tag=v6.7.4"
 SRCREV = "b8fa7d1970a456147393a09eb4abd5c65c2719cc"
 
 DEPENDS = " \

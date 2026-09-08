@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/MIT.txt;md5=38aa75cf4c4c87f018227d5ec9638d75 \
 "
 
-SRC_URI = "git://invent.kde.org/frameworks/kuserfeedback.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/frameworks/kuserfeedback.git;protocol=https;nobranch=1;tag=v6.29.0"
 SRCREV = "83c5379140635eab595d4ca3f1513055dc63aeb9"
 
 DEPENDS = " \

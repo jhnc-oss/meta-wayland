@@ -11,7 +11,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/ODbL-1.0.txt;md5=3f52b15a33709232a08eae2558d7ad91 \
 "
 
-SRC_URI = "git://invent.kde.org/frameworks/ki18n.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/frameworks/ki18n.git;protocol=https;nobranch=1;tag=v6.29.0"
 SRCREV = "0db3cf4e3e38360048bf8665efa74911ce4d2696"
 
 DEPENDS = " \

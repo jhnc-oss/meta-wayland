@@ -10,7 +10,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/MIT.txt;md5=38aa75cf4c4c87f018227d5ec9638d75 \
 "
 
-SRC_URI = "git://invent.kde.org/system/partitionmanager.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/system/partitionmanager.git;protocol=https;nobranch=1;tag=v26.04.3"
 SRCREV = "1a7b5aea841664cf9036fba42b03f83277faa9dd"
 
 DEPENDS = " \

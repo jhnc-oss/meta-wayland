@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = " \
     file://COPYING-ICONS;md5=3e7f6a3da5801872be1084a978cfc0eb \
 "
 
-SRC_URI = "git://invent.kde.org/frameworks/breeze-icons.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/frameworks/breeze-icons.git;protocol=https;nobranch=1;tag=v6.29.0"
 SRCREV = "a806a2dbc75b9d7d089c2d0053bc5db46a31340a"
 
 DEPENDS = " \

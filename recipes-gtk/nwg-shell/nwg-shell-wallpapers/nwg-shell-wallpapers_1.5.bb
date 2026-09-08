@@ -2,7 +2,7 @@ SUMMARY = "A selection of wallpapers contributed to the nwg-shell project."
 LICENSE = "CC0-1.0"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=65d3616852dbf7b1a6d4b53b00626032"
 
-SRC_URI = "git://github.com/nwg-piotr/nwg-shell-wallpapers.git;protocol=https;nobranch=1"
+SRC_URI = "git://github.com/nwg-piotr/nwg-shell-wallpapers.git;protocol=https;nobranch=1;tag=v1.5"
 
 SRCREV = "a20ad99467e9d1a9427efd5dccfd58d440db96c2"
 

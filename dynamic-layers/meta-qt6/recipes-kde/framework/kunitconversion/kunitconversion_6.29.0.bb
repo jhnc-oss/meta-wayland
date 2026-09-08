@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/LGPL-2.0-or-later.txt;md5=6d2d9952d88b50a51a5c73dc431d06c7 \
 "
 
-SRC_URI = "git://invent.kde.org/frameworks/kunitconversion.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/frameworks/kunitconversion.git;protocol=https;nobranch=1;tag=v6.29.0"
 SRCREV = "172ca8b7f9d6a5af58e65ef0b21116bfb0ff5a35"
 
 DEPENDS = " \

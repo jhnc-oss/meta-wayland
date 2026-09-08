@@ -3,7 +3,7 @@ HOMEPAGE = "https://hyprland.org/"
 LICENSE = "BSD-3-Clause"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=778ddc598b3f2a2da3657dda514da983"
 
-SRC_URI = "git://github.com/hyprwm/hyprsysteminfo.git;protocol=https;branch=main"
+SRC_URI = "git://github.com/hyprwm/hyprsysteminfo.git;protocol=https;branch=main;tag=v0.2.0"
 
 SRCREV = "6f68a726531b53d87c6dd6ce474face27dde02ff"
 

@@ -21,7 +21,7 @@ DEPENDS = " \
     wayland-protocols \
 "
 
-SRC_URI = "git://github.com/hyprwm/aquamarine.git;protocol=https;branch=main"
+SRC_URI = "git://github.com/hyprwm/aquamarine.git;protocol=https;branch=main;tag=v0.15.0"
 SRC_URI += "file://0001-CMakeLists.txt-fix-linking-with-opengl.patch"
 SRCREV = "783bfd9ae441d1d0519b979ac68b73ddd6e81df0"
 

@@ -16,7 +16,7 @@ inherit meson pkgconfig gettext gobject-introspection vala features_check
 
 REQUIRED_DISTRO_FEATURES = "gobject-introspection-data"
 
-SRC_URI = "git://github.com/BuddiesOfBudgie/budgie-desktop-view.git;protocol=https;nobranch=1"
+SRC_URI = "git://github.com/BuddiesOfBudgie/budgie-desktop-view.git;protocol=https;nobranch=1;tag=v10.10.2"
 SRCREV = "736827180a629a0692fc6ae0bf14819729779821"
 
 GIR_MESON_OPTION = ""

@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/LGPL-2.0-or-later.txt;md5=6d2d9952d88b50a51a5c73dc431d06c7 \
 "
 
-SRC_URI = "git://invent.kde.org/plasma/plasma5support.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/plasma/plasma5support.git;protocol=https;nobranch=1;tag=v6.7.4"
 SRCREV = "782dcfcf3ce811806724b255a5b127d28abcfed4"
 
 DEPENDS = " \

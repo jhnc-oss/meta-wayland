@@ -17,7 +17,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/Qt-LGPL-exception-1.1.txt;md5=38d22f987f077611a625f5729dd0fd39 \
 "
 
-SRC_URI = "git://invent.kde.org/plasma/libplasma.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/plasma/libplasma.git;protocol=https;nobranch=1;tag=v6.7.4"
 SRCREV = "b1e346733ff527433e1849eb85305580d10e712a"
 
 DEPENDS = " \

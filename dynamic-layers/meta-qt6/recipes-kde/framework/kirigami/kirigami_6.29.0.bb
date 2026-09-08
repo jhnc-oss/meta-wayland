@@ -15,7 +15,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/MIT.txt;md5=4dd71a82d66fd9e3ca0cc65b8be370c0 \
 "
 
-SRC_URI = "git://invent.kde.org/frameworks/kirigami.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/frameworks/kirigami.git;protocol=https;nobranch=1;tag=v6.29.0"
 SRC_URI += "file://0001-fix-metatypes-dir.patch"
 SRCREV = "63ad712b696cf35caee33f7612b43ac25452b73e"
 

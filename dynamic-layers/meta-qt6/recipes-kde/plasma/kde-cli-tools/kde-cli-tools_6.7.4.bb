@@ -14,7 +14,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/LicenseRef-KDE-Accepted-LGPL.txt;md5=e4b79a181b6483b37d39a27f4d75e60a \
 "
 
-SRC_URI = "git://invent.kde.org/plasma/kde-cli-tools.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/plasma/kde-cli-tools.git;protocol=https;nobranch=1;tag=v6.7.4"
 SRCREV = "27ddf92e73f8b13168f2f0b6da131801ec179cd7"
 
 DEPENDS = " \

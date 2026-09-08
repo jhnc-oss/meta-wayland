@@ -12,7 +12,7 @@ DEPENDS = " \
 	libdrm \
  "
 
-SRC_URI = "git://github.com/hyprwm/hyprshutdown.git;protocol=https;branch=main"
+SRC_URI = "git://github.com/hyprwm/hyprshutdown.git;protocol=https;branch=main;tag=v0.1.1"
 SRCREV = "db1f38b03b173984ae9ed3abeb9750583c9bbd91"
 
 inherit cmake pkgconfig

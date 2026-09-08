@@ -8,7 +8,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=3a7351a597a91e763901f7c76f21e798"
 
 REQUIRED_DISTRO_FEATURES = "wayland"
 
-SRC_URI = "git://codeberg.org/dnkl/fuzzel.git;protocol=https;nobranch=1"
+SRC_URI = "git://codeberg.org/dnkl/fuzzel.git;protocol=https;nobranch=1;tag=1.14.1"
 
 DEPENDS = " \
 	fcft \

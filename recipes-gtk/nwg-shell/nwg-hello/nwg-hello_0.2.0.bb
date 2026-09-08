@@ -2,7 +2,7 @@ SUMMARY = "nwg-hello is a GTK3-based greeter for the greetd daemon, written in p
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=b0ad99c75f37a759e329c5da4c8a7fcb"
 
-SRC_URI = "git://github.com/nwg-piotr/nwg-hello.git;protocol=https;branch=main"
+SRC_URI = "git://github.com/nwg-piotr/nwg-hello.git;protocol=https;branch=main;tag=v0.2.0"
 
 RDEPENDS:${PN} = " \
 	python3 \

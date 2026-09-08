@@ -3,7 +3,7 @@ HOMEPAGE = "https://github.com/starship/starship"
 LICENSE = "ISC"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=a25cce5cb436456c4b21461a3ff95b0d"
 
-SRC_URI = "git://github.com/starship/starship.git;protocol=https;nobranch=1"
+SRC_URI = "git://github.com/starship/starship.git;protocol=https;nobranch=1;tag=v1.26.0"
 SRCREV = "fca92d8dcbd5981b0160af2f7ed7a430b6475a72"
 
 inherit cargo cargo-update-recipe-crates

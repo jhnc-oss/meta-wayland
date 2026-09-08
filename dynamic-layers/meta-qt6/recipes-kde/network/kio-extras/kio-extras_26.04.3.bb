@@ -19,7 +19,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/MIT.txt;md5=38aa75cf4c4c87f018227d5ec9638d75 \
 "
 
-SRC_URI = "git://invent.kde.org/network/kio-extras.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/network/kio-extras.git;protocol=https;nobranch=1;tag=v26.04.3"
 SRCREV = "4a8ffec0ccacb5eefce743c95f57509f862c9d23"
 
 DEPENDS = " \

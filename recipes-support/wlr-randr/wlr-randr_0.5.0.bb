@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=07e8a8f2dc9e6a7f131e81037398c61b"
 
 REQUIRED_DISTRO_FEATURES = "wayland"
 
-SRC_URI = "git://gitlab.freedesktop.org/emersion/wlr-randr;protocol=https;nobranch=1"
+SRC_URI = "git://gitlab.freedesktop.org/emersion/wlr-randr;protocol=https;nobranch=1;tag=v0.5.0"
 
 inherit meson pkgconfig
 

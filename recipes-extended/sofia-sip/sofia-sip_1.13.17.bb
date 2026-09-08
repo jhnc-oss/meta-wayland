@@ -9,7 +9,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=03068f550c635f6520e0f0252da412fc"
 
 SRCREV = "6198851a610b7889c17e2d98fb84617bc1dd7aec"
 
-SRC_URI = "git://github.com/freeswitch/sofia-sip.git;protocol=https;branch=master"
+SRC_URI = "git://github.com/freeswitch/sofia-sip.git;protocol=https;branch=master;tag=v1.13.17"
 
 inherit autotools pkgconfig
 

@@ -8,7 +8,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=e316e9609dd7672b87ff25b46b2cf3e1"
 REQUIRED_DISTRO_FEATURES = "wayland"
 
 SRC_URI = " \
-	git://github.com/emersion/mako.git;protocol=https;branch=master \
+	git://github.com/emersion/mako.git;protocol=https;branch=master;tag=v1.10.0 \
 "
 
 DEPENDS = " \

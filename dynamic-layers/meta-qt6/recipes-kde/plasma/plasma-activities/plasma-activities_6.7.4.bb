@@ -11,7 +11,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/MIT.txt;md5=38aa75cf4c4c87f018227d5ec9638d75 \
 "
 
-SRC_URI = "git://invent.kde.org/plasma/plasma-activities.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/plasma/plasma-activities.git;protocol=https;nobranch=1;tag=v6.7.4"
 SRCREV = "8470fabe764d2918a426b07e1dbb89fdabfdb99c"
 
 DEPENDS = " \

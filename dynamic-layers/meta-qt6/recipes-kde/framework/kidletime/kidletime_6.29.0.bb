@@ -8,7 +8,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/MIT.txt;md5=38aa75cf4c4c87f018227d5ec9638d75 \
 "
 
-SRC_URI = "git://invent.kde.org/frameworks/kidletime.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/frameworks/kidletime.git;protocol=https;nobranch=1;tag=v6.29.0"
 SRCREV = "be63c6705920f08c41052db65c2a814e47f9ee0d"
 
 DEPENDS = " \

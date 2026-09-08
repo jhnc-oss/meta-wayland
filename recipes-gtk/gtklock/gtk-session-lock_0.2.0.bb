@@ -16,7 +16,7 @@ DEPENDS = " \
 	wayland-protocols \
 "
 
-SRC_URI = "git://github.com/Cu3PO42/gtk-session-lock.git;protocol=https;branch=master"
+SRC_URI = "git://github.com/Cu3PO42/gtk-session-lock.git;protocol=https;branch=master;tag=v0.2.0"
 
 SRCREV = "b3544f361498d716b1ceef1ad6ac9bdf024bf782"
 

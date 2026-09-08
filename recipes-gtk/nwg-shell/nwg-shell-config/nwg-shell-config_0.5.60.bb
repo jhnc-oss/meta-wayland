@@ -3,7 +3,7 @@ LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=fffa55ad1c828db5e334374fb1182530"
 
 SRC_URI = " \
-	git://github.com/nwg-piotr/nwg-shell-config.git;protocol=https;branch=master \
+	git://github.com/nwg-piotr/nwg-shell-config.git;protocol=https;branch=master;tag=v0.5.60 \
 "
 
 RDEPENDS:${PN} = "\

@@ -3,7 +3,7 @@ HOMEPAGE = "https://invent.kde.org/libraries/qca"
 LICENSE = "LGPL-2.1-only"
 LIC_FILES_CHKSUM = "file://COPYING;md5=fbc093901857fcd118f065f900982c24"
 
-SRC_URI = "git://invent.kde.org/libraries/qca.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/libraries/qca.git;protocol=https;nobranch=1;tag=v2.3.10"
 SRCREV = "df5171e3c4baf346581f15af5a040e61b166a332"
 
 DEPENDS = " \

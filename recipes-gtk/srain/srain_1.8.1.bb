@@ -20,7 +20,7 @@ GIR_MESON_OPTION = ""
 
 inherit meson gtk-icon-cache mime-xdg pkgconfig features_check gobject-introspection
 
-SRC_URI = "git://github.com/SrainApp/srain.git;protocol=https;branch=master"
+SRC_URI = "git://github.com/SrainApp/srain.git;protocol=https;branch=master;tag=1.8.1"
 
 SRCREV = "693c81b11052b6e287b5a734352dd813ef2b71aa"
 

@@ -24,7 +24,7 @@ DEPENDS = "\
 require squeekboard-crates.inc
 
 SRC_URI += "\
-    git://gitlab.gnome.org/World/Phosh/squeekboard.git;protocol=https;nobranch=1 \
+    git://gitlab.gnome.org/World/Phosh/squeekboard.git;protocol=https;nobranch=1;tag=v1.43.1 \
     file://0001-Pass-additional-arguments-to-cargo.patch \
 "
 

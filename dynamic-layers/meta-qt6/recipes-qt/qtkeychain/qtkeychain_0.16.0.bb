@@ -3,7 +3,7 @@ HOMEPAGE = "https://github.com/frankosterfeld/qtkeychain"
 LICENSE = "BSD-3-Clause"
 LIC_FILES_CHKSUM = "file://COPYING;md5=ebece3896618ecf0b60c4fade17f026f"
 
-SRC_URI = "git://github.com/frankosterfeld/qtkeychain.git;protocol=https;nobranch=1"
+SRC_URI = "git://github.com/frankosterfeld/qtkeychain.git;protocol=https;nobranch=1;tag=0.16.0"
 SRCREV = "aa6da344e1a20b9194e12bace3665caeea6b6304"
 
 DEPENDS = " \

@@ -3,7 +3,7 @@ HOMEPAGE = "https://github.com/wlrfx/scenefx"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=7578fad101710ea2d289ff5411f1b818"
 
-SRC_URI = "git://github.com/wlrfx/scenefx.git;protocol=https;nobranch=1"
+SRC_URI = "git://github.com/wlrfx/scenefx.git;protocol=https;nobranch=1;tag=0.5"
 
 DEPENDS = " \
 	wayland \

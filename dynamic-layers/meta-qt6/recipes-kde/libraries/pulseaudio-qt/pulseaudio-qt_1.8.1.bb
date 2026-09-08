@@ -8,7 +8,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/LicenseRef-KDE-Accepted-LGPL.txt;md5=e4b79a181b6483b37d39a27f4d75e60a \
 "
 
-SRC_URI = "git://invent.kde.org/libraries/pulseaudio-qt.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/libraries/pulseaudio-qt.git;protocol=https;nobranch=1;tag=v1.8.1"
 SRCREV = "10786fe31e640858f4f5db5366aed9c56d77bfab"
 
 DEPENDS = " \

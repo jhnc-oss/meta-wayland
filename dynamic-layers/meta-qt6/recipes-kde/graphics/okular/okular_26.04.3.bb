@@ -16,7 +16,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/X11.txt;md5=87f08485cf6ba3c63a00eda8ecba7f1d \
 "
 
-SRC_URI = "git://invent.kde.org/graphics/okular.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/graphics/okular.git;protocol=https;nobranch=1;tag=v26.04.3"
 SRCREV = "a8cfd38065ec55c96790791a6b7c3aebef23a151"
 
 DEPENDS = " \

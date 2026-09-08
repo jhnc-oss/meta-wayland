@@ -14,7 +14,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/LicenseRef-KDE-Accepted-LGPL.txt;md5=e4b79a181b6483b37d39a27f4d75e60a \
 "
 
-SRC_URI = "git://invent.kde.org/plasma/discover.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/plasma/discover.git;protocol=https;nobranch=1;tag=v6.7.4"
 SRCREV = "71fc76cdd049f71ca2086bdcbd1faa52dba46ba7"
 
 DEPENDS = " \

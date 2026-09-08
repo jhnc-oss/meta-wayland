@@ -4,7 +4,7 @@ SECTION = "libs"
 LICENSE = "BSD-2-Clause"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=b4f961b32fec9e2001bbc01ad7bf04c4"
 
-SRC_URI = "git://github.com/beltoforion/muparser.git;protocol=https;branch=master"
+SRC_URI = "git://github.com/beltoforion/muparser.git;protocol=https;branch=master;tag=v2.3.5"
 
 SRCREV = "fbafd7f8774af2b53f4d2de07c57353fcfc09216"
 

@@ -3,7 +3,7 @@ LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=b246754361f75980923b7feebfe71c15"
 
 SRC_URI = " \
-	git://github.com/geopy/geopy.git;protocol=https;branch=master \
+	git://github.com/geopy/geopy.git;protocol=https;branch=master;tag=2.4.1 \
 "
 
 RDEPENDS:${PN} = " \

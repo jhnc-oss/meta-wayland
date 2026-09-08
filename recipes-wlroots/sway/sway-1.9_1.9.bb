@@ -36,7 +36,7 @@ RRECOMMENDS:${PN} ?= " \
 	sway-contrib \
 "
 
-SRC_URI = "git://github.com/swaywm/sway.git;protocol=https;branch=v1.9"
+SRC_URI = "git://github.com/swaywm/sway.git;protocol=https;branch=v1.9;tag=1.9"
 
 SRCREV = "1a3cfc50c15124c2be18c025e609112ee15de4aa"
 

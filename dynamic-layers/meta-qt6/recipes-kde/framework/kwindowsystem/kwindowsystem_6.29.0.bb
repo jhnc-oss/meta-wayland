@@ -10,7 +10,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/MIT.txt;md5=38aa75cf4c4c87f018227d5ec9638d75 \
 "
 
-SRC_URI = "git://invent.kde.org/frameworks/kwindowsystem.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/frameworks/kwindowsystem.git;protocol=https;nobranch=1;tag=v6.29.0"
 SRC_URI += "file://0001-fix-reproducibility.patch"
 SRCREV = "defd0b1be1f4505ff0f8d6d340ad6848716e7a67"
 

@@ -14,7 +14,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/LicenseRef-Qt-Commercial.txt;md5=df490d93422a5e93c436cdb31a6c4e74 \
 "
 
-SRC_URI = "git://invent.kde.org/frameworks/qqc2-desktop-style.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/frameworks/qqc2-desktop-style.git;protocol=https;nobranch=1;tag=v6.29.0"
 SRCREV = "3838e6b0b19b63434edbca25b130f06a1b7f4f21"
 
 DEPENDS = " \

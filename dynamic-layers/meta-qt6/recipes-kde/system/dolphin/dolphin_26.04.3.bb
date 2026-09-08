@@ -17,7 +17,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/MIT.txt;md5=7dda4e90ded66ab88b86f76169f28663 \
 "
 
-SRC_URI = "git://invent.kde.org/system/dolphin.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/system/dolphin.git;protocol=https;nobranch=1;tag=v26.04.3"
 SRCREV = "2131cb786aac6bb09cc6638a8da50660f97dacc0"
 
 DEPENDS = " \

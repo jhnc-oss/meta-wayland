@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/LGPL-2.0-or-later.txt;md5=e3e049b303846e4de3eeafccf035a404 \
 "
 
-SRC_URI = "git://invent.kde.org/frameworks/kstatusnotifieritem.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/frameworks/kstatusnotifieritem.git;protocol=https;nobranch=1;tag=v6.29.0"
 SRCREV = "e995a4320e563eb553cd169eb74aaf9d6293587b"
 
 DEPENDS = " \

@@ -12,7 +12,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/LicenseRef-KDE-Accepted-GPL.txt;md5=b4c280013bbbadfbe92219498dc5228c \
 "
 
-SRC_URI = "git://invent.kde.org/plasma/systemsettings.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/plasma/systemsettings.git;protocol=https;nobranch=1;tag=v6.7.4"
 SRCREV = "2aa33d6af825f9d98d1f75f453b6b6037d773d10"
 
 DEPENDS = " \

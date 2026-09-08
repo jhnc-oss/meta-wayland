@@ -19,7 +19,7 @@ LIC_FILES_CHKSUM = " \
 "
 COMPATIBLE_HOST:class-target = "null"
 
-SRC_URI = "git://invent.kde.org/plasma/kwin.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/plasma/kwin.git;protocol=https;nobranch=1;tag=v6.7.4"
 SRCREV = "8438567a741826da8b7536a8b10eb3af8fc8820d"
 S = "${UNPACKDIR}/${BPN}-${PV}/src/wayland/tools"
 DEPENDS = " \

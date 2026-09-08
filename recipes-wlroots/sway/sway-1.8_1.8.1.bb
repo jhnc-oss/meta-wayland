@@ -37,7 +37,7 @@ RRECOMMENDS:${PN} ?= " \
 "
 
 SRC_URI = " \
-	git://github.com/swaywm/sway.git;protocol=https;branch=v1.8 \
+	git://github.com/swaywm/sway.git;protocol=https;branch=v1.8;tag=1.8.1 \
 	file://sway-999.01-fix-build-with-updated-libinput.patch \
 "
 

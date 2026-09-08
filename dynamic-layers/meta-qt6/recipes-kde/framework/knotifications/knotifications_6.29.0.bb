@@ -12,7 +12,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/LicenseRef-KDE-Accepted-LGPL.txt;md5=e4b79a181b6483b37d39a27f4d75e60a \
 "
 
-SRC_URI = "git://invent.kde.org/frameworks/knotifications.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/frameworks/knotifications.git;protocol=https;nobranch=1;tag=v6.29.0"
 SRCREV = "235b7b066e041e75e8aefd2eb3f4d6e75ea7e863"
 
 DEPENDS = " \

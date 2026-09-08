@@ -4,7 +4,7 @@ SECTION = "libs"
 LICENSE = "GPL-2.0-only"
 LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 
-SRC_URI = "git://github.com/rockowitz/ddcutil.git;protocol=https;branch=${PV}-release"
+SRC_URI = "git://github.com/rockowitz/ddcutil.git;protocol=https;branch=${PV}-release;tag=v2.2.7"
 
 DEPENDS = "i2c-tools glib-2.0 kmod jansson"
 

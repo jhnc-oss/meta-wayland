@@ -8,7 +8,7 @@ inherit meson pkgconfig manpages
 EXTRA_OEMESON = "-Dpython-bin=${bindir}/python3"
 
 SRC_URI = " \
-	git://github.com/Vladimir-csp/uwsm.git;protocol=https;branch=master \
+	git://github.com/Vladimir-csp/uwsm.git;protocol=https;branch=master;tag=v0.26.6 \
 	file://0001-uwsm-meson.build-dont-fail-for-missing-python-module.patch \
 "
 SRCREV = "469a39a5436f6c1086b4904d42227c03aee2e394"

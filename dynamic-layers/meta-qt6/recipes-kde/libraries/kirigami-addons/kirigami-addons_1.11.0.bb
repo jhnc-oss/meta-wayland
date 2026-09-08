@@ -17,7 +17,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/MIT.txt;md5=e267b5203c8a34cf7f21e5a2102df564 \
 "
 
-SRC_URI = "git://invent.kde.org/libraries/kirigami-addons.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/libraries/kirigami-addons.git;protocol=https;nobranch=1;tag=v1.11.0"
 SRCREV = "10ad7ec72702b6eddaab037e379f0df6aaddd310"
 
 DEPENDS = " \

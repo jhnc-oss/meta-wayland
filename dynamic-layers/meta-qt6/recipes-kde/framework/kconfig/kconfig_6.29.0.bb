@@ -15,7 +15,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/MIT.txt;md5=38aa75cf4c4c87f018227d5ec9638d75 \
 "
 
-SRC_URI = "git://invent.kde.org/frameworks/kconfig.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/frameworks/kconfig.git;protocol=https;nobranch=1;tag=v6.29.0"
 SRC_URI += "file://0001-fix-metatypes-dir.patch"
 SRCREV = "d31e66191c7a537266636554ab9a6b743c644519"
 

@@ -17,7 +17,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/Qt-LGPL-exception-1.1.txt;md5=38d22f987f077611a625f5729dd0fd39 \
 "
 
-SRC_URI = "git://invent.kde.org/frameworks/kcoreaddons.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/frameworks/kcoreaddons.git;protocol=https;nobranch=1;tag=v6.29.0"
 SRC_URI += "file://0001-src-CMakeLists.txt.patch"
 SRCREV = "8ce411949768ea1d41ab090cb9a9f3089ee73233"
 

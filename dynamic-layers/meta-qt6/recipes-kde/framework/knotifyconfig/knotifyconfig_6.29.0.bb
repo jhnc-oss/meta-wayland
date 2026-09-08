@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/LGPL-2.0-only.txt;md5=6d2d9952d88b50a51a5c73dc431d06c7 \
 "
 
-SRC_URI = "git://invent.kde.org/frameworks/knotifyconfig.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/frameworks/knotifyconfig.git;protocol=https;nobranch=1;tag=v6.29.0"
 SRCREV = "52ca9313f0a73699ced2e2a62404c8491d725a9b"
 
 DEPENDS = " \

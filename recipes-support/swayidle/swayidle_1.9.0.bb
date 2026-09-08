@@ -15,7 +15,7 @@ DEPENDS = " \
 "
 
 SRC_URI = " \
-	git://github.com/swaywm/swayidle.git;protocol=https;branch=master \
+	git://github.com/swaywm/swayidle.git;protocol=https;branch=master;tag=v1.9.0 \
 "
 
 SRCREV = "fedebc37e5c166995cfcc56a00a40f6468c85e7d"

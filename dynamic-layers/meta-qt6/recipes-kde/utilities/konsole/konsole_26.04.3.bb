@@ -14,7 +14,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/MIT.txt;md5=7dda4e90ded66ab88b86f76169f28663 \
 "
 
-SRC_URI = "git://invent.kde.org/utilities/konsole.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/utilities/konsole.git;protocol=https;nobranch=1;tag=v26.04.3"
 SRCREV = "37022dd8fe98d7fae86d9fcbc098748f83d3d0f9"
 
 DEPENDS = " \

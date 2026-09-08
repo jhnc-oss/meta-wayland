@@ -19,7 +19,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSES/Unicode-DFS-2016.txt;md5=daf288399a5d03ddccd02a70c48cfbce \
 "
 
-SRC_URI = "git://invent.kde.org/plasma/plasma-desktop.git;protocol=https;nobranch=1"
+SRC_URI = "git://invent.kde.org/plasma/plasma-desktop.git;protocol=https;nobranch=1;tag=v6.7.4"
 SRC_URI += "file://0001-CMakeLists.txt-make-ksysguard-optional.patch"
 SRCREV = "95e51519c44e6bc4aeee0cce998aba244fcd68f4"
 
