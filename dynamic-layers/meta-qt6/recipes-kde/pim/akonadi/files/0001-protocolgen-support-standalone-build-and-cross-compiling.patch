@@ -1,0 +1,62 @@
+From: Markus Volk <f_l_k@t-online.de>
+Date: Tue, 8 Sep 2026 20:30:00 +0200
+Subject: [PATCH] protocolgen: support standalone build and cross-compiling
+
+protocolgen is a build-time code generator. When cross-compiling it
+cannot be built for the target and executed on the host, so look for
+an external protocolgen in that case. Let the protocolgen directory
+configure on its own so it can be built and installed as a host tool.
+
+Upstream-Status: Inappropriate [oe specific]
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+---
+--- a/src/private/CMakeLists.txt
++++ b/src/private/CMakeLists.txt
+@@ -1,4 +1,9 @@
+-add_subdirectory(protocolgen)
++if(CMAKE_CROSSCOMPILING)
++    find_program(PROTOCOLGEN_EXECUTABLE protocolgen REQUIRED)
++else()
++    add_subdirectory(protocolgen)
++    set(PROTOCOLGEN_EXECUTABLE protocolgen)
++endif()
+ 
+ if(NOT XMLLINT_EXECUTABLE)
+     message(STATUS "xmllint not found, skipping protocol.xml validation")
+@@ -16,9 +21,9 @@
+         ${CMAKE_CURRENT_BINARY_DIR}/protocol_gen.cpp
+         ${CMAKE_CURRENT_BINARY_DIR}/protocol_gen.h
+     COMMAND
+-        protocolgen ${CMAKE_CURRENT_SOURCE_DIR}/protocol.xml
++        ${PROTOCOLGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/protocol.xml
+     DEPENDS
+-        protocolgen
++        ${PROTOCOLGEN_EXECUTABLE}
+         ${CMAKE_CURRENT_SOURCE_DIR}/protocol.xml
+     COMMENT "Generating Protocol implementation"
+ )
+--- a/src/private/protocolgen/CMakeLists.txt
++++ b/src/private/protocolgen/CMakeLists.txt
+@@ -1,5 +1,13 @@
++cmake_minimum_required(VERSION 3.16)
+ project(protocolgen)
+ 
++if(PROJECT_IS_TOP_LEVEL)
++    set(CMAKE_CXX_STANDARD 20)
++    set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
++    find_package(Qt6 REQUIRED COMPONENTS Core)
++    include(GNUInstallDirs)
++endif()
++
+ add_executable(protocolgen)
+ target_sources(
+     protocolgen
+@@ -24,3 +32,7 @@
+             FALSE
+ )
+ target_link_libraries(protocolgen Qt::Core)
++
++if(PROJECT_IS_TOP_LEVEL)
++    install(TARGETS protocolgen DESTINATION ${CMAKE_INSTALL_BINDIR})
++endif()
