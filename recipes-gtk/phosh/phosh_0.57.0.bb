@@ -25,6 +25,7 @@ DEPENDS = " \
     pulseaudio \
     qrcodegen \
     libsoup \
+    modemmanager \
     upower \
     wayland \
     wayland-native \
@@ -50,10 +51,11 @@ PACKAGECONFIG ?= ""
 
 inherit features_check gsettings meson pkgconfig gtk-icon-cache gobject-introspection gi-docgen
 
-SRC_URI = "git://gitlab.gnome.org/World/Phosh/phosh.git;protocol=https;nobranch=1;name=phosh;tag=v0.54.0"
+SRC_URI = "git://gitlab.gnome.org/World/Phosh/phosh.git;protocol=https;nobranch=1;name=phosh;tag=v0.57.0"
 SRC_URI += "git://gitlab.gnome.org/GNOME/libgnome-volume-control.git;protocol=https;subdir=${S}/subprojects/gvc;name=gvc;nobranch=1"
 SRC_URI += "git://gitlab.gnome.org/World/Phosh/libcall-ui;protocol=https;subdir=${S}/subprojects/libcall-ui;name=libcall-ui;nobranch=1;tag=v0.1.5"
-SRCREV_phosh = "484333d2b0536bb0eb1aae61884bcdd978bad49f"
+SRC_URI += "file://0001-calendar-server-take-a-const-ICalProperty-in-the-get.patch"
+SRCREV_phosh = "a278ac3069c61e460f2581d3f5df914ebdceefd8"
 SRCREV_gvc = "d2442f455844e5292cb4a74ffc66ecc8d7595a9f"
 SRCREV_libcall-ui = "7389b4ae90e101620ef8e790e76a98e434bd920c"
 SRCREV_FORMAT = "phosh"

@@ -10,9 +10,9 @@ RDEPENDS:${PN} = "go-runtime"
 
 GO_IMPORT = "github.com/nwg-piotr/nwg-dock-hyprland.git"
 
-SRC_URI = "git://${GO_IMPORT};destsuffix=${BB_GIT_DEFAULT_DESTSUFFIX}/src/${GO_IMPORT};nobranch=1;protocol=https"
+SRC_URI = "git://${GO_IMPORT};destsuffix=${BB_GIT_DEFAULT_DESTSUFFIX}/src/${GO_IMPORT};nobranch=1;protocol=https;tag=v0.4.11"
 
-SRCREV = "ff1b4794255ed7501065982b067b3dbea0ae46ff"
+SRCREV = "30a333c6e4cb629b3d84d4dec51028e3a8e3be94"
 
 require ${PN}-go-mods.inc ${PN}-licenses.inc
 

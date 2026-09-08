@@ -1,0 +1,18 @@
+From e4f3749a053b5fbe0feab93e46d6eba380ee2e58 Mon Sep 17 00:00:00 2001
+From: Erik Reider <35975961+ErikReider@users.noreply.github.com>
+Date: Tue, 16 Sep 2025 12:00:00 +0200
+Subject: [PATCH] Fixed Fedora 43 build issues
+
+Upstream-Status: Backport [https://github.com/ErikReider/SwaySettings/commit/e4f3749a053b5fbe0feab93e46d6eba380ee2e58]
+
+--- a/src/Settings/Window/Window.vala
++++ b/src/Settings/Window/Window.vala
+@@ -134,7 +134,7 @@
+                 new Adw.BreakpointCondition.length (
+                     Adw.BreakpointConditionLengthType.MAX_WIDTH, 650,
+                     Adw.LengthUnit.SP);
+-            Adw.Breakpoint breakpoint = new Adw.Breakpoint (condition);
++            Adw.Breakpoint breakpoint = new Adw.Breakpoint (condition.copy ());
+             breakpoint.add_setter (split_view, "collapsed", true);
+             add_breakpoint (breakpoint);
+ 

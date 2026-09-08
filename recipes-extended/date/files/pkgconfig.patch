@@ -11,10 +11,9 @@ Upstream-Status: Pending []
  create mode 100644 date.pc.in
 
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index f30c473..fe778e8 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -128,6 +128,15 @@ if( BUILD_TZ_LIB )
+@@ -186,6 +186,15 @@
      endif( )
  endif( )
  
@@ -30,9 +29,9 @@ index f30c473..fe778e8 100644
  #[===================================================================[
     installation
  #]===================================================================]
-@@ -171,6 +180,12 @@ install (
-   FILES cmake/dateConfig.cmake "${version_config}"
-   DESTINATION ${CONFIG_LOC})
+@@ -231,6 +240,12 @@
+     DESTINATION ${CONFIG_LOC})
+ endif( )
  
 +if ( BUILD_TZ_LIB )
 +  install(

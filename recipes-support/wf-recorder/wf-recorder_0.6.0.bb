@@ -18,9 +18,9 @@ DEPENDS = " \
 REQUIRED_DISTRO_FEATURES = "wayland"
 
 SRC_URI = " \
-	git://github.com/ammen99/wf-recorder.git;protocol=https;branch=master \
+	git://github.com/ammen99/wf-recorder.git;protocol=https;branch=master;tag=v0.6.0 \
 "
-SRCREV = "664fc451caa7559a39c2cdd70ff02ea781e2d4b3"
+SRCREV = "ca103be2473db0983baf74e17b291385c3c79d79"
 
 inherit meson pkgconfig features_check
 

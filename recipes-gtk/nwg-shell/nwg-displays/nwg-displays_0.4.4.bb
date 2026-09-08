@@ -3,7 +3,7 @@ LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=2e53cad864b84be468b2fc0b511942ce"
 
 SRC_URI = " \
-	git://github.com/nwg-piotr/nwg-displays.git;protocol=https;branch=master \
+	git://github.com/nwg-piotr/nwg-displays.git;protocol=https;branch=master;tag=v0.4.4 \
 "
 
 RDEPENDS:${PN} = "\
@@ -16,7 +16,7 @@ RDEPENDS:${PN} = "\
 
 inherit setuptools3
 
-SRCREV = "ba3d64293f0f4a09f95b15f881363da2521b5849"
+SRCREV = "fd79522cb91ef2ba080ba51838c0f307e1d4fb83"
 
 do_install:append() {
 	install -d ${D}${datadir}/pixmaps ${D}${datadir}/applications

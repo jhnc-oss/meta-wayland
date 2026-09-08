@@ -3,7 +3,7 @@ LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=2e53cad864b84be468b2fc0b511942ce"
 
 SRC_URI = " \
-	git://github.com/nwg-piotr/nwg-icon-picker.git;protocol=https;branch=master \
+	git://github.com/nwg-piotr/nwg-icon-picker.git;protocol=https;branch=master;tag=v0.1.1 \
 "
 
 RDEPENDS:${PN} = " \
@@ -13,5 +13,5 @@ RDEPENDS:${PN} = " \
 
 inherit setuptools3
 
-SRCREV = "cd32e72ffb3c2fb41a3f7189981376cdad6af976"
+SRCREV = "e950bba652fc1943c43f307f87fc74fb8271ca16"
 

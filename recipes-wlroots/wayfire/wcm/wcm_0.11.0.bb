@@ -6,19 +6,23 @@ LICENSE = "MIT"
 
 LIC_FILES_CHKSUM = "file://${S}/LICENSE;md5=553c79c4d7ca30085e1d7bfea724a8aa"
 DEPENDS = " \
+	fmt \
+	gtkmm3 \
+	libevdev \
+	libxkbcommon \
+	libxml2 \
 	wayfire \
 	wayland \
 	wayland-native \
 	wayland-protocols \
-	gtkmm3 \
+	wf-config \
 	wf-shell \
-	fmt \
 "
 
 REQUIRED_DISTRO_FEATURES = "wayland"
 
-SRC_URI = "gitsm://github.com/WayfireWM/wcm.git;protocol=https;nobranch=1"
-SRCREV = "8bf4c480256cba4789fd33920d29996fbdf91f52"
+SRC_URI = "gitsm://github.com/WayfireWM/wcm.git;protocol=https;nobranch=1;tag=v0.11.0"
+SRCREV = "14f2e03fc4bfa3a20d10b913461636363e39240c"
 
 inherit meson pkgconfig features_check
 

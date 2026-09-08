@@ -39,7 +39,7 @@ RRECOMMENDS:${PN} += " \
 
 PACKAGECONFIG[gles32] = "-Denable_gles32=true,-Denable_gles32=false"
 PACKAGECONFIG[use_system_wfconfig] = "-Duse_system_wfconfig=enabled,-Duse_system_wfconfig=disabled,wf-config"
-PACKAGECONFIG[use_system_wlroots] = "-Duse_system_wlroots=enabled,-Duse_system_wlroots=disabled,wlroots-0.19"
+PACKAGECONFIG[use_system_wlroots] = "-Duse_system_wlroots=enabled,-Duse_system_wlroots=disabled,wlroots-0.20"
 PACKAGECONFIG[xwayland] = "-Dxwayland=enabled,-Dxwayland=disabled,xwayland xcb-util-renderutil xcb-util-wm"
 PACKAGECONFIG[vulkan] = ",,vulkan-loader vulkan-headers glslang-native"
 
@@ -50,9 +50,9 @@ PACKAGECONFIG ?= " \
 	use_system_wfconfig \
 "
 
-SRC_URI = "gitsm://github.com/WayfireWM/wayfire.git;protocol=https;nobranch=1"
+SRC_URI = "gitsm://github.com/WayfireWM/wayfire.git;protocol=https;nobranch=1;tag=v0.11.0"
 
-SRCREV = "d5bd14960a3fde34fbcf3703ae81cdb9a0372632"
+SRCREV = "d39902379c5737eebe1dc3a830659fa3f0fa22e0"
 
 inherit meson pkgconfig features_check
 
@@ -60,6 +60,7 @@ EXTRA_OEMESON += "--buildtype release"
 
 do_install:append() {
 	rm -rf ${D}${prefix}/man
+	sed -i 's|^pkgdatadir=.*|pkgdatadir=${pc_sysrootdir}${datadir}/wayfire/protocols|' ${D}${libdir}/pkgconfig/wayfire.pc
 }
 
 FILES:${PN} += "${datadir} ${libdir}"
