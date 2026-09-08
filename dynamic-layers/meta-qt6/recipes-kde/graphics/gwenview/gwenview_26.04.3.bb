@@ -1,7 +1,10 @@
 SUMMARY = "Image viewer for KDE"
 HOMEPAGE = "https://invent.kde.org/graphics/gwenview"
-LICENSE = "GPL-2.0-or-later"
-LIC_FILES_CHKSUM += "file://COPYING;md5=5a3169a2d39a757efd8b7aa66a69d97b"
+LICENSE = "GPL-2.0-or-later AND GFDL-1.2-only"
+LIC_FILES_CHKSUM = " \
+    file://COPYING;md5=5a3169a2d39a757efd8b7aa66a69d97b \
+    file://COPYING.DOC;md5=28d73eafa40ebd0ccdc6b37df8de10a3 \
+"
 
 SRC_URI = "git://invent.kde.org/graphics/gwenview.git;protocol=https;nobranch=1"
 SRCREV = "e8c78de6d06b17c5f4db41caf4aa3060334cdb8f"

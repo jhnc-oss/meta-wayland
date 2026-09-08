@@ -1,7 +1,10 @@
 SUMMARY = "Breeze icons"
 HOMEPAGE = "https://api.kde.org/frameworks/breeze-icons/html/index.html"
-LICENSE = "LGPL-2.1-only"
-LIC_FILES_CHKSUM += "file://COPYING.LIB;md5=2d5025d4aa3495befef8f17206a5b0a1"
+LICENSE = "LGPL-2.1-only AND LGPL-3.0-or-later"
+LIC_FILES_CHKSUM = " \
+    file://COPYING.LIB;md5=2d5025d4aa3495befef8f17206a5b0a1 \
+    file://COPYING-ICONS;md5=3e7f6a3da5801872be1084a978cfc0eb \
+"
 
 SRC_URI = "git://invent.kde.org/frameworks/breeze-icons.git;protocol=https;nobranch=1"
 SRCREV = "a806a2dbc75b9d7d089c2d0053bc5db46a31340a"

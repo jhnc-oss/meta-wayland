@@ -1,7 +1,11 @@
 SUMMARY = "Aurorae is a themeable window decoration for KWin"
 HOMEPAGE = "https://invent.kde.org/plasma/aurorae"
-LICENSE = "GPL-2.0-or-later"
-LIC_FILES_CHKSUM += "file://LICENSES/GPL-2.0-or-later.txt;md5=fed54355545ffd980b814dab4a3b312c"
+LICENSE = "CC0-1.0 AND GPL-2.0-or-later AND MIT"
+LIC_FILES_CHKSUM = " \
+    file://LICENSES/CC0-1.0.txt;md5=65d3616852dbf7b1a6d4b53b00626032 \
+    file://LICENSES/GPL-2.0-or-later.txt;md5=fed54355545ffd980b814dab4a3b312c \
+    file://LICENSES/MIT.txt;md5=e267b5203c8a34cf7f21e5a2102df564 \
+"
 
 SRC_URI = "git://invent.kde.org/plasma/aurorae.git;protocol=https;nobranch=1"
 SRCREV = "3425c1cfc1fed00129a85b0461b6b6805cfd1835"

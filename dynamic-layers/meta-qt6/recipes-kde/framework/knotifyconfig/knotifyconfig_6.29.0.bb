@@ -1,7 +1,10 @@
 SUMMARY = "Configuration dialog for desktop notifications"
 HOMEPAGE = "https://invent.kde.org/frameworks/knotifyconfig"
-LICENSE = "LGPL-2.0-only"
-LIC_FILES_CHKSUM += "file://LICENSES/LGPL-2.0-only.txt;md5=6d2d9952d88b50a51a5c73dc431d06c7"
+LICENSE = "CC0-1.0 AND LGPL-2.0-only"
+LIC_FILES_CHKSUM = " \
+    file://LICENSES/CC0-1.0.txt;md5=65d3616852dbf7b1a6d4b53b00626032 \
+    file://LICENSES/LGPL-2.0-only.txt;md5=6d2d9952d88b50a51a5c73dc431d06c7 \
+"
 
 SRC_URI = "git://invent.kde.org/frameworks/knotifyconfig.git;protocol=https;nobranch=1"
 SRCREV = "52ca9313f0a73699ced2e2a62404c8491d725a9b"
