@@ -1,0 +1,41 @@
+From ee891bf9fb18edef06002f98120441ad01c34411 Mon Sep 17 00:00:00 2001
+From: Marius P <nmariusp1@gmail.com>
+Date: Fri, 29 Jul 2022 05:33:15 +0300
+Subject: [PATCH 01/12] signond install does not require superuser anymore
+
+I install Qt5 and everything using kdesrc-build.
+Fix issue "/home/n/kde/src/signond/src/signond/signond.pro
+conf_file.path = /etc/
+/home/n/kde/qt5/bin/qmake -install qinstall /home/n/kde/src/signond/src/signond/signond.conf /etc/signond.conf
+Error copying /home/n/kde/src/signond/src/signond/signond.conf to /etc/signond.conf: Destination file exists".
+From now on, I build signond using:
+qmake-options PREFIX=${kdedir} CONFIG+=no_etc
+Upstream-Status: Backport [https://gitlab.com/nicolasfella/signond/-/tree/qt6]
+---
+ src/signond/signond.pro | 14 ++++++++------
+ 1 file changed, 8 insertions(+), 6 deletions(-)
+
+diff --git a/src/signond/signond.pro b/src/signond/signond.pro
+index d209fe5..ee8c10f 100644
+--- a/src/signond/signond.pro
++++ b/src/signond/signond.pro
+@@ -102,11 +102,13 @@ LIBS += \
+ headers.files = $$HEADERS
+ include( ../../common-installs-config.pri )
+ 
+-OTHER_FILES += \
+-    signond.conf \
+-    setupstorage.sh
++!no_etc {
++    OTHER_FILES += \
++        signond.conf \
++        setupstorage.sh
+ 
+-conf_file.files = $$OTHER_FILES
+-conf_file.path = /etc/
++    conf_file.files = $$OTHER_FILES
++    conf_file.path = /etc/
+ 
+-INSTALLS += conf_file
++    INSTALLS += conf_file
++}
