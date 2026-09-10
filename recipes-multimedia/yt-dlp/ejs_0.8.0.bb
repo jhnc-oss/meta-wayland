@@ -1,15 +1,17 @@
 SUMMARY = "External JavaScript for yt-dlp supporting many runtimes"
+HOMEPAGE = "https://github.com/yt-dlp/ejs"
 LICENSE = "Unlicense"
-LIC_FILES_CHKSUM = "file://LICENSE;md5=f4c62131f879a8445e16a7f265aea635"
+LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/Unlicense;md5=7246f848faa4e9c9fc0ea91122d6e680"
 
-inherit python_hatchling
+inherit python_pep517
 
-DEPENDS = "python3-hatch-vcs-native nodejs-native"
+SRC_URI = "https://github.com/yt-dlp/ejs/releases/download/${PV}/yt_dlp_ejs-${PV}-py3-none-any.whl"
+SRC_URI[sha256sum] = "79300e5fca7f937a1eeede11f0456862c1b41107ce1d726871e0207424f4bdb4"
 
-SRC_URI += "git://github.com/yt-dlp/ejs.git;protocol=https;nobranch=1;tag=0.8.0"
-SRCREV = "4fb477f4af56880cfd324c48bd4294a2d2294e50"
+S = "${UNPACKDIR}"
+PEP517_WHEEL_PATH = "${UNPACKDIR}"
+
+do_configure[noexec] = "1"
+do_compile[noexec] = "1"
 
 RDEPENDS:${PN} = "quickjs"
-
-# avoid 'npm error request to https://registry.npmjs.org/yocto-queue/-/yocto-queue-0.1.0.tgz failed'
-do_compile[network] = "1"
