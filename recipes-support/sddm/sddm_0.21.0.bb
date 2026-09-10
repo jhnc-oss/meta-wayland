@@ -1,6 +1,6 @@
 SUMMARY = "Simple Desktop Display Manager"
 HOMEPAGE = "https://github.com/sddm/sddm"
-LICENSE = "GPL-2.0-or-later & CC-BY-3.0"
+LICENSE = "CC-BY-3.0 AND GPL-2.0-or-later"
 LIC_FILES_CHKSUM = " \
     file://LICENSE;md5=4641e94ec96f98fabc56ff9cc48be14b \
     file://LICENSE.CC-BY-3.0;md5=36b7342d5619a3a0d3b581e89803ec25 \
