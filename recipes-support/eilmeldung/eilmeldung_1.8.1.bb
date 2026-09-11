@@ -3,8 +3,8 @@ HOMEPAGE = "https://github.com/christo-auer/eilmeldung"
 LICENSE = "GPL-3.0-only"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=1ebbd3e34237af26da5dc08a4e440464"
 
-SRC_URI += " git://github.com/christo-auer/eilmeldung.git;protocol=https;nobranch=1;tag=1.6.1"
-SRCREV = "b5769d5244b93b41c64fab3e92ecc701f544e88e"
+SRC_URI += " git://github.com/christo-auer/eilmeldung.git;protocol=https;nobranch=1;tag=1.8.1"
+SRCREV = "3870412e8ecd9f353574f9a0e37494b40d618326"
 
 DEPENDS = "openssl sqlite3 libxml2 clang-native"
 
