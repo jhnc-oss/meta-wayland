@@ -29,6 +29,7 @@ DEPENDS = " \
     libpwquality \
     polkit \
     samba \
+    tecla \
     libhandy \
     libnma \
     gtk+3 \
@@ -43,10 +44,12 @@ inherit meson gtk-icon-cache gsettings bash-completion pkgconfig gettext gi-docg
 
 SRC_URI = "gitsm://github.com/BuddiesOfBudgie/budgie-control-center.git;protocol=https;nobranch=1"
 SRC_URI += "file://0001-Add-meson-option-to-pass-sysroot.patch"
-SRCREV = "8b7b4be0d70bc94224265a7af3f459c84e4546b0"
+SRCREV = "971ebb7a3e12aeb58b1a036ebd0cc7f2a0e7eb4e"
 
 EXTRA_OEMESON += "-Doe_sysroot=${STAGING_DIR_HOST}"
 GIDOCGEN_MESON_OPTION = 'documentation'
+
+RDEPENDS:${PN} += "tecla"
 
 EXTRA_OEMESON += "-Dprofile=default"
 
