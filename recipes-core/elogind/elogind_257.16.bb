@@ -5,7 +5,7 @@ SECTION = "base/shell"
 LICENSE = "LGPL-2.1-only"
 LIC_FILES_CHKSUM = "file://LICENSE.LGPL2.1;md5=4fbd65380cdd255951079008b364516c"
 
-SRC_URI = "git://github.com/elogind/elogind.git;protocol=https;nobranch=1;tag=v255.17"
+SRC_URI = "git://github.com/elogind/elogind.git;protocol=https;nobranch=1;tag=v257.16"
 
 DEPENDS += " \
 	acl dbus \
@@ -20,7 +20,7 @@ DEPENDS += " \
 "
 
 
-SRCREV = "36917dda508996eedbb0b4b24af4e2dfe911179d"
+SRCREV = "1b62c6de143abafee70ab66b0470b4b6cbe3f798"
 
 inherit meson pkgconfig
 
