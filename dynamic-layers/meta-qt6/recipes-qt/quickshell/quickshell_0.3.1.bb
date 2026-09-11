@@ -5,6 +5,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=3000208d539ec061b899bce1d9ce9404"
 
 SRC_URI = "git://github.com/quickshell-mirror/quickshell.git;protocol=https;nobranch=1;tag=v0.3.1"
 SRC_URI += "file://0001-src-build-build.hpp.in-dont-include-COMPILE_FLAGS.patch"
+SRC_URI += "file://0002-moc-make-metatypes-complete-before-they-are-register.patch"
 SRCREV = "1a4716cde794a59928d9d9fc15f2afc7a95de360"
 
 DEPENDS = "cli11 libdrm qtbase qttools-native qtdeclarative qtquick3d qtshadertools spirv-tools virtual/libgbm"
