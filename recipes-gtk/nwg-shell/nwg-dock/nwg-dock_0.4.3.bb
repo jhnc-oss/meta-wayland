@@ -10,9 +10,9 @@ RDEPENDS:${PN} = "go-runtime"
 
 GO_IMPORT = "github.com/nwg-piotr/nwg-dock.git"
 
-SRC_URI = "git://${GO_IMPORT};destsuffix=${BB_GIT_DEFAULT_DESTSUFFIX}/src/${GO_IMPORT};nobranch=1;protocol=https;tag=v0.4.1"
+SRC_URI = "git://${GO_IMPORT};destsuffix=${BB_GIT_DEFAULT_DESTSUFFIX}/src/${GO_IMPORT};nobranch=1;protocol=https;tag=v0.4.3"
 
-SRCREV = "3f010171ab8596552efdc2f03d5f09c0042bbb64"
+SRCREV = "8ecd84c65ff832702f0fc8543a691406bc653c8a"
 
 require ${PN}-go-mods.inc ${PN}-licenses.inc
 

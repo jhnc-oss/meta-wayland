@@ -14,6 +14,6 @@ LIC_FILES_CHKSUM += "\
     file://pkg/mod/github.com/joshuarubin/lifecycle@v1.1.4/LICENSE;md5=4c6cdbc97a8b3ebc75b8019059a1764b;spdx=MIT \
     file://pkg/mod/github.com/sirupsen/logrus@v1.9.3/LICENSE;md5=8dadfef729c08ec4e631c4f6fc5d43a0;spdx=MIT \
     file://pkg/mod/go.uber.org/multierr@v1.11.0/LICENSE.txt;md5=721ac51ede11efb667ff53a866be23c4;spdx=MIT \
-    file://pkg/mod/golang.org/x/sync@v0.8.0/LICENSE;md5=7998cb338f82d15c0eff93b7004d272a;spdx=BSD-3-Clause \
-    file://pkg/mod/golang.org/x/sys@v0.24.0/LICENSE;md5=7998cb338f82d15c0eff93b7004d272a;spdx=BSD-3-Clause \
+    file://pkg/mod/golang.org/x/sync@v0.10.0/LICENSE;md5=7998cb338f82d15c0eff93b7004d272a;spdx=BSD-3-Clause \
+    file://pkg/mod/golang.org/x/sys@v0.29.0/LICENSE;md5=7998cb338f82d15c0eff93b7004d272a;spdx=BSD-3-Clause \
 "
