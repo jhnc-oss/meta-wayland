@@ -19,10 +19,10 @@ DEPENDS = " \
 inherit meson pkgconfig features_check manpages
 
 SRC_URI = " \
-	git://github.com/swaywm/swaylock.git;protocol=https;branch=master;tag=v1.8.5 \
+	git://github.com/swaywm/swaylock.git;protocol=https;branch=master;tag=v1.8.6 \
 "
 
-SRCREV = "1a4c472c11ee0354e5a689e33fad4ecce533ddc3"
+SRCREV = "44b82de635c3bc66b0093abd1cf8cc1c8b1b9c0f"
 
 PACKAGECONFIG[pam] = ",,libpam"
 PACKAGECONFIG[gdk-pixbuf] = ",,gdk-pixbuf"
