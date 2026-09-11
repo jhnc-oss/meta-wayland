@@ -7,6 +7,7 @@
 LICENSE += "AND BSD-3-Clause AND MIT"
 
 LIC_FILES_CHKSUM += "\
+    file://pkg/mod/github.com/rivo/uniseg@v0.4.7/LICENSE.txt;md5=4393c339bf180cf6e188b6ea32d8b93c;spdx=MIT \
     file://pkg/mod/go.etcd.io/bbolt@v1.3.9/LICENSE;md5=13b2a308eefa10d841e3bf2467dbe07a;spdx=MIT \
     file://pkg/mod/go.senan.xyz/flagconf@v0.1.9/LICENSE;md5=f5da1846f4e90b844f855d30dfa58e8e;spdx=MIT \
     file://pkg/mod/golang.org/x/image@v0.21.0/LICENSE;md5=7998cb338f82d15c0eff93b7004d272a;spdx=BSD-3-Clause \
