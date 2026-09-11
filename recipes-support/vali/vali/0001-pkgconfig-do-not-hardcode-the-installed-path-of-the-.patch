@@ -1,0 +1,31 @@
+From 9d45b05aed02f32023dfc16815fb7c8b1808a53b Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Fri, 11 Sep 2026 12:46:32 +0200
+Subject: [PATCH] pkgconfig: do not hardcode the installed path of the tool
+
+When cross compiling, the vali tool that consumers run to generate their
+varlink bindings has to be the one built for the build machine, not the
+one installed into the target sysroot. Emit a bare program name so that
+meson looks it up in PATH, which is what the declare_dependency variant
+used by subprojects already does.
+
+Upstream-Status: Pending
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+---
+ meson.build | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/meson.build b/meson.build
+index b6c7e66..e3c6545 100644
+--- a/meson.build
++++ b/meson.build
+@@ -79,7 +79,7 @@ pkgconfig.generate(
+ 	description: 'Varlink generator',
+ 	requires: ['json-c'],
+ 	variables: [
+-		'tool=${bindir}/vali',
++		'tool=vali',
+ 	],
+ )
+ 
