@@ -3,9 +3,9 @@ HOMEPAGE = "https://github.com/sharkdp/fd"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE-MIT;md5=96713c739748a44f86272791c89ce344"
 
-SRC_URI = "git://github.com/sharkdp/fd.git;protocol=https;branch=master;tag=v10.4.2"
+SRC_URI = "git://github.com/sharkdp/fd.git;protocol=https;branch=master;tag=v10.5.0"
 
-SRCREV = "7027d45303b412be6fa9c09d689cc6276748fb38"
+SRCREV = "4f81778774463bf414a184cbe6d5219ad2229646"
 
 inherit cargo cargo-update-recipe-crates
 
