@@ -8,7 +8,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=e316e9609dd7672b87ff25b46b2cf3e1"
 REQUIRED_DISTRO_FEATURES = "wayland"
 
 SRC_URI = " \
-	git://github.com/emersion/mako.git;protocol=https;branch=master;tag=v1.10.0 \
+	git://github.com/emersion/mako.git;protocol=https;branch=master;tag=v1.11.0 \
 "
 
 DEPENDS = " \
@@ -37,7 +37,7 @@ PACKAGECONFIG ?= " \
 	icons \
 "
 
-SRCREV = "b131bc143f6b0f24d650f16bb88a11c7cb011c20"
+SRCREV = "91c6b799855762ad1eb8b4498967c270a339be0c"
 
 EXTRA_OEMESON += "--buildtype release"
 
