@@ -7,23 +7,23 @@ Signed-off-by: Markus Volk <f_l_k@t-online.de>
 
 Upstream-Status: Pending
 ---
- CMakeLists.txt | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ CMakeLists.txt | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index f16d7ce..74d587f 100644
+index c0fa337..ac99de1 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
 @@ -84,7 +84,7 @@ target_include_directories(
    PRIVATE "./src" "./src/include" "./protocols" "${CMAKE_BINARY_DIR}")
  set_target_properties(hyprtoolkit PROPERTIES VERSION ${HYPRTOOLKIT_VERSION}
-                                               SOVERSION 5)
+                                               SOVERSION 6)
 -target_link_libraries(hyprtoolkit PUBLIC OpenGL::EGL OpenGL::OpenGL
 +target_link_libraries(hyprtoolkit PUBLIC EGL OpenGL
                                           PkgConfig::deps)
  
- check_include_file("sys/timerfd.h" HAS_TIMERFD)
-@@ -209,8 +209,8 @@ if(BUILD_TESTING)
+ check_include_file("sys/inotify.h" HAS_INOTIFY)
+@@ -202,13 +202,13 @@ if(BUILD_TESTING)
      PUBLIC "./include"
      PRIVATE "./src" "./src/include" "./protocols" "${CMAKE_BINARY_DIR}")
    target_link_libraries(
@@ -34,7 +34,9 @@ index f16d7ce..74d587f 100644
  
    gtest_discover_tests(hyprtoolkit_tests)
  
+   add_executable(embeddedRendererTest "tests/EmbeddedRenderer.cpp")
+-  target_link_libraries(embeddedRendererTest PRIVATE hyprtoolkit GTest::gtest_main OpenGL::EGL OpenGL::OpenGL PkgConfig::deps)
++  target_link_libraries(embeddedRendererTest PRIVATE hyprtoolkit GTest::gtest_main EGL OpenGL PkgConfig::deps)
+   gtest_discover_tests(embeddedRendererTest)
  
--- 
-2.51.0
-
+   # Add coverage to hyprtoolkit
