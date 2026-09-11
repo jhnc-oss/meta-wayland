@@ -6,22 +6,28 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=8f0e2cd40e05189ec81232da84bd6e1a"
 
 
 DEPENDS = " \
-            gtk-layer-shell \
-            granite6 \
+            gtk4 \
+            gtk4-layer-shell \
+            libadwaita \
+            granite \
             json-glib \
-            libhandy \
             libgee \
             pulseaudio \
+            wayland \
             sassc-native \
+            wayland-native \
+            blueprint-compiler-native \
 "
 
 SRC_URI = " \
-	git://github.com/ErikReider/SwayNotificationCenter.git;protocol=https;nobranch=1;tag=v0.10.1 \
+	git://github.com/ErikReider/SwayNotificationCenter.git;protocol=https;nobranch=1;tag=v0.12.6 \
 "
 
-SRCREV = "4275fa3915c12ad2731ff78027188b4b7ceaad64"
+SRCREV = "1043ef98ec97a27e24192a726576fce807d2ee49"
 
 inherit meson pkgconfig vala manpages
+
+export GI_TYPELIB_PATH = "${STAGING_LIBDIR}/girepository-1.0/"
 
 VALA_MESON_OPTION = ""
 
