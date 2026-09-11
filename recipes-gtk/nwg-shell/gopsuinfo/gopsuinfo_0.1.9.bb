@@ -4,8 +4,8 @@ LIC_FILES_CHKSUM = "file://src/${GO_IMPORT}/LICENSE;md5=22ed6cb3c33862e689e075b4
 
 GO_IMPORT = "github.com/nwg-piotr/gopsuinfo.git"
 
-SRC_URI = "git://${GO_IMPORT};destsuffix=${BB_GIT_DEFAULT_DESTSUFFIX}/src/${GO_IMPORT};branch=main;protocol=https;tag=v0.1.5"
-SRCREV = "60e4f83b6c4d84955e0a07f7bdc63d8089b4ba1e"
+SRC_URI = "git://${GO_IMPORT};destsuffix=${BB_GIT_DEFAULT_DESTSUFFIX}/src/${GO_IMPORT};branch=main;protocol=https;tag=v0.1.9"
+SRCREV = "9ce93f65ef430cccf5dd7e6ac618430c2e2d00a3"
 
 inherit go go-mod go-mod-update-modules
 

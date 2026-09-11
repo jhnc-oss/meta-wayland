@@ -4,9 +4,11 @@
 # Do not modify it by hand, as the contents will be replaced when
 # running the update-modules task.
 
-LICENSE += "AND BSD-3-Clause"
+LICENSE += "AND Apache-2.0 AND BSD-3-Clause"
 
 LIC_FILES_CHKSUM += "\
-    file://pkg/mod/github.com/shirou/gopsutil@v3.21.1+incompatible/LICENSE;md5=ed7522382cec5b7a6d6ebb8e30eed40e;spdx=BSD-3-Clause \
-    file://pkg/mod/golang.org/x/sys@v0.0.0-20220412211240-33da011f77ad/LICENSE;md5=5d4950ecb7b26d2c5e4e7b4e0dd74707;spdx=BSD-3-Clause \
+    file://pkg/mod/github.com/shirou/gopsutil@v3.21.11+incompatible/LICENSE;md5=ed7522382cec5b7a6d6ebb8e30eed40e;spdx=BSD-3-Clause \
+    file://pkg/mod/github.com/tklauser/go-sysconf@v0.3.14/LICENSE;md5=d4eb2084b3083d2c275ec52ef4ba9ac1;spdx=BSD-3-Clause \
+    file://pkg/mod/github.com/tklauser/numcpus@v0.9.0/LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57;spdx=Apache-2.0 \
+    file://pkg/mod/golang.org/x/sys@v0.26.0/LICENSE;md5=7998cb338f82d15c0eff93b7004d272a;spdx=BSD-3-Clause \
 "
