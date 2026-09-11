@@ -2,7 +2,7 @@ SUMMARY = "nwg-hello is a GTK3-based greeter for the greetd daemon, written in p
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=b0ad99c75f37a759e329c5da4c8a7fcb"
 
-SRC_URI = "git://github.com/nwg-piotr/nwg-hello.git;protocol=https;branch=main;tag=v0.2.0"
+SRC_URI = "git://github.com/nwg-piotr/nwg-hello.git;protocol=https;branch=main;tag=v0.4.5"
 
 RDEPENDS:${PN} = " \
 	python3 \
@@ -15,7 +15,7 @@ RRECOMMENDS:${PN} = "gnome-themes-extra"
 
 inherit setuptools3 useradd
 
-SRCREV = "aa6a9e4a9024dba8ebaa98af53df82b3c19d379a"
+SRCREV = "913e46df937441d227160481f529440a10886dfe"
 
 USERADD_PACKAGES = "${PN}"
 USERADD_PARAM:${PN} = "--system  --no-create-home --shell /bin/bash greeter"
