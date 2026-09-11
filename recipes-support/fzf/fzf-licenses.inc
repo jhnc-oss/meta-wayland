@@ -9,7 +9,7 @@ LICENSE += "AND BSD-3-Clause AND MIT"
 LIC_FILES_CHKSUM += "\
     file://pkg/mod/github.com/charlievieth/fastwalk@v1.0.14/LICENSE;md5=ca768dcff348a2a95cf861f3312b0a5c;spdx=MIT \
     file://pkg/mod/github.com/junegunn/go-shellwords@v0.0.0-20250127100254-2aa3b3277741/LICENSE;md5=e5116fc268f5118168ff06a271b50ef9;spdx=MIT \
-    file://pkg/mod/github.com/mattn/go-isatty@v0.0.20/LICENSE;md5=f509beadd5a11227c27b5d2ad6c9f2c6;spdx=MIT \
+    file://pkg/mod/github.com/mattn/go-isatty@v0.0.24/LICENSE;md5=f509beadd5a11227c27b5d2ad6c9f2c6;spdx=MIT \
     file://pkg/mod/github.com/rivo/uniseg@v0.4.7/LICENSE.txt;md5=4393c339bf180cf6e188b6ea32d8b93c;spdx=MIT \
     file://pkg/mod/golang.org/x/sys@v0.35.0/LICENSE;md5=7998cb338f82d15c0eff93b7004d272a;spdx=BSD-3-Clause \
     file://pkg/mod/golang.org/x/term@v0.34.0/LICENSE;md5=7998cb338f82d15c0eff93b7004d272a;spdx=BSD-3-Clause \
