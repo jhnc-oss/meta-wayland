@@ -3,7 +3,7 @@ LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=b246754361f75980923b7feebfe71c15"
 
 SRC_URI = " \
-	git://github.com/geopy/geopy.git;protocol=https;branch=master;tag=2.4.1 \
+	git://github.com/geopy/geopy.git;protocol=https;branch=master;tag=2.5.0 \
 "
 
 RDEPENDS:${PN} = " \
@@ -12,5 +12,5 @@ RDEPENDS:${PN} = " \
 
 inherit setuptools3
 
-SRCREV = "f495974c32a7a7b1eb433e7b8c87166e96375c32"
+SRCREV = "402cbba8b093e5e3f89c81b902f576d65608a123"
 
