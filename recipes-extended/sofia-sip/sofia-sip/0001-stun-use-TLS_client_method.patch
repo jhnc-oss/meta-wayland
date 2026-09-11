@@ -1,0 +1,30 @@
+From dffb429da5fe8f24b18ad04fe641483fd7e893ad Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Fri, 11 Sep 2026 12:26:22 +0200
+Subject: [PATCH] stun: use TLS_client_method
+
+TLSv1_client_method was removed in OpenSSL 4.0, which breaks the build
+with an implicit declaration. TLS_client_method has been the version
+agnostic replacement since OpenSSL 1.1 and negotiates the highest
+protocol both ends support.
+
+Upstream-Status: Pending
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+---
+ libsofia-sip-ua/stun/stun.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/libsofia-sip-ua/stun/stun.c b/libsofia-sip-ua/stun/stun.c
+index 22ca7c7..aa4b574 100644
+--- a/libsofia-sip-ua/stun/stun.c
++++ b/libsofia-sip-ua/stun/stun.c
+@@ -1368,7 +1368,7 @@ int stun_tls_callback(su_root_magic_t *m, su_wait_t *w, su_wakeup_arg_t *arg)
+     /* openssl initiation */
+     SSLeay_add_ssl_algorithms();
+     SSL_load_error_strings();
+-    ctx = SSL_CTX_new(TLSv1_client_method());
++    ctx = SSL_CTX_new(TLS_client_method());
+     self->sh_ctx = ctx;
+ 
+     if (ctx == NULL) {
