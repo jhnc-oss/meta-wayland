@@ -8,10 +8,10 @@ inherit meson pkgconfig manpages
 EXTRA_OEMESON = "-Dpython-bin=${bindir}/python3"
 
 SRC_URI = " \
-	git://github.com/Vladimir-csp/uwsm.git;protocol=https;branch=master;tag=v0.26.6 \
+	git://github.com/Vladimir-csp/uwsm.git;protocol=https;branch=master;tag=v0.26.7 \
 	file://0001-uwsm-meson.build-dont-fail-for-missing-python-module.patch \
 "
-SRCREV = "469a39a5436f6c1086b4904d42227c03aee2e394"
+SRCREV = "ab5ec16d96ed1f77c3c7ff2e3f07ed42caf23f2d"
 
 
 PACKAGECONFIG ?= "uuctl uwsm-app fumon"
