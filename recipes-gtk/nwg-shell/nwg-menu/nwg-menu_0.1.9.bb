@@ -15,9 +15,9 @@ RRECOMMENDS:${PN} = " \
 
 GO_IMPORT = "github.com/nwg-piotr/nwg-menu.git"
 
-SRC_URI = "git://${GO_IMPORT};destsuffix=${BB_GIT_DEFAULT_DESTSUFFIX}/src/${GO_IMPORT};nobranch=1;protocol=https;tag=v0.1.7"
+SRC_URI = "git://${GO_IMPORT};destsuffix=${BB_GIT_DEFAULT_DESTSUFFIX}/src/${GO_IMPORT};nobranch=1;protocol=https;tag=v0.1.9"
 
-SRCREV = "5806a1bb8b916478a5b25aec2a0c3cdcb071de0b"
+SRCREV = "208b082f7d459d12ffd44634259fad94060ccbea"
 
 require ${PN}-go-mods.inc ${PN}-licenses.inc
 
