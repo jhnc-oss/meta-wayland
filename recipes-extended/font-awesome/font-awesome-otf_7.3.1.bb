@@ -4,13 +4,13 @@ HOMEPAGE = "https://fontawesome.com/"
 SECTION = "base/fonts"
 
 LICENSE = "CC-BY-4.0 AND OFL-1.1"
-LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=9b9d97c72a232b7715f2aed4bf4a4d45"
+LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=f36af1c24ccf20e8805e40b6da8842b9"
 
 SRC_URI = " \
-	git://github.com/FortAwesome/Font-Awesome.git;protocol=https;branch=6.x;tag=6.6.0 \
+	git://github.com/FortAwesome/Font-Awesome.git;protocol=https;nobranch=1;tag=7.3.1 \
 "
 
-SRCREV = "37eff7fa00de26db41183a3ad8ed0e9119fbc44b"
+SRCREV = "14c65a3747d0f3b751f15831fc719236aea8729d"
 
 
 do_install () {
