@@ -13,18 +13,15 @@ Signed-off-by: Markus Volk <f_l_k@t-online.de>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/meson.build b/meson.build
-index e4031eb..939a0ae 100644
+index 89e2f12..a876cf1 100644
 --- a/meson.build
 +++ b/meson.build
-@@ -206,7 +206,7 @@ executable('noctalia-greeter',
+@@ -204,7 +204,7 @@ noctalia_greeter_executable = executable('noctalia-greeter',
    cpp_args: [
      '-Wall', '-Wextra', '-Wpedantic', '-Wconversion', '-Wshadow',
      '-DNOCTALIA_GREETER_VERSION="' + meson.project_version() + '"',
 -    '-DNOCTALIA_GREETER_ASSETS_DIR="' + meson.project_source_root() / 'assets' + '"',
 +    '-DNOCTALIA_GREETER_ASSETS_DIR="' + 'assets' + '"',
      '-DNOCTALIA_GREETER_INSTALLED_ASSETS_DIR="' + get_option('datadir') / 'noctalia-greeter' / 'assets' + '"',
+     '-DNOCTALIA_GREETER_INSTALLED_POLICY_PATH="' + get_option('prefix') / get_option('datadir') / 'polkit-1' / 'actions' / 'org.noctalia.greeter.apply-appearance.policy' + '"',
    ],
-   install: true,
--- 
-2.54.0
-

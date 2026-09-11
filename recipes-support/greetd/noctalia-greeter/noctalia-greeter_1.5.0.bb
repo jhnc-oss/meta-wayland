@@ -17,15 +17,21 @@ DEPENDS = " \
 	wlroots-0.20 \
 	libinput \
 	libwebp \
+	tomlplusplus \
+	nlohmann-json \
+	stb \
 	${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'virtual/egl virtual/libgles2', 'epoxy', d)} \
 "
 
-SRC_URI = "git://github.com/noctalia-dev/noctalia-greeter.git;protocol=https;branch=main;tag=v1.0.0"
+SRC_URI = "git://github.com/noctalia-dev/noctalia-greeter.git;protocol=https;branch=main;tag=v1.5.0"
 SRC_URI += "file://0001-assets-buildpath.patch"
-SRCREV = "68fa4a04122c0c9ded77072eb3a04464ed635f6b"
+SRCREV = "5a450b891067c1f0cd7157f4f1091aa0e3014780"
 
 inherit meson pkgconfig
 
-FILES:${PN} += "${datadir}/polkit-1/actions/org.noctalia.greeter.apply-appearance.policy"
+FILES:${PN} += " \
+	${datadir}/polkit-1/actions/org.noctalia.greeter.apply-appearance.policy \
+	${nonarch_libdir}/tmpfiles.d \
+"
 
 RDEPENDS:${PN} += "greetd"
