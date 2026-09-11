@@ -21,7 +21,3 @@ do_compile:prepend() {
 	export LIBCLANG_PATH="${STAGING_LIBDIR_NATIVE}/libclang.so"
 	export BINDGEN_EXTRA_CLANG_ARGS="${HOST_CC_ARCH} ${TOOLCHAIN_OPTIONS} --target=${TARGET_SYS}"
 }
-
-# avoid packaging the debug symbols as they contain buildpaths (cargo_home)
-PACKAGES:remove = "${PN}-dbg"
-INSANE_SKIP:${PN} = "installed-vs-shipped"
