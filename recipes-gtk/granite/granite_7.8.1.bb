@@ -13,10 +13,12 @@ DEPENDS = " \
 
 REQUIRED_DISTRO_FEATURES = "gobject-introspection-data"
 
-SRC_URI = "git://github.com/elementary/granite.git;protocol=https;nobranch=1;tag=7.4.0"
+SRC_URI = "git://github.com/elementary/granite.git;protocol=https;nobranch=1;tag=7.8.1"
 
-SRCREV = "949703f8649013695c6d32eb84a6b541ac0da4db"
+SRCREV = "4cd5188619e65f2f2410c9af834df903f6e4f85e"
 
 inherit meson pkgconfig gobject-introspection vala features_check
+
+EXTRA_OEMESON += "-Ddemo=false"
 
 FILES:${PN} += "${datadir}"
