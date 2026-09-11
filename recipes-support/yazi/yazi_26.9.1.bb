@@ -20,10 +20,6 @@ do_configure[postfuncs] += "point_ratatui_at_unpacked_source"
 
 require ${BPN}-crates.inc
 
-# avoid packaging the debug symbols as they contain buildpaths (cargo_home)
-PACKAGES:remove = "${PN}-dbg"
-INSANE_SKIP:${PN} = "installed-vs-shipped"
-
 RRECOMMENDS:${PN} = " \
     ${@bb.utils.contains_any('DISTRO_FEATURES', 'wayland x11', 'ueberzugpp', '', d)} \
     ${@bb.utils.contains('LICENSE_FLAGS_ACCEPTED', 'commercial', 'ffmpeg', '', d)} \
