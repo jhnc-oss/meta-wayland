@@ -3,7 +3,7 @@ LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=da62111cfafe45015704951c9d602bb2"
 
 SRC_URI = " \
-	git://github.com/nwg-piotr/nwg-panel.git;protocol=https;branch=master;tag=v0.10.8 \
+	git://github.com/nwg-piotr/nwg-panel.git;protocol=https;branch=master;tag=v0.10.15 \
 "
 
 RDEPENDS:${PN} = "\
@@ -18,5 +18,5 @@ RDEPENDS:${PN} = "\
 
 inherit setuptools3
 
-SRCREV = "5e5610cbc00f18595d791f2d7dbf32512618fbf9"
+SRCREV = "2b3ddef5129a0d3540832bb7fa48ce6d1a40b99f"
 
