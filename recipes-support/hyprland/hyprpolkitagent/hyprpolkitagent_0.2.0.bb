@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=778ddc598b3f2a2da3657dda514da983"
 
 SRC_URI = "git://github.com/hyprwm/hyprpolkitagent.git;protocol=https;branch=main"
 
-SRCREV = "a259bf1fcf141dc0fc49c242510814ea6ac33387"
+SRCREV = "0e4492994e211b9af9365f16a9fda35d32e106bb"
 PV:append = "+git"
 
 DEPENDS = "hyprtoolkit polkit hyprutils sdbus-c++ libdrm pixman hyprgraphics"
