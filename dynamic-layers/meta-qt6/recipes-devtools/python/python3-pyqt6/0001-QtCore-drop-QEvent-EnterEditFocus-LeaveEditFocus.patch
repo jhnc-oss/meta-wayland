@@ -1,0 +1,32 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Sat, 12 Sep 2026 11:30:00 +0200
+Subject: [PATCH] QtCore: drop QEvent::EnterEditFocus and LeaveEditFocus
+
+Qt 6.12 removed both enumerators along with keypad navigation, but PyQt6 still
+exposes them unconditionally, so the generated bindings do not compile:
+
+  sipQtCoreQEvent.cpp:624:57: error: 'EnterEditFocus' is not a member of 'QEvent'
+  sipQtCoreQEvent.cpp:625:57: error: 'LeaveEditFocus' is not a member of 'QEvent'
+
+The %Timeline in sip/QtCore/QtCoremod.sip ends at Qt_6_11_0, so there is no
+version tag to guard them with; drop them instead.
+
+Upstream-Status: Pending
+
+---
+ sip/QtCore/qcoreevent.sip | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/sip/QtCore/qcoreevent.sip b/sip/QtCore/qcoreevent.sip
+--- a/sip/QtCore/qcoreevent.sip
++++ b/sip/QtCore/qcoreevent.sip
+@@ -200,8 +200,6 @@
+         PlatformSurface,
+         TabletTrackingChange,
+         GraphicsSceneLeave,
+-        EnterEditFocus,
+-        LeaveEditFocus,
+ %If (Qt_6_6_0 -)
+         DevicePixelRatioChange,
+ %End
