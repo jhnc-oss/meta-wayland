@@ -8,7 +8,7 @@ SRCREV = "3870412e8ecd9f353574f9a0e37494b40d618326"
 
 DEPENDS = "openssl sqlite3 libxml2 clang-native"
 
-inherit cargo cargo-update-recipe-crates pkgconfig
+inherit ptest-cargo cargo-update-recipe-crates pkgconfig
 
 require ${BPN}-crates.inc
 
@@ -16,8 +16,6 @@ do_configure:prepend() {
 	sed -i "s|strip\ =\ true|strip\ =\ false|g" ${S}/Cargo.toml
 }
 
-do_compile:prepend() {
-	export OPENSSL_NO_VENDOR=1
-	export LIBCLANG_PATH="${STAGING_LIBDIR_NATIVE}/libclang.so"
-	export BINDGEN_EXTRA_CLANG_ARGS="${HOST_CC_ARCH} ${TOOLCHAIN_OPTIONS} --target=${TARGET_SYS}"
-}
+export OPENSSL_NO_VENDOR = "1"
+export LIBCLANG_PATH = "${STAGING_LIBDIR_NATIVE}/libclang.so"
+export BINDGEN_EXTRA_CLANG_ARGS = "${HOST_CC_ARCH} ${TOOLCHAIN_OPTIONS} --target=${TARGET_SYS}"
