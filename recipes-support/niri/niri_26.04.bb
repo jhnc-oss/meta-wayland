@@ -30,7 +30,7 @@ DEPENDS = " \
 	wayland-protocols \
 "
 
-inherit cargo pkgconfig cargo-update-recipe-crates
+inherit ptest-cargo pkgconfig cargo-update-recipe-crates
 
 require ${PN}-crates.inc
 
@@ -53,3 +53,5 @@ do_install:append() {
 FILES:${PN} += "${datadir}"
 
 RDEPENDS:${PN} += "xwayland-satellite xdg-desktop-portal-gnome xdg-desktop-portal-gtk"
+
+INSANE_SKIP:${PN}-ptest += "buildpaths"
