@@ -6,10 +6,14 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=a25cce5cb436456c4b21461a3ff95b0d"
 SRC_URI = "git://github.com/starship/starship.git;protocol=https;nobranch=1;tag=v1.26.0"
 SRCREV = "fca92d8dcbd5981b0160af2f7ed7a430b6475a72"
 
-inherit cargo cargo-update-recipe-crates
+inherit ptest-cargo cargo-update-recipe-crates
 
 require ${BPN}-crates.inc
 
 do_configure:prepend() {
     sed -i "s|strip\ =\ true|strip\ =\ false|g" ${S}/Cargo.toml
 }
+
+RUST_TEST_ARGS = "--skip modules::git_ --skip modules::hg_ --skip modules::fossil_ --skip modules::pijul_ --skip modules::vcs --skip modules::custom::tests::test_render_require_repo_in"
+
+INSANE_SKIP:${PN}-ptest += "buildpaths"
