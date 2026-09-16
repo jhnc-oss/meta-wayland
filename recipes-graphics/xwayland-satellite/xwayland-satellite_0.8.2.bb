@@ -13,8 +13,10 @@ DEPENDS = " \
 
 SRCREV = "8d135d3b2854b30fd01ea6cd6c27e523dd50a839"
 
-inherit cargo cargo-update-recipe-crates pkgconfig
+inherit ptest-cargo cargo-update-recipe-crates pkgconfig
 
 require ${PN}-crates.inc
 
 export LIBCLANG_PATH = "${STAGING_LIBDIR_NATIVE}/libclang.so"
+
+RDEPENDS:${PN}-ptest += "xwayland"
