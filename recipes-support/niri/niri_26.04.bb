@@ -38,8 +38,8 @@ export LIBCLANG_PATH = "${STAGING_LIBDIR_NATIVE}/libclang.so"
 export CLANG_PATH = "${STAGING_BINDIR_NATIVE}/clang"
 export BINDGEN_EXTRA_CLANG_ARGS = "${HOST_CC_ARCH} ${TOOLCHAIN_OPTIONS} --target=${TARGET_SYS}"
 
-PACKAGECONFIG ?= ""
-PACKAGECONFIG[xwayland] = ",,,xwayland-satellite"
+PACKAGECONFIG ?= "${@bb.utils.filter('DISTRO_FEATURES', 'x11', d)}"
+PACKAGECONFIG[x11] = ",,,xwayland-satellite"
 
 INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
 
@@ -52,6 +52,6 @@ do_install:append() {
 
 FILES:${PN} += "${datadir}"
 
-RDEPENDS:${PN} += "xwayland-satellite xdg-desktop-portal-gnome xdg-desktop-portal-gtk"
+RDEPENDS:${PN} += "xdg-desktop-portal-gnome xdg-desktop-portal-gtk"
 
 INSANE_SKIP:${PN}-ptest += "buildpaths"
