@@ -26,8 +26,12 @@ DEPENDS += " \
 
 inherit meson pkgconfig features_check
 
-PACKAGECONFIG ?= "${@bb.utils.contains('TCLIBC', 'glibc', 'jemalloc', '', d)}"
+PACKAGECONFIG ?= " \
+	${@bb.utils.contains('TCLIBC', 'glibc', 'jemalloc', '', d)} \
+	${@bb.utils.filter('DISTRO_FEATURES', 'x11', d)} \
+"
 PACKAGECONFIG[jemalloc] = "-Djemalloc=enabled,-Djemalloc=disabled,jemalloc"
+PACKAGECONFIG[x11] = ",,,xwayland-satellite"
 
 FILES:${PN} += "${datadir} ${systemd_user_unitdir}"
 
