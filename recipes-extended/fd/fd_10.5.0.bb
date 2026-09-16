@@ -7,10 +7,14 @@ SRC_URI = "git://github.com/sharkdp/fd.git;protocol=https;branch=master;tag=v10.
 
 SRCREV = "4f81778774463bf414a184cbe6d5219ad2229646"
 
-inherit cargo cargo-update-recipe-crates
+inherit ptest-cargo cargo-update-recipe-crates
 
 require ${BPN}-crates.inc
 
 do_configure:prepend() {
     sed -i "s|strip\ =\ true|strip\ =\ false|g" ${S}/Cargo.toml
 }
+
+RDEPENDS:${PN}-ptest += "coreutils"
+
+INSANE_SKIP:${PN}-ptest += "buildpaths"
