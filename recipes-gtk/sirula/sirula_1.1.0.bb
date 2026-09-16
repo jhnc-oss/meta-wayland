@@ -17,7 +17,7 @@ DEPENDS = " \
     gtk+3 \
 "
 
-inherit cargo pkgconfig cargo-update-recipe-crates
+inherit ptest-cargo pkgconfig cargo-update-recipe-crates
 
 require ${BPN}-crates.inc
 
