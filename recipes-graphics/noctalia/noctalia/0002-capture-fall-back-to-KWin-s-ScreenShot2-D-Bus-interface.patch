@@ -1,0 +1,654 @@
+From 76c04dd6b7a9937fbaf7eb5a3741aa4e95ad2602 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Sat, 19 Sep 2026 00:29:32 +0200
+Subject: [PATCH] capture: fall back to KWin's ScreenShot2 D-Bus interface
+
+KWin offers neither wlr-screencopy nor ext-image-copy-capture, so the
+screenshot commands fail on KDE sessions. Add a capture backend that asks
+org.kde.KWin.ScreenShot2 for the output or area instead and feeds the
+raw frame into the existing pipeline. It is only created on KDE and only
+used when no screencopy global is present.
+
+KWin authorizes callers by matching their executable against the Exec
+line of a desktop entry that lists the interface, so the desktop file
+now carries the absolute bindir and X-KDE-DBUS-Restricted-Interfaces.
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+---
+ assets/dev.noctalia.Noctalia.desktop    |  15 --
+ assets/dev.noctalia.Noctalia.desktop.in |  16 ++
+ meson.build                             |  13 +-
+ src/app/application_services.cpp        |   1 +
+ src/capture/kwin_screenshot_capture.cpp | 312 ++++++++++++++++++++++++
+ src/capture/kwin_screenshot_capture.h   |  50 ++++
+ src/capture/screenshot_capture.cpp      |  35 ++-
+ src/capture/screenshot_capture.h        |  10 +
+ src/capture/screenshot_service.cpp      |   2 +
+ src/capture/screenshot_service.h        |   2 +
+ 10 files changed, 437 insertions(+), 19 deletions(-)
+ delete mode 100644 assets/dev.noctalia.Noctalia.desktop
+ create mode 100644 assets/dev.noctalia.Noctalia.desktop.in
+ create mode 100644 src/capture/kwin_screenshot_capture.cpp
+ create mode 100644 src/capture/kwin_screenshot_capture.h
+
+diff --git a/assets/dev.noctalia.Noctalia.desktop b/assets/dev.noctalia.Noctalia.desktop
+deleted file mode 100644
+index d99b4ee4f..000000000
+--- a/assets/dev.noctalia.Noctalia.desktop
++++ /dev/null
+@@ -1,15 +0,0 @@
+-[Desktop Entry]
+-Type=Application
+-Name=Noctalia
+-Comment=A sleek, customizable desktop shell crafted for Wayland.
+-Exec=noctalia --daemon
+-Icon=noctalia
+-Terminal=false
+-Categories=Settings;DesktopSettings;
+-StartupNotify=false
+-Actions=Settings;
+-Keywords=desktop;shell;wayland;
+-
+-[Desktop Action Settings]
+-Name=Open Settings
+-Exec=sh -c "noctalia msg settings-open || { noctalia --daemon && noctalia msg settings-open; }"
+diff --git a/assets/dev.noctalia.Noctalia.desktop.in b/assets/dev.noctalia.Noctalia.desktop.in
+new file mode 100644
+index 000000000..a3d94deb1
+--- /dev/null
++++ b/assets/dev.noctalia.Noctalia.desktop.in
+@@ -0,0 +1,16 @@
++[Desktop Entry]
++Type=Application
++Name=Noctalia
++Comment=A sleek, customizable desktop shell crafted for Wayland.
++Exec=@BINDIR@/noctalia --daemon
++Icon=noctalia
++Terminal=false
++Categories=Settings;DesktopSettings;
++StartupNotify=false
++Actions=Settings;
++Keywords=desktop;shell;wayland;
++X-KDE-DBUS-Restricted-Interfaces=org.kde.KWin.ScreenShot2
++
++[Desktop Action Settings]
++Name=Open Settings
++Exec=sh -c "noctalia msg settings-open || { noctalia --daemon && noctalia msg settings-open; }"
+diff --git a/meson.build b/meson.build
+index 40477961f..e35f877c2 100644
+--- a/meson.build
++++ b/meson.build
+@@ -836,6 +836,7 @@ _noctalia_sources = files(
+   'src/system/gamma_service.cpp',
+   'src/system/location_service.cpp',
+   'src/capture/screencopy_capture.cpp',
++  'src/capture/kwin_screenshot_capture.cpp',
+   'src/capture/pointer_cursor_capture.cpp',
+   'src/capture/screencopy_util.cpp',
+   'src/capture/screenshot_capture.cpp',
+@@ -1122,11 +1123,19 @@ noctalia_exe = executable('noctalia',
+ 
+ install_subdir('assets',
+   install_dir: get_option('datadir') / 'noctalia',
+-  exclude_files: ['dev.noctalia.Noctalia.desktop'],
++  exclude_files: ['dev.noctalia.Noctalia.desktop.in'],
++)
++
++# KWin authorizes org.kde.KWin.ScreenShot2 callers by matching the absolute
++# executable path in their desktop entry, so Exec needs the installed bindir.
++noctalia_desktop = configure_file(
++  input: 'assets/dev.noctalia.Noctalia.desktop.in',
++  output: 'dev.noctalia.Noctalia.desktop',
++  configuration: {'BINDIR': get_option('prefix') / get_option('bindir')},
+ )
+ 
+ install_data(
+-  'assets/dev.noctalia.Noctalia.desktop',
++  noctalia_desktop,
+   install_dir: get_option('datadir') / 'applications',
+ )
+ 
+diff --git a/src/app/application_services.cpp b/src/app/application_services.cpp
+index 3b1562061..bb8045115 100644
+--- a/src/app/application_services.cpp
++++ b/src/app/application_services.cpp
+@@ -1526,6 +1526,7 @@ void Application::initSessionBusServices() {
+     installSecretServiceNameWatch();
+ 
+     m_compositorPlatform.startKdeActiveWindow(*m_bus);
++    m_screenshotService.setSessionBus(*m_bus);
+ 
+     m_trayService = std::make_unique<TrayService>(*m_bus);
+     m_trayService->setChangeCallback([this]() {
+diff --git a/src/capture/kwin_screenshot_capture.cpp b/src/capture/kwin_screenshot_capture.cpp
+new file mode 100644
+index 000000000..71db14926
+--- /dev/null
++++ b/src/capture/kwin_screenshot_capture.cpp
+@@ -0,0 +1,312 @@
++#include "capture/kwin_screenshot_capture.h"
++
++#include "core/log.h"
++#include "dbus/session_bus.h"
++#include "wayland/wayland_connection.h"
++
++#include <cerrno>
++#include <chrono>
++#include <cstring>
++#include <fcntl.h>
++#include <map>
++#include <poll.h>
++#include <sdbus-c++/sdbus-c++.h>
++#include <unistd.h>
++#include <utility>
++#include <vector>
++
++namespace {
++
++  constexpr Logger kLog("kwin_screenshot");
++
++  const sdbus::ServiceName kServiceName{"org.kde.KWin.ScreenShot2"};
++  const sdbus::ObjectPath kObjectPath{"/org/kde/KWin/ScreenShot2"};
++  constexpr auto kInterface = "org.kde.KWin.ScreenShot2";
++
++  constexpr std::chrono::milliseconds kPipeTimeout{5000};
++
++  // QImage::Format values KWin hands out for screenshots.
++  constexpr std::uint32_t kFormatRgb32 = 4;
++  constexpr std::uint32_t kFormatArgb32 = 5;
++  constexpr std::uint32_t kFormatArgb32Premultiplied = 6;
++  constexpr std::uint32_t kFormatRgbx8888 = 16;
++  constexpr std::uint32_t kFormatRgba8888 = 17;
++  constexpr std::uint32_t kFormatRgba8888Premultiplied = 18;
++
++  [[nodiscard]] bool serviceHasOwner(SessionBus& bus) {
++    try {
++      auto proxy = sdbus::createProxy(
++          bus.connection(), sdbus::ServiceName{"org.freedesktop.DBus"}, sdbus::ObjectPath{"/org/freedesktop/DBus"}
++      );
++      bool hasOwner = false;
++      proxy->callMethod("NameHasOwner")
++          .onInterface("org.freedesktop.DBus")
++          .withArguments(std::string{kServiceName})
++          .storeResultsTo(hasOwner);
++      return hasOwner;
++    } catch (const sdbus::Error& e) {
++      kLog.debug("NameHasOwner failed: {}", e.getMessage());
++      return false;
++    }
++  }
++
++  [[nodiscard]] std::optional<std::uint32_t> readUint(const std::map<std::string, sdbus::Variant>& results, const char* key) {
++    const auto it = results.find(key);
++    if (it == results.end()) {
++      return std::nullopt;
++    }
++    try {
++      if (it->second.containsValueOfType<std::uint32_t>()) {
++        return it->second.get<std::uint32_t>();
++      }
++      if (it->second.containsValueOfType<std::int32_t>()) {
++        return static_cast<std::uint32_t>(it->second.get<std::int32_t>());
++      }
++      if (it->second.containsValueOfType<std::uint64_t>()) {
++        return static_cast<std::uint32_t>(it->second.get<std::uint64_t>());
++      }
++    } catch (const sdbus::Error&) {
++    }
++    return std::nullopt;
++  }
++
++  [[nodiscard]] bool readPipe(int fd, std::size_t size, std::vector<std::uint8_t>& out, std::string& error) {
++    out.resize(size);
++    std::size_t total = 0;
++    const auto deadline = std::chrono::steady_clock::now() + kPipeTimeout;
++    while (total < size) {
++      const auto remaining =
++          std::chrono::duration_cast<std::chrono::milliseconds>(deadline - std::chrono::steady_clock::now());
++      if (remaining.count() <= 0) {
++        error = "timed out reading screenshot pipe";
++        return false;
++      }
++      pollfd pfd{.fd = fd, .events = POLLIN, .revents = 0};
++      const int ready = poll(&pfd, 1, static_cast<int>(remaining.count()));
++      if (ready < 0) {
++        if (errno == EINTR) {
++          continue;
++        }
++        error = std::string{"poll on screenshot pipe failed: "} + std::strerror(errno);
++        return false;
++      }
++      if (ready == 0) {
++        error = "timed out reading screenshot pipe";
++        return false;
++      }
++      const ssize_t n = read(fd, out.data() + total, size - total);
++      if (n < 0) {
++        if (errno == EINTR || errno == EAGAIN) {
++          continue;
++        }
++        error = std::string{"read from screenshot pipe failed: "} + std::strerror(errno);
++        return false;
++      }
++      if (n == 0) {
++        error = "screenshot pipe closed early";
++        return false;
++      }
++      total += static_cast<std::size_t>(n);
++    }
++    return true;
++  }
++
++  [[nodiscard]] bool convertToRgba(
++      const std::vector<std::uint8_t>& raw, std::uint32_t width, std::uint32_t height, std::uint32_t stride,
++      std::uint32_t format, std::vector<std::uint8_t>& out
++  ) {
++    bool bgra = false;
++    bool hasAlpha = true;
++    switch (format) {
++    case kFormatRgb32:
++      bgra = true;
++      hasAlpha = false;
++      break;
++    case kFormatArgb32:
++    case kFormatArgb32Premultiplied:
++      bgra = true;
++      break;
++    case kFormatRgbx8888:
++      hasAlpha = false;
++      break;
++    case kFormatRgba8888:
++    case kFormatRgba8888Premultiplied:
++      break;
++    default:
++      return false;
++    }
++
++    out.resize(static_cast<std::size_t>(width) * static_cast<std::size_t>(height) * 4U);
++    for (std::uint32_t y = 0; y < height; ++y) {
++      const auto* row = raw.data() + static_cast<std::size_t>(y) * stride;
++      auto* dst = out.data() + static_cast<std::size_t>(y) * width * 4U;
++      for (std::uint32_t x = 0; x < width; ++x) {
++        const auto* px = row + static_cast<std::size_t>(x) * 4U;
++        if (bgra) {
++          dst[0] = px[2];
++          dst[1] = px[1];
++          dst[2] = px[0];
++        } else {
++          dst[0] = px[0];
++          dst[1] = px[1];
++          dst[2] = px[2];
++        }
++        dst[3] = hasAlpha ? px[3] : 255;
++        dst += 4;
++      }
++    }
++    return true;
++  }
++
++} // namespace
++
++struct KwinScreenshotCapture::Request {
++  int readFd = -1;
++  bool cancelled = false;
++
++  ~Request() {
++    if (readFd >= 0) {
++      close(readFd);
++    }
++  }
++};
++
++KwinScreenshotCapture::KwinScreenshotCapture(SessionBus& bus) : m_bus(bus) {
++  m_available = serviceHasOwner(bus);
++  if (m_available) {
++    kLog.info("using org.kde.KWin.ScreenShot2 for screen capture");
++  }
++}
++
++KwinScreenshotCapture::~KwinScreenshotCapture() { cancelInFlight(); }
++
++void KwinScreenshotCapture::capture(
++    const WaylandOutput& output, std::optional<LogicalRect> region, bool includeCursor, CompletionCallback onComplete
++) {
++  if (m_busy) {
++    if (onComplete) {
++      onComplete(std::nullopt, "capture already in progress");
++    }
++    return;
++  }
++  if (!m_available) {
++    m_available = serviceHasOwner(m_bus);
++  }
++  if (!m_available) {
++    if (onComplete) {
++      onComplete(std::nullopt, "org.kde.KWin.ScreenShot2 unavailable");
++    }
++    return;
++  }
++
++  int fds[2] = {-1, -1};
++  if (pipe2(fds, O_CLOEXEC) < 0) {
++    if (onComplete) {
++      onComplete(std::nullopt, std::string{"failed to create screenshot pipe: "} + std::strerror(errno));
++    }
++    return;
++  }
++
++  auto request = std::make_shared<Request>();
++  request->readFd = fds[0];
++
++  m_busy = true;
++  m_onComplete = std::move(onComplete);
++  m_request = request;
++
++  if (m_proxy == nullptr) {
++    m_proxy = sdbus::createProxy(m_bus.connection(), kServiceName, kObjectPath);
++  }
++
++  std::map<std::string, sdbus::Variant> options;
++  options["include-cursor"] = sdbus::Variant(includeCursor);
++  options["native-resolution"] = sdbus::Variant(true);
++  // The shell hides its own overlays before capturing; keep the bar in the picture like screencopy does.
++  options["hide-caller-windows"] = sdbus::Variant(false);
++
++  auto onReply = [this, request](std::optional<sdbus::Error> error, std::map<std::string, sdbus::Variant> results) {
++    if (request->cancelled) {
++      return;
++    }
++    if (error.has_value()) {
++      this->onReply(request, std::nullopt, std::string{"KWin refused the screenshot: "} + error->getMessage());
++      return;
++    }
++
++    const auto width = readUint(results, "width");
++    const auto height = readUint(results, "height");
++    const auto stride = readUint(results, "stride");
++    const auto format = readUint(results, "format");
++    if (!width || !height || !stride || !format || *width == 0 || *height == 0 || *stride < *width * 4U) {
++      this->onReply(request, std::nullopt, "KWin returned an unusable screenshot description");
++      return;
++    }
++
++    std::vector<std::uint8_t> raw;
++    std::string readError;
++    if (!readPipe(request->readFd, static_cast<std::size_t>(*stride) * *height, raw, readError)) {
++      this->onReply(request, std::nullopt, std::move(readError));
++      return;
++    }
++
++    ScreencopyImage image;
++    image.width = static_cast<int>(*width);
++    image.height = static_cast<int>(*height);
++    image.yInvert = false;
++    if (!convertToRgba(raw, *width, *height, *stride, *format, image.rgba)) {
++      this->onReply(request, std::nullopt, "unsupported KWin screenshot format " + std::to_string(*format));
++      return;
++    }
++    this->onReply(request, std::move(image), {});
++  };
++
++  try {
++    if (region.has_value() && region->width > 0 && region->height > 0) {
++      m_proxy->callMethodAsync("CaptureArea")
++          .onInterface(kInterface)
++          .withArguments(
++              static_cast<std::int32_t>(output.logicalX + region->x),
++              static_cast<std::int32_t>(output.logicalY + region->y), static_cast<std::int32_t>(region->width),
++              static_cast<std::int32_t>(region->height), options, sdbus::UnixFd{fds[1]}
++          )
++          .uponReplyInvoke(onReply);
++    } else {
++      m_proxy->callMethodAsync("CaptureScreen")
++          .onInterface(kInterface)
++          .withArguments(output.connectorName, options, sdbus::UnixFd{fds[1]})
++          .uponReplyInvoke(onReply);
++    }
++  } catch (const sdbus::Error& e) {
++    close(fds[1]);
++    this->onReply(request, std::nullopt, std::string{"screenshot request failed: "} + e.getMessage());
++    return;
++  }
++  // sdbus duplicated the write end into the message; KWin owns the only remaining writer now.
++  close(fds[1]);
++}
++
++void KwinScreenshotCapture::cancelInFlight() {
++  if (m_request) {
++    m_request->cancelled = true;
++    m_request.reset();
++  }
++  m_busy = false;
++  m_onComplete = {};
++}
++
++void KwinScreenshotCapture::onReply(
++    const std::shared_ptr<Request>& request, std::optional<ScreencopyImage> image, std::string error
++) {
++  if (request != m_request) {
++    return;
++  }
++  m_request.reset();
++  m_busy = false;
++  auto onComplete = std::exchange(m_onComplete, {});
++  if (!error.empty()) {
++    kLog.warn("{}", error);
++  }
++  if (onComplete) {
++    onComplete(std::move(image), std::move(error));
++  }
++}
+diff --git a/src/capture/kwin_screenshot_capture.h b/src/capture/kwin_screenshot_capture.h
+new file mode 100644
+index 000000000..303d3be92
+--- /dev/null
++++ b/src/capture/kwin_screenshot_capture.h
+@@ -0,0 +1,50 @@
++#pragma once
++
++#include "capture/screencopy_capture.h"
++
++#include <cstdint>
++#include <functional>
++#include <memory>
++#include <optional>
++#include <string>
++
++class SessionBus;
++struct WaylandOutput;
++
++namespace sdbus {
++  class IProxy;
++}
++
++// Screen capture through KWin's org.kde.KWin.ScreenShot2 D-Bus interface, for
++// sessions where the compositor offers no wlr-screencopy global. The caller's
++// desktop entry must list org.kde.KWin.ScreenShot2 in X-KDE-DBUS-Restricted-Interfaces.
++class KwinScreenshotCapture {
++public:
++  using CompletionCallback = std::function<void(std::optional<ScreencopyImage>, std::string error)>;
++
++  explicit KwinScreenshotCapture(SessionBus& bus);
++  ~KwinScreenshotCapture();
++
++  KwinScreenshotCapture(const KwinScreenshotCapture&) = delete;
++  KwinScreenshotCapture& operator=(const KwinScreenshotCapture&) = delete;
++
++  [[nodiscard]] bool available() const noexcept { return m_available; }
++  [[nodiscard]] bool busy() const noexcept { return m_busy; }
++
++  void capture(
++      const WaylandOutput& output, std::optional<LogicalRect> region, bool includeCursor, CompletionCallback onComplete
++  );
++  void cancelInFlight();
++
++private:
++  struct Request;
++
++  void onReply(const std::shared_ptr<Request>& request, std::optional<ScreencopyImage> image, std::string error);
++
++  SessionBus& m_bus;
++  std::unique_ptr<sdbus::IProxy> m_proxy;
++  std::shared_ptr<Request> m_request;
++  bool m_available = false;
++  bool m_busy = false;
++  CompletionCallback m_onComplete;
++};
+diff --git a/src/capture/screenshot_capture.cpp b/src/capture/screenshot_capture.cpp
+index a51094395..adfd73665 100644
+--- a/src/capture/screenshot_capture.cpp
++++ b/src/capture/screenshot_capture.cpp
+@@ -1,6 +1,7 @@
+ #include "capture/screenshot_capture.h"
+ 
+ #include "capture/screencopy_util.h"
++#include "compositors/compositor_detect.h"
+ #include "wayland/wayland_connection.h"
+ 
+ #include <algorithm>
+@@ -12,7 +13,15 @@ ScreenshotCapture::ScreenshotCapture(WaylandConnection& wayland)
+ 
+ ScreenshotCapture::~ScreenshotCapture() { cancelInFlight(); }
+ 
+-bool ScreenshotCapture::available() const noexcept { return m_backgroundCapture.available(); }
++void ScreenshotCapture::setSessionBus(SessionBus& bus) {
++  if (m_kwinCapture == nullptr && compositors::isKde()) {
++    m_kwinCapture = std::make_unique<KwinScreenshotCapture>(bus);
++  }
++}
++
++bool ScreenshotCapture::available() const noexcept {
++  return m_backgroundCapture.available() || (m_kwinCapture != nullptr && m_kwinCapture->available());
++}
+ 
+ void ScreenshotCapture::capture(
+     wl_output* output, std::optional<LogicalRect> region, bool showCursor, bool retainCursor,
+@@ -43,6 +52,25 @@ void ScreenshotCapture::capture(
+ }
+ 
+ void ScreenshotCapture::captureBackground() {
++  if (!m_backgroundCapture.available() && m_kwinCapture != nullptr) {
++    const WaylandOutput* output = m_wayland.findOutputByWl(m_output);
++    if (output == nullptr) {
++      finish(std::nullopt, "unknown output");
++      return;
++    }
++    m_orientedByCompositor = true;
++    m_timeout.start(std::chrono::seconds(5), [this]() {
++      m_kwinCapture->cancelInFlight();
++      finish(std::nullopt, "KWin screenshot timed out");
++    });
++    m_kwinCapture->capture(
++        *output, m_region, m_showCursor,
++        [this](std::optional<ScreencopyImage> image, std::string error) { finish(std::move(image), std::move(error)); }
++    );
++    return;
++  }
++
++  m_orientedByCompositor = false;
+   m_timeout.start(std::chrono::seconds(1), [this]() {
+     m_backgroundCapture.cancelInFlight();
+     finish(std::nullopt, "screencopy frame timed out");
+@@ -58,6 +86,9 @@ void ScreenshotCapture::cancelInFlight() {
+   m_timeout.stop();
+   m_cursorCapture.cancelInFlight();
+   m_backgroundCapture.cancelInFlight();
++  if (m_kwinCapture != nullptr) {
++    m_kwinCapture->cancelInFlight();
++  }
+   m_cursor.reset();
+   m_busy = false;
+   m_onComplete = {};
+@@ -67,7 +98,7 @@ void ScreenshotCapture::finish(std::optional<ScreencopyImage> image, std::string
+   m_timeout.stop();
+   std::optional<capture::ScreenshotImage> result;
+   if (image) {
+-    if (!screencopy::orientCaptureNative(*image, m_wayland, m_output)) {
++    if (!m_orientedByCompositor && !screencopy::orientCaptureNative(*image, m_wayland, m_output)) {
+       error = "Failed to orient screenshot";
+     } else if (!m_cursor) {
+       result = capture::ScreenshotImage{
+diff --git a/src/capture/screenshot_capture.h b/src/capture/screenshot_capture.h
+index 12d2ff38d..81ecaecca 100644
+--- a/src/capture/screenshot_capture.h
++++ b/src/capture/screenshot_capture.h
+@@ -1,13 +1,17 @@
+ #pragma once
+ 
++#include "capture/kwin_screenshot_capture.h"
+ #include "capture/pointer_cursor_capture.h"
+ #include "capture/screenshot_image.h"
+ #include "core/timer_manager.h"
+ 
+ #include <functional>
++#include <memory>
+ #include <optional>
+ #include <string>
+ 
++class SessionBus;
++
+ class ScreenshotCapture {
+ public:
+   using CompletionCallback = std::function<void(std::optional<capture::ScreenshotImage>, std::string error)>;
+@@ -15,6 +19,9 @@ public:
+   explicit ScreenshotCapture(WaylandConnection& wayland);
+   ~ScreenshotCapture();
+ 
++  // Enables the KWin D-Bus fallback on KDE sessions, which offer no screencopy global.
++  void setSessionBus(SessionBus& bus);
++
+   [[nodiscard]] bool available() const noexcept;
+   [[nodiscard]] bool busy() const noexcept { return m_busy; }
+ 
+@@ -31,6 +38,7 @@ private:
+   WaylandConnection& m_wayland;
+   ScreencopyCapture m_backgroundCapture;
+   PointerCursorCapture m_cursorCapture;
++  std::unique_ptr<KwinScreenshotCapture> m_kwinCapture;
+   Timer m_timeout;
+   wl_output* m_output = nullptr;
+   std::optional<LogicalRect> m_region;
+@@ -38,5 +46,7 @@ private:
+   capture::CursorToggleStatus m_cursorStatus = capture::CursorToggleStatus::NotCaptured;
+   bool m_busy = false;
+   bool m_showCursor = false;
++  // The KWin backend delivers frames already in logical orientation.
++  bool m_orientedByCompositor = false;
+   CompletionCallback m_onComplete;
+ };
+diff --git a/src/capture/screenshot_service.cpp b/src/capture/screenshot_service.cpp
+index 1981402bd..eeab126d9 100644
+--- a/src/capture/screenshot_service.cpp
++++ b/src/capture/screenshot_service.cpp
+@@ -628,6 +628,8 @@ std::optional<LogicalRect> ScreenshotService::loadRememberedRegion() const {
+ 
+ bool ScreenshotService::available() const noexcept { return m_capture.available(); }
+ 
++void ScreenshotService::setSessionBus(SessionBus& bus) { m_capture.setSessionBus(bus); }
++
+ void ScreenshotService::onOutputChange() {
+   if (m_regionOverlay != nullptr) {
+     m_regionOverlay->onOutputChange();
+diff --git a/src/capture/screenshot_service.h b/src/capture/screenshot_service.h
+index 85d24eb9b..aed7ae8bd 100644
+--- a/src/capture/screenshot_service.h
++++ b/src/capture/screenshot_service.h
+@@ -19,6 +19,7 @@ class IpcService;
+ class NotificationManager;
+ struct Config;
+ class RenderContext;
++class SessionBus;
+ class WaylandConnection;
+ struct KeyboardEvent;
+ struct PointerEvent;
+@@ -47,6 +48,7 @@ public:
+   ~ScreenshotService();
+ 
+   [[nodiscard]] bool available() const noexcept;
++  void setSessionBus(SessionBus& bus);
+ 
+   void captureFullscreen(const OutputOptions& options, wl_output* output = nullptr);
+   void captureFullscreenInteractive(RenderContext& renderContext, const OutputOptions& options);
+-- 
+2.55.0
+
