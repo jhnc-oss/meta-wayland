@@ -1,0 +1,29 @@
+From: Markus Volk <f_l_k@t-online.de>
+Date: Fri, 18 Sep 2026 22:10:00 +0200
+Subject: [PATCH] wallpaper: use the desktop layer-shell namespace
+
+KWin derives the window type of a layer-shell surface from its
+namespace, and only "desktop" makes it the desktop window. Its
+overview blurs that window as the backdrop of every screen, so with
+the wallpaper named "noctalia-wallpaper" the overview background stays
+black. Nothing in noctalia keys on the old name.
+
+Upstream-Status: Pending
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+---
+ src/shell/wallpaper/wallpaper.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/shell/wallpaper/wallpaper.cpp b/src/shell/wallpaper/wallpaper.cpp
+--- a/src/shell/wallpaper/wallpaper.cpp
++++ b/src/shell/wallpaper/wallpaper.cpp
+@@ -1233,7 +1233,7 @@
+   instance->description = output.description;
+ 
+   auto surfaceConfig = LayerSurfaceConfig{
+-      .nameSpace = "noctalia-wallpaper",
++      .nameSpace = "desktop",
+       .layer = LayerShellLayer::Background,
+       .anchor = LayerShellAnchor::Top | LayerShellAnchor::Bottom | LayerShellAnchor::Left | LayerShellAnchor::Right,
+       .width = 0,
