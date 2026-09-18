@@ -13,7 +13,7 @@ DEPENDS = " \
 
 REQUIRED_DISTRO_FEATURES = "gobject-introspection-data"
 
-SRC_URI = "git://github.com/elementary/granite.git;protocol=https;nobranch=1;tag=7.8.1"
+SRC_URI = "git://github.com/elementary/granite.git;protocol=https;nobranch=1;tag=${PV}"
 
 SRCREV = "4cd5188619e65f2f2410c9af834df903f6e4f85e"
 

@@ -6,6 +6,6 @@ inherit python_setuptools_build_meta
 
 DEPENDS += "python3-wheel-native"
 
-SRC_URI = "git://github.com/WayfireWM/pywayfire.git;protocol=https;branch=main;tag=v4.0"
+SRC_URI = "git://github.com/WayfireWM/pywayfire.git;protocol=https;branch=main;tag=v${PV}"
 SRCREV = "d1010318cdddafc5307645b28e3130beeb00c9c3"
 

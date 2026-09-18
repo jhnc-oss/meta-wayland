@@ -23,7 +23,7 @@ DEPENDS = " \
 	${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'virtual/egl virtual/libgles2', 'epoxy', d)} \
 "
 
-SRC_URI = "git://github.com/noctalia-dev/noctalia-greeter.git;protocol=https;branch=main;tag=v1.5.0"
+SRC_URI = "git://github.com/noctalia-dev/noctalia-greeter.git;protocol=https;branch=main;tag=v${PV}"
 SRC_URI += "file://0001-assets-buildpath.patch"
 SRCREV = "5a450b891067c1f0cd7157f4f1091aa0e3014780"
 

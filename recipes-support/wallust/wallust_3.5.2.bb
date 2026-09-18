@@ -3,7 +3,7 @@ HOMEPAGE = "https://codeberg.org/explosion-mental/wallust"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=77343652fd2b1c59f2130b40d0391ecf"
 
-SRC_URI += "git://codeberg.org/explosion-mental/wallust.git;protocol=https;nobranch=1;tag=3.5.2"
+SRC_URI += "git://codeberg.org/explosion-mental/wallust.git;protocol=https;nobranch=1;tag=${PV}"
 SRCREV = "b689616d630bb2e541695f101d313699464aac09"
 
 inherit ptest-cargo cargo-update-recipe-crates

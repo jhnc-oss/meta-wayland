@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=d32239bcb673463ab874e80d47fae504"
 DEPENDS = "libxcursor libpng"
 
 SRC_URI = " \
-	git://github.com/eworm-de/xcur2png.git;protocol=https;branch=master;tag=0.7.1 \
+	git://github.com/eworm-de/xcur2png.git;protocol=https;branch=master;tag=${PV} \
 	file://0001-fix-wrong-math.patch \
 "
 

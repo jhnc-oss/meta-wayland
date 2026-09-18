@@ -51,7 +51,7 @@ PACKAGECONFIG ?= ""
 
 inherit features_check gsettings meson pkgconfig gtk-icon-cache gobject-introspection gi-docgen
 
-SRC_URI = "git://gitlab.gnome.org/World/Phosh/phosh.git;protocol=https;nobranch=1;name=phosh;tag=v0.57.0"
+SRC_URI = "git://gitlab.gnome.org/World/Phosh/phosh.git;protocol=https;nobranch=1;name=phosh;tag=v${PV}"
 SRC_URI += "git://gitlab.gnome.org/GNOME/libgnome-volume-control.git;protocol=https;subdir=${S}/subprojects/gvc;name=gvc;nobranch=1"
 SRC_URI += "git://gitlab.gnome.org/World/Phosh/libcall-ui;protocol=https;subdir=${S}/subprojects/libcall-ui;name=libcall-ui;nobranch=1;tag=v0.1.5"
 SRC_URI += "file://0001-calendar-server-take-a-const-ICalProperty-in-the-get.patch"

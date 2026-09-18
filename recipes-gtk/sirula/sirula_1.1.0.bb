@@ -4,7 +4,7 @@ LICENSE = "GPL-3.0-only"
 LIC_FILES_CHKSUM = "file://COPYING;md5=e49f4652534af377a713df3d9dec60cb"
 
 SRC_URI = " \
-    git://github.com/DorianRudolph/sirula.git;protocol=https;nobranch=1;tag=v1.1.0 \
+    git://github.com/DorianRudolph/sirula.git;protocol=https;nobranch=1;tag=v${PV} \
     git://github.com/Artturin/osstrtools.git;protocol=https;branch=fixtypo;name=osstrtools;destsuffix=osstrtools;type=git-dependency \
 "
 

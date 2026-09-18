@@ -3,7 +3,7 @@ HOMEPAGE = "https://github.com/sharkdp/fd"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE-MIT;md5=96713c739748a44f86272791c89ce344"
 
-SRC_URI = "git://github.com/sharkdp/fd.git;protocol=https;branch=master;tag=v10.5.0"
+SRC_URI = "git://github.com/sharkdp/fd.git;protocol=https;branch=master;tag=v${PV}"
 
 SRCREV = "4f81778774463bf414a184cbe6d5219ad2229646"
 

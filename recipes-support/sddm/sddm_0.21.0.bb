@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = " \
 "
 
 SRC_URI = " \
-    git://github.com/sddm/sddm.git;protocol=https;nobranch=1;tag=v0.21.0 \
+    git://github.com/sddm/sddm.git;protocol=https;nobranch=1;tag=v${PV} \
     file://sddm \
     file://sddm-autologin \
     file://sddm-greeter \

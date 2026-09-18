@@ -23,7 +23,7 @@ DEPENDS = " \
 
 inherit gsettings meson pkgconfig gtk-icon-cache gi-docgen gobject-introspection manpages systemd
 
-SRC_URI = "git://gitlab.gnome.org/World/Phosh/stevia.git;protocol=https;nobranch=1;tag=v0.57.0"
+SRC_URI = "git://gitlab.gnome.org/World/Phosh/stevia.git;protocol=https;nobranch=1;tag=v${PV}"
 SRCREV = "d45a7e0d156d885721dfba6ef390be77e165c766"
 
 PACKAGECONFIG ?= ""

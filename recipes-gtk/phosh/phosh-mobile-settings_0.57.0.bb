@@ -29,7 +29,7 @@ PACKAGECONFIG[manpages] = "-Dman=true,-Dman=false,python3-docutils-native"
 
 inherit gsettings meson pkgconfig gtk-icon-cache manpages gobject-introspection
 
-SRC_URI = "git://gitlab.gnome.org/World/Phosh/phosh-mobile-settings.git;protocol=https;nobranch=1;name=phosh-mobile-settings;tag=v0.57.0"
+SRC_URI = "git://gitlab.gnome.org/World/Phosh/phosh-mobile-settings.git;protocol=https;nobranch=1;name=phosh-mobile-settings;tag=v${PV}"
 SRC_URI += "git://gitlab.gnome.org/GNOME/libgnome-volume-control.git;protocol=https;subdir=${S}/subprojects/gvc;name=gvc;nobranch=1"
 SRC_URI += "git://gitlab.freedesktop.org/devrtz/cellbroadcastd.git;protocol=https;subdir=${S}/subprojects/libcellbroadcast;name=libcellbroadcast;nobranch=1;tag=v0.0.2"
 SRC_URI += "git://gitlab.gnome.org/GNOME/gvdb.git;protocol=https;subdir=${S}/subprojects/libcellbroadcast/subprojects/gvdb;name=gvdb;nobranch=1"

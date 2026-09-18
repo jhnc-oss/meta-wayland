@@ -21,7 +21,7 @@ DEPENDS = " \
 
 REQUIRED_DISTRO_FEATURES = "wayland"
 
-SRC_URI = "gitsm://github.com/WayfireWM/wcm.git;protocol=https;nobranch=1;tag=v0.11.0"
+SRC_URI = "gitsm://github.com/WayfireWM/wcm.git;protocol=https;nobranch=1;tag=v${PV}"
 SRCREV = "14f2e03fc4bfa3a20d10b913461636363e39240c"
 
 inherit meson pkgconfig features_check

@@ -3,7 +3,7 @@ LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=8c9e7f297308461c48038d7c1e05cfb8"
 
 SRC_URI = " \
-	git://github.com/ammgws/autotiling-rs.git;protocol=https;branch=master;tag=v0.1.8 \
+	git://github.com/ammgws/autotiling-rs.git;protocol=https;branch=master;tag=v${PV} \
 "
 
 inherit cargo cargo-update-recipe-crates

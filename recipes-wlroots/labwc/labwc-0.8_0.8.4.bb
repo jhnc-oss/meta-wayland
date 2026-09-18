@@ -33,7 +33,7 @@ RRECOMMENDS:${PN} ?= " \
 	swaybg \
 "
 
-SRC_URI = "git://github.com/labwc/labwc.git;protocol=https;branch=master;tag=0.8.4"
+SRC_URI = "git://github.com/labwc/labwc.git;protocol=https;branch=master;tag=${PV}"
 
 SRCREV = "9af441ecd36bbee66d4df46baa7b482872d989f2"
 

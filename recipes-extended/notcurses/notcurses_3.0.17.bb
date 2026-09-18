@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://COPYRIGHT;md5=9d4fc1f864192e96250fc5464c06737e"
 
 inherit cmake pkgconfig
 
-SRC_URI = "git://github.com/dankamongmen/notcurses.git;protocol=https;branch=master;tag=v3.0.17"
+SRC_URI = "git://github.com/dankamongmen/notcurses.git;protocol=https;branch=master;tag=v${PV}"
 SRCREV = "77672788db0765ab868abafebbaadd8cfe133781"
 
 DEPENDS = "libffi libdeflate gpm zlib libunistring"

@@ -3,7 +3,7 @@ HOMEPAGE = "https://github.com/rharish101/ReGreet/"
 LICENSE = "GPL-3.0-or-later"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=8da5784ab1c72e63ac74971f88658166"
 
-SRC_URI += "git://github.com/rharish101/ReGreet.git;protocol=https;nobranch=1;branch=main;tag=0.5.0"
+SRC_URI += "git://github.com/rharish101/ReGreet.git;protocol=https;nobranch=1;branch=main;tag=${PV}"
 SRCREV = "290e6f8d65b7034c5b63bc950a20bcf8277ebe5f"
 
 DEPENDS = "glib-2.0 gtk4 cairo graphene gdk-pixbuf"

@@ -18,7 +18,7 @@ DEPENDS = " \
 	wayland-protocols \
 "
 
-SRC_URI = "git://github.com/jovanlanik/gtklock.git;protocol=https;branch=master;tag=v4.0.0"
+SRC_URI = "git://github.com/jovanlanik/gtklock.git;protocol=https;branch=master;tag=v${PV}"
 
 SRCREV = "66321fb2bf0d5869d779e7ac6b4d8d9c272ea707"
 

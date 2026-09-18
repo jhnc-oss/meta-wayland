@@ -30,7 +30,7 @@ PACKAGECONFIG[ddcutil] = "-Dddcutil=enabled,-Dddcutil=disabled,ddcutil"
 
 REQUIRED_DISTRO_FEATURES = "wayland"
 
-SRC_URI = "gitsm://github.com/WayfireWM/wf-shell.git;protocol=https;nobranch=1;tag=v0.11.0"
+SRC_URI = "gitsm://github.com/WayfireWM/wf-shell.git;protocol=https;nobranch=1;tag=v${PV}"
 SRCREV = "881ef973039f239dc0a3ec8a547201a89b0eef8a"
 
 inherit meson pkgconfig features_check

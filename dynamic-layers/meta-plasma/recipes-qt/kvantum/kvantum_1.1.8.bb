@@ -7,7 +7,7 @@ DEPENDS = "qtbase qtsvg qttools kwindowsystem libx11 libxext"
 
 inherit qt6-cmake
 
-SRC_URI = "git://github.com/tsujan/Kvantum.git;protocol=https;nobranch=1;tag=V1.1.8"
+SRC_URI = "git://github.com/tsujan/Kvantum.git;protocol=https;nobranch=1;tag=V${PV}"
 SRC_URI += "file://0001-style-CMakeLists.txt-set-KVANTUM_STYLES_DIR.patch"
 SRCREV = "058534fc15d1798c3887590166f05c598e8e946c"
 

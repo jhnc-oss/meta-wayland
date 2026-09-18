@@ -23,7 +23,7 @@ DEPENDS += " \
 	wlroots-0.20 \
 "
 
-SRC_URI = "git://gitlab.gnome.org/World/Phosh/phoc.git;protocol=https;nobranch=1;name=phoc;tag=v0.57.0"
+SRC_URI = "git://gitlab.gnome.org/World/Phosh/phoc.git;protocol=https;nobranch=1;name=phoc;tag=v${PV}"
 SRC_URI += "git://gitlab.gnome.org/GNOME/gvdb.git;protocol=https;subdir=${S}/subprojects/gvdb;name=gvdb;nobranch=1"
 
 SRCREV_phoc = "d02c0e523979df316ef41c7f5210f1d13e8cb2f8"

@@ -20,7 +20,7 @@ DEPENDS = " \
 "
 
 SRC_URI = " \
-	git://github.com/ErikReider/SwayNotificationCenter.git;protocol=https;nobranch=1;tag=v0.12.6 \
+	git://github.com/ErikReider/SwayNotificationCenter.git;protocol=https;nobranch=1;tag=v${PV} \
 "
 
 SRCREV = "1043ef98ec97a27e24192a726576fce807d2ee49"

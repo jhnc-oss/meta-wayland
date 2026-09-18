@@ -23,7 +23,7 @@ DEPENDS = " \
 "
 
 SRC_URI = " \
-	git://github.com/ErikReider/SwaySettings.git;protocol=https;nobranch=1;tag=v0.5.0 \
+	git://github.com/ErikReider/SwaySettings.git;protocol=https;nobranch=1;tag=v${PV} \
 	file://0001-Fixed-Fedora-43-build-issues.patch \
 "
 

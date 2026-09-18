@@ -50,7 +50,7 @@ PACKAGECONFIG ?= " \
 	use_system_wfconfig \
 "
 
-SRC_URI = "gitsm://github.com/WayfireWM/wayfire.git;protocol=https;nobranch=1;tag=v0.11.0"
+SRC_URI = "gitsm://github.com/WayfireWM/wayfire.git;protocol=https;nobranch=1;tag=v${PV}"
 
 SRCREV = "d39902379c5737eebe1dc3a830659fa3f0fa22e0"
 

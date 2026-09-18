@@ -3,7 +3,7 @@ HOMEPAGE = "https://gitlab.com/btrfs-assistant/btrfs-assistant"
 LICENSE = "GPL-3.0-only"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=bf7e2ce7c2a6b6b42b34714d917ee2c7"
 
-SRC_URI = "git://gitlab.com/btrfs-assistant/btrfs-assistant.git;protocol=https;nobranch=1;tag=2.3.1"
+SRC_URI = "git://gitlab.com/btrfs-assistant/btrfs-assistant.git;protocol=https;nobranch=1;tag=${PV}"
 SRCREV = "bb7fbbc31eff13b4eec30fbbd4262c63036a554c"
 
 DEPENDS = "qtbase qtbase-native qttools-native btrfs-tools"

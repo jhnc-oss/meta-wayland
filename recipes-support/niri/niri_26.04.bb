@@ -4,7 +4,7 @@ LICENSE = "GPL-3.0-only"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=5b4473596678d62d9d83096273422c8c"
 
 SRC_URI += " \
-	git://github.com/YaLTeR/niri.git;protocol=https;branch=main;lfs=0;tag=v26.04 \
+	git://github.com/YaLTeR/niri.git;protocol=https;branch=main;lfs=0;tag=v${PV} \
 	git://github.com/Smithay/smithay.git;protocol=https;nobranch=1;name=smithay;destsuffix=smithay;type=git-dependency \
 	git://github.com/Smithay/smithay.git;protocol=https;nobranch=1;name=smithay-drm-extras;destsuffix=smithay/smithay-drm-extras;subpath=smithay-drm-extras;type=git-dependency \
 "

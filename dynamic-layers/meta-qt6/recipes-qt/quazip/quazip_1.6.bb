@@ -7,7 +7,7 @@ DEPENDS = "qtbase qt5compat qttools-native zlib"
 
 inherit qt6-cmake
 
-SRC_URI = "git://github.com/stachenov/quazip.git;protocol=https;nobranch=1;tag=v1.6"
+SRC_URI = "git://github.com/stachenov/quazip.git;protocol=https;nobranch=1;tag=v${PV}"
 SRCREV = "02499fda9fc04b82d004955f1858ffa72e924eb1"
 
 EXTRA_OECMAKE = "-DBUILD_SHARED_LIBS=ON -DQUAZIP_BZIP2=OFF"

@@ -2,7 +2,7 @@ SUMMARY = "Launch Desktop Entries (or arbitrary commands) as Systemd user units,
 LICENSE = "GPL-3.0-only"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=1ebbd3e34237af26da5dc08a4e440464"
 
-SRC_URI = "git://github.com/Vladimir-csp/app2unit.git;protocol=https;branch=master;tag=v1.4.4"
+SRC_URI = "git://github.com/Vladimir-csp/app2unit.git;protocol=https;branch=master;tag=v${PV}"
 SRCREV = "47e23ec6ab9e97bbe335c32fb640744a29bf32f7"
 
 DEPENDS = "scdoc-native gzip-native"
