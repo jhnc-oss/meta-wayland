@@ -16,7 +16,6 @@ RDEPENDS:${PN} = " \
 	python3-imageio \
 	python3-imageio-ffmpeg \
 	python3-importlib-metadata \
-	python3-pathlib2 \
 	python3-pillow \
 	python3-platformdirs \
 	python3-pygobject \
