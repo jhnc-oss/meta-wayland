@@ -13,6 +13,8 @@ KWin authorizes callers by matching their executable against the Exec
 line of a desktop entry that lists the interface, so the desktop file
 now carries the absolute bindir and X-KDE-DBUS-Restricted-Interfaces.
 
+Upstream-Status: Pending
+
 Signed-off-by: Markus Volk <f_l_k@t-online.de>
 ---
  assets/dev.noctalia.Noctalia.desktop    |  15 --

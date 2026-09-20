@@ -3,6 +3,8 @@ From: Markus Volk <f_l_k@t-online.de>
 Date: Tue, 9 Sep 2025 20:04:20 +0200
 Subject: [PATCH] include/woff2/output.h: include missing cstdint
 
+Upstream-Status: Pending
+
 Signed-off-by: Markus Volk <f_l_k@t-online.de>
 ---
  include/woff2/output.h | 1 +

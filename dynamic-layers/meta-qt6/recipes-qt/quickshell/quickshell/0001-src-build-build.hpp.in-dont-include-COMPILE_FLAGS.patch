@@ -5,6 +5,8 @@ Subject: [PATCH] src/build/build.hpp.in: dont include COMPILE_FLAGS
 
 This adds buildpath issues to the quickshell binary
 
+Upstream-Status: Pending
+
 Signed-off-by: Markus Volk <f_l_k@t-online.de>
 ---
  src/build/build.hpp.in | 2 +-
