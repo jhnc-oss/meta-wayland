@@ -4,15 +4,15 @@
 # Do not modify it by hand, as the contents will be replaced when
 # running the update-modules task.
 
-LICENSE += "AND AGPL-3.0-only AND Apache-2.0 AND BSD-3-Clause AND ISC AND MIT"
+LICENSE += "AND Apache-2.0 AND BSD-3-Clause AND ISC AND MIT AND MPL-2.0"
 
 LIC_FILES_CHKSUM += "\
     file://pkg/mod/github.com/!karpeles!lab/weak@v0.1.1/LICENSE;md5=dd013f08c8940c6f43fdcc9987c0038a;spdx=MIT \
     file://pkg/mod/github.com/allan-simon/go-singleinstance@v0.0.0-20210120080615-d0997106ab37/LICENSE;md5=64080d7ce40e2ef2eee4754706a437c4;spdx=MIT \
-    file://pkg/mod/github.com/diamondburned/gotk4/pkg@v0.3.1/LICENSE;md5=48a3fe23ed1353e0995dadfda05ffdb6;spdx=AGPL-3.0-only \
+    file://pkg/mod/github.com/diamondburned/gotk4/pkg@v0.3.1/LICENSE;md5=48a3fe23ed1353e0995dadfda05ffdb6;spdx=MPL-2.0 \
     file://pkg/mod/github.com/diamondburned/gotk4/pkg@v0.3.1/cairo/swizzle/LICENSE;md5=5d4950ecb7b26d2c5e4e7b4e0dd74707;spdx=BSD-3-Clause \
     file://pkg/mod/github.com/diamondburned/gotk4/pkg@v0.3.1/core/LICENSE;md5=8f1c7cbaab3ee0829f603fb055b1363e;spdx=ISC \
-    file://pkg/mod/github.com/diamondburned/gotk4-layer-shell/pkg@v0.0.0-20240109211357-6efa9f6dc438/LICENSE;md5=48a3fe23ed1353e0995dadfda05ffdb6;spdx=AGPL-3.0-only \
+    file://pkg/mod/github.com/diamondburned/gotk4-layer-shell/pkg@v0.0.0-20240109211357-6efa9f6dc438/LICENSE;md5=48a3fe23ed1353e0995dadfda05ffdb6;spdx=MPL-2.0 \
     file://pkg/mod/github.com/expr-lang/expr@v1.17.8/LICENSE;md5=1cad8446548a7b361129ccfca629db1a;spdx=MIT \
     file://pkg/mod/github.com/fsnotify/fsnotify@v1.9.0/LICENSE;md5=8bae8b116e2cfd723492b02d9a212fe2;spdx=BSD-3-Clause \
     file://pkg/mod/github.com/google/shlex@v0.0.0-20191202100458-e7afc7fbc510/COPYING;md5=3b83ef96387f14655fc854ddc3c6bd57;spdx=Apache-2.0 \
