@@ -7,6 +7,7 @@ SRCREV = "c7b9197af77ff22bfb9a83c52a95643a1d90ca86"
 SRC_URI += " \
 	file://0001-wallpaper-use-the-desktop-layer-shell-namespace.patch \
 	file://0002-capture-fall-back-to-KWin-s-ScreenShot2-D-Bus-interface.patch \
+	file://0003-fix-templates-move-umbriel-scratchpad-border-colors-to-a-window-rule.patch \
 "
 
 REQUIRED_DISTRO_FEATURES = "opengl pam polkit pipewire"
