@@ -4,17 +4,19 @@ LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=e0f1d50df739a9fb8eae12a8f37ce352"
 
 SRC_URI = "gitsm://github.com/hyprwm/xdg-desktop-portal-hyprland.git;protocol=https;nobranch=1"
-SRCREV = "cc8e5ef8fb2acef3db488b9a33b0c48c2a4ee204"
+SRCREV = "e87ae7823e7bf0601385220c69b5a3b245123fc5"
+PV:append = "+git"
 
 DEPENDS = " \
     hyprlang \
+    hyprtoolkit \
     hyprutils \
     hyprwayland-scanner-native \
     hyprwayland-scanner \
     libdrm \
     pipewire \
-    qtbase \
     sdbus-c++ \
+    util-linux-libuuid \
     virtual/libgbm \
     wayland \
     wayland-protocols \
@@ -22,7 +24,7 @@ DEPENDS = " \
 
 RDEPENDS:${PN} = "grim slurp hyprlang"
 
-inherit qt6-cmake pkgconfig features_check
+inherit cmake pkgconfig features_check
 
 REQUIRED_DISTRO_FEATURES = "opengl wayland"
 
