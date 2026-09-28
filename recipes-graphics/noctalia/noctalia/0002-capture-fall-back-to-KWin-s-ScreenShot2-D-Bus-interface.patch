@@ -1,7 +1,7 @@
-From 76c04dd6b7a9937fbaf7eb5a3741aa4e95ad2602 Mon Sep 17 00:00:00 2001
+From 954bbc6a2e12a4eb2b47c54ec738a32dd5391afd Mon Sep 17 00:00:00 2001
 From: Markus Volk <f_l_k@t-online.de>
 Date: Sat, 19 Sep 2026 00:29:32 +0200
-Subject: [PATCH] capture: fall back to KWin's ScreenShot2 D-Bus interface
+Subject: [PATCH 2/2] capture: fall back to KWin's ScreenShot2 D-Bus interface
 
 KWin offers neither wlr-screencopy nor ext-image-copy-capture, so the
 screenshot commands fail on KDE sessions. Add a capture backend that asks
@@ -17,78 +17,56 @@ Upstream-Status: Pending
 
 Signed-off-by: Markus Volk <f_l_k@t-online.de>
 ---
- assets/dev.noctalia.Noctalia.desktop    |  15 --
- assets/dev.noctalia.Noctalia.desktop.in |  16 ++
- meson.build                             |  13 +-
- src/app/application_services.cpp        |   1 +
- src/capture/kwin_screenshot_capture.cpp | 312 ++++++++++++++++++++++++
- src/capture/kwin_screenshot_capture.h   |  50 ++++
- src/capture/screenshot_capture.cpp      |  35 ++-
- src/capture/screenshot_capture.h        |  10 +
- src/capture/screenshot_service.cpp      |   2 +
- src/capture/screenshot_service.h        |   2 +
- 10 files changed, 437 insertions(+), 19 deletions(-)
- delete mode 100644 assets/dev.noctalia.Noctalia.desktop
- create mode 100644 assets/dev.noctalia.Noctalia.desktop.in
+ ...sktop => dev.noctalia.Noctalia.desktop.in} |   3 +-
+ meson.build                                   |  13 +-
+ src/app/application_services.cpp              |   1 +
+ src/capture/kwin_screenshot_capture.cpp       | 312 ++++++++++++++++++
+ src/capture/kwin_screenshot_capture.h         |  50 +++
+ src/capture/screenshot_capture.cpp            |  35 +-
+ src/capture/screenshot_capture.h              |  10 +
+ src/capture/screenshot_service.cpp            |   2 +
+ src/capture/screenshot_service.h              |   2 +
+ 9 files changed, 423 insertions(+), 5 deletions(-)
+ rename assets/{dev.noctalia.Noctalia.desktop => dev.noctalia.Noctalia.desktop.in} (81%)
  create mode 100644 src/capture/kwin_screenshot_capture.cpp
  create mode 100644 src/capture/kwin_screenshot_capture.h
 
-diff --git a/assets/dev.noctalia.Noctalia.desktop b/assets/dev.noctalia.Noctalia.desktop
-deleted file mode 100644
-index d99b4ee4f..000000000
+diff --git a/assets/dev.noctalia.Noctalia.desktop b/assets/dev.noctalia.Noctalia.desktop.in
+similarity index 81%
+rename from assets/dev.noctalia.Noctalia.desktop
+rename to assets/dev.noctalia.Noctalia.desktop.in
+index d99b4ee4f..a3d94deb1 100644
 --- a/assets/dev.noctalia.Noctalia.desktop
-+++ /dev/null
-@@ -1,15 +0,0 @@
--[Desktop Entry]
--Type=Application
--Name=Noctalia
--Comment=A sleek, customizable desktop shell crafted for Wayland.
--Exec=noctalia --daemon
--Icon=noctalia
--Terminal=false
--Categories=Settings;DesktopSettings;
--StartupNotify=false
--Actions=Settings;
--Keywords=desktop;shell;wayland;
--
--[Desktop Action Settings]
--Name=Open Settings
--Exec=sh -c "noctalia msg settings-open || { noctalia --daemon && noctalia msg settings-open; }"
-diff --git a/assets/dev.noctalia.Noctalia.desktop.in b/assets/dev.noctalia.Noctalia.desktop.in
-new file mode 100644
-index 000000000..a3d94deb1
---- /dev/null
 +++ b/assets/dev.noctalia.Noctalia.desktop.in
-@@ -0,0 +1,16 @@
-+[Desktop Entry]
-+Type=Application
-+Name=Noctalia
-+Comment=A sleek, customizable desktop shell crafted for Wayland.
+@@ -2,13 +2,14 @@
+ Type=Application
+ Name=Noctalia
+ Comment=A sleek, customizable desktop shell crafted for Wayland.
+-Exec=noctalia --daemon
 +Exec=@BINDIR@/noctalia --daemon
-+Icon=noctalia
-+Terminal=false
-+Categories=Settings;DesktopSettings;
-+StartupNotify=false
-+Actions=Settings;
-+Keywords=desktop;shell;wayland;
+ Icon=noctalia
+ Terminal=false
+ Categories=Settings;DesktopSettings;
+ StartupNotify=false
+ Actions=Settings;
+ Keywords=desktop;shell;wayland;
 +X-KDE-DBUS-Restricted-Interfaces=org.kde.KWin.ScreenShot2
-+
-+[Desktop Action Settings]
-+Name=Open Settings
-+Exec=sh -c "noctalia msg settings-open || { noctalia --daemon && noctalia msg settings-open; }"
+ 
+ [Desktop Action Settings]
+ Name=Open Settings
 diff --git a/meson.build b/meson.build
-index 40477961f..e35f877c2 100644
+index 3fdc4a5f2..6935ba832 100644
 --- a/meson.build
 +++ b/meson.build
-@@ -836,6 +836,7 @@ _noctalia_sources = files(
+@@ -849,6 +849,7 @@ _noctalia_sources = files(
    'src/system/gamma_service.cpp',
    'src/system/location_service.cpp',
    'src/capture/screencopy_capture.cpp',
 +  'src/capture/kwin_screenshot_capture.cpp',
    'src/capture/pointer_cursor_capture.cpp',
+   'src/capture/toplevel_thumbnail_capture.cpp',
    'src/capture/screencopy_util.cpp',
-   'src/capture/screenshot_capture.cpp',
-@@ -1122,11 +1123,19 @@ noctalia_exe = executable('noctalia',
+@@ -1138,11 +1139,19 @@ noctalia_exe = executable('noctalia',
  
  install_subdir('assets',
    install_dir: get_option('datadir') / 'noctalia',
@@ -111,17 +89,17 @@ index 40477961f..e35f877c2 100644
  )
  
 diff --git a/src/app/application_services.cpp b/src/app/application_services.cpp
-index 3b1562061..bb8045115 100644
+index 79d55b821..a7e0ac1e3 100644
 --- a/src/app/application_services.cpp
 +++ b/src/app/application_services.cpp
-@@ -1526,6 +1526,7 @@ void Application::initSessionBusServices() {
-     installSecretServiceNameWatch();
+@@ -1599,6 +1599,7 @@ void Application::initSessionBusServices() {
+     installSecretServiceCollectionWatch();
  
      m_compositorPlatform.startKdeActiveWindow(*m_bus);
 +    m_screenshotService.setSessionBus(*m_bus);
+   }
  
-     m_trayService = std::make_unique<TrayService>(*m_bus);
-     m_trayService->setChangeCallback([this]() {
+   m_locationService.initialize();
 diff --git a/src/capture/kwin_screenshot_capture.cpp b/src/capture/kwin_screenshot_capture.cpp
 new file mode 100644
 index 000000000..71db14926
@@ -619,10 +597,10 @@ index 12d2ff38d..81ecaecca 100644
    CompletionCallback m_onComplete;
  };
 diff --git a/src/capture/screenshot_service.cpp b/src/capture/screenshot_service.cpp
-index 1981402bd..eeab126d9 100644
+index 43fac4ad7..7336649d4 100644
 --- a/src/capture/screenshot_service.cpp
 +++ b/src/capture/screenshot_service.cpp
-@@ -628,6 +628,8 @@ std::optional<LogicalRect> ScreenshotService::loadRememberedRegion() const {
+@@ -645,6 +645,8 @@ std::optional<LogicalRect> ScreenshotService::loadRememberedRegion() const {
  
  bool ScreenshotService::available() const noexcept { return m_capture.available(); }
  
@@ -632,18 +610,18 @@ index 1981402bd..eeab126d9 100644
    if (m_regionOverlay != nullptr) {
      m_regionOverlay->onOutputChange();
 diff --git a/src/capture/screenshot_service.h b/src/capture/screenshot_service.h
-index 85d24eb9b..aed7ae8bd 100644
+index cfc080edd..ca141de6e 100644
 --- a/src/capture/screenshot_service.h
 +++ b/src/capture/screenshot_service.h
-@@ -19,6 +19,7 @@ class IpcService;
+@@ -20,6 +20,7 @@ class IpcService;
  class NotificationManager;
  struct Config;
  class RenderContext;
 +class SessionBus;
  class WaylandConnection;
+ class SoundPlayer;
  struct KeyboardEvent;
- struct PointerEvent;
-@@ -47,6 +48,7 @@ public:
+@@ -49,6 +50,7 @@ public:
    ~ScreenshotService();
  
    [[nodiscard]] bool available() const noexcept;

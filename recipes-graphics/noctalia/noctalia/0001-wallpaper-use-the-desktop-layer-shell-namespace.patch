@@ -1,6 +1,7 @@
+From 7c8bfd7250377ab2b22a369e9f88419f65eea548 Mon Sep 17 00:00:00 2001
 From: Markus Volk <f_l_k@t-online.de>
 Date: Fri, 18 Sep 2026 22:10:00 +0200
-Subject: [PATCH] wallpaper: use the desktop layer-shell namespace
+Subject: [PATCH 1/2] wallpaper: use the desktop layer-shell namespace
 
 KWin derives the window type of a layer-shell surface from its
 namespace, and only "desktop" makes it the desktop window. Its
@@ -16,9 +17,10 @@ Signed-off-by: Markus Volk <f_l_k@t-online.de>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/src/shell/wallpaper/wallpaper.cpp b/src/shell/wallpaper/wallpaper.cpp
+index 944c6a35d..9de8f6504 100644
 --- a/src/shell/wallpaper/wallpaper.cpp
 +++ b/src/shell/wallpaper/wallpaper.cpp
-@@ -1233,7 +1233,7 @@
+@@ -1230,7 +1230,7 @@ void Wallpaper::createInstance(const WaylandOutput& output) {
    instance->description = output.description;
  
    auto surfaceConfig = LayerSurfaceConfig{
@@ -27,3 +29,6 @@ diff --git a/src/shell/wallpaper/wallpaper.cpp b/src/shell/wallpaper/wallpaper.c
        .layer = LayerShellLayer::Background,
        .anchor = LayerShellAnchor::Top | LayerShellAnchor::Bottom | LayerShellAnchor::Left | LayerShellAnchor::Right,
        .width = 0,
+-- 
+2.55.0
+
