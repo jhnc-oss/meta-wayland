@@ -4,7 +4,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=ca01f6fdf705a36f41b4e431ee0a4af0"
 
 SRC_URI = "git://github.com/noctalia-dev/umbriel.git;protocol=https;branch=main"
 SRC_URI += "file://0001-fix-crosscompile.patch"
-SRCREV = "834607334f9bb13a22b1e2a53bf47cfbfa5be7dd"
+SRCREV = "2c683caf4bccc1850c57dfa8b9eaf16e4b3d3fa3"
 
 REQUIRED_DISTRO_FEATURES = "wayland"
 
