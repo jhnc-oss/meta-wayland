@@ -4,9 +4,9 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=ca01f6fdf705a36f41b4e431ee0a4af0"
 
 SRC_URI = "git://github.com/noctalia-dev/umbriel.git;protocol=https;branch=main"
 SRC_URI += "file://0001-fix-crosscompile.patch"
-SRCREV = "2c683caf4bccc1850c57dfa8b9eaf16e4b3d3fa3"
+SRCREV = "1265718192279ada0baee3cdc2498d08fa52bee6"
 
-REQUIRED_DISTRO_FEATURES = "wayland"
+REQUIRED_DISTRO_FEATURES = "wayland x11"
 
 DEPENDS += " \
 	wayland \
@@ -21,6 +21,8 @@ DEPENDS += " \
 	cairo \
 	pango \
 	libdrm \
+	libxcb \
+	xcb-util-wm \
 	tomlplusplus \
 "
 
@@ -28,10 +30,8 @@ inherit meson pkgconfig features_check
 
 PACKAGECONFIG ?= " \
 	${@bb.utils.contains('TCLIBC', 'glibc', 'jemalloc', '', d)} \
-	${@bb.utils.filter('DISTRO_FEATURES', 'x11', d)} \
 "
 PACKAGECONFIG[jemalloc] = "-Djemalloc=enabled,-Djemalloc=disabled,jemalloc"
-PACKAGECONFIG[x11] = ",,,xwayland-satellite"
 
 FILES:${PN} += "${datadir} ${systemd_user_unitdir}"
 
