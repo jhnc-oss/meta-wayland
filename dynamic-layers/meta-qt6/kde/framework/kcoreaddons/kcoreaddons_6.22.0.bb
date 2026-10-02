@@ -12,14 +12,11 @@ DEPENDS = " \
 	extra-cmake-modules \
 	kconfig \
 	plasma-wayland-protocols \
-	python3-shiboken6-native \
-	python3-pyside6 \
-	python3-build-native \
 "
 
 inherit qt6-cmake pkgconfig mime-xdg mime
 
-EXTRA_OECMAKE += "-DBUILD_TESTING=OFF"
+EXTRA_OECMAKE += "-DBUILD_TESTING=OFF -DBUILD_PYTHON_BINDINGS=OFF"
 
 FILES:${PN} += "${libdir} ${datadir}"
 

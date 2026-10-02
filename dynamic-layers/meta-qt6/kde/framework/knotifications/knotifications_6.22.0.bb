@@ -11,12 +11,12 @@ DEPENDS = " \
 	qttools-native \
 	extra-cmake-modules \
 	kconfig \
-	python3-shiboken6-native \
-	python3-pyside6 \
 	libcanberra \
 "
 
 inherit qt6-cmake pkgconfig
+
+EXTRA_OECMAKE += "-DBUILD_PYTHON_BINDINGS=OFF"
 
 # cmake checks whether these files are present. We do not provide them in sysroot,
 # but at least they are included in the package -> just touch the files to avoid errors.
@@ -26,6 +26,6 @@ do_configure:prepend() {
 	touch ${STAGING_LIBEXECDIR}/kf6/kconf_update
 }
 
-FILES:${PN} += "${libdir}/qml ${PYTHON_SITEPACKAGES_DIR} ${datadir}/qlogging-categories6"
+FILES:${PN} += "${libdir}/qml ${datadir}/qlogging-categories6"
 
 RDEPENDS:${PN} += "kconfig"

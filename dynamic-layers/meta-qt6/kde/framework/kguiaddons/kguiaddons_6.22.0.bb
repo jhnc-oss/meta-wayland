@@ -12,15 +12,12 @@ DEPENDS = " \
 	extra-cmake-modules \
 	kconfig \
 	plasma-wayland-protocols \
-	python3-shiboken6-native \
-	python3-pyside6 \
-	python3-build-native \
 "
 
 inherit qt6-cmake mime-xdg pkgconfig
 
-EXTRA_OECMAKE += "-DBUILD_TESTING=OFF"
+EXTRA_OECMAKE += "-DBUILD_TESTING=OFF -DBUILD_PYTHON_BINDINGS=OFF"
 
-FILES:${PN} += "${libdir}/qml ${PYTHON_SITEPACKAGES_DIR} ${datadir}/qlogging-categories6"
+FILES:${PN} += "${libdir}/qml ${datadir}/qlogging-categories6"
 
 BBCLASSEXTEND = "native"

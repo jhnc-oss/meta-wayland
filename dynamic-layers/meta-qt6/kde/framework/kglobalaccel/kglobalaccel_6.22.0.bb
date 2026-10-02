@@ -14,5 +14,7 @@ DEPENDS = " \
 
 inherit qt6-cmake
 
+EXTRA_OECMAKE += "-DBUILD_TESTING=OFF"
+
 FILES:${PN} += "${datadir}"
 

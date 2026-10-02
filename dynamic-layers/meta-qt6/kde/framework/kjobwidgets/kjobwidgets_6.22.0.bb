@@ -13,12 +13,10 @@ DEPENDS = " \
 	kcoreaddons \
 	kwidgetaddons \
 	knotifications \
-	python3-shiboken6-native \
-	python3-pyside6 \
 "
 
 inherit qt6-cmake
 
-CXXFLAGS += "-I${STAGING_INCDIR}/PySide6/KCoreAddons"
+EXTRA_OECMAKE += "-DBUILD_PYTHON_BINDINGS=OFF"
 
-FILES:${PN} += "${PYTHON_SITEPACKAGES_DIR} ${datadir}"
+FILES:${PN} += "${datadir}"

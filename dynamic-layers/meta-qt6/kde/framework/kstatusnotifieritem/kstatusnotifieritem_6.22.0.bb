@@ -12,11 +12,9 @@ DEPENDS = " \
 	extra-cmake-modules \
 	kwindowsystem \
 	dbus \
-	python3-shiboken6-native \
-	python3-pyside6 \
 "
 
 inherit qt6-cmake pkgconfig
 
-EXTRA_OECMAKE += "-DWITHOUT_X11=ON"
-FILES:${PN} += "${datadir} ${PYTHON_SITEPACKAGES_DIR}"
+EXTRA_OECMAKE += "-DWITHOUT_X11=ON -DBUILD_PYTHON_BINDINGS=OFF"
+FILES:${PN} += "${datadir}"
