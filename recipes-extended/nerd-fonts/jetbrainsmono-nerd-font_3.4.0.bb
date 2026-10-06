@@ -19,3 +19,10 @@ do_install() {
 }
 
 FILES:${PN} = "${datadir}/fonts/truetype ${datadir}/doc"
+
+PACKAGES =+ "${PN}-mono"
+FILES:${PN}-mono = " \
+	${datadir}/fonts/truetype/JetBrainsMonoNerdFontMono-Regular.ttf \
+	${datadir}/fonts/truetype/JetBrainsMonoNerdFontMono-Bold.ttf \
+"
+RDEPENDS:${PN} = "${PN}-mono"
