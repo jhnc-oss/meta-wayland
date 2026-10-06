@@ -20,8 +20,11 @@ do_configure[postfuncs] += "point_ratatui_at_unpacked_source"
 
 require ${BPN}-crates.inc
 
+RDEPENDS:${PN} = "file"
+
 RRECOMMENDS:${PN} = " \
     ${@bb.utils.contains_any('DISTRO_FEATURES', 'wayland x11', 'ueberzugpp', '', d)} \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'wl-clipboard', '', d)} \
     ${@bb.utils.contains('LICENSE_FLAGS_ACCEPTED', 'commercial', 'ffmpeg', '', d)} \
     7zip \
     chafa \
@@ -33,6 +36,5 @@ RRECOMMENDS:${PN} = " \
     poppler \
     resvg \
     ripgrep \
-    wl-clipboard \
     zoxide \
 "
