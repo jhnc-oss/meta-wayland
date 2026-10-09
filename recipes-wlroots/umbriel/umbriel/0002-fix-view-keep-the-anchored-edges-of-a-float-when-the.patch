@@ -1,0 +1,250 @@
+From 91b4e0eeafaff7b0f431210345f82bc4a2735f35 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Fri, 9 Oct 2026 07:43:12 +0200
+Subject: [PATCH] fix(view): keep the anchored edges of a float when the client
+ resizes it
+
+A floating window placed by a position rule grew from its top-left corner
+no matter which anchor the rule named, so a right-anchored window that
+widened for a side panel ran off the screen. The edges the anchor names
+now stay put when the client changes its size: a right window grows to
+the left, a centered one both ways.
+
+Upstream-Status: Pending
+---
+ docs/user/window-rules.md  |  4 ++-
+ src/view/floating.h        | 34 ++++++++++++++++++++++++++
+ src/view/view.h            |  2 ++
+ src/view/view_floating.cpp | 50 +++++++++++++++++++++++++++++++++++++-
+ tests/unit/floating.cpp    | 41 +++++++++++++++++++++++++++++++
+ 5 files changed, 129 insertions(+), 2 deletions(-)
+
+diff --git a/docs/user/window-rules.md b/docs/user/window-rules.md
+index cf4230b6..d0ea0285 100644
+--- a/docs/user/window-rules.md
++++ b/docs/user/window-rules.md
+@@ -105,7 +105,9 @@ default_position = { x = 32, y = 24, anchor = "bottom_left" }
+ 
+ Accepted anchors are `center`, `top_left`, `top_right`, `bottom_left`,
+ `bottom_right`, `top`, `bottom`, `left`, and `right`. Right and bottom anchors
+-measure inward from those edges.
++measure inward from those edges. When the window later changes its own size,
++the anchored edges stay where they are: a `right` window grows to the left, a
++`center` window in both directions.
+ 
+ ## Scratchpad placement
+ 
+diff --git a/src/view/floating.h b/src/view/floating.h
+index 72fe32da..3ebbf3b5 100644
+--- a/src/view/floating.h
++++ b/src/view/floating.h
+@@ -75,6 +75,36 @@ namespace umbriel {
+     return static_cast<int32_t>(committed - requested) >= 0;
+   }
+ 
++  // Which edge of a floating window a position anchor pins on one axis: Start is the left or top edge, End the right or
++  // bottom one, Center neither.
++  enum class AxisAnchor {
++    Start,
++    Center,
++    End,
++  };
++
++  // Where a float placed by a position anchor goes when the client changes its own size. The anchored edge stays where
++  // it is: a right-anchored window grows to the left, a centered one both ways, a left-anchored one keeps its origin.
++  [[nodiscard]] constexpr FloatingPoint anchoredGrowthOrigin(
++      FloatingPoint origin, std::array<int, 2> oldSize, std::array<int, 2> newSize, AxisAnchor x, AxisAnchor y
++  ) {
++    const auto shift = [](int oldLength, int newLength, AxisAnchor anchor) {
++      switch (anchor) {
++      case AxisAnchor::Start:
++        return 0;
++      case AxisAnchor::Center:
++        return (oldLength - newLength) / 2;
++      case AxisAnchor::End:
++        return oldLength - newLength;
++      }
++      return 0;
++    };
++    return {
++        .x = origin.x + shift(oldSize[0], newSize[0], x),
++        .y = origin.y + shift(oldSize[1], newSize[1], y),
++    };
++  }
++
+   // Center a window of the given size in `usable`. Floats keep their own size,
+   // so this only ever moves them.
+   [[nodiscard]] constexpr FloatingPoint centeredOrigin(const wlr_box& usable, int width, int height) {
+@@ -143,6 +173,9 @@ namespace umbriel {
+     // a different-sized output lands in the same relative spot.
+     void rememberPositionFraction(FloatingPoint origin, const wlr_box& usable);
+     [[nodiscard]] std::optional<FloatingPoint> restoredOrigin(const wlr_box& usable) const;
++    // The edges a position rule pinned the window to; a client-driven size change keeps them in place.
++    void rememberPlacementAnchor(AxisAnchor x, AxisAnchor y) { m_placementAnchor = {{x, y}}; }
++    [[nodiscard]] const std::optional<std::array<AxisAnchor, 2>>& placementAnchor() const { return m_placementAnchor; }
+ 
+     // Configure-serial handoff. A fully-specified request is the pending basis
+     // resize actions accumulate against until the client commits its serial.
+@@ -174,6 +207,7 @@ namespace umbriel {
+ 
+     std::optional<std::array<int, 2>> m_size;
+     std::optional<std::array<double, 2>> m_posFrac;
++    std::optional<std::array<AxisAnchor, 2>> m_placementAnchor;
+     std::optional<uint32_t> m_sizeRequestSerial;
+     std::optional<std::array<int, 2>> m_pendingSize;
+     std::optional<wlr_box> m_anchor;
+diff --git a/src/view/view.h b/src/view/view.h
+index c277ba29..7d0125bf 100644
+--- a/src/view/view.h
++++ b/src/view/view.h
+@@ -670,6 +670,8 @@ namespace umbriel {
+     void finishFloatingResize();
+     void syncFloatingResizePosition();
+     void adoptFloatingClientSize();
++    // After a client-driven size change, keep the edges a position rule anchored the window to where they were.
++    void keepPlacementAnchor(ClientSize oldSize, const wlr_box& newSize);
+     // Where `origin` has to move to satisfy the clamp, or nullopt if it already does. `resize` selects
+     // clampFloatingOriginForResize over clampFloatingOrigin.
+     [[nodiscard]] std::optional<FloatingPoint>
+diff --git a/src/view/view_floating.cpp b/src/view/view_floating.cpp
+index 8a1a5c9b..ff94340d 100644
+--- a/src/view/view_floating.cpp
++++ b/src/view/view_floating.cpp
+@@ -159,6 +159,33 @@ namespace umbriel {
+     return true;
+   }
+ 
++  namespace {
++    // The edges a window rule anchor pins per axis.
++    std::array<AxisAnchor, 2> placementAxisAnchors(WindowPositionAnchor anchor) {
++      switch (anchor) {
++      case WindowPositionAnchor::TopLeft:
++        return {AxisAnchor::Start, AxisAnchor::Start};
++      case WindowPositionAnchor::TopRight:
++        return {AxisAnchor::End, AxisAnchor::Start};
++      case WindowPositionAnchor::BottomLeft:
++        return {AxisAnchor::Start, AxisAnchor::End};
++      case WindowPositionAnchor::BottomRight:
++        return {AxisAnchor::End, AxisAnchor::End};
++      case WindowPositionAnchor::Top:
++        return {AxisAnchor::Center, AxisAnchor::Start};
++      case WindowPositionAnchor::Bottom:
++        return {AxisAnchor::Center, AxisAnchor::End};
++      case WindowPositionAnchor::Left:
++        return {AxisAnchor::Start, AxisAnchor::Center};
++      case WindowPositionAnchor::Right:
++        return {AxisAnchor::End, AxisAnchor::Center};
++      case WindowPositionAnchor::Center:
++        return {AxisAnchor::Center, AxisAnchor::Center};
++      }
++      return {AxisAnchor::Start, AxisAnchor::Start};
++    }
++  } // namespace
++
+   std::optional<FloatingPoint> View::getFloatingPosition(
+       const wlr_box usable, const std::optional<WindowPosition>& position, const std::optional<std::array<int, 2>> size
+   ) {
+@@ -229,6 +256,8 @@ namespace umbriel {
+     }
+     if (position) {
+       m_floating.rememberPositionFraction(*origin, usable);
++      const auto [anchorX, anchorY] = placementAxisAnchors(position->anchor);
++      m_floating.rememberPlacementAnchor(anchorX, anchorY);
+     } else if (const View* parent = transientParent()) {
+       // Where the parent is headed, not where its node is mid-animation right after it mapped. A fullscreen parent
+       // shows over any panel, so the whole output counts as visible for it.
+@@ -439,14 +468,33 @@ namespace umbriel {
+     if (geo.width <= 0 || geo.height <= 0) {
+       return;
+     }
+-    if (scheduledSize().width != geo.width || scheduledSize().height != geo.height) {
++    const ClientSize scheduled = scheduledSize();
++    if (scheduled.width != geo.width || scheduled.height != geo.height) {
+       // Once the latest compositor size request is committed, a floating
+       // client owns its size. Direct assignment avoids an echo configure.
+       adoptScheduledSize(geo.width, geo.height);
++      keepPlacementAnchor(scheduled, geo);
+       clampFloatingPosition();
+     }
+   }
+ 
++  void View::keepPlacementAnchor(ClientSize oldSize, const wlr_box& newSize) {
++    const auto& anchor = m_floating.placementAnchor();
++    if (!anchor || oldSize.width <= 0 || oldSize.height <= 0) {
++      return;
++    }
++    const FloatingPoint origin{.x = layoutTargetX(), .y = layoutTargetY()};
++    const FloatingPoint moved = anchoredGrowthOrigin(
++        origin, {oldSize.width, oldSize.height}, {newSize.width, newSize.height}, (*anchor)[0], (*anchor)[1]
++    );
++    if (moved.x == origin.x && moved.y == origin.y) {
++      return;
++    }
++    // The client has already drawn at the new size, so the origin moves with it rather than animating after it.
++    setPosition(moved.x, moved.y);
++    m_floating.rememberPositionFraction(moved, floatingUsableArea());
++  }
++
+   void View::syncFloatingSurfaceClip() {
+     if (m_tiled || scheduledFullscreen()) {
+       return;
+diff --git a/tests/unit/floating.cpp b/tests/unit/floating.cpp
+index 8174006a..d22cc0fa 100644
+--- a/tests/unit/floating.cpp
++++ b/tests/unit/floating.cpp
+@@ -3,6 +3,8 @@
+ #include "check.h"
+ 
+ using umbriel::anchoredContentOrigin;
++using umbriel::anchoredGrowthOrigin;
++using umbriel::AxisAnchor;
+ using umbriel::centeredOrigin;
+ using umbriel::centeredOverShown;
+ using umbriel::clampFloatingOrigin;
+@@ -367,4 +369,43 @@ UMBRIEL_TEST(aSizeReadsBackAsTheFractionItCameFrom) {
+   CHECK(floatingSizeFraction(192, 1920) == 0.1);
+ }
+ 
++// Client-driven growth of an anchored float
++UMBRIEL_TEST(aLeftAnchoredFloatKeepsItsOriginWhenItGrows) {
++  const auto origin = anchoredGrowthOrigin({100, 200}, {400, 300}, {700, 350}, AxisAnchor::Start, AxisAnchor::Start);
++  CHECK_EQ(origin.x, 100);
++  CHECK_EQ(origin.y, 200);
++}
++
++UMBRIEL_TEST(aRightAnchoredFloatGrowsToTheLeft) {
++  const auto origin = anchoredGrowthOrigin({1500, 200}, {400, 300}, {700, 300}, AxisAnchor::End, AxisAnchor::Center);
++  CHECK_EQ(origin.x, 1200);
++  CHECK_EQ(origin.y, 200);
++}
++
++UMBRIEL_TEST(aRightAnchoredFloatShrinksTowardsItsRightEdge) {
++  const auto origin = anchoredGrowthOrigin({1200, 200}, {700, 300}, {400, 300}, AxisAnchor::End, AxisAnchor::Center);
++  CHECK_EQ(origin.x, 1500);
++}
++
++UMBRIEL_TEST(aCenteredFloatGrowsBothWays) {
++  const auto origin = anchoredGrowthOrigin({760, 390}, {400, 300}, {600, 400}, AxisAnchor::Center, AxisAnchor::Center);
++  CHECK_EQ(origin.x, 660);
++  CHECK_EQ(origin.y, 340);
++}
++
++UMBRIEL_TEST(aBottomRightAnchoredFloatKeepsBothFarEdges) {
++  const auto origin = anchoredGrowthOrigin({1500, 760}, {400, 300}, {500, 400}, AxisAnchor::End, AxisAnchor::End);
++  CHECK_EQ(origin.x, 1400);
++  CHECK_EQ(origin.y, 660);
++}
++
++UMBRIEL_TEST(theGeometryRemembersItsPlacementAnchor) {
++  FloatingGeometry floating;
++  CHECK(!floating.placementAnchor().has_value());
++  floating.rememberPlacementAnchor(AxisAnchor::End, AxisAnchor::Center);
++  CHECK(floating.placementAnchor().has_value());
++  CHECK((*floating.placementAnchor())[0] == AxisAnchor::End);
++  CHECK((*floating.placementAnchor())[1] == AxisAnchor::Center);
++}
++
+ int main() { return RUN_TESTS(); }
+-- 
+2.55.0
+
