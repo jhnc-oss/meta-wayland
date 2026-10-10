@@ -75,5 +75,10 @@ EOF
 }
 
 
+do_install:append() {
+	rm -rf ${D}${includedir} ${D}${libdir}/pkgconfig
+	rm -f ${D}${libdir}/*.a
+}
+
+FILES_SOLIBSDEV = ""
 FILES:${PN} += "${datadir} ${libdir}"
-FILES:${PN}-dev = "${includedir} ${libdir}/pkgconfig"
