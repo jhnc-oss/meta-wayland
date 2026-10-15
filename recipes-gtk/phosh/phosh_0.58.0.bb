@@ -55,7 +55,7 @@ SRC_URI = "git://gitlab.gnome.org/World/Phosh/phosh.git;protocol=https;nobranch=
 SRC_URI += "git://gitlab.gnome.org/GNOME/libgnome-volume-control.git;protocol=https;subdir=${S}/subprojects/gvc;name=gvc;nobranch=1"
 SRC_URI += "git://gitlab.gnome.org/World/Phosh/libcall-ui;protocol=https;subdir=${S}/subprojects/libcall-ui;name=libcall-ui;nobranch=1;tag=v0.1.5"
 SRC_URI += "file://0001-calendar-server-take-a-const-ICalProperty-in-the-get.patch"
-SRCREV_phosh = "a278ac3069c61e460f2581d3f5df914ebdceefd8"
+SRCREV_phosh = "991730023a5b12c0cd203a98abd1abcea99d3159"
 SRCREV_gvc = "d2442f455844e5292cb4a74ffc66ecc8d7595a9f"
 SRCREV_libcall-ui = "7389b4ae90e101620ef8e790e76a98e434bd920c"
 SRCREV_FORMAT = "phosh"
