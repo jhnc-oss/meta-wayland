@@ -3,7 +3,7 @@ LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=ca01f6fdf705a36f41b4e431ee0a4af0"
 
 SRC_URI = "git://github.com/noctalia-dev/xdg-desktop-portal-umbriel.git;protocol=https;branch=main"
-SRCREV = "d7a1bc386c2a6dfaecaa953165f9f373735c9ee0"
+SRCREV = "5d16415264fa5ae86a110db5d172ca05edb43cf6"
 
 REQUIRED_DISTRO_FEATURES = "wayland"
 
