@@ -8,7 +8,7 @@ LICENSE = "GPL-2.0-or-later AND MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=3d26203303a722dedc6bf909d95ba815"
 
 SRC_URI = "git://github.com/MarkusVolk/tandem.git;protocol=https;branch=main"
-SRCREV = "2a021fb53c2cdac3a17907c4058f4b9dcab2fd4f"
+SRCREV = "7d037bdb811efa19553886d924b65d06b0e7b019"
 
 DEPENDS = " \
     glib-2.0 \
