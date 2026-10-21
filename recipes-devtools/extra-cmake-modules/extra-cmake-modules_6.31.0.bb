@@ -7,6 +7,7 @@ LIC_FILES_CHKSUM += "file://LICENSES/BSD-3-Clause.txt;md5=954f4d71a37096249f8376
 
 SRC_URI = "git://invent.kde.org/frameworks/extra-cmake-modules.git;protocol=https;nobranch=1;tag=v${PV}"
 SRC_URI += "file://0001-ECMGeneratePythonBindings-derive-the-module-suffix-from-Shiboken6.patch"
+SRC_URI += "file://0001-KDEInstallDirs6-install-Qt-metatypes-into-LIBDIR-met.patch"
 SRCREV = "2958379fb49c71129f119ec17f88df0b5ea21550"
 
 inherit cmake

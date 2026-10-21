@@ -1,0 +1,40 @@
+From d25cd2fd89b48e26ff436c8cf09b994b3167a0fe Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Wed, 21 Oct 2026 13:03:33 +0200
+Subject: [PATCH] KDEInstallDirs6: install Qt metatypes into LIBDIR/metatypes
+
+Without KDE_INSTALL_USE_QT_SYS_PATHS, or when qtpaths reports no
+QT_INSTALL_ARCHDATA, QTMETATYPESDIR was "metatypes" relative to the
+install prefix, which puts the files into /usr/metatypes instead of
+the Qt metatypes directory /usr/lib/metatypes.
+
+Upstream-Status: Pending
+---
+ kde-modules/KDEInstallDirs6.cmake | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/kde-modules/KDEInstallDirs6.cmake b/kde-modules/KDEInstallDirs6.cmake
+index b68b8bc..63af4ce 100644
+--- a/kde-modules/KDEInstallDirs6.cmake
++++ b/kde-modules/KDEInstallDirs6.cmake
+@@ -252,7 +252,7 @@ if(KDE_INSTALL_USE_QT_SYS_PATHS)
+     if (qt_archdata_dir)
+         _define_absolute(QTMETATYPESDIR "${qt_archdata_dir}/metatypes" "Qt metatypes files")
+     else()
+-        _define_non_cache(QTMETATYPESDIR "metatypes")
++        _define_non_cache(QTMETATYPESDIR "${KDE_INSTALL_LIBDIR}/metatypes")
+     endif()
+ else()
+     set(_pluginsDirParent LIBDIR)
+@@ -266,7 +266,7 @@ else()
+     _define_relative(QMLDIR LIBDIR "qml"
+         "QtQuick2 imports")
+ 
+-    _define_non_cache(QTMETATYPESDIR "metatypes")
++    _define_non_cache(QTMETATYPESDIR "${KDE_INSTALL_LIBDIR}/metatypes")
+ endif()
+ 
+ _define_relative(PLUGINDIR QTPLUGINDIR ""
+-- 
+2.56.0
+
