@@ -14,13 +14,11 @@ RDEPENDS:${PN} = " \
 	python3-asyncio \
 	python3-brotli \
 	python3-certifi \
-	python3-cffi \
 	python3-chardet \
 	python3-charset-normalizer \
 	python3-compression \
 	python3-core \
 	python3-crypt \
-	python3-cryptography \
 	python3-ctypes \
 	python3-datetime \
 	python3-email \
