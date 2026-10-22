@@ -11,23 +11,45 @@ RRECOMMENDS:${PN} += "ejs ffmpeg"
 RDEPENDS:${PN} = " \
 	brotli \
 	curl \
+	python3-asyncio \
 	python3-brotli \
 	python3-certifi \
 	python3-cffi \
 	python3-chardet \
 	python3-charset-normalizer \
+	python3-compression \
+	python3-core \
+	python3-crypt \
 	python3-cryptography \
+	python3-ctypes \
+	python3-datetime \
+	python3-email \
+	python3-html \
+	python3-idna \
+	python3-io \
+	python3-json \
+	python3-logging \
+	python3-markdown-it-py \
+	python3-math \
+	python3-mdurl \
+	python3-mime \
+	python3-misc \
+	python3-mutagen \
+	python3-netclient \
+	python3-numbers \
+	python3-pycparser \
 	python3-pycryptodomex \
 	python3-pycurl \
-	python3-idna \
-	python3-markdown-it-py \
-	python3-mdurl \
-	python3-mutagen \
-	python3-pycparser \
 	python3-pygments \
 	python3-requests \
 	python3-rich \
+	python3-shell \
+	python3-sqlite3 \
+	python3-stringold \
+	python3-terminal \
 	python3-typing-extensions \
+	python3-unixadmin \
 	python3-urllib3 \
 	python3-websockets \
+	python3-xml \
 "
