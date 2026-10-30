@@ -16,6 +16,7 @@ DEPENDS = " \
 	glib-2.0 \
 	wlroots-0.20 \
 	libinput \
+	libjxl \
 	libwebp \
 	tomlplusplus \
 	nlohmann-json \
@@ -25,7 +26,7 @@ DEPENDS = " \
 
 SRC_URI = "git://github.com/noctalia-dev/noctalia-greeter.git;protocol=https;branch=main;tag=v${PV}"
 SRC_URI += "file://0001-assets-buildpath.patch"
-SRCREV = "44337ecba043749c29de6f3d563315b91987a908"
+SRCREV = "af0bf4b1e1c40738db917b04c9c0563b4f718953"
 
 inherit meson pkgconfig
 
