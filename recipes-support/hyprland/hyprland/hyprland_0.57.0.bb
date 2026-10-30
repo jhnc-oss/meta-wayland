@@ -14,6 +14,7 @@ DEPENDS += " \
     glslang \
     hyprcursor \
     hyprgraphics \
+    hyprland-protocols \
     hyprutils \
     hyprwayland-scanner-native \
     hyprwire \
@@ -50,9 +51,8 @@ RRECOMMENDS:${PN} ?= " \
 	xdg-desktop-portal-hyprland \
 "
 
-SRC_URI = "gitsm://github.com/hyprwm/Hyprland.git;protocol=https;nobranch=1;name=hyprland"
-SRCREV = "86c24e2e079aa62214421c76f01b603fc8178125"
-PV:append = "+git"
+SRC_URI = "gitsm://github.com/hyprwm/Hyprland.git;protocol=https;nobranch=1;name=hyprland;tag=v${PV}"
+SRCREV = "0aa6745f705f2c4b0a5004eb019ef76e5bbdb426"
 
 inherit cmake pkgconfig features_check
 
