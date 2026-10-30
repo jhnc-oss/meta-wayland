@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=778ddc598b3f2a2da3657dda514da983"
 
 SRC_URI = "git://github.com/hyprwm/hyprland-qt-support.git;protocol=https;branch=main"
 
-SRCREV = "767e884cda77bea293982c2116333308930d7800"
+SRCREV = "05a7be67fb3ade62ac6f2b4bd35def316d29134e"
 
 DEPENDS = "qtbase qtquick3d qttools-native hyprlang"
 

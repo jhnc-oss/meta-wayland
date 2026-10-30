@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=a0bf31bc487405beb07b19459ea85114"
 
 SRC_URI = "git://github.com/hyprwm/hyprqt6engine.git;protocol=https;branch=main"
 
-SRCREV = "9063e6837b4e282a73b052a0c0371916daccf50a"
+SRCREV = "d0ce29ca5471f406c71558cd9453573686b8c976"
 
 DEPENDS = "qtbase  qtquick3d qttools-native hyprutils hyprlang"
 
