@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=778ddc598b3f2a2da3657dda514da983"
 DEPENDS = "pixman"
 
 SRC_URI = "git://github.com/hyprwm/hyprutils.git;protocol=https;branch=main"
-SRCREV = "95983ee836ff205e615bba67d1f67098e1231941"
+SRCREV = "7e1f69209cd910615d0573a93fa970408f643539"
 PV:append = "+git"
 
 inherit cmake pkgconfig
