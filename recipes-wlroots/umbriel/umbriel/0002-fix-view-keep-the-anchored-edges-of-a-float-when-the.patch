@@ -1,4 +1,4 @@
-From 91b4e0eeafaff7b0f431210345f82bc4a2735f35 Mon Sep 17 00:00:00 2001
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: Markus Volk <f_l_k@t-online.de>
 Date: Fri, 9 Oct 2026 07:43:12 +0200
 Subject: [PATCH] fix(view): keep the anchored edges of a float when the client
@@ -12,33 +12,31 @@ the left, a centered one both ways.
 
 Upstream-Status: Pending
 ---
- docs/user/window-rules.md  |  4 ++-
+ docs/user/window-rules.md  |  2 +-
  src/view/floating.h        | 34 ++++++++++++++++++++++++++
  src/view/view.h            |  2 ++
  src/view/view_floating.cpp | 50 +++++++++++++++++++++++++++++++++++++-
  tests/unit/floating.cpp    | 41 +++++++++++++++++++++++++++++++
- 5 files changed, 129 insertions(+), 2 deletions(-)
+ 5 files changed, 127 insertions(+), 2 deletions(-)
 
 diff --git a/docs/user/window-rules.md b/docs/user/window-rules.md
-index cf4230b6..d0ea0285 100644
+index 7ffd2cf5..5332ac29 100644
 --- a/docs/user/window-rules.md
 +++ b/docs/user/window-rules.md
-@@ -105,7 +105,9 @@ default_position = { x = 32, y = 24, anchor = "bottom_left" }
+@@ -119,7 +119,7 @@ Coordinates are logical pixels within the output's usable area:
+ default_position = { x = 32, y = 24, anchor = "bottom_left" }
+ ```
  
- Accepted anchors are `center`, `top_left`, `top_right`, `bottom_left`,
- `bottom_right`, `top`, `bottom`, `left`, and `right`. Right and bottom anchors
--measure inward from those edges.
-+measure inward from those edges. When the window later changes its own size,
-+the anchored edges stay where they are: a `right` window grows to the left, a
-+`center` window in both directions.
+-Accepted anchors are `center`, `top_left`, `top_right`, `bottom_left`, `bottom_right`, `top`, `bottom`, `left`, and `right`. Right and bottom anchors measure inward from those edges.
++Accepted anchors are `center`, `top_left`, `top_right`, `bottom_left`, `bottom_right`, `top`, `bottom`, `left`, and `right`. Right and bottom anchors measure inward from those edges. When the window later changes its own size, the anchored edges stay where they are: a `right` window grows to the left, a `center` window in both directions.
  
  ## Scratchpad placement
  
 diff --git a/src/view/floating.h b/src/view/floating.h
-index 72fe32da..3ebbf3b5 100644
+index d50e3b0d..cefae4f4 100644
 --- a/src/view/floating.h
 +++ b/src/view/floating.h
-@@ -75,6 +75,36 @@ namespace umbriel {
+@@ -140,6 +140,36 @@ namespace umbriel {
      return static_cast<int32_t>(committed - requested) >= 0;
    }
  
@@ -75,7 +73,7 @@ index 72fe32da..3ebbf3b5 100644
    // Center a window of the given size in `usable`. Floats keep their own size,
    // so this only ever moves them.
    [[nodiscard]] constexpr FloatingPoint centeredOrigin(const wlr_box& usable, int width, int height) {
-@@ -143,6 +173,9 @@ namespace umbriel {
+@@ -224,6 +254,9 @@ namespace umbriel {
      // a different-sized output lands in the same relative spot.
      void rememberPositionFraction(FloatingPoint origin, const wlr_box& usable);
      [[nodiscard]] std::optional<FloatingPoint> restoredOrigin(const wlr_box& usable) const;
@@ -85,7 +83,7 @@ index 72fe32da..3ebbf3b5 100644
  
      // Configure-serial handoff. A fully-specified request is the pending basis
      // resize actions accumulate against until the client commits its serial.
-@@ -174,6 +207,7 @@ namespace umbriel {
+@@ -255,6 +288,7 @@ namespace umbriel {
  
      std::optional<std::array<int, 2>> m_size;
      std::optional<std::array<double, 2>> m_posFrac;
@@ -94,10 +92,10 @@ index 72fe32da..3ebbf3b5 100644
      std::optional<std::array<int, 2>> m_pendingSize;
      std::optional<wlr_box> m_anchor;
 diff --git a/src/view/view.h b/src/view/view.h
-index c277ba29..7d0125bf 100644
+index 9c2ee8fb..edabe96e 100644
 --- a/src/view/view.h
 +++ b/src/view/view.h
-@@ -670,6 +670,8 @@ namespace umbriel {
+@@ -773,6 +773,8 @@ namespace umbriel {
      void finishFloatingResize();
      void syncFloatingResizePosition();
      void adoptFloatingClientSize();
@@ -107,10 +105,10 @@ index c277ba29..7d0125bf 100644
      // clampFloatingOriginForResize over clampFloatingOrigin.
      [[nodiscard]] std::optional<FloatingPoint>
 diff --git a/src/view/view_floating.cpp b/src/view/view_floating.cpp
-index 8a1a5c9b..ff94340d 100644
+index 12dcd692..d0c1c8a6 100644
 --- a/src/view/view_floating.cpp
 +++ b/src/view/view_floating.cpp
-@@ -159,6 +159,33 @@ namespace umbriel {
+@@ -265,6 +265,33 @@ namespace umbriel {
      return true;
    }
  
@@ -144,7 +142,7 @@ index 8a1a5c9b..ff94340d 100644
    std::optional<FloatingPoint> View::getFloatingPosition(
        const wlr_box usable, const std::optional<WindowPosition>& position, const std::optional<std::array<int, 2>> size
    ) {
-@@ -229,6 +256,8 @@ namespace umbriel {
+@@ -366,6 +393,8 @@ namespace umbriel {
      }
      if (position) {
        m_floating.rememberPositionFraction(*origin, usable);
@@ -153,7 +151,7 @@ index 8a1a5c9b..ff94340d 100644
      } else if (const View* parent = transientParent()) {
        // Where the parent is headed, not where its node is mid-animation right after it mapped. A fullscreen parent
        // shows over any panel, so the whole output counts as visible for it.
-@@ -439,14 +468,33 @@ namespace umbriel {
+@@ -605,7 +634,8 @@ namespace umbriel {
      if (geo.width <= 0 || geo.height <= 0) {
        return;
      }
@@ -163,8 +161,13 @@ index 8a1a5c9b..ff94340d 100644
        // Once the latest compositor size request is committed, a floating
        // client owns its size. Direct assignment avoids an echo configure.
        adoptScheduledSize(geo.width, geo.height);
-+      keepPlacementAnchor(scheduled, geo);
-       clampFloatingPosition();
+@@ -616,11 +646,29 @@ namespace umbriel {
+           && transientParent() == nullptr) {
+         placeInUsableArea();
+       } else {
++        keepPlacementAnchor(scheduled, geo);
+         clampFloatingPosition();
+       }
      }
    }
  
@@ -189,20 +192,21 @@ index 8a1a5c9b..ff94340d 100644
      if (m_tiled || scheduledFullscreen()) {
        return;
 diff --git a/tests/unit/floating.cpp b/tests/unit/floating.cpp
-index 8174006a..d22cc0fa 100644
+index aa329c18..158b73de 100644
 --- a/tests/unit/floating.cpp
 +++ b/tests/unit/floating.cpp
-@@ -3,6 +3,8 @@
+@@ -3,7 +3,9 @@
  #include "check.h"
  
  using umbriel::anchoredContentOrigin;
 +using umbriel::anchoredGrowthOrigin;
+ using umbriel::attachmentOffset;
 +using umbriel::AxisAnchor;
  using umbriel::centeredOrigin;
  using umbriel::centeredOverShown;
  using umbriel::clampFloatingOrigin;
-@@ -367,4 +369,43 @@ UMBRIEL_TEST(aSizeReadsBackAsTheFractionItCameFrom) {
-   CHECK(floatingSizeFraction(192, 1920) == 0.1);
+@@ -455,4 +457,43 @@ UMBRIEL_TEST(cascadeStepClearsTheDecoratedTitleBar) {
+   CHECK_EQ(umbriel::floatingCascadeStep(0, 2), 32);
  }
  
 +// Client-driven growth of an anchored float
@@ -245,6 +249,3 @@ index 8174006a..d22cc0fa 100644
 +}
 +
  int main() { return RUN_TESTS(); }
--- 
-2.55.0
-
