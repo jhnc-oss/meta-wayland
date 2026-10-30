@@ -1,4 +1,4 @@
-From 954bbc6a2e12a4eb2b47c54ec738a32dd5391afd Mon Sep 17 00:00:00 2001
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: Markus Volk <f_l_k@t-online.de>
 Date: Sat, 19 Sep 2026 00:29:32 +0200
 Subject: [PATCH 2/2] capture: fall back to KWin's ScreenShot2 D-Bus interface
@@ -35,7 +35,7 @@ diff --git a/assets/dev.noctalia.Noctalia.desktop b/assets/dev.noctalia.Noctalia
 similarity index 81%
 rename from assets/dev.noctalia.Noctalia.desktop
 rename to assets/dev.noctalia.Noctalia.desktop.in
-index d99b4ee4f..a3d94deb1 100644
+index d99b4ee..a3d94de 100644
 --- a/assets/dev.noctalia.Noctalia.desktop
 +++ b/assets/dev.noctalia.Noctalia.desktop.in
 @@ -2,13 +2,14 @@
@@ -55,10 +55,10 @@ index d99b4ee4f..a3d94deb1 100644
  [Desktop Action Settings]
  Name=Open Settings
 diff --git a/meson.build b/meson.build
-index 3fdc4a5f2..6935ba832 100644
+index 3767c76..47ab7eb 100644
 --- a/meson.build
 +++ b/meson.build
-@@ -849,6 +849,7 @@ _noctalia_sources = files(
+@@ -897,6 +897,7 @@ _noctalia_sources = files(
    'src/system/gamma_service.cpp',
    'src/system/location_service.cpp',
    'src/capture/screencopy_capture.cpp',
@@ -66,12 +66,12 @@ index 3fdc4a5f2..6935ba832 100644
    'src/capture/pointer_cursor_capture.cpp',
    'src/capture/toplevel_thumbnail_capture.cpp',
    'src/capture/screencopy_util.cpp',
-@@ -1138,11 +1139,19 @@ noctalia_exe = executable('noctalia',
+@@ -1193,11 +1194,19 @@ noctalia_exe = executable('noctalia',
  
  install_subdir('assets',
    install_dir: get_option('datadir') / 'noctalia',
--  exclude_files: ['dev.noctalia.Noctalia.desktop'],
-+  exclude_files: ['dev.noctalia.Noctalia.desktop.in'],
+-  exclude_files: ['dev.noctalia.Noctalia.desktop', 'dev.noctalia.Noctalia.Annotator.desktop'],
++  exclude_files: ['dev.noctalia.Noctalia.desktop.in', 'dev.noctalia.Noctalia.Annotator.desktop'],
 +)
 +
 +# KWin authorizes org.kde.KWin.ScreenShot2 callers by matching the absolute
@@ -85,14 +85,14 @@ index 3fdc4a5f2..6935ba832 100644
  install_data(
 -  'assets/dev.noctalia.Noctalia.desktop',
 +  noctalia_desktop,
+   'assets/dev.noctalia.Noctalia.Annotator.desktop',
    install_dir: get_option('datadir') / 'applications',
  )
- 
 diff --git a/src/app/application_services.cpp b/src/app/application_services.cpp
-index 79d55b821..a7e0ac1e3 100644
+index 9198a97..730b4c9 100644
 --- a/src/app/application_services.cpp
 +++ b/src/app/application_services.cpp
-@@ -1599,6 +1599,7 @@ void Application::initSessionBusServices() {
+@@ -1651,6 +1651,7 @@ void Application::initSessionBusServices() {
      installSecretServiceCollectionWatch();
  
      m_compositorPlatform.startKdeActiveWindow(*m_bus);
@@ -102,7 +102,7 @@ index 79d55b821..a7e0ac1e3 100644
    m_locationService.initialize();
 diff --git a/src/capture/kwin_screenshot_capture.cpp b/src/capture/kwin_screenshot_capture.cpp
 new file mode 100644
-index 000000000..71db14926
+index 0000000..71db149
 --- /dev/null
 +++ b/src/capture/kwin_screenshot_capture.cpp
 @@ -0,0 +1,312 @@
@@ -420,7 +420,7 @@ index 000000000..71db14926
 +}
 diff --git a/src/capture/kwin_screenshot_capture.h b/src/capture/kwin_screenshot_capture.h
 new file mode 100644
-index 000000000..303d3be92
+index 0000000..303d3be
 --- /dev/null
 +++ b/src/capture/kwin_screenshot_capture.h
 @@ -0,0 +1,50 @@
@@ -475,7 +475,7 @@ index 000000000..303d3be92
 +  CompletionCallback m_onComplete;
 +};
 diff --git a/src/capture/screenshot_capture.cpp b/src/capture/screenshot_capture.cpp
-index a51094395..adfd73665 100644
+index 2aaf843..92d92ed 100644
 --- a/src/capture/screenshot_capture.cpp
 +++ b/src/capture/screenshot_capture.cpp
 @@ -1,6 +1,7 @@
@@ -503,7 +503,7 @@ index a51094395..adfd73665 100644
  
  void ScreenshotCapture::capture(
      wl_output* output, std::optional<LogicalRect> region, bool showCursor, bool retainCursor,
-@@ -43,6 +52,25 @@ void ScreenshotCapture::capture(
+@@ -46,6 +55,25 @@ void ScreenshotCapture::capture(
  }
  
  void ScreenshotCapture::captureBackground() {
@@ -526,10 +526,10 @@ index a51094395..adfd73665 100644
 +  }
 +
 +  m_orientedByCompositor = false;
-   m_timeout.start(std::chrono::seconds(1), [this]() {
+   m_timeout.start(std::chrono::seconds(1), [this] {
      m_backgroundCapture.cancelInFlight();
      finish(std::nullopt, "screencopy frame timed out");
-@@ -58,6 +86,9 @@ void ScreenshotCapture::cancelInFlight() {
+@@ -61,6 +89,9 @@ void ScreenshotCapture::cancelInFlight() {
    m_timeout.stop();
    m_cursorCapture.cancelInFlight();
    m_backgroundCapture.cancelInFlight();
@@ -539,7 +539,7 @@ index a51094395..adfd73665 100644
    m_cursor.reset();
    m_busy = false;
    m_onComplete = {};
-@@ -67,7 +98,7 @@ void ScreenshotCapture::finish(std::optional<ScreencopyImage> image, std::string
+@@ -70,7 +101,7 @@ void ScreenshotCapture::finish(std::optional<ScreencopyImage> image, std::string
    m_timeout.stop();
    std::optional<capture::ScreenshotImage> result;
    if (image) {
@@ -549,7 +549,7 @@ index a51094395..adfd73665 100644
      } else if (!m_cursor) {
        result = capture::ScreenshotImage{
 diff --git a/src/capture/screenshot_capture.h b/src/capture/screenshot_capture.h
-index 12d2ff38d..81ecaecca 100644
+index 12d2ff3..81ecaec 100644
 --- a/src/capture/screenshot_capture.h
 +++ b/src/capture/screenshot_capture.h
 @@ -1,13 +1,17 @@
@@ -597,10 +597,10 @@ index 12d2ff38d..81ecaecca 100644
    CompletionCallback m_onComplete;
  };
 diff --git a/src/capture/screenshot_service.cpp b/src/capture/screenshot_service.cpp
-index 43fac4ad7..7336649d4 100644
+index 80212cb..a87d174 100644
 --- a/src/capture/screenshot_service.cpp
 +++ b/src/capture/screenshot_service.cpp
-@@ -645,6 +645,8 @@ std::optional<LogicalRect> ScreenshotService::loadRememberedRegion() const {
+@@ -811,6 +811,8 @@ std::optional<LogicalRect> ScreenshotService::loadRememberedRegion() const {
  
  bool ScreenshotService::available() const noexcept { return m_capture.available(); }
  
@@ -610,18 +610,18 @@ index 43fac4ad7..7336649d4 100644
    if (m_regionOverlay != nullptr) {
      m_regionOverlay->onOutputChange();
 diff --git a/src/capture/screenshot_service.h b/src/capture/screenshot_service.h
-index cfc080edd..ca141de6e 100644
+index ea542cb..49df029 100644
 --- a/src/capture/screenshot_service.h
 +++ b/src/capture/screenshot_service.h
-@@ -20,6 +20,7 @@ class IpcService;
+@@ -22,6 +22,7 @@ class ConfigService;
+ class IpcService;
  class NotificationManager;
- struct Config;
  class RenderContext;
 +class SessionBus;
  class WaylandConnection;
  class SoundPlayer;
  struct KeyboardEvent;
-@@ -49,6 +50,7 @@ public:
+@@ -65,6 +66,7 @@ public:
    ~ScreenshotService();
  
    [[nodiscard]] bool available() const noexcept;
@@ -629,6 +629,3 @@ index cfc080edd..ca141de6e 100644
  
    void captureFullscreen(const OutputOptions& options, wl_output* output = nullptr);
    void captureFullscreenInteractive(RenderContext& renderContext, const OutputOptions& options);
--- 
-2.55.0
-

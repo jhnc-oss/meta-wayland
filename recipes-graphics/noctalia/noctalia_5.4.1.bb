@@ -3,7 +3,7 @@ LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=5bd433caa90a88d62bd293dabc90f4a3"
 
 SRC_URI = "git://github.com/noctalia-dev/noctalia.git;protocol=https;branch=main;tag=v${PV}"
-SRCREV = "6990397bf73ae561ed517b7a3ba3e116202a9077"
+SRCREV = "815aebe1cfd79c9a18197441eea92f0b275035fc"
 SRC_URI += " \
 	file://0001-wallpaper-use-the-desktop-layer-shell-namespace.patch \
 	file://0002-capture-fall-back-to-KWin-s-ScreenShot2-D-Bus-interface.patch \
@@ -42,7 +42,7 @@ DEPENDS += " \
 	${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'virtual/egl virtual/libgles2', 'epoxy', d)} \
 "
 
-inherit meson pkgconfig features_check
+inherit meson pkgconfig features_check mime-xdg
 
 PACKAGECONFIG ?= "${@bb.utils.contains('TCLIBC', 'glibc', 'jemalloc', '', d)}"
 PACKAGECONFIG[jemalloc] = "-Djemalloc=enabled,-Djemalloc=disabled,jemalloc"
