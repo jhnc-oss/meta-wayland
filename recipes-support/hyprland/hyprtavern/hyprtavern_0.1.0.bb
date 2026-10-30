@@ -20,7 +20,7 @@ DEPENDS = " \
 
 SRC_URI = "git://github.com/hyprwm/hyprtavern.git;protocol=https;branch=main"
 
-SRCREV = "946aa84275af9c97773935b94c1f9cbd4dc3286b"
+SRCREV = "eb794bd209a523efa11d547f5527fcd881ba1683"
 
 inherit cmake pkgconfig
 
