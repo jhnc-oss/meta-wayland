@@ -3,9 +3,8 @@ HOMEPAGE = "https://github.com/hyprwm/xdg-desktop-portal-hyprland"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=e0f1d50df739a9fb8eae12a8f37ce352"
 
-SRC_URI = "gitsm://github.com/hyprwm/xdg-desktop-portal-hyprland.git;protocol=https;nobranch=1"
-SRCREV = "e87ae7823e7bf0601385220c69b5a3b245123fc5"
-PV:append = "+git"
+SRC_URI = "gitsm://github.com/hyprwm/xdg-desktop-portal-hyprland.git;protocol=https;nobranch=1;tag=v${PV}"
+SRCREV = "d1467fea8d1895cb7835829c2fbb271a0d37760a"
 
 DEPENDS = " \
     hyprlang \
