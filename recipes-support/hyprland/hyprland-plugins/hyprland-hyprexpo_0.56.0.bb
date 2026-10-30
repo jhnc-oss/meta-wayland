@@ -2,8 +2,8 @@ SUMMARY = "A plugin to add expo (overlay) for workspaces."
 LICENSE = "BSD-3-Clause"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=e6458723c467506fd0c4aea3be2bcf8a"
 
-SRC_URI = "git://github.com/sandwichfarm/hyprexpo.git;protocol=https;branch=master"
-SRCREV = "21077e4a9c1f4c62d2750fc634c4b41c0c792396"
+SRC_URI = "git://github.com/sandwichfarm/hyprexpo.git;protocol=https;branch=hyprland-git"
+SRCREV = "1db341b523dd833fa6d0f3dde26f17005977b669"
 PV:append = "+git"
 
 DEPENDS = " \
