@@ -13,6 +13,6 @@ DEPENDS = " \
  "
 
 SRC_URI = "git://github.com/hyprwm/hyprshutdown.git;protocol=https;branch=main;tag=v${PV}"
-SRCREV = "db1f38b03b173984ae9ed3abeb9750583c9bbd91"
+SRCREV = "932dcf06320da94e5f7fa73cf449e8b8c394bf9d"
 
 inherit cmake pkgconfig
