@@ -1,0 +1,252 @@
+From 48b6452c1c6c706f39c8fb53aecb9066752d17dc Mon Sep 17 00:00:00 2001
+From: Ordissimo <thierry@ordissimo.com>
+Date: Sat, 18 Jul 2026 22:22:35 +0200
+Subject: [PATCH] escl: map HTTP responses to SANE status
+
+Upstream-Status: Backport [https://gitlab.com/sane-project/backends/-/commit/51c6417943bd2e9b205f9d9fbdee92d315d341b6]
+
+---
+ backend/escl/escl.c              | 35 ++++++++++++++++++++++++++++++++
+ backend/escl/escl.h              |  1 +
+ backend/escl/escl_capabilities.c |  7 +++----
+ backend/escl/escl_newjob.c       | 18 +++++-----------
+ backend/escl/escl_reset.c        | 16 ++++++---------
+ backend/escl/escl_scan.c         | 20 +++++++++---------
+ backend/escl/escl_status.c       | 10 ++++-----
+ 7 files changed, 64 insertions(+), 43 deletions(-)
+
+diff --git a/backend/escl/escl.c b/backend/escl/escl.c
+index 6bd34290..30d3c2e7 100644
+--- a/backend/escl/escl.c
++++ b/backend/escl/escl.c
+@@ -1872,3 +1872,38 @@ escl_curl_url(CURL *handle, const ESCL_Device *device, SANE_String_Const path)
+                          device->unix_socket);
+     }
+ }
++
++SANE_Status
++escl_curl_status(CURL *handle, CURLcode result)
++{
++    long response = 0;
++
++    if (result != CURLE_OK) {
++        DBG(10, "eSCL transport error: %s\n", curl_easy_strerror(result));
++        return SANE_STATUS_IO_ERROR;
++    }
++    if (curl_easy_getinfo(handle, CURLINFO_RESPONSE_CODE, &response) != CURLE_OK)
++        return SANE_STATUS_IO_ERROR;
++    if (response >= 200 && response < 300)
++        return SANE_STATUS_GOOD;
++
++    DBG(10, "eSCL HTTP status: %ld\n", response);
++    switch (response) {
++    case 401:
++    case 403:
++        return SANE_STATUS_ACCESS_DENIED;
++    case 404:
++    case 409:
++        return SANE_STATUS_NO_DOCS;
++    case 423:
++    case 429:
++    case 503:
++        return SANE_STATUS_DEVICE_BUSY;
++    case 400:
++    case 405:
++    case 415:
++        return SANE_STATUS_UNSUPPORTED;
++    default:
++        return SANE_STATUS_IO_ERROR;
++    }
++}
+diff --git a/backend/escl/escl.h b/backend/escl/escl.h
+index 2dce59bd..4cf3cf3a 100644
+--- a/backend/escl/escl.h
++++ b/backend/escl/escl.h
+@@ -259,6 +259,7 @@ typedef void CURL;
+ void escl_curl_url(CURL *handle,
+                    const ESCL_Device *device,
+                    SANE_String_Const path);
++SANE_Status escl_curl_status(CURL *handle, CURLcode result);
+ 
+ unsigned char *escl_crop_surface(capabilities_t *scanner,
+                                  unsigned char *surface,
+diff --git a/backend/escl/escl_capabilities.c b/backend/escl/escl_capabilities.c
+index 05b3fd2a..f7b382c8 100644
+--- a/backend/escl/escl_capabilities.c
++++ b/backend/escl/escl_capabilities.c
+@@ -565,11 +565,10 @@ escl_capabilities(ESCL_Device *device, char *blacklist, SANE_Status *status)
+     curl_easy_setopt(curl_handle, CURLOPT_FOLLOWLOCATION, 1L);
+     curl_easy_setopt(curl_handle, CURLOPT_MAXREDIRS, 3L);
+     CURLcode res = curl_easy_perform(curl_handle);
+-    if (res == CURLE_OK)
++    *status = escl_curl_status(curl_handle, res);
++    if (*status == SANE_STATUS_GOOD)
+         DBG( 10, "Create NewJob : the scanner header responded : [%s]\n", header->memory);
+-    if (res != CURLE_OK) {
+-        DBG( 10, "The scanner didn't respond: %s\n", curl_easy_strerror(res));
+-        *status = SANE_STATUS_INVAL;
++    if (*status != SANE_STATUS_GOOD) {
+         goto clean_data;
+     }
+     DBG( 10, "XML Capabilities[\n%s\n]\n", var->memory);
+diff --git a/backend/escl/escl_newjob.c b/backend/escl/escl_newjob.c
+index ed2f4b0e..042fe248 100644
+--- a/backend/escl/escl_newjob.c
++++ b/backend/escl/escl_newjob.c
+@@ -292,9 +292,10 @@ wake_up_device:
+         curl_easy_setopt(curl_handle, CURLOPT_FOLLOWLOCATION, 1L);
+         curl_easy_setopt(curl_handle, CURLOPT_MAXREDIRS, 3L);
+         CURLcode res = curl_easy_perform(curl_handle);
+-        if (res != CURLE_OK) {
+-            DBG( 10, "Create NewJob : the scanner responded incorrectly: %s\n", curl_easy_strerror(res));
+-            *status = SANE_STATUS_INVAL;
++        *status = escl_curl_status(curl_handle, res);
++        if (*status != SANE_STATUS_GOOD) {
++            if (*status == SANE_STATUS_DEVICE_BUSY)
++                wakup_count++;
+         }
+         else {
+             if (download->memory != NULL) {
+@@ -332,16 +333,7 @@ wake_up_device:
+                 }
+                 else {
+                     DBG( 10, "Create NewJob : The creation of the failed job: %s\n", download->memory);
+-                    // If "409 Conflict" appear it means that there is no paper in feeder
+-                    if (strstr(download->memory, "409 Conflict") != NULL)
+-                        *status = SANE_STATUS_NO_DOCS;
+-                    // If "503 Service Unavailable" appear, it means that device is busy (scanning in progress)
+-                    else if (strstr(download->memory, "503 Service Unavailable") != NULL) {
+-                        wakup_count += 1;
+-                        *status = SANE_STATUS_DEVICE_BUSY;
+-		    }
+-                    else
+-                        *status = SANE_STATUS_INVAL;
++                    *status = SANE_STATUS_IO_ERROR;
+                 }
+             }
+             else {
+diff --git a/backend/escl/escl_reset.c b/backend/escl/escl_reset.c
+index ad3080b3..e64d6a5d 100644
+--- a/backend/escl/escl_reset.c
++++ b/backend/escl/escl_reset.c
+@@ -47,18 +47,15 @@ void
+ escl_delete(const ESCL_Device *device, char *uri)
+ {
+     CURL *curl_handle = NULL;
+-    long answer = 0;
+ 
+     if (uri == NULL)
+         return;
+     curl_handle = curl_easy_init();
+     if (curl_handle != NULL) {
+         escl_curl_url(curl_handle, device, uri);
+-	curl_easy_setopt(curl_handle, CURLOPT_CUSTOMREQUEST, "DELETE");
+-        if (curl_easy_perform(curl_handle) == CURLE_OK) {
+-            curl_easy_getinfo(curl_handle, CURLINFO_RESPONSE_CODE, &answer);
+-            return;
+-        }
++	 curl_easy_setopt(curl_handle, CURLOPT_CUSTOMREQUEST, "DELETE");
++        CURLcode result = curl_easy_perform(curl_handle);
++        (void)escl_curl_status(curl_handle, result);
+         curl_easy_cleanup(curl_handle);
+     }
+ }
+@@ -76,7 +73,6 @@ escl_scanner(const ESCL_Device *device, char *scanJob, char *result,  SANE_Bool
+     const char *scanner_start = "/NextDocument";
+     char scan_cmd[PATH_MAX] = { 0 };
+     int i = 0;
+-    long answer = 0;
+ 
+     if (device == NULL || result == NULL)
+         return;
+@@ -89,12 +85,12 @@ CURL_CALL:
+         curl_easy_setopt(curl_handle, CURLOPT_WRITEFUNCTION, write_callback);
+         curl_easy_setopt(curl_handle, CURLOPT_FOLLOWLOCATION, 1L);
+         curl_easy_setopt(curl_handle, CURLOPT_MAXREDIRS, 3L);
+-        if (curl_easy_perform(curl_handle) == CURLE_OK) {
+-            curl_easy_getinfo(curl_handle, CURLINFO_RESPONSE_CODE, &answer);
++        CURLcode result = curl_easy_perform(curl_handle);
++        if (escl_curl_status(curl_handle, result) == SANE_STATUS_GOOD) {
+             i++;
+-            if (i >= 15) return;
+         }
+         curl_easy_cleanup(curl_handle);
++	if (i >= 15) return;
+ 	char* end = strrchr(scan_cmd, '/');
+ 	*end = 0;
+         escl_delete(device, scan_cmd);
+diff --git a/backend/escl/escl_scan.c b/backend/escl/escl_scan.c
+index 22854d4a..6a6bae52 100644
+--- a/backend/escl/escl_scan.c
++++ b/backend/escl/escl_scan.c
+@@ -66,7 +66,6 @@ escl_scan(capabilities_t *scanner, const ESCL_Device *device, char *scanJob, cha
+     const char *scanner_start = "/NextDocument";
+     char scan_cmd[PATH_MAX] = { 0 };
+     SANE_Status status = SANE_STATUS_GOOD;
+-    long response_code = 0;
+ 
+     if (device == NULL)
+         return SANE_STATUS_NO_MEM;
+@@ -91,24 +90,25 @@ escl_scan(capabilities_t *scanner, const ESCL_Device *device, char *scanJob, cha
+     curl_easy_setopt(curl_handle, CURLOPT_MAXREDIRS, 3L);
+     curl_easy_setopt(curl_handle, CURLOPT_WRITEDATA, scanner);
+ 
+-    for (int i = 0; i < MAX_RETRIES && response_code != 200; i++) {
++    for (int i = 0; i < MAX_RETRIES; i++) {
+         scanner->real_read = 0;
+         CURLcode res = curl_easy_perform(curl_handle);
+-        curl_easy_getinfo(curl_handle, CURLINFO_RESPONSE_CODE, &response_code);
+-        if (res != CURLE_OK || (response_code != 200 && response_code != 503)) {
+-            DBG( 10, "Unable to scan: %s (response code %ld)\n", curl_easy_strerror(res), response_code);
+-            status = SANE_STATUS_INVAL;
+-            goto cleanup;
+-        } else if (response_code == 503) {
+-            status = SANE_STATUS_DEVICE_BUSY;
++        status = escl_curl_status(curl_handle, res);
++        if (status == SANE_STATUS_DEVICE_BUSY) {
+             sleep(RETRY_TIMEOUT);
+-            DBG(10, "Service unavailable: reattempting scan (%d/%d)\n", i + 1, MAX_RETRIES);
++            DBG(10, "Scanner busy: reattempting scan (%d/%d)\n",
++                i + 1, MAX_RETRIES);
++        } else if (status != SANE_STATUS_GOOD) {
++            goto cleanup;
+         } else {
+             status = scanner->real_read > 0 ? SANE_STATUS_GOOD : SANE_STATUS_NO_DOCS;
+         }
+ 
+         if (scanner->real_read)
+             fseek(scanner->tmp, 0, SEEK_SET);
++
++        if (status != SANE_STATUS_DEVICE_BUSY)
++            break;
+     }
+ cleanup:
+     curl_easy_cleanup(curl_handle);
+diff --git a/backend/escl/escl_status.c b/backend/escl/escl_status.c
+index eec80411..11755fd5 100644
+--- a/backend/escl/escl_status.c
++++ b/backend/escl/escl_status.c
+@@ -224,9 +224,8 @@ reload:
+     curl_easy_setopt(curl_handle, CURLOPT_FOLLOWLOCATION, 1L);
+     curl_easy_setopt(curl_handle, CURLOPT_MAXREDIRS, 3L);
+     CURLcode res = curl_easy_perform(curl_handle);
+-    if (res != CURLE_OK) {
+-        DBG( 10, "The scanner didn't respond: %s\n", curl_easy_strerror(res));
+-        status = SANE_STATUS_INVAL;
++    status = escl_curl_status(curl_handle, res);
++    if (status != SANE_STATUS_GOOD) {
+         goto clean_data;
+     }
+     DBG( 10, "eSCL : Status : %s.\n", var->memory);
+@@ -374,9 +373,8 @@ escl_reset_all_jobs(ESCL_Device *device)
+     curl_easy_setopt(curl_handle, CURLOPT_FOLLOWLOCATION, 1L);
+     curl_easy_setopt(curl_handle, CURLOPT_MAXREDIRS, 3L);
+     CURLcode res = curl_easy_perform(curl_handle);
+-    if (res != CURLE_OK) {
+-        DBG( 10, "The scanner didn't respond: %s\n", curl_easy_strerror(res));
+-        status = SANE_STATUS_INVAL;
++    status = escl_curl_status(curl_handle, res);
++    if (status != SANE_STATUS_GOOD) {
+         goto clean_data1;
+     }
+     DBG(10, "3 - escl_reset_all_jobs\n");

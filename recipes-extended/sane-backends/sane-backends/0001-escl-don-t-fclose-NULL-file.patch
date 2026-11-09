@@ -1,0 +1,36 @@
+From d88920d0a5f07fa2b5fff3c10243ab7872136bb1 Mon Sep 17 00:00:00 2001
+From: "Leon M. Busch-George" <leon@georgemail.eu>
+Date: Sun, 29 Mar 2026 21:33:24 +0200
+Subject: [PATCH] escl: don't fclose NULL file
+
+If the connection to the printer dies at the right time, this can happen:
+
+  #0  0x00007f6f8654d254 in _IO_new_fclose (fp=0x0) at iofclose.c:48
+  #1  0x00007f6f867d9e03 in escl_scan (scanner=0x559a08d07740, device=0x559a08d4aaf0, scanJob=0x559a08d81330 "ScanJobs", result=0x559a08d78b50 "/2200f887-027b-1000-8487-40f8dfb0086e")
+      at escl/escl_scan.c:103
+  #2  0x00007f6f867dc25d in sane_escl_start (h=0x559a08d4aba0) at escl/escl.c:1684
+  #3  0x00005599efc80cf4 in main (argc=<optimized out>, argv=<optimized out>) at /usr/src/debug/sane/backends-1.4.0/frontend/scanimage.c:2789
+
+Upstream-Status: Backport [https://gitlab.com/sane-project/backends/-/commit/640b8172b85e5a0be30f2246589969de69d2f1c8]
+
+---
+ backend/escl/escl_scan.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/backend/escl/escl_scan.c b/backend/escl/escl_scan.c
+index b7f344db..7dec8312 100644
+--- a/backend/escl/escl_scan.c
++++ b/backend/escl/escl_scan.c
+@@ -100,8 +100,10 @@ cleanup:
+     DBG(10, "eSCL scan : [%s]\treal read (%ld)\n", sane_strstatus(status), scanner->real_read);
+     if (scanner->real_read == 0)
+     {
+-       fclose(scanner->tmp);
+-       scanner->tmp = NULL;
++       if (scanner->tmp) {
++           fclose(scanner->tmp);
++           scanner->tmp = NULL;
++       }
+        return SANE_STATUS_NO_DOCS;
+     }
+     return (status);
