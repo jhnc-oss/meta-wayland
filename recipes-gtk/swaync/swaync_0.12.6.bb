@@ -29,8 +29,6 @@ inherit meson pkgconfig vala manpages
 
 export GI_TYPELIB_PATH = "${STAGING_LIBDIR}/girepository-1.0/"
 
-VALA_MESON_OPTION = ""
-
 EXTRA_OEMESON += "--buildtype release"
 
 PACKAGECONFIG[bash] = "-Dbash-completions=true,-Dbash-completions=false"
