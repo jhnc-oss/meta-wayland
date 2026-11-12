@@ -35,7 +35,7 @@ diff --git a/assets/dev.noctalia.Noctalia.desktop b/assets/dev.noctalia.Noctalia
 similarity index 81%
 rename from assets/dev.noctalia.Noctalia.desktop
 rename to assets/dev.noctalia.Noctalia.desktop.in
-index d99b4ee..a3d94de 100644
+index d99b4ee4f..a3d94deb1 100644
 --- a/assets/dev.noctalia.Noctalia.desktop
 +++ b/assets/dev.noctalia.Noctalia.desktop.in
 @@ -2,13 +2,14 @@
@@ -55,10 +55,10 @@ index d99b4ee..a3d94de 100644
  [Desktop Action Settings]
  Name=Open Settings
 diff --git a/meson.build b/meson.build
-index 3767c76..47ab7eb 100644
+index 3aaa04ee7..2ade4bf04 100644
 --- a/meson.build
 +++ b/meson.build
-@@ -897,6 +897,7 @@ _noctalia_sources = files(
+@@ -872,6 +872,7 @@ _noctalia_sources = files(
    'src/system/gamma_service.cpp',
    'src/system/location_service.cpp',
    'src/capture/screencopy_capture.cpp',
@@ -66,12 +66,12 @@ index 3767c76..47ab7eb 100644
    'src/capture/pointer_cursor_capture.cpp',
    'src/capture/toplevel_thumbnail_capture.cpp',
    'src/capture/screencopy_util.cpp',
-@@ -1193,11 +1194,19 @@ noctalia_exe = executable('noctalia',
+@@ -1111,11 +1112,19 @@ install_subdir('lib/assets',
  
  install_subdir('assets',
    install_dir: get_option('datadir') / 'noctalia',
--  exclude_files: ['dev.noctalia.Noctalia.desktop', 'dev.noctalia.Noctalia.Annotator.desktop'],
-+  exclude_files: ['dev.noctalia.Noctalia.desktop.in', 'dev.noctalia.Noctalia.Annotator.desktop'],
+-  exclude_files: ['dev.noctalia.Noctalia.desktop', 'dev.noctalia.Noctalia.Annotator.desktop', 'noctalia.service.in'],
++  exclude_files: ['dev.noctalia.Noctalia.desktop.in', 'dev.noctalia.Noctalia.Annotator.desktop', 'noctalia.service.in'],
 +)
 +
 +# KWin authorizes org.kde.KWin.ScreenShot2 callers by matching the absolute
@@ -89,10 +89,10 @@ index 3767c76..47ab7eb 100644
    install_dir: get_option('datadir') / 'applications',
  )
 diff --git a/src/app/application_services.cpp b/src/app/application_services.cpp
-index 9198a97..730b4c9 100644
+index 6f85c9b8f..4a6fbfb33 100644
 --- a/src/app/application_services.cpp
 +++ b/src/app/application_services.cpp
-@@ -1651,6 +1651,7 @@ void Application::initSessionBusServices() {
+@@ -1795,6 +1795,7 @@ void Application::initSessionBusServices() {
      installSecretServiceCollectionWatch();
  
      m_compositorPlatform.startKdeActiveWindow(*m_bus);
@@ -102,7 +102,7 @@ index 9198a97..730b4c9 100644
    m_locationService.initialize();
 diff --git a/src/capture/kwin_screenshot_capture.cpp b/src/capture/kwin_screenshot_capture.cpp
 new file mode 100644
-index 0000000..71db149
+index 000000000..71db14926
 --- /dev/null
 +++ b/src/capture/kwin_screenshot_capture.cpp
 @@ -0,0 +1,312 @@
@@ -420,7 +420,7 @@ index 0000000..71db149
 +}
 diff --git a/src/capture/kwin_screenshot_capture.h b/src/capture/kwin_screenshot_capture.h
 new file mode 100644
-index 0000000..303d3be
+index 000000000..303d3be92
 --- /dev/null
 +++ b/src/capture/kwin_screenshot_capture.h
 @@ -0,0 +1,50 @@
@@ -475,7 +475,7 @@ index 0000000..303d3be
 +  CompletionCallback m_onComplete;
 +};
 diff --git a/src/capture/screenshot_capture.cpp b/src/capture/screenshot_capture.cpp
-index 2aaf843..92d92ed 100644
+index 2aaf843a9..92d92ed91 100644
 --- a/src/capture/screenshot_capture.cpp
 +++ b/src/capture/screenshot_capture.cpp
 @@ -1,6 +1,7 @@
@@ -549,7 +549,7 @@ index 2aaf843..92d92ed 100644
      } else if (!m_cursor) {
        result = capture::ScreenshotImage{
 diff --git a/src/capture/screenshot_capture.h b/src/capture/screenshot_capture.h
-index 12d2ff3..81ecaec 100644
+index 49f0c1bb3..e6fe98156 100644
 --- a/src/capture/screenshot_capture.h
 +++ b/src/capture/screenshot_capture.h
 @@ -1,13 +1,17 @@
@@ -577,8 +577,8 @@ index 12d2ff3..81ecaec 100644
 +  // Enables the KWin D-Bus fallback on KDE sessions, which offer no screencopy global.
 +  void setSessionBus(SessionBus& bus);
 +
-   [[nodiscard]] bool available() const noexcept;
-   [[nodiscard]] bool busy() const noexcept { return m_busy; }
+   bool available() const noexcept;
+   bool busy() const noexcept { return m_busy; }
  
 @@ -31,6 +38,7 @@ private:
    WaylandConnection& m_wayland;
@@ -597,10 +597,10 @@ index 12d2ff3..81ecaec 100644
    CompletionCallback m_onComplete;
  };
 diff --git a/src/capture/screenshot_service.cpp b/src/capture/screenshot_service.cpp
-index 80212cb..a87d174 100644
+index bd61fff62..5dc554b16 100644
 --- a/src/capture/screenshot_service.cpp
 +++ b/src/capture/screenshot_service.cpp
-@@ -811,6 +811,8 @@ std::optional<LogicalRect> ScreenshotService::loadRememberedRegion() const {
+@@ -812,6 +812,8 @@ std::optional<LogicalRect> ScreenshotService::loadRememberedRegion() const {
  
  bool ScreenshotService::available() const noexcept { return m_capture.available(); }
  
@@ -610,7 +610,7 @@ index 80212cb..a87d174 100644
    if (m_regionOverlay != nullptr) {
      m_regionOverlay->onOutputChange();
 diff --git a/src/capture/screenshot_service.h b/src/capture/screenshot_service.h
-index ea542cb..49df029 100644
+index 443a3059f..0a17481ce 100644
 --- a/src/capture/screenshot_service.h
 +++ b/src/capture/screenshot_service.h
 @@ -22,6 +22,7 @@ class ConfigService;
@@ -621,11 +621,14 @@ index ea542cb..49df029 100644
  class WaylandConnection;
  class SoundPlayer;
  struct KeyboardEvent;
-@@ -65,6 +66,7 @@ public:
+@@ -66,6 +67,7 @@ public:
    ~ScreenshotService();
  
-   [[nodiscard]] bool available() const noexcept;
+   bool available() const noexcept;
 +  void setSessionBus(SessionBus& bus);
  
    void captureFullscreen(const OutputOptions& options, wl_output* output = nullptr);
    void captureFullscreenInteractive(RenderContext& renderContext, const OutputOptions& options);
+-- 
+2.56.0
+

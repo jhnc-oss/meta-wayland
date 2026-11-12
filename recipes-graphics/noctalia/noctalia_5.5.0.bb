@@ -3,7 +3,7 @@ LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=5bd433caa90a88d62bd293dabc90f4a3"
 
 SRC_URI = "git://github.com/noctalia-dev/noctalia.git;protocol=https;branch=main;tag=v${PV}"
-SRCREV = "815aebe1cfd79c9a18197441eea92f0b275035fc"
+SRCREV = "c2573248a89470383e41b8e1ac432424691cbc1f"
 SRC_URI += " \
 	file://0001-wallpaper-use-the-desktop-layer-shell-namespace.patch \
 	file://0002-capture-fall-back-to-KWin-s-ScreenShot2-D-Bus-interface.patch \
