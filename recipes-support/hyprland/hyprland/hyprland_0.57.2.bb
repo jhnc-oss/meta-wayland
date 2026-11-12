@@ -30,7 +30,6 @@ DEPENDS += " \
     pango \
     pixman \
     re2 \
-    sdbus-c++ \
     tomlplusplus \
     udis86 \
     util-linux-libuuid \
@@ -52,7 +51,7 @@ RRECOMMENDS:${PN} ?= " \
 "
 
 SRC_URI = "gitsm://github.com/hyprwm/Hyprland.git;protocol=https;nobranch=1;name=hyprland;tag=v${PV}"
-SRCREV = "acc1aa0bfd4bd575dcb0f76c35ccf12b660a1ab9"
+SRCREV = "11cbc6c577b84ffb1edf4df3fc5b6128c3ae6947"
 
 inherit cmake pkgconfig features_check
 
