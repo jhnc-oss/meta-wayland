@@ -12,7 +12,7 @@ LIC_FILES_CHKSUM = " \
 "
 
 SRC_URI = "git://github.com/MarkusVolk/tandem.git;protocol=https;branch=main"
-SRCREV = "d6e54c81155caa26ee9d9b0fa6f2e4c84c4ef735"
+SRCREV = "536a970befc4fe4e92483add1ad8918a9ef8d41b"
 
 DEPENDS = " \
     glib-2.0 \
