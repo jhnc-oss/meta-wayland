@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=570a9b3749dd0463a1778803b12a6dce"
 
 SRC_URI = "git://github.com/Qalculate/libqalculate;protocol=https;branch=master;tag=v${PV}"
 SRC_URI += "file://0001-disable-NLS-support.patch"
-SRCREV = "d01cfdae6f965bf9264af3b52db8f5b0345fe1da"
+SRCREV = "d3672af9cf6e05a39bd4206b7b7d6b1e0d194caa"
 
 inherit autotools pkgconfig
 
