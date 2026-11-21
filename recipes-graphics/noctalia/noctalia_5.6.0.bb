@@ -67,4 +67,5 @@ RRECOMMENDS:${PN} ?= " \
 	playerctl \
 	power-profiles-daemon \
 	wlsunset \
+	xdg-desktop-portal-noctalia \
 "
