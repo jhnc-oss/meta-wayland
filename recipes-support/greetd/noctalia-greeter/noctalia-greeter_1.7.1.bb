@@ -26,7 +26,7 @@ DEPENDS = " \
 
 SRC_URI = "git://github.com/noctalia-dev/noctalia-greeter.git;protocol=https;branch=main;tag=v${PV}"
 SRC_URI += "file://0001-assets-buildpath.patch"
-SRCREV = "af0bf4b1e1c40738db917b04c9c0563b4f718953"
+SRCREV = "2726e75375d95d5458d021f76c330ab14f6a5d03"
 
 inherit meson pkgconfig
 
