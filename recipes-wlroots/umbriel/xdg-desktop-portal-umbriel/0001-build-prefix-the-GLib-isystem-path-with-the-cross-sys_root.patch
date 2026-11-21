@@ -1,0 +1,35 @@
+From 7d36a605777582e50b223dfb68f2bd8980fe9fb3 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Sat, 21 Nov 2026 14:08:01 +0100
+Subject: [PATCH] build: prefix the GLib -isystem path with the cross sys_root
+
+get_variable(pkgconfig: 'includedir') returns the path without the
+sysroot, so cross builds pass the build host's /usr/include/glib-2.0.
+Prepend the sys_root property from the cross file when it is set.
+
+Upstream-Status: Pending
+---
+ meson.build | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/meson.build b/meson.build
+index 0a66329..ed14fd3 100644
+--- a/meson.build
++++ b/meson.build
+@@ -27,7 +27,12 @@ nlohmann_json_dep = dependency('nlohmann_json')
+ if get_option('picker')
+   # Recent GLib headers use __COUNTER__, a C2y extension clang warns about under lib/'s -Wpedantic. lib/ adds
+   # GLib with -I after project arguments, so mark its include directory as a system directory (-isystem wins).
+-  add_project_arguments('-isystem', dependency('glib-2.0').get_variable(pkgconfig: 'includedir') / 'glib-2.0', language: 'cpp')
++  glib_includedir = dependency('glib-2.0').get_variable(pkgconfig: 'includedir')
++  glib_sys_root = meson.get_external_property('sys_root', '')
++  if glib_sys_root != '' and not glib_includedir.startswith(glib_sys_root)
++    glib_includedir = glib_sys_root + glib_includedir
++  endif
++  add_project_arguments('-isystem', glib_includedir / 'glib-2.0', language: 'cpp')
+   subdir('lib')
+ endif
+ 
+-- 
+2.56.1
+

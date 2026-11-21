@@ -7,7 +7,7 @@ SRC_URI += " \
 	file://0001-fix-crosscompile.patch \
 	file://0002-fix-view-keep-the-anchored-edges-of-a-float-when-the.patch \
 "
-SRCREV = "0c1f125536f19dc62bcf277840bc503a1c756abf"
+SRCREV = "c634d946b50e7b2540c0d7e108ffa36d7c27adc8"
 
 REQUIRED_DISTRO_FEATURES = "wayland x11"
 
