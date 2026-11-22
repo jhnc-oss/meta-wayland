@@ -10,7 +10,7 @@ LIC_FILES_CHKSUM = " \
 "
 
 SRC_URI = "git://github.com/MarkusVolk/coffret.git;protocol=https;branch=main"
-SRCREV = "18d9d6d477cfd42741bc5bc2c9c490eb33c8ec64"
+SRCREV = "b2614cff4daf6bc95385234911184a289aca76ca"
 
 REQUIRED_DISTRO_FEATURES = "wayland opengl"
 
@@ -64,3 +64,5 @@ RDEPENDS:${PN} += " \
 	virtiofsd \
 	xorriso \
 "
+
+RRECOMMENDS:${PN} += "virtio-win-guest-tools"
