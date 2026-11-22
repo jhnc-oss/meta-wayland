@@ -10,7 +10,7 @@ LIC_FILES_CHKSUM = " \
 "
 
 SRC_URI = "git://github.com/MarkusVolk/coffret.git;protocol=https;branch=main"
-SRCREV = "d4b08e69521bccef2ea4b6d275f5d5b3abb04240"
+SRCREV = "3dfa5f35f783e3ca3923133e3de58151e9ca15f7"
 
 REQUIRED_DISTRO_FEATURES = "wayland opengl"
 
