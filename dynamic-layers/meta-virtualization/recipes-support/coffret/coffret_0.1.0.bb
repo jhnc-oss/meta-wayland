@@ -10,7 +10,7 @@ LIC_FILES_CHKSUM = " \
 "
 
 SRC_URI = "git://github.com/MarkusVolk/coffret.git;protocol=https;branch=main"
-SRCREV = "fb4f0c932b27345ff3060095320a00b33ce70c64"
+SRCREV = "18d9d6d477cfd42741bc5bc2c9c490eb33c8ec64"
 
 REQUIRED_DISTRO_FEATURES = "wayland opengl"
 
@@ -49,14 +49,18 @@ FILES:${PN} += " \
 	${datadir}/coffret \
 	${datadir}/licenses \
 	${datadir}/icons \
+	${datadir}/polkit-1 \
 "
 
 RDEPENDS:${PN} += " \
+	acl \
 	libvirt-libvirtd \
-	qemu-system-x86-64 \
-	qemu-common \
 	osinfo-db \
 	passt \
+	polkit \
+	qemu-common \
+	qemu-system-x86-64 \
 	swtpm \
 	virtiofsd \
+	xorriso \
 "
