@@ -5,4 +5,4 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=eaf6c29d9f87dd889ebdc68764a4e8d0"
 inherit python_hatchling
 
 SRC_URI += "git://github.com/BlueManCZ/hyprland-config.git;protocol=https;nobranch=1;tag=v${PV}"
-SRCREV = "e401ef8e3ca0a7ecee616d47d169fdecb0a56ae2"
+SRCREV = "1f4c46eb9992548aa9bcd6dd88a93f1e02c00314"
