@@ -10,7 +10,7 @@ SRC_URI = " \
 	git://github.com/noctalia-dev/luciole.git;protocol=https;branch=main \
 	file://0001-build-prefix-the-GLib-isystem-path-with-the-cross-sys_root.patch \
 "
-SRCREV = "601df8b37529693945bf7fb4d48848b7ca8a2783"
+SRCREV = "4e2a7c299f7b441aa88a88c4007deabaef543858"
 
 REQUIRED_DISTRO_FEATURES = "wayland opengl"
 
