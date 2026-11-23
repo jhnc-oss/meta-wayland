@@ -8,6 +8,7 @@ DEPENDS = " \
     gtk+3 \
     glib-2.0 \
     libgee \
+    libgtop \
     libpeas \
     gdk-pixbuf \
     util-linux \
@@ -36,7 +37,8 @@ REQUIRED_DISTRO_FEATURES = "gobject-introspection-data"
 
 SRC_URI = "gitsm://github.com/BuddiesOfBudgie/budgie-desktop.git;protocol=https;nobranch=1"
 SRC_URI += "file://0001-budgie.enums-templates-fix-reproducibility.patch"
-SRCREV = "4ef101b1cdde814317d3ded1d22361b6faa239ea"
+SRC_URI += "file://0002-Drop-the-libcanberra-gtk3-dependency.patch"
+SRCREV = "850d1a20481c77400b4bc580691a1226d3c638c5"
 
 GTKDOC_MESON_OPTION = "with-gtk-doc"
 GIR_MESON_OPTION = ""

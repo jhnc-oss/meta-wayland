@@ -1,0 +1,161 @@
+From 8983727604008905ef38fb922fe0bdb452ba69e1 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Mon, 23 Nov 2026 12:06:05 +0100
+Subject: [PATCH] Drop the libcanberra-gtk3 dependency
+
+libcanberra-gtk3 is only used to get a context. Create one with the plain
+libcanberra API and set the sound theme and the event sound switch from the
+GTK settings, as libcanberra-gtk3 does.
+
+Upstream-Status: Pending
+---
+ meson.build                            |  1 -
+ src/daemon/meson.build                 |  1 -
+ src/daemon/notifications/dbus.vala     | 27 ++++++++++++++++++++++++--
+ src/dialogs/screenshot/meson.build     |  1 -
+ src/dialogs/screenshot/screenshot.vala | 23 +++++++++++++++++++++-
+ 5 files changed, 47 insertions(+), 6 deletions(-)
+
+diff --git a/meson.build b/meson.build
+index 2ede0da..4bc6a0e 100644
+--- a/meson.build
++++ b/meson.build
+@@ -64,7 +64,6 @@ dep_accountsservice = dependency('accountsservice', version: '>= 0.6.55')
+ 
+ # Needed for Daemon (notifications)
+ dep_canberra = dependency('libcanberra')
+-dep_canberra_gtk3 = dependency('libcanberra-gtk3')
+ 
+ # Needed for window tracking
+ dep_xfce4windowing = dependency('libxfce4windowing-0', version: '>= 4.20.4')
+diff --git a/src/daemon/meson.build b/src/daemon/meson.build
+index 028a3cb..985d594 100644
+--- a/src/daemon/meson.build
++++ b/src/daemon/meson.build
+@@ -55,7 +55,6 @@ daemon_sources = [
+ 
+ daemon_deps = [
+     dep_canberra,
+-    dep_canberra_gtk3,
+     dep_giounix,
+     dep_gtk3,
+     dep_notify,
+diff --git a/src/daemon/notifications/dbus.vala b/src/daemon/notifications/dbus.vala
+index 4f70d2f..b810a75 100644
+--- a/src/daemon/notifications/dbus.vala
++++ b/src/daemon/notifications/dbus.vala
+@@ -623,6 +623,8 @@
+ 	}
+ 
+ 	class SoundPlayer {
++		private static Canberra.Context? sound_context = null;
++
+ 		private Notification notification;
+ 		private string? sound_name;
+ 
+@@ -631,16 +633,37 @@
+ 			this.sound_name = sound_name;
+ 		}
+ 
++		private static unowned Canberra.Context? get_sound_context() {
++			if (sound_context == null) {
++				Canberra.Context created;
++				if (Canberra.Context.create(out created) != Canberra.SUCCESS) return null;
++
++				sound_context = (owned) created;
++			}
++
++			return sound_context;
++		}
++
+ 		public void play() {
++			unowned Canberra.Context? context = get_sound_context();
++
+ 			// Play the sound
+-			if (sound_name != null) {
++			if (sound_name != null && context != null) {
+ 				Canberra.Proplist props;
+ 				Canberra.Proplist.create(out props);
+ 
+ 				props.sets(Canberra.PROP_CANBERRA_CACHE_CONTROL, "volatile");
+ 				props.sets(Canberra.PROP_EVENT_ID, sound_name);
+ 
+-				CanberraGtk.context_get().play_full(0, props);
++				unowned Gtk.Settings? settings = Gtk.Settings.get_default();
++				if (settings != null) {
++					if (settings.gtk_sound_theme_name != null) {
++						props.sets(Canberra.PROP_CANBERRA_XDG_THEME_NAME, settings.gtk_sound_theme_name);
++					}
++					props.sets(Canberra.PROP_CANBERRA_ENABLE, settings.gtk_enable_event_sounds ? "1" : "0");
++				}
++
++				context.play_full(0, props);
+ 			}
+ 		}
+ 	}
+diff --git a/src/dialogs/screenshot/meson.build b/src/dialogs/screenshot/meson.build
+index a200bf3..d034dc3 100644
+--- a/src/dialogs/screenshot/meson.build
++++ b/src/dialogs/screenshot/meson.build
+@@ -46,7 +46,6 @@ screenshot_sources = [
+ 
+ screenshot_deps = [
+     dep_canberra,
+-    dep_canberra_gtk3,
+     dep_gtk3,
+     dep_xfce4windowing,
+     dep_gtk_layer_shell,
+diff --git a/src/dialogs/screenshot/screenshot.vala b/src/dialogs/screenshot/screenshot.vala
+index 8e18fa4..74bbdff 100644
+--- a/src/dialogs/screenshot/screenshot.vala
++++ b/src/dialogs/screenshot/screenshot.vala
+@@ -160,6 +160,8 @@ namespace Budgie {
+ 	}
+ 
+ 	class MakeScreenshot {
++		private static Canberra.Context? sound_context = null;
++
+ 		int delay;
+ 		int[]? area;
+ 		string screenshot_mode;
+@@ -289,9 +291,23 @@ namespace Budgie {
+ 			}
+ 		}
+ 
++		private static unowned Canberra.Context? get_sound_context() {
++			if (sound_context == null) {
++				Canberra.Context created;
++				if (Canberra.Context.create(out created) != Canberra.SUCCESS) return null;
++
++				sound_context = (owned) created;
++			}
++
++			return sound_context;
++		}
++
+ 		private void play_shuttersound(int timeout, string[]? args = null) {
+ 			if (!emit_capture_sound) return;
+ 
++			unowned Canberra.Context? context = get_sound_context();
++			if (context == null) return;
++
+ 			Canberra.Proplist props;
+ 			Canberra.Proplist.create(out props);
+ 
+@@ -299,7 +315,12 @@ namespace Budgie {
+ 			props.sets(Canberra.PROP_EVENT_ID, "screen-capture");
+ 			props.sets(Canberra.PROP_CANBERRA_ENABLE, "1");
+ 
+-			CanberraGtk.context_get().play_full(0, props);
++			unowned Gtk.Settings? settings = Gtk.Settings.get_default();
++			if (settings != null && settings.gtk_sound_theme_name != null) {
++				props.sets(Canberra.PROP_CANBERRA_XDG_THEME_NAME, settings.gtk_sound_theme_name);
++			}
++
++			context.play_full(0, props);
+ 		}
+ 	}
+ 
+-- 
+2.56.1
+
