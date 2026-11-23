@@ -48,6 +48,7 @@ SRC_URI += " \
     crate://crates.io/hecs/0.10.5 \
     crate://crates.io/hecs-macros/0.10.0 \
     crate://crates.io/hermit-abi/0.5.2 \
+    crate://crates.io/hostname/0.4.2 \
     crate://crates.io/humantime/2.3.0 \
     crate://crates.io/ident_case/1.0.1 \
     crate://crates.io/indexmap/2.12.1 \
@@ -97,6 +98,7 @@ SRC_URI += " \
     crate://crates.io/strict-num/0.1.1 \
     crate://crates.io/strsim/0.11.1 \
     crate://crates.io/syn/2.0.111 \
+    crate://crates.io/syslog/7.0.0 \
     crate://crates.io/termcolor/1.4.1 \
     crate://crates.io/thiserror/2.0.17 \
     crate://crates.io/thiserror-impl/2.0.17 \
@@ -186,6 +188,7 @@ SRC_URI[hashbrown-0.16.1.sha256sum] = "841d1cc9bed7f9236f321df977030373f4a4163ae
 SRC_URI[hecs-0.10.5.sha256sum] = "e1cbc675ee8d97b4d206a985137f8ad59666538f56f906474f554467a63c776d"
 SRC_URI[hecs-macros-0.10.0.sha256sum] = "052fc25b12dc326082605cd2098eb76050a72fa0c0e9ea7faaa3f58b565fc970"
 SRC_URI[hermit-abi-0.5.2.sha256sum] = "fc0fef456e4baa96da950455cd02c081ca953b141298e41db3fc7e36b1da849c"
+SRC_URI[hostname-0.4.2.sha256sum] = "617aaa3557aef3810a6369d0a99fac8a080891b68bd9f9812a1eeda0c0730cbd"
 SRC_URI[humantime-2.3.0.sha256sum] = "135b12329e5e3ce057a9f972339ea52bc954fe1e9358ef27f95e89716fbc5424"
 SRC_URI[ident_case-1.0.1.sha256sum] = "b9e0384b61958566e926dc50660321d12159025e767c18e043daf26b70104c39"
 SRC_URI[indexmap-2.12.1.sha256sum] = "0ad4bb2b565bca0645f4d68c5c9af97fba094e9791da685bf83cb5f3ce74acf2"
@@ -235,6 +238,7 @@ SRC_URI[spin-0.9.8.sha256sum] = "6980e8d7511241f8acf4aebddbb1ff938df5eebe9869141
 SRC_URI[strict-num-0.1.1.sha256sum] = "6637bab7722d379c8b41ba849228d680cc12d0a45ba1fa2b48f2a30577a06731"
 SRC_URI[strsim-0.11.1.sha256sum] = "7da8b5736845d9f2fcb837ea5d9e2628564b3b043a70948a3f0b778838c5fb4f"
 SRC_URI[syn-2.0.111.sha256sum] = "390cc9a294ab71bdb1aa2e99d13be9c753cd2d7bd6560c77118597410c4d2e87"
+SRC_URI[syslog-7.0.0.sha256sum] = "019f1500a13379b7d051455df397c75770de6311a7a188a699499502704d9f10"
 SRC_URI[termcolor-1.4.1.sha256sum] = "06794f8f6c5c898b3275aebefa6b8a1cb24cd2c6c79397ab15774837a0bc5755"
 SRC_URI[thiserror-2.0.17.sha256sum] = "f63587ca0f12b72a0600bcba1d40081f830876000bb46dd2337a3051618f4fc8"
 SRC_URI[thiserror-impl-2.0.17.sha256sum] = "3ff15c8ecd7de3849db632e14d18d2571fa09dfc5ed93479bc4485c7a517c913"
