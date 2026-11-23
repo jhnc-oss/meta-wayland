@@ -27,7 +27,7 @@ DEPENDS = " \
 
 SRC_URI = "gitsm://gitlab.gnome.org/GNOME/calls.git;protocol=https;nobranch=1;name=calls"
 SRC_URI += "git://gitlab.gnome.org/World/Phosh/libcall-ui;protocol=https;subdir=${S}/subprojects/libcall-ui;name=libcall-ui;nobranch=1"
-SRCREV_calls = "271ab5a5acccbc6de44995414ab2093c1f6688ec"
+SRCREV_calls = "d3a2a2242fef42f2e210c564e0220857e575f40c"
 SRCREV_libcall-ui = "3a2044f8e7c45387954ed35d22c6b6309e6751d6"
 SRCREV_FORMAT = "calls"
 
