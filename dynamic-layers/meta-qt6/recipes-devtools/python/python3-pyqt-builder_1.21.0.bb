@@ -7,7 +7,7 @@ DEPENDS += "python3-setuptools-scm-native"
 
 PYPI_PACKAGE = "pyqt_builder"
 
-SRC_URI[sha256sum] = "6af6646ba29668751b039bfdced51642cb510e300796b58a4d68b7f956a024d8"
+SRC_URI[sha256sum] = "673efa27237a81ffefc7d9a6419565600a129b4f4cf4d358c89a348b39b3a454"
 
 inherit pypi python_setuptools_build_meta
 
