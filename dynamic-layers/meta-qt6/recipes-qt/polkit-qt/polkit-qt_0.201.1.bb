@@ -11,7 +11,7 @@ inherit qt6-cmake pkgconfig
 DEPENDS += "qtbase polkit glib-2.0"
 
 SRC_URI = "https://download.kde.org/stable/${BPN}-1/${BPN}-1-${PV}.tar.xz"
-SRC_URI[sha256sum] = "5d3b611c062d2b76a93750bb10c907bfd21d1ff08d0a15dc2cf63e278e1677fb"
+SRC_URI[sha256sum] = "95d8e2cae530c546d9437459deb8a1bea38d572f0f9772cc2860dc143637f256"
 S = "${UNPACKDIR}/${BPN}-1-${PV}"
 
 EXTRA_OECMAKE = "-DQT_MAJOR_VERSION=6"
