@@ -10,7 +10,7 @@ inherit gnomebase pkgconfig gobject-introspection
 GIR_MESON_OPTION = ""
 
 SRC_URI = "https://download.gnome.org/sources/gom/0.5/gom-${PV}.tar.xz;name=archive"
-SRC_URI[archive.sha256sum] = "069d0909fbdc6b4d27edf7a879366194e3ab508b03548bf5b89ff63546d20177"
+SRC_URI[archive.sha256sum] = "4d7a5e268698c8e7e40603e36e9e3a2b76133931ce1b637c1136301491b54cc3"
 
 FILES:${PN} += "${datadir} ${libdir}"
 
