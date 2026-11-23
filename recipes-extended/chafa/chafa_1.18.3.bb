@@ -8,6 +8,6 @@ DEPENDS = "glib-2.0 libavif  libheif jpeg libjxl librsvg tiff libwebp"
 inherit autotools pkgconfig gettext gtk-doc
 
 SRC_URI = "git://github.com/hpjansson/chafa.git;protocol=https;nobranch=1;tag=${PV}"
-SRCREV = "571246107ac9cb88dee2c6c69cda5dd9805820da"
+SRCREV = "3b160556b3a6107196b614de1eb0634844144e15"
 
 FILES:${PN} += "${libdir}/chafa"
