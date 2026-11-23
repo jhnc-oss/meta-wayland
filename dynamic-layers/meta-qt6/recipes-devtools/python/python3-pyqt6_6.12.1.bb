@@ -14,9 +14,7 @@ DEPENDS = " \
 
 PYPI_PACKAGE = "pyqt6"
 
-SRC_URI += "file://0001-QtCore-drop-QEvent-EnterEditFocus-LeaveEditFocus.patch"
-
-SRC_URI[sha256sum] = "45dd60aa69976de1918b5ced6b4e7b6a25abd2a919ecef5fd5826ecc76718889"
+SRC_URI[sha256sum] = "17bb18b3ae953ab54b23026291ecea2579b028597b56c281a752c8ed66dd1a58"
 
 inherit pypi python3-dir python3targetconfig qt6-qmake
 
@@ -53,8 +51,9 @@ PYQT6_DISABLE ?= " \
 "
 
 PYQT6_DISABLED_FEATURES ?= " \
+    PyQt_Metal \
     PyQt_Permissions \
-    ${@bb.utils.contains('DISTRO_FEATURES', 'opengl', bb.utils.contains('DISTRO_FEATURES', 'wayland', '', bb.utils.contains('DISTRO_FEATURES', 'x11', 'PyQt_OpenGL_ES2', '', d), d), 'PyQt_OpenGL PyQt_OpenGL_ES2', d)} \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'opengl', bb.utils.contains('DISTRO_FEATURES', 'wayland', '', bb.utils.contains('DISTRO_FEATURES', 'x11', 'PyQt_OpenGL_ES', '', d), d), 'PyQt_OpenGL PyQt_OpenGL_ES', d)} \
     ${@bb.utils.contains('DISTRO_FEATURES', 'vulkan', '', 'PyQt_Vulkan', d)} \
     ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', '', 'PyQt_Wayland', d)} \
     ${@bb.utils.contains('DISTRO_FEATURES', 'x11', '', 'PyQt_XCB', d)} \
