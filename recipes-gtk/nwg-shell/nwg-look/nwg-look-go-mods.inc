@@ -6,6 +6,6 @@
 
 SRC_URI += "\
     gomod://github.com/gotk3/gotk3;version=v0.6.5-0.20240618185848-ff349ae13f56;sha256sum=e04ed18899d987861438ca15d95dfb9e4d981bbf89063f2612f6545b0e05583b \
-    gomod://github.com/sirupsen/logrus;version=v1.9.4;sha256sum=3847d00c5ee6948f1ff0d0120bc343c55ce852becb7720f8f08f53eecfe9e437 \
-    gomod://golang.org/x/sys;version=v0.43.0;sha256sum=cb8b073934cf7e579c9f80c4d12619d5f96fcf97af6f07fdc649e7acec0aaddf \
+    gomod://github.com/sirupsen/logrus;version=v1.10.2;sha256sum=73a40737da86682dd536ec2c87dff0f589eeeed81873362b08ed009818747b52 \
+    gomod://golang.org/x/sys;version=v0.49.0;sha256sum=e73a06591ca0d7016ce3ccb45c36a8ed7128468aecc1a357f94d815c760c6b31 \
 "
