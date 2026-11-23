@@ -10,7 +10,7 @@ inherit cargo cargo-update-recipe-crates
 
 require ${BPN}-crates.inc
 
-SRCREV = "59cefd205247aea03d7e7fa26b878deef3b454de"
+SRCREV = "9c8054055d1d1072e8c7153f80c09a50050c2a32"
 
 
 CARGO_BUILD_FLAGS += "--config profile.release.strip=false"
