@@ -4,11 +4,11 @@ LICENSE = "GPL-3.0-only"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=bf7e2ce7c2a6b6b42b34714d917ee2c7"
 
 SRC_URI = "git://gitlab.com/btrfs-assistant/btrfs-assistant.git;protocol=https;nobranch=1;tag=${PV}"
-SRCREV = "bb7fbbc31eff13b4eec30fbbd4262c63036a554c"
+SRCREV = "7246d8989196f4c38f6fb57c17433fb14b490a21"
 
 DEPENDS = "qtbase qtbase-native qttools-native btrfs-tools"
 RRECOMMENDS:${PN} = "snapper qadwaitadecorations"
 
 inherit qt6-cmake
 
-FILES:${PN} += "${datadir}"
+FILES:${PN} += "${datadir} ${systemd_system_unitdir}"
