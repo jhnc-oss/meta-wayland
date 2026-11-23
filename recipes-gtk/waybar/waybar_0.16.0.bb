@@ -10,8 +10,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=3cdb43104ea94958cd76fefa0ddf6c89"
 REQUIRED_DISTRO_FEATURES = "wayland gobject-introspection-data"
 
 SRC_URI = "git://github.com/Alexays/Waybar.git;protocol=https;branch=master"
-SRCREV = "05945748dccce28bf96d26d8f64a9e69a8dd49ba"
-PV:append = "+git"
+SRCREV = "1b6b8026a20a1c12a0a97c3c017631c0324b9991"
 
 DEPENDS += " \
 	date \
