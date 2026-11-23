@@ -15,7 +15,7 @@ RRECOMMENDS:${PN} = "gnome-themes-extra"
 
 inherit setuptools3 useradd
 
-SRCREV = "913e46df937441d227160481f529440a10886dfe"
+SRCREV = "ec535909b71eb3a669835a43fdf9efe364fd5429"
 
 USERADD_PACKAGES = "${PN}"
 USERADD_PARAM:${PN} = "--system  --no-create-home --shell /bin/bash greeter"
