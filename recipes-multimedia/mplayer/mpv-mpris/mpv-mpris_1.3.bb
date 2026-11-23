@@ -3,7 +3,7 @@ LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=6d9f933220f595813218a175adc13001"
 
 SRC_URI = "git://github.com/hoyon/mpv-mpris.git;protocol=https;branch=master;tag=${PV}"
-SRCREV = "df95f07c48926d1589ee5fe36a455c1f49cbe4c8"
+SRCREV = "de552ae185399073b4fbc8557fa64c9543cdcf9f"
 
 DEPENDS += "ffmpeg glib-2.0 mpv"
 
