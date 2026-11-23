@@ -4,8 +4,8 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=7246f848faa4e9c9fc0ea91122d6e680"
 
 inherit python_hatchling
 
-SRC_URI += "git://github.com/yt-dlp/yt-dlp.git;protocol=https;nobranch=1;tag=2026.10.21"
-SRCREV = "6ccd977303412151ee23352c6257dd658ffc1987"
+SRC_URI += "git://github.com/yt-dlp/yt-dlp.git;protocol=https;nobranch=1;tag=2026.10.26"
+SRCREV = "f264a6cbd1f630894da0f368df00f8aae50140e0"
 
 RRECOMMENDS:${PN} += " \
 	ejs \
