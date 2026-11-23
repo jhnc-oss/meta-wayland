@@ -24,7 +24,7 @@ DEPENDS = " \
 inherit gsettings meson pkgconfig gtk-icon-cache gi-docgen gobject-introspection manpages systemd
 
 SRC_URI = "git://gitlab.gnome.org/World/Phosh/stevia.git;protocol=https;nobranch=1;tag=v${PV}"
-SRCREV = "be3d970c54713e60a0e688169c2071d947758d09"
+SRCREV = "810aba74e86109f08f34af6d32632ac4d6eaaeda"
 
 PACKAGECONFIG ?= ""
 PACKAGECONFIG[manpages] = "-Dman=true,-Dman=false,python3-docutils-native"
