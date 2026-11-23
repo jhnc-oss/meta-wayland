@@ -36,7 +36,7 @@ SRC_URI = "git://gitlab.gnome.org/World/Phosh/phoc.git;protocol=https;nobranch=1
 SRC_URI += "git://gitlab.gnome.org/GNOME/gvdb.git;protocol=https;subdir=${S}/subprojects/gvdb;name=gvdb;nobranch=1"
 SRC_URI += "git://gitlab.freedesktop.org/wlroots/wlroots.git;protocol=https;subdir=${S}/subprojects/wlroots-0.20.x;name=wlroots;branch=0.20;tag=0.20.2"
 
-SRCREV_phoc = "d50d76a4add49add71b259df9cf67d58b3cbddfb"
+SRCREV_phoc = "caebbe49fc18ae34af73e8517ced4313000ab65c"
 SRCREV_gvdb = "4758f6fb7f889e074e13df3f914328f3eecb1fd3"
 SRCREV_wlroots = "d783533489e1f75d6886c2ab5c5960090ef268f8"
 SRCREV_FORMAT = "phoc"
