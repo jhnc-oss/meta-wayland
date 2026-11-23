@@ -9,7 +9,7 @@ LIC_FILES_CHKSUM = " \
 "
 
 SRC_URI = "git://github.com/MarkusVolk/etal.git;protocol=https;branch=main"
-SRCREV = "8f364921ad487acad04fba4eafedc7ba5d746dcb"
+SRCREV = "5574b4d25a69505d111498234675bfc12d3170ce"
 
 REQUIRED_DISTRO_FEATURES = "wayland opengl"
 
