@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = " \
 "
 
 SRC_URI = "git://github.com/MarkusVolk/plume.git;protocol=https;branch=main"
-SRCREV = "4d31ee32165b7de6d6a3609bd2c051ba2bbf03a8"
+SRCREV = "fff0c619fabfdfd4ac649d8447d74f5fd019c4c5"
 
 REQUIRED_DISTRO_FEATURES = "wayland opengl"
 
