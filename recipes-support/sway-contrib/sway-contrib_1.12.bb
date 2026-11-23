@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=1640a047991fe3cbc70d68830888e863"
 
 SRC_URI = "git://github.com/OctopusET/sway-contrib.git;protocol=https;branch=master;tag=${PV}"
 
-SRCREV = "dff0a03067a3f048f02e252e62f09a4d39d04c57"
+SRCREV = "a71a1b9b6c34a83b0947f6b47979f6efa599d25b"
 
 RDEPENDS:${PN} = "python3-as-python"
 
