@@ -8,7 +8,7 @@ inherit meson
 DEPENDS = "imagemagick-native"
 
 SRC_URI = "git://github.com/BuddiesOfBudgie/budgie-backgrounds.git;protocol=https;nobranch=1"
-SRCREV = "45f0d1a196348b950158e3cf6ffea4dbb672fb7e"
+SRCREV = "2739ca3e9e9b374de3deeb69112cb8602f3b42ff"
 
 do_configure:prepend() {
     ln -sf ${STAGING_BINDIR_NATIVE}/magick.im7 ${STAGING_BINDIR_NATIVE}/mogrify
