@@ -3,7 +3,7 @@ LICENSE = "BSD-3-Clause"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=e6458723c467506fd0c4aea3be2bcf8a"
 
 SRC_URI = "git://github.com/sandwichfarm/hyprexpo.git;protocol=https;branch=master;tag=v${PV}"
-SRCREV = "3ec4d82e52f0d4765b87f6ef14f1883a44e85e27"
+SRCREV = "887d08d75fd680d13a46bc4e880ad433bf2494a6"
 
 DEPENDS = " \
     pixman \
