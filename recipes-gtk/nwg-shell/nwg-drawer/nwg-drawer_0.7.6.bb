@@ -9,11 +9,11 @@ DEPENDS = " \
 
 RDEPENDS:${PN} = "go-runtime"
 
-GO_IMPORT = "github.com/nwg-piotr/nwg-drawer.git"
+GO_IMPORT = "github.com/nwg-piotr/nwg-drawer"
 
 SRC_URI = "git://${GO_IMPORT};destsuffix=${BB_GIT_DEFAULT_DESTSUFFIX}/src/${GO_IMPORT};nobranch=1;protocol=https;tag=v${PV}"
 
-SRCREV = "6f2accf085a34cc7d82eb620f023639c87ec12bb"
+SRCREV = "7b27ff443d72f27a4af6e096defcc51352eac26b"
 
 require ${PN}-go-mods.inc ${PN}-licenses.inc
 

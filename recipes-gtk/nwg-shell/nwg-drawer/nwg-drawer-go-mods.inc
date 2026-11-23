@@ -5,18 +5,16 @@
 # running the update-modules task.
 
 SRC_URI += "\
-    gomod://github.com/KarpelesLab/weak;version=v0.1.1;sha256sum=95beab3258f52af7133a707f6e6dc53f52e84dc7d81857b9022267146e3fdc0e \
     gomod://github.com/allan-simon/go-singleinstance;version=v0.0.0-20210120080615-d0997106ab37;sha256sum=99115651f7df4f4b9956ca5af927e06d8fe8aac7b13f52f4a130ac4d7e237ad9 \
-    gomod://github.com/diamondburned/gotk4/pkg;version=v0.3.1;sha256sum=c9723192c5123d33d85cfbc39631f8246a76f767b44b36fb27f4366e7d8acdcd \
+    gomod://github.com/diamondburned/gotk4/pkg;version=v0.4.1;sha256sum=5d16ca80c886c7f081fa33ad4def0cb9ab4b826960f177464faabfa29258d4bb \
     gomod://github.com/diamondburned/gotk4-layer-shell/pkg;version=v0.0.0-20240109211357-6efa9f6dc438;sha256sum=3ef9010eaf29c3eae59874548604bead69cce6576de320c03c4216381be476d7 \
     gomod://github.com/expr-lang/expr;version=v1.17.8;sha256sum=82210321f9078349af5dbf774e2a2d9f4aabe79db23a3124034722cdc632cd80 \
-    gomod://github.com/fsnotify/fsnotify;version=v1.9.0;sha256sum=94e64824b23591b7aa504e3321d5ec3f57de88f4d49882eaefbbf6820dab746e \
+    gomod://github.com/fsnotify/fsnotify;version=v1.10.1;sha256sum=b2c6a334e0d518da2e046066bdd9da34cb26bad6df9f17701802d3de522ab016 \
     gomod://github.com/google/shlex;version=v0.0.0-20191202100458-e7afc7fbc510;sha256sum=1bf70bdb4c889b47b1976370832da79060c36cad282f278f279603200623775c \
     gomod://github.com/joshuarubin/go-sway;version=v1.2.0;sha256sum=bbe071602996dbfa1b8e810e0ecc59ce3e5f44ed8dce555e6cd9fb5b258278cd \
     gomod://github.com/joshuarubin/lifecycle;version=v1.2.1;sha256sum=9ba3b1c7cc27df555f0ac88c9095268d2fdd61ff4dd047c6c341ff5bf29dbbd0 \
-    gomod://github.com/sirupsen/logrus;version=v1.9.4;sha256sum=3847d00c5ee6948f1ff0d0120bc343c55ce852becb7720f8f08f53eecfe9e437 \
+    gomod://github.com/sirupsen/logrus;version=v1.10.2;sha256sum=73a40737da86682dd536ec2c87dff0f589eeeed81873362b08ed009818747b52 \
     gomod://go.uber.org/multierr;version=v1.11.0;sha256sum=2249b5d2fdce61f6ee661a679d8552599af084a761cbbc871da77641bddce0c3 \
-    gomod://go4.org/unsafe/assume-no-moving-gc;version=v0.0.0-20231121144256-b99613f794b6;sha256sum=e9f5fa7ec7ae45153c6cb5b0c21e813860f9a4370b35ed1ab27398ba365dbb43 \
-    gomod://golang.org/x/sync;version=v0.20.0;sha256sum=7179d4d68800f6fdcadb9d4bbf11cbb5df9b40360c89305c203fe20723cbd375 \
-    gomod://golang.org/x/sys;version=v0.42.0;sha256sum=99df0ad90183debc80aee0b7489648574c6baa0c1cf5da37aaf591cf2e2d426a \
+    gomod://golang.org/x/sync;version=v0.24.0;sha256sum=ca3fcf3ea8259e75891f7947e1a816a5b89402c542d45d8bbbd9e061b0c58019 \
+    gomod://golang.org/x/sys;version=v0.49.0;sha256sum=e73a06591ca0d7016ce3ccb45c36a8ed7128468aecc1a357f94d815c760c6b31 \
 "
