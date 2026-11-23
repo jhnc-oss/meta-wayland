@@ -4,7 +4,7 @@ LICENSE = "GPL-3.0-only"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=1ebbd3e34237af26da5dc08a4e440464"
 
 SRC_URI += " git://github.com/christo-auer/eilmeldung.git;protocol=https;nobranch=1;tag=${PV}"
-SRCREV = "3870412e8ecd9f353574f9a0e37494b40d618326"
+SRCREV = "d788fd4e18fd8b2e06fb94ec958ff51c6b4bbd10"
 
 DEPENDS = "openssl sqlite3 libxml2 clang-native"
 
@@ -17,5 +17,6 @@ do_configure:prepend() {
 }
 
 export OPENSSL_NO_VENDOR = "1"
+export AWS_LC_SYS_NO_JITTER_ENTROPY = "1"
 export LIBCLANG_PATH = "${STAGING_LIBDIR_NATIVE}/libclang.so"
 export BINDGEN_EXTRA_CLANG_ARGS = "${HOST_CC_ARCH} ${TOOLCHAIN_OPTIONS} --target=${TARGET_SYS}"
