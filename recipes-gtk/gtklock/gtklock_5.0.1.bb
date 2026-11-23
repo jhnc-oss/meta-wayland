@@ -20,7 +20,7 @@ DEPENDS = " \
 
 SRC_URI = "git://github.com/jovanlanik/gtklock.git;protocol=https;branch=master;tag=v${PV}"
 
-SRCREV = "66321fb2bf0d5869d779e7ac6b4d8d9c272ea707"
+SRCREV = "4f7520abdf7f2fe04adba2d80c4ab228b009adfa"
 
 inherit meson pkgconfig features_check
 
